@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STARK GAMES - Catálogo de Contas Lords Mobile</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    
+    body { 
+      background-image: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), url('fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-color: #0b0f19;
+      color: #f8fafc; 
+      padding: 20px; 
+    }
+    
+    header { text-align: center; margin-bottom: 25px; padding: 10px 0; }
+    
+    .header-banner {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* CARROSSEL DE DESTAQUES */
+    .featured-container {
+      max-width: 1200px;
+      margin: 0 auto 30px auto;
+      background: rgba(15, 23, 42, 0.95);
+      border: 2px solid #f59e0b;
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+      position: relative;
+    }
+
+    .featured-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    .featured-badge {
+      background: #f59e0b;
+      color: #000;
+      font-weight: 900;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .featured-card {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .featured-img-box {
+      flex: 1.2;
+      min-width: 320px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      position: relative;
+    }
+
+    .featured-img-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .featured-info {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .featured-title { font-size: 1.7rem; color: #f59e0b; font-weight: bold; }
+    
+    .featured-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-nav {
+      background: #334155;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .btn-nav:hover { background: #f59e0b; color: #000; }
+
+    .glow-divider {
+      width: 85%;
+      height: 2px;
+      margin: 40px auto;
+      background: linear-gradient(90deg, transparent, #00ffcc, transparent);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+    }
+
+    /* ABA LATERAL FLUTUANTE */
+    .whatsapp-drawer-wrapper {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .whatsapp-drawer-toggle {
+      background: #25d366;
+      color: #fff;
+      padding: 16px 12px;
+      border-radius: 12px 0 0 12px;
+      cursor: pointer;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: -4px 0 15px rgba(37, 211, 102, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: none;
+    }
+    .whatsapp-drawer-toggle:hover { background: #1da851; }
+    .whatsapp-drawer-toggle span { transform: rotate(180deg); }
+
+    .whatsapp-drawer-content {
+      width: 0;
+      opacity: 0;
+      visibility: hidden;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid #1e293b;
+      border-right: none;
+      border-radius: 12px 0 0 12px;
+      padding: 0;
+      backdrop-filter: blur(12px);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      max-height: 85vh;
+    }
+
+    .whatsapp-drawer-wrapper.open .whatsapp-drawer-content,
+    .whatsapp-drawer-wrapper:hover .whatsapp-drawer-content {
+      width: 320px;
+      opacity: 1;
+      visibility: visible;
+      padding: 20px;
+    }
+
+    .drawer-header { border-bottom: 1px solid #334155; padding-bottom: 12px; margin-bottom: 15px; text-align: center; }
+    .drawer-title { font-size: 1.05rem; font-weight: bold; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .drawer-subtitle { font-size: 0.8rem; color: #94a3b8; margin-top: 4px; }
+
+    .drawer-groups-list { display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; padding-right: 4px; }
+    .drawer-group-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .drawer-group-btn:hover { background: #25d366; color: #fff; border-color: #25d366; transform: translateX(-4px); }
+
+    /* PAINEL DE FILTROS */
+    .filter-card { 
+      background: rgba(22, 30, 46, 0.85); 
+      border: 1px solid #1e293b; 
+      border-radius: 12px; 
+      margin-bottom: 20px; 
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .filter-toggle-header {
+      padding: 18px 24px;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .filter-toggle-header:hover { background: rgba(30, 41, 59, 0.8); }
+
+    .filter-toggle-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filter-toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      color: #22c55e;
+    }
+
+    .filter-card.open .filter-toggle-icon { transform: rotate(180deg); }
+
+    .filter-body {
+      display: none;
+      padding: 24px;
+      border-top: 1px solid #1e293b;
+    }
+
+    .filter-card.open .filter-body { display: block; }
+
+    .filter-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; margin-top: 15px; }
+    .filter-section-header:first-child { margin-top: 0; }
+    .filter-section-title { font-size: 0.85rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; }
+
+    .type-tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+    .type-tag { padding: 8px 16px; background: #0f172a; border: 1px solid #334155; color: #cbd5e1; font-weight: 600; border-radius: 20px; cursor: pointer; transition: 0.2s; font-size: 0.85rem; user-select: none; }
+    .type-tag:hover { border-color: #22c55e; color: #fff; }
+    .type-tag.active { background: #22c55e; color: #fff; border-color: #22c55e; }
+
+    .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 15px; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #e2e8f0; cursor: pointer; }
+    .checkbox-item input { accent-color: #22c55e; width: 16px; height: 16px; cursor: pointer; }
+
+    .price-sort-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    .input-box label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: bold; }
+    .input-box input, .input-box select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
+    .input-box input:focus, .input-box select:focus { border-color: #22c55e; }
+
+    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #1e293b; padding-top: 15px; }
+    .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
+    .btn-clear:hover { color: #f87171; }
+
+    .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    .card { background: rgba(22, 30, 46, 0.90); border-radius: 14px; overflow: hidden; border: 1px solid #1e293b; transition: all 0.3s ease; display: flex; flex-direction: column; backdrop-filter: blur(6px); scroll-margin-top: 20px; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(34, 197, 94, 0.15); border-color: #22c55e; }
+    
+    .card-header-badge { background: #f59e0b; color: #000; font-weight: 900; padding: 6px 12px; font-size: 0.85rem; text-transform: uppercase; text-align: center; }
+    
+    .card-img-container { position: relative; width: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+    .card-img { width: 100%; height: auto; display: block; }
+    
+    /* ESTILOS PARA CONTA VENDIDA */
+    .card.sold .card-img { filter: grayscale(100%) brightness(50%); }
+    .sold-stamp {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-12deg);
+      background: rgba(220, 38, 38, 0.95);
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 900;
+      padding: 10px 30px;
+      border: 4px dashed #fff;
+      border-radius: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .ref-title { color: #f59e0b; font-size: 1.3rem; font-weight: bold; margin-bottom: 12px; }
+    
+    .details-list { list-style: none; margin-bottom: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; }
+    .details-list li { background: #0f172a; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; color: #e2e8f0; }
+
+    .price-box { background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
+    .main-price { font-size: 1.5rem; color: #10b981; font-weight: 800; }
+    .down-payment { font-size: 0.9rem; color: #f59e0b; margin-top: 4px; font-weight: 600; }
+
+    .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
+    .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: background 0.2s, transform 0.1s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
+    .btn-drive { background: #334155; color: #f8fafc; }
+    .btn-drive:hover { background: #475569; }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-whatsapp:hover { background: #1da851; }
+    .btn-share { background: #0284c7; color: #fff; }
+    .btn-share:hover { background: #0369a1; }
+    
+    .btn-sold { background: #475569; color: #94a3b8; cursor: not-allowed; }
+
+    /* SEÇÃO / ABA DE CONTAS VENDIDAS */
+    .sold-section-container {
+      margin-top: 60px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .sold-section-title {
+      font-size: 1.5rem;
+      color: #ef4444;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    /* MODAL DE VENDEDORES EM GRID DE 2 COLUNAS */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
+    .modal-box { 
+      background: #161e2e; 
+      border: 1px solid #334155; 
+      border-radius: 16px; 
+      max-width: 650px; 
+      width: 100%; 
+      padding: 25px; 
+      text-align: center; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+      max-height: 90vh; 
+      display: flex; 
+      flex-direction: column; 
+    }
+    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; }
+    .modal-subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
+    
+    .vendor-list { 
+      display: grid; 
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: 10px; 
+      overflow-y: auto; 
+      padding-right: 5px; 
+      max-height: 60vh;
+    }
+    @media(max-width: 600px) {
+      .vendor-list { grid-template-columns: 1fr; }
+    }
+    
+    .vendor-card { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #1e293b; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: #fff; transition: all 0.2s ease; text-align: left; }
+    .vendor-card:hover { border-color: #22c55e; background: #1e293b; transform: translateY(-2px); }
+    .vendor-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #22c55e; flex-shrink: 0; }
+    .vendor-info { flex: 1; min-width: 0; }
+    .vendor-name { font-weight: bold; font-size: 0.9rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .vendor-status { font-size: 0.75rem; color: #22c55e; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+    .vendor-status::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block; }
+    
+    .btn-close-modal { margin-top: 15px; background: transparent; border: 1px solid #334155; color: #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; flex-shrink: 0; }
+    .btn-close-modal:hover { background: #334155; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="banner-cabecalho.jpg" alt="STARK GAMES - Catálogo Oficial de Contas" class="header-banner">
+  </header>
+
+  <!-- CARROSSEL DE CONTA EM DESTAQUE -->
+  <section class="featured-container" id="featured-section">
+    <div class="featured-header">
+      <div class="featured-badge">🔥 Conta em Destaque 🔥</div>
+      <div class="featured-controls">
+        <button class="btn-nav" onclick="prevFeatured()">❮ Anterior</button>
+        <button class="btn-nav" onclick="nextFeatured()">Próxima ❯</button>
+      </div>
+    </div>
+    <div class="featured-card" id="featured-card-content">
+      <!-- Preenchido via JavaScript -->
+    </div>
+  </section>
+
+  <div class="whatsapp-drawer-wrapper" id="whatsapp-drawer">
+    <div class="whatsapp-drawer-toggle" onclick="toggleDrawer()">
+      <span>💬 Nossos Grupos</span>
+    </div>
+    <div class="whatsapp-drawer-content">
+      <div class="drawer-header">
+        <div class="drawer-title">💬 Grupos no WhatsApp</div>
+        <div class="drawer-subtitle">Acesse nossos canais oficiais</div>
+      </div>
+      <div class="drawer-groups-list">
+        <a href="https://chat.whatsapp.com/HJgyZ76Rm4zACjpRyyGSey" target="_blank" rel="noopener" class="drawer-group-btn"><span>🏆 STARK LORDS VIP 🏆</span></a>
+        <a href="https://chat.whatsapp.com/GbySR9Fq65SAe6a1JjVEHu" target="_blank" rel="noopener" class="drawer-group-btn"><span>Stark - Made In China Oficial</span></a>
+        <a href="https://chat.whatsapp.com/HUwYV26idV2HbwSSu713SS" target="_blank" rel="noopener" class="drawer-group-btn"><span>🔥 Stark Games - 10K+ 🔥</span></a>
+        <a href="https://chat.whatsapp.com/HmOvR7DX8zrKnwht9JUAL3" target="_blank" rel="noopener" class="drawer-group-btn"><span>🛑 STARK - RESTRITAS ⛓️</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAINEL DE FILTROS OCULTO/EXPANDÍVEL -->
+  <section class="filter-card" id="filter-card">
+    <div class="filter-toggle-header" onclick="toggleFilterPanel()">
+      <div class="filter-toggle-title">
+        🔍 FILTRAR CONTAS <span id="filter-count-badge" style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(Exibindo todas as contas)</span>
+      </div>
+      <div class="filter-toggle-icon">▼</div>
+    </div>
+
+    <div class="filter-body">
+      <div class="filter-section-header"><div class="filter-section-title">Tipo / Atributo da Conta (Múltipla Seleção)</div></div>
+      <div class="type-tags-container" id="type-tags-box">
+        <div class="type-tag active" data-type="all" onclick="toggleTypeTag(this, 'all')">Todas</div>
+        <div class="type-tag" data-type="Fillers" onclick="toggleTypeTag(this, 'Fillers')">Fillers</div>
+        <div class="type-tag" data-type="800%" onclick="toggleTypeTag(this, '800%')">800%</div>
+        <div class="type-tag" data-type="900%" onclick="toggleTypeTag(this, '900%')">900%</div>
+        <div class="type-tag" data-type="1000%" onclick="toggleTypeTag(this, '1000%')">1000%</div>
+        <div class="type-tag" data-type="1100%" onclick="toggleTypeTag(this, '1100%')">1100%</div>
+        <div class="type-tag" data-type="1200%" onclick="toggleTypeTag(this, '1200%')">1200%</div>
+        <div class="type-tag" data-type="1300%" onclick="toggleTypeTag(this, '1300%')">1300%</div>
+        <div class="type-tag" data-type="1400%" onclick="toggleTypeTag(this, '1400%')">1400%</div>
+        <div class="type-tag" data-type="1500%+" onclick="toggleTypeTag(this, '1500%+')">1500%+</div>
+      </div>
+
+      <div class="filter-section-header"><div class="filter-section-title">Quantidade de Champs</div></div>
+      <div class="checkbox-grid" id="champs-checkboxes">
+        <label class="checkbox-item"><input type="checkbox" value="1 champ" onchange="applyFilters()"> 1 Champ</label>
+        <label class="checkbox-item"><input type="checkbox" value="2 champ" onchange="applyFilters()"> 2 Champs</label>
+        <label class="checkbox-item"><input type="checkbox" value="3 champ" onchange="applyFilters()"> 3 Champs</label>
+        <label class="checkbox-item"><input type="checkbox" value="full champ" onchange="applyFilters()"> Full Champs</label>
+        <label class="checkbox-item"><input type="checkbox" value="4 champ+" onchange="applyFilters()"> 4 Champs+</label>
+      </div>
+
+      <div class="filter-section-header"><div class="filter-section-title">Outras Características Específicas</div></div>
+      <div class="checkbox-grid" id="features-checkboxes">
+        <label class="checkbox-item"><input type="checkbox" value="tropa_magica_mana" onchange="applyFilters()"> Tropa Mágica / Mana</label>
+        <label class="checkbox-item"><input type="checkbox" value="skin_lider" onchange="applyFilters()"> Skin de Líder</label>
+        <label class="checkbox-item"><input type="checkbox" value="skin_exercito" onchange="applyFilters()"> Skin de Exército</label>
+        <label class="checkbox-item"><input type="checkbox" value="trap" onchange="applyFilters()"> Traps</label>
+        <label class="checkbox-item"><input type="checkbox" value="restrita_ate_1699" onchange="applyFilters()"> Restrita (K) até 1699</label>
+        <label class="checkbox-item"><input type="checkbox" value="restrita_1700_plus" onchange="applyFilters()"> Restrita (K) 1700+</label>
+        <label class="checkbox-item"><input type="checkbox" value="low quest" onchange="applyFilters()"> Low Quest</label>
+      </div>
+
+      <div class="filter-section-header"><div class="filter-section-title">Valores & Ordenação</div></div>
+      <div class="price-sort-grid">
+        <div class="input-box">
+          <label>Valor Mínimo (R$)</label>
+          <input type="number" id="price-min" placeholder="R$ 0" oninput="applyFilters()">
+        </div>
+        <div class="input-box">
+          <label>Valor Máximo (R$)</label>
+          <input type="number" id="price-max" placeholder="R$ 50.000+" oninput="applyFilters()">
+        </div>
+        <div class="input-box">
+          <label>Ordenar Por Preço</label>
+          <select id="sort-order" onchange="applyFilters()">
+            <option value="desc" selected>Do Maior para o Menor Valor</option>
+            <option value="asc">Do Menor para o Maior Valor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-footer">
+        <button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- CATÁLOGO PRINCIPAL -->
+  <main class="catalog" id="catalog-container"></main>
+
+  <!-- ABA / SEÇÃO DE CONTAS JÁ VENDIDAS (APÓS 2 SEMANAS) -->
+  <section class="sold-section-container" id="sold-section" style="display: none;">
+    <div class="sold-section-title">🔒 Histórico de Contas Vendidas</div>
+    <div class="catalog" id="sold-container"></div>
+  </section>
+
+  <div class="modal-overlay" id="vendor-modal">
+    <div class="modal-box">
+      <div class="modal-title">Escolha o Vendedor</div>
+      <div class="modal-subtitle">Com quem você deseja efetuar a compra?</div>
+      <div class="vendor-list" id="vendor-list"></div>
+      <button class="btn-close-modal" onclick="closeVendorModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <script>
+    const VENDEDORES = [
+      { nome: "Ribas", numero: "5555981208377", foto: "https://ui-avatars.com/api/?name=Ribas+MM&background=22c55e&color=fff&size=128" },
+      { nome: "Missinha", numero: "5551991204526", foto: "https://ui-avatars.com/api/?name=Missinha&background=0284c7&color=fff&size=128" },
+      { nome: "Dr. Abobrinha", numero: "5514997661879", foto: "https://ui-avatars.com/api/?name=Dr+Abobrinha&background=f59e0b&color=fff&size=128" },
+      { nome: "Samuel", numero: "5522992336426", foto: "https://ui-avatars.com/api/?name=Samuel&background=8b5cf6&color=fff&size=128" },
+      { nome: "Melk", numero: "5521971631325", foto: "https://ui-avatars.com/api/?name=Melk&background=ec4899&color=fff&size=128" },
+      { nome: "Guilherme", numero: "5511944605862", foto: "https://ui-avatars.com/api/?name=Guilherme&background=10b981&color=fff&size=128" },
+      { nome: "Caue", numero: "5511956041724", foto: "https://ui-avatars.com/api/?name=Caue&background=6366f1&color=fff&size=128" },
+      { nome: "Fernando", numero: "5582993585154", foto: "https://ui-avatars.com/api/?name=Fernando&background=14b8a6&color=fff&size=128" },
+      { nome: "Ace", numero: "5575988032672", foto: "https://ui-avatars.com/api/?name=Ace&background=f97316&color=fff&size=128" },
+      { nome: "Felipe (CK)", numero: "5535996702006", foto: "https://ui-avatars.com/api/?name=Felipe+CK&background=ef4444&color=fff&size=128" }
+    ];
+
+    const accounts = [
+      {
+        ref: "REF: K 3569",
+        stats: "✨ Super Restrita K1539 | Inf 1200% + Cav 1186% + Skins ✨",
+        imgUrl: "REF K 3569.jpeg",
+        driveUrl: "https://i3d.me/Ref2515",
+        priceTotal: 7500,
+        priceEntry: 800,
+        types: ["1200%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 INF 🛡️ 1200% / ARC 🏹 1119% / CAV 🐴 1186%",
+          "🔥 VOA ATÉ K1539",
+          "🔥 8 Familiares Pagos Full / Heróis Pagos 💛",
+          "🔥 Mana NV1 💜 / Skin de Rota e Exército",
+          "💳 Opções de Parcelamento:",
+          "  • Entrada R$ 800,00 + Parc. R$ 800,00",
+          "  • Entrada R$ 1.100,00 + Parc. R$ 500,00"
+        ]
+      },
+      {
+        ref: "REF: K 8511",
+        stats: "✨ Restrita K1505 | Inf 1083% + 2 Champs 🧡 + 3 Taças 🧡 ✨",
+        imgUrl: "REF K 8511.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1wyYDOq0BguRh-d3CTj5TpwGPXijp1wGG",
+        priceTotal: 5000,
+        priceEntry: 700,
+        types: ["1000%", "2 champ", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 INF 🛡️ 1083% / ARC 🏹 1055% / CAV 🐴 1056%",
+          "🔥 Restrita Voa Até K1505",
+          "🔥 2 Champ 🧡 / 3 Taças 🧡",
+          "🔥 6 Familiares Pagos Full",
+          "🔥 Heróis Pagos 💛 / Skin De Rota / Mana 1 💜",
+          "💸 R$ 5.000,00 (Desconto à vista)"
+        ]
+      },
+      {
+        ref: "REF: K 5902",
+        stats: "✨ Trap Rally Mítica | Inf 959% + 1 Champ 🧡 + 2 Taças 🧡 ✨",
+        imgUrl: "REF K 5902.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1EsWx8eg3ymcN282gZALm--_Fmrh2tN1Z",
+        priceTotal: 2300,
+        priceEntry: 350,
+        types: ["900%", "1 champ", "trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 INF 🛡️ 959% / ARC 🏹 858% / CAV 🐴 987%",
+          "🔥 1 Champ 🧡 / 2 Taças 🧡",
+          "🔥 3 Familiares Pagos Full / Heróis Pagos 💛",
+          "🔥 Conta Bem Astrolitada",
+          "💸 R$ 2.300,00 (Desconto à vista)"
+        ]
+      },
+      {
+        ref: "REF AB 099",
+        stats: "✨ Falanges 1000% | 55M de Tropas + Wonder III (90%) ✨",
+        imgUrl: "REF AB 099.jpeg",
+        driveUrl: "https://photos.app.goo.gl/iJcQeZVFFroHEeVA7",
+        priceTotal: 1800,
+        priceEntry: 300,
+        types: ["1000%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 🧡 + 2💛 / 3 Champs 💜 🔥",
+          "🔥 4 Fams Pagos / 215M Lunita",
+          "🔥 Full Pesquisas Pagas / Wow 3 {90%}",
+          "🔥 3 Falanges 1000% / Mix 700%",
+          "🔥 55M de Tropas / 18M T4 + 3M T5"
+        ]
+      },
+      {
+        ref: "REF R 105",
+        stats: "✨ Restrita K1509 | Ind ~800% + 30M de Tropas ✨",
+        imgUrl: "REF R 105.jpeg",
+        driveUrl: "https://photos.app.goo.gl/rmRKERorsNo5pSFB7",
+        priceTotal: 900,
+        priceEntry: 300,
+        types: ["800%", "restrita_ate_1699", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Restrita K1509",
+          "🔥 IND (FF) 782%/772%/808%",
+          "🔥 1 Champ 💛 / Vigilante e Boom 💛",
+          "🔥 30M de Tropas 💂‍♀️",
+          "🔥 Tropas Mágicas 1 💜"
+        ]
+      },
+      {
+        ref: "REF: K 7152",
+        stats: "✨ Ind 700%+ | 50M de Tropas + 1M de Gemas 💎 ✨",
+        imgUrl: "REF K 7152.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1jqn1MN3J2WRRdLyocIWs0jqFrHyN5TF5",
+        priceTotal: 480,
+        priceEntry: 180,
+        types: ["restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 701/726/718% FF",
+          "🔥 Restrita K1407",
+          "🔥 50M de Tropas (6M T4)",
+          "🔥 1M de Gemas 💎"
+        ]
+      },
+      {
+        ref: "REF AB 097",
+        stats: "✨ Ind 1200% | 2 Champs 🧡 + 3 Taças 🧡 + Wonder III ✨",
+        imgUrl: "REF AB 097.jpeg",
+        driveUrl: "https://photos.app.goo.gl/PBLUB8tu4KGn4RmBA",
+        priceTotal: 5000,
+        priceEntry: 400,
+        types: ["1200%", "2 champ", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 + 1 💛 / 2 Champs 🧡",
+          "🔥 10 Heróis Pagos 💛 / 6 Fams Pagos Full Lv.10",
+          "🔥 Full Pesquisas Pagas / Wonder 3 {80% Concluído}",
+          "🔥 Individual 1200% / 3 Skins de CT Exclusivas"
+        ]
+      },
+      {
+        ref: "REF AB 098",
+        stats: "✨ Mix Full Mítico 🧡 | Ind 1000% + Wonder II Full ✨",
+        imgUrl: "REF AB 098.jpeg",
+        driveUrl: "https://photos.app.goo.gl/VCzyZqgWR4SBWXF6A",
+        priceTotal: 1800,
+        priceEntry: 300,
+        types: ["1000%", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 / Mix Full Mítico 🧡 🔥",
+          "🔥 4 Fams Pagos (2 Full Lv.10 + 1 Lv.09)",
+          "🔥 Wonder 2 Full / Selos Calça, Capacete, Armadura",
+          "🔥 Individual 1000% / Mix 700%",
+          "🔥 45M de Tropas / 490K de Gemas",
+          "🔥 Tropas Mana Lv.01 / 120M de Lunita"
+        ]
+      },
+      {
+        ref: "REF AB 081",
+        stats: "✨ Mix 600% | 54M de Tropas + T5 Desbloqueada (Trap) ✨",
+        imgUrl: "REF AB 081.jpeg",
+        driveUrl: "https://photos.app.goo.gl/feXCftbK6MSRjTe97",
+        priceTotal: 450,
+        priceEntry: 200,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 💛 + 1 💜",
+          "🔥 Mix 600% + 54 Pergaminhos de Migração",
+          "🔥 T5 Desbloqueada / 80M de Lunita",
+          "🔥 54M de Tropas + 26B de RSS"
+        ]
+      },
+      {
+        ref: "REF AB 069",
+        stats: "✨ Inf 1059% | 1 Champ 🧡 + 3 Taças 🧡 + Skin CT Exclusiva ✨",
+        imgUrl: "REF AB 069.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ka6A6rCT6MVquRGEA",
+        priceTotal: 2000,
+        priceEntry: 300,
+        types: ["1000%", "1 champ", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 / 1 Champ 🧡",
+          "🔥 6 Heróis Pagos 💛 / 4 Fams Pagos (1 Full Lv.10)",
+          "🔥 Full Pesquisas Pagas / Infantaria 1059%",
+          "🔥 31M de Tropas (11M de T4) / Skin de CT Exclusiva"
+        ]
+      },
+      {
+        ref: "REF MI 1827",
+        stats: "⚡ 1200%+ | 4 Champs 🧡 + Skin de Líder ⚡",
+        imgUrl: "REF MI 1827.jpeg",
+        driveUrl: "https://photos.app.goo.gl/6E8tNHBsJmN8f3en7",
+        priceTotal: 10500,
+        priceEntry: 1500,
+        types: ["1200%", "4 champ+", "skin_lider", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1227% / 1130% / 1190%",
+          "🔥 4 Champs ✅",
+          "🔥 Skin de Líder",
+          "🔥 Mana lvl 1 💜",
+          "🔥 Full Fam + HP 700%+"
+        ]
+      },
+      {
+        ref: "REF MI 603",
+        stats: "⚡ 1150% Bônus | 7 Champs + Mana Lv1 ⚡",
+        imgUrl: "REF MI 603.jpeg",
+        driveUrl: "https://photos.app.goo.gl/RTrRThPTCQBgEA8UA",
+        priceTotal: 9900,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1150% 🔥",
+          "🔥 7 Champs (6 + 1)",
+          "🔥 Lotada de Tropas",
+          "🔥 Tropa Mana Lv1 💜",
+          "🛑 Aceita conta de entrada"
+        ]
+      },
+      {
+        ref: "REF MI1711",
+        stats: "✨ Mix 700%+ | 53M de Tropas (Trap) ✨",
+        imgUrl: "REF MI1711.jpeg",
+        driveUrl: "https://photos.app.goo.gl/hCWiA6JBYzexhA5r6",
+        priceTotal: 1200,
+        priceEntry: 400,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 MIX 725/730/700%",
+          "🔥 690M de poder em Tropas 💛",
+          "🔥 53M de tropas",
+          "💸 De R$ 1.500,00 por APENAS R$ 1.200,00"
+        ]
+      },
+      {
+        ref: "REF MMIC 83",
+        stats: "⚡ FULL CHAMP 1200%+ FF | Skin de Exército ⚡",
+        imgUrl: "REF MMIC 83.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1hfHV2qZd0kMVQhf0eVA4LY3H4IAQa8cd",
+        priceTotal: 23000,
+        priceEntry: 2000,
+        types: ["1200%", "full champ", "4 champ+", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1283/1205/1311% FF",
+          "🔥 FULL CHAMP 🧡",
+          "🔥 Skin de Exército",
+          "🔥 8 FULL FAM 🐉",
+          "🔥 4 Taças 🧡",
+          "🔥 Tropas Mágicas Lvl 1 💜"
+        ]
+      },
+      {
+        ref: "REF MIC 74",
+        stats: "⚡ FULL CHAMP 1500%+ FF | 22 Champs 🧡 + Skin de Líder e Exército ⚡",
+        imgUrl: "REF MIC 74.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1QC3H-r4ramHjuPvHZKfEwEGMWMikFll-",
+        priceTotal: 80000,
+        priceEntry: 12000,
+        types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1575/1542/1547% FF",
+          "🔥 FULL CHAMP (22 Champs 🧡)",
+          "🔥 Skin de Líder e Exército",
+          "🔥 ASTRO CHAMP 1x15 1x13 10x12",
+          "🔥 3x11K Lendário 💛😱",
+          "🔥 Tropas Mágicas Lvl 2 💜"
+        ]
+      },
+      {
+        ref: "REF MMIC 81",
+        stats: "⚡ FULL CHAMP 1400%+ FF | 9 Champs 🧡💛 + Skin de Líder ⚡",
+        imgUrl: "REF MMIC 81.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1_NwGO8MA3iWU5o1G9FAa1aTrCkS5w42Y",
+        priceTotal: 39000,
+        priceEntry: 3500,
+        types: ["1400%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1430/1381/1432% FF",
+          "🔥 FULL CHAMP (9 Champs 🧡💛)",
+          "🔥 Skin de Líder",
+          "🔥 ASTRO CHAMP 13/12/10/8/8",
+          "🔥 Tropas Mágicas Lvl 1 💜",
+          "🔥 RESTRITA K1313"
+        ]
+      },
+      {
+        ref: "REF MMIC 85",
+        stats: "⚡ FULL CHAMP 1500%+ FF | 12 Champs 🧡💛 + Skin de Líder e Exército ⚡",
+        imgUrl: "REF MMIC 85.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1LxaYE22-ry1I_Wh4WtATpwtfK7-HlIcR",
+        priceTotal: 48000,
+        priceEntry: 6000,
+        types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1522/1482/1523% FF",
+          "🔥 FULL CHAMP (12 Champs 🧡💛)",
+          "🔥 Skin de Líder e Exército",
+          "🔥 ASTRO CHAMP 6x12 1x10",
+          "🔥 26 HERÓIS 💛",
+          "🔥 Tropas Mágicas Lvl 2 💜 (90%)"
+        ]
+      },
+      {
+        ref: "REF MI142",
+        stats: "✨ IND 900%+ | 2 Champs 🧡 + Skin de Exército ✨",
+        imgUrl: "REF MI142.jpeg",
+        driveUrl: "https://photos.app.goo.gl/1Yykf6Fre5wan8E97",
+        priceTotal: 4750,
+        priceEntry: 400,
+        types: ["900%", "2 champ", "skin_exercito", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Inv (Fúria) 900%/883%/790%",
+          "🔥 2 Champs 🧡 + 1 💛",
+          "🔥 2 Taças 🧡",
+          "🔥 4 Fam Pagos Full",
+          "🔥 Skin de Exército",
+          "🔥 Elite On",
+          "🔥 Restrita K1670",
+          "💸 De R$ 5.000,00 por APENAS R$ 4.750,00 (Aceita conta de entrada)"
+        ]
+      },
+      {
+        ref: "REF M 602",
+        stats: "⚡ Bônus 1400% | 2 Skins de Líder + Itens Monstruosos ⚡",
+        imgUrl: "REF M 602.jpeg",
+        driveUrl: "https://photos.app.goo.gl/egdP91ufREEbzVKH6",
+        priceTotal: 22500,
+        priceEntry: 3500,
+        types: ["1400%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1400%",
+          "🔥 2 Skins de Líder",
+          "🔥 Itens Monstruosos 🧡",
+          "🔥 Tropas Mágicas Mana Lv1 💜",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF M 401",
+        stats: "✨ Bônus 1200% | 3 Champs 🧡 + Tropas Mágicas Lv 1 ✨",
+        imgUrl: "REF M 401.jpeg",
+        driveUrl: "https://photos.app.goo.gl/J8yy6hn39yyXjPzv7",
+        priceTotal: 6800,
+        priceEntry: 850,
+        types: ["1200%", "3 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1.200%",
+          "🔥 3 Champs 🧡",
+          "🔥 Tropas Mágicas Lv 1 💜",
+          "🔥 8 Fams Lv 10 🐉"
+        ]
+      },
+      {
+        ref: "REF RMIJ 1338",
+        stats: "✨ Bônus 1100% | 4 Champs + Skins de Rota e Exército ✨",
+        imgUrl: "REF RMIJ 1338.jpeg",
+        driveUrl: "https://photos.app.goo.gl/oc69PN8uUNM4YZ9u7",
+        priceTotal: 5000,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1100% / K1695",
+          "🔥 4 Champs 🧡",
+          "🔥 30M de Tropas 💂‍♀️",
+          "🔥 Skins de Rota + Exército",
+          "🔥 Tropas Mágicas Mana Lv1 💜",
+          "🔥 8 Familiares ✅",
+          "💸 De R$ 9.000,00 por APENAS R$ 5.000,00 à vista (Entrada de R$ 1.500,00)"
+        ]
+      },
+      {
+        ref: "REF MG 1134",
+        stats: "✨ Fúria 1200%+ | 1 Champ + 20 Heróis 💛 ✨",
+        imgUrl: "REF MG 1134.jpeg",
+        driveUrl: "https://photos.app.goo.gl/BnRbooB9sAZfVkzD9",
+        priceTotal: 9000,
+        priceEntry: 800,
+        types: ["1200%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Apenas Fúria",
+          "🔥 1200%+ / 1 Champ 🧡",
+          "🔥 20 Heróis 💛 + 3 💜",
+          "🔥 521 Stars / 856 lvls + 15 Abençoados",
+          "🛑 Aceita conta como entrada"
+        ]
+      },
+      {
+        ref: "REF MIA 1218",
+        stats: "✨ Fúria 900% | Skin de Exército + Wonder II Full ✨",
+        imgUrl: "REF MIA 1218.jpeg",
+        driveUrl: "https://photos.app.goo.gl/d7JnwhNKeLQVJ3HG7",
+        priceTotal: 2000,
+        priceEntry: 300,
+        types: ["900%", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Apenas Fúria / Skin de Exército",
+          "🔥 Bônus 900% / K1725",
+          "🔥 Wonder II Full / Low Power",
+          "🔥 Tropas Mágicas Mana Lv1 (95%) 💜",
+          "🔥 Familiares ✅"
+        ]
+      },
+      {
+        ref: "REF MIB 1203",
+        stats: "✨ Fúria 1000%+ | Skin de Exército + Tropas Mágicas Lv 1 ✨",
+        imgUrl: "REF MIB 1203.jpeg",
+        driveUrl: "https://photos.app.goo.gl/bYyBdmZYHNkAuzuo6",
+        priceTotal: 4500,
+        priceEntry: 800,
+        types: ["1000%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Apenas Fúria / Skins de Exército",
+          "🔥 Bônus 1020% / K1650",
+          "🔥 454 Stars / 835 lvls + 8 Abençoados",
+          "🔥 Mana lvl 1 / Low Power 💜"
+        ]
+      },
+      {
+        ref: "REF M 604",
+        stats: "✨ Bônus 1105% | 3 Champs + Lotada de Tropas ✨",
+        imgUrl: "REF M 604.jpeg",
+        driveUrl: "https://photos.app.goo.gl/M5cNsL3xszTM2PrE9",
+        priceTotal: 5500,
+        priceEntry: 1000,
+        types: ["1100%", "3 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1105%",
+          "🔥 3 Champs (2 + 1)",
+          "🔥 Lotado de Tropas",
+          "🔥 Evolução Mana 65% 💜",
+          "🛑 Aceita conta de entrada"
+        ]
+      },
+      {
+        ref: "REF M 601",
+        stats: "⚡ Bônus 1375% | 6 Champs 🧡 + Skins ⚡",
+        imgUrl: "REF M 601.jpeg",
+        driveUrl: "https://photos.app.goo.gl/7TU7Dify9WLHyekx7",
+        priceTotal: 21500,
+        priceEntry: 3000,
+        types: ["1300%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: true,
+        dataVendida: "2026-09-16",
+        details: [
+          "🔥 Bônus 1375%",
+          "🔥 6 Champs 🧡",
+          "🔥 4 Taças 🧡",
+          "🔥 Itens Monstruosos 🧡",
+          "🔥 Tropas Mágicas Mana Lv1 💜",
+          "🔥 Skin de Líder e Exército",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF AC. Adr 02",
+        stats: "✨Ind 749% | 25.8M Tropas + Elite✨",
+        imgUrl: "REF AC. Adr 02.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1PdWKUc-3HgKm13_6gyLidy4Dall8ExyN",
+        priceTotal: 350,
+        priceEntry: 200,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 749% ⚔️",
+          "🔥 25.8M de Tropas 💂‍♀️",
+          "🔥 1 Taça 💜",
+          "🔥 Elite Ativado"
+        ]
+      },
+      {
+        ref: "REF G2601 3",
+        stats: "✨RL 946% | 2 Champs 💛 + 2 Taças 🧡💛✨",
+        imgUrl: "REF G2601 3.jpeg",
+        driveUrl: "https://photos.app.goo.gl/bJKzkqny2q6oTWbK8",
+        priceTotal: 2200,
+        priceEntry: 400,
+        types: ["2 champ", "900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RL 946% Sem Fúria ⚔️",
+          "🔥 2 Champs 💛",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 3 Famílias Pagos + 10 Heróis Pagos 💛"
+        ]
+      },
+      {
+        ref: "REF AC. 1690",
+        stats: "✨Ind 912% | 1 Champ 🧡 + 2 Taças 🧡💛✨",
+        imgUrl: "REF AC. 1690.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1QWFns97R7yqWXVFUsFDY5PErzPX9Rwce",
+        priceTotal: 1650,
+        priceEntry: 500,
+        types: ["900%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 912% ⚔️",
+          "🔥 1 Champ 🧡",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 20.2M de Tropas"
+        ]
+      },
+      {
+        ref: "REF M 300",
+        stats: "✨Mix 700% | 2 Taças 💛 + 900k Gemas 💎✨",
+        imgUrl: "REF M 300.jpeg",
+        driveUrl: "https://photos.app.goo.gl/RQgxFgRzcApoF9qx9",
+        priceTotal: 1250,
+        priceEntry: 300,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 700% ⚔️",
+          "🔥 2 Taças 💛 + Mix Astro",
+          "🔥 1 Pet Full 10 + 1 Lv.04",
+          "🔥 2 Peças Astro Full 15 / 1 Lv.13",
+          "🔥 900k Gemas / 240M de Lunita"
+        ]
+      },
+      {
+        ref: "REF GM 1407",
+        stats: "✨Filler 1.5M T5 | 2M Gemas + 1 Champ 🧡✨",
+        imgUrl: "REF GM 1407.jpeg",
+        driveUrl: "https://photos.app.goo.gl/dNmCao1WFhJ8HkG89",
+        priceTotal: 1200,
+        priceEntry: 300,
+        types: ["Fillers", "900%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Maior Bônus 950% ⚔️",
+          "🔥 1.5M de T5",
+          "🔥 2M de Gemas 💜",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 1 Champ 💛",
+          "🔥 4 Familiares Pagos"
+        ]
+      },
+      {
+        ref: "REF AC. Wl",
+        stats: "✨Ind 747% | 2M+ Gemas + 27.5M Tropas✨",
+        imgUrl: "REF AC. Wl.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Fb6TxSw-z32eKnyGr7zwfwLfGJ-elYPX",
+        priceTotal: 500,
+        priceEntry: 300,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 747% ⚔️",
+          "🔥 27.5M de Tropas 💂‍♂️",
+          "🔥 2 Taças (💛💜)",
+          "🔥 5 Slots",
+          "🔥 +2M de Gemas 💎",
+          "🔥 Bolsa bem gorda"
+        ]
+      },
+      {
+        ref: "REF AC. La",
+        stats: "✨Mix 494% | 2.44M Gemas + 28.4M Tropas✨",
+        imgUrl: "REF AC. La.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/16d0iW44sVwDSaEUGAzz0kxi29jESvl8z",
+        priceTotal: 450,
+        priceEntry: 300,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 494% ⚔️",
+          "🔥 28.4M de Tropas (9M T4) 💂‍♂️",
+          "🔥 3 Taças 💜",
+          "🔥 4 Slots",
+          "🔥 2.44M de Gemas + 1.3M de Estrelas",
+          "🔥 Bastante Aceleradores na Bolsa"
+        ]
+      },
+      {
+        ref: "REF Jad AC",
+        stats: "✨Ind 941% | Mix 760% + 2 Taças 🧡💛✨",
+        imgUrl: "REF Jad AC.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1-MpM2l544eZmhDg6GI3-n-VtVRvv52Tl",
+        priceTotal: 1500,
+        priceEntry: 500,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 941% / Mix 760% ⚔️",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 T5 + Elite 💂‍♀️",
+          "🔥 +240K de Gemas 💎",
+          "🔥 5 Slots + Fams Pagos"
+        ]
+      },
+      {
+        ref: "REF AC 190",
+        stats: "✨Mix 500% | T5 Liberada + Boa Bag✨",
+        imgUrl: "REF AC 190.jpeg",
+        driveUrl: "https://photos.app.goo.gl/FCa7Y1bqUYyq7Sob8",
+        priceTotal: 1450,
+        priceEntry: 400,
+        types: ["restrita_1700_plus"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 500% 🔥",
+          "🔥 T5 Liberada",
+          "🔥 1M de cada T4",
+          "🔥 Boa Bag",
+          "🔥 Restrita K1720"
+        ]
+      },
+      {
+        ref: "REF AC. KA",
+        stats: "✨Mix 635% | 3 Taças 💜 + 790K Gemas 💎✨",
+        imgUrl: "REF AC. KA.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1ODXfeR2_VIS3UX98I7sA-fgzB69R3g4Q",
+        priceTotal: 350,
+        priceEntry: 350,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 635% ⚔️",
+          "🔥 3 Taças 💜",
+          "🔥 40.7M de Tropas 💂‍♀️",
+          "🔥 790K de Gemas 💎",
+          "🔥 Pré T5"
+        ]
+      },
+      {
+        ref: "REF AC. Ad",
+        stats: "✨Ind 956% | 2 Taças 💛 + 2 Fam Pagos✨",
+        imgUrl: "REF AC. Ad.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1IrqyCPGfubv91X3s45sV2zFf_aOkGbwz",
+        priceTotal: 650,
+        priceEntry: 300,
+        types: ["900%", "Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 956% ⚔️",
+          "🔥 2 Taças 💛",
+          "🔥 2 Fam Pagos",
+          "🔥 5 Slots"
+        ]
+      },
+      {
+        ref: "REF AC. JP",
+        stats: "✨Mix 702% | 2 Taças + 370K Gemas💎✨",
+        imgUrl: "REF AC. JP.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1b6NwIv183ZGI0wCNiOZjoyWdTK5sfKxf",
+        priceTotal: 500,
+        priceEntry: 300,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 702% ⚔️",
+          "🔥 2 Taças (💛💜)",
+          "🔥 18.4M de Tropas 💂‍♀️",
+          "🔥 370K de Gemas 💎",
+          "🔥 5 Slots"
+        ]
+      },
+      {
+        ref: "REF M 365",
+        stats: "⚡ 1200%+ | 4 Champs 🧡 + 5 Taças 🧡💛 | Mana 80% ⚡",
+        imgUrl: "REF M 365.jpeg",
+        driveUrl: "https://photos.app.goo.gl/J8zppXGKrYHLVPzu8",
+        priceTotal: 8800,
+        priceEntry: 1000,
+        types: ["1200%", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND Bruta 1204%",
+          "🔥 4 Champs 🧡",
+          "🔥 5 Taças (4🧡 + 1💛)",
+          "🔥 Mana 80%",
+          "🔥 6 Fams Lv10 + Vorme Lv9"
+        ]
+      },
+      {
+        ref: "REF MR 111",
+        stats: "⚡ IND FF 1000%+ | 1 Champ 🧡 + Skin Exército ⚡",
+        imgUrl: "REF MR 111.jpeg",
+        driveUrl: "https://photos.app.goo.gl/q76ogNhyGAMHfJnH9",
+        priceTotal: 2800,
+        priceEntry: 600,
+        types: ["1000%", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1046%/1015%/1050%",
+          "🔥 1 Champ 🧡",
+          "🔥 6 Fam Pagos Full",
+          "🔥 Skin de Exército",
+          "🔥 5 Heróis 💛 (3 WH 💛)"
+        ]
+      },
+      {
+        ref: "REF MR 360",
+        stats: "⚡ IND FF 1100%+ | 7 Champs + 5 Taças 🧡✨",
+        imgUrl: "REF MR 360.jpeg",
+        driveUrl: "https://photos.app.goo.gl/4VNyE8eJ4LdgGjAt7",
+        priceTotal: 10500,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1150%/1110%/1153%",
+          "🔥 7 Champs (6🧡 + 1💛)",
+          "🔥 5 Taças 🧡",
+          "🔥 1M Gemas 💎",
+          "🔥 27m Tropas",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF MB 09",
+        stats: "✨IND 800%+ | 1.6M Gemas 💎 + T5 Full✨",
+        imgUrl: "REF MB 09.jpeg",
+        driveUrl: "https://photos.app.goo.gl/VrS4vjz2acFRcTAh8",
+        priceTotal: 750,
+        priceEntry: 300,
+        types: ["800%", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 880%/830%/865%",
+          "🔥 1.6M de Gemas 💎",
+          "🔥 Tropas Mágicas 85%",
+          "🔥 Bag Top",
+          "🔥 1M de cada T5 (51m Total)"
+        ]
+      },
+      {
+        ref: "REF R 200",
+        stats: "⚡ IND FF 1100%+ | 7 Champs + Skin Exército ⚡",
+        imgUrl: "REF R 200.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ifBuYVgnqRwTMvqx8",
+        priceTotal: 12000,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1169%/1103%/1130%",
+          "🔥 7 Champs (7🧡 + 1💛)",
+          "🔥 11k Tomes de Ouro 📜",
+          "🔥 1M Gemas 💎",
+          "🔥 Skin de Exército",
+          "🔥 7 Fams Pagos Full"
+        ]
+      },
+      {
+        ref: "REF R 204",
+        stats: "✨IND FF 900%+ | 2 Taças 🧡 + 1M Gemas 💎✨",
+        imgUrl: "REF R 204.jpeg",
+        driveUrl: "https://photos.app.goo.gl/oV5GS8QQbZmMrp7c8",
+        priceTotal: 2500,
+        priceEntry: 500,
+        types: ["900%", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 977%/966%/901%",
+          "🔥 2 Taças 🧡 + 1 💛 (quase upando)",
+          "🔥 1M Gemas 💎",
+          "🔥 45m Tropas",
+          "🔥 Tropas Mágicas Lv1 💜",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF RM 201",
+        stats: "✨IND FF 1000%+ | 3 Champs + 3 Taças 🧡💛✨",
+        imgUrl: "REF RM 201.jpeg",
+        driveUrl: "https://photos.app.goo.gl/6zXoUA5V7URxmmhd8",
+        priceTotal: 3800,
+        priceEntry: 800,
+        types: ["1000%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1050%/1010%/1007%",
+          "🔥 3 Champs (🧡💛)",
+          "🔥 3 Taças (🧡💛)",
+          "🔥 5 Fam Full + 1 Niv7",
+          "🔥 Elite On",
+          "🔥 Heróis (3 WH 💛)"
+        ]
+      },
+      {
+        ref: "REF R 203",
+        stats: "✨IND FF 1000%+ | 1 Champ 🧡 + 2.4M Gemas 😱✨",
+        imgUrl: "REF R 203.jpeg",
+        driveUrl: "https://photos.app.goo.gl/MdGkZBaiYWJ4xVkG7",
+        priceTotal: 3000,
+        priceEntry: 800,
+        types: ["1000%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1091%/1045%/1170%",
+          "🔥 1 Champ 🧡",
+          "🔥 2 Taças 🧡",
+          "🔥 Heróis P2W 💛",
+          "🔥 44m Tropas",
+          "🔥 2.4m Gemas 😱"
+        ]
+      },
+      {
+        ref: "REF R 199",
+        stats: "✨IND FF 1000%+ | 3 Champs + 3 Taças 🧡💛✨",
+        imgUrl: "REF R 199.jpeg",
+        driveUrl: "https://photos.app.goo.gl/T9D5NhySNo5Yvu7aA",
+        priceTotal: 3500,
+        priceEntry: 600,
+        types: ["1000%", "3 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1059%/1013%/1019%",
+          "🔥 3 Champs (2🧡 + 1💛)",
+          "🔥 3 Taças (2🧡 + 1💛)",
+          "🔥 3 Fam Full + 1 Niv9 + 1 Niv8",
+          "🔥 Tropas Mágicas Lv1 💜",
+          "🔥 Heróis Pagos 💛"
+        ]
+      },
+      {
+        ref: "REF R 206",
+        stats: "✨IND 900%+ | 1 Champ 💛 + Tecelã 💛✨",
+        imgUrl: "REF R 206.jpeg",
+        driveUrl: "https://photos.app.goo.gl/4KHnB51TWpLDQJY96",
+        priceTotal: 1100,
+        priceEntry: 400,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 889%/935%/903%",
+          "🔥 1 Champ 💛",
+          "🔥 Tecelã 💛",
+          "🔥 Wonder II",
+          "🔥 46m Tropas"
+        ]
+      },
+      {
+        ref: "REF MR603",
+        stats: "⚡ 1400% Bônus | FULL CHAMP 🧡💛⚡",
+        imgUrl: "REF MR603.jpeg",
+        driveUrl: "https://photos.app.goo.gl/DtozP468XDgWZT3z8",
+        priceTotal: 34500,
+        priceEntry: 3500,
+        types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1400%",
+          "🔥 FULL CHAMP (10🧡 + 1💛)",
+          "🔥 Skin de Líder, Exército e Rota",
+          "🔥 30 Heróis 💛",
+          "🔥 Tropas Mágicas Mana Lv2 💜",
+          "💳 Entrada de R$ 3.500,00 + Parcelas de R$ 1.200,00"
+        ]
+      },
+      {
+        ref: "REF R 98",
+        stats: "✨IND FF 1000% | 3 Champs + Aceita Conta✨",
+        imgUrl: "REF R 98.jpeg",
+        driveUrl: "https://photos.app.goo.gl/vEV12H8snDDWhqyW8",
+        priceTotal: 2500,
+        priceEntry: 400,
+        types: ["1000%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1034/975/984%",
+          "🔥 3 Champs (🧡💛)",
+          "🔥 3 Heróis 💛",
+          "🔥 27m Tropas / Elite On",
+          "🔥 2 Fam P2W Full + 1 Niv 9",
+          "🛑 Aceita conta na negociação"
+        ]
+      },
+      {
+        ref: "REF R 125",
+        stats: "✨IND FF 1000%+ | 2 Champs 🧡✨",
+        imgUrl: "REF R 125.jpeg",
+        driveUrl: "https://photos.app.goo.gl/nim4c1XhTYujZfxn7",
+        priceTotal: 4000,
+        priceEntry: 500,
+        types: ["1000%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND FF 1094%/1002%/1106%",
+          "🔥 2 Champs 🧡",
+          "🔥 Set Caça 🧡",
+          "🔥 4 Fam Pagos Full + 1 Niv 9",
+          "🔥 Heróis (3 WH 💛) / Elite On",
+          "🔥 37m Tropas"
+        ]
+      },
+      {
+        ref: "REF MR 605",
+        stats: "✨Bônus 1225% | 2 Champs + 4 Taças✨",
+        imgUrl: "REF MR 605.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ewBo5uRY9y71YjUy9",
+        priceTotal: 7500,
+        priceEntry: 1000,
+        types: ["1200%", "2 champ", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1225%",
+          "🔥 2 Champs (🧡💛)",
+          "🔥 4 Taças 🧡",
+          "🔥 3 Heróis WoW 💛",
+          "🔥 Tropas Mágicas Lv1 💜 (Mana)",
+          "🔥 Skin de Exército"
+        ]
+      },
+      {
+        ref: "REF R 208",
+        stats: "✨IND 900% | 1M Gemas + 23m Tropas✨",
+        imgUrl: "REF R 208.jpeg",
+        driveUrl: "https://photos.app.goo.gl/kBRGcxkCk9yHUjWw8",
+        priceTotal: 450,
+        priceEntry: 250,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 883%/859%/906%",
+          "🔥 Coelho Nível 5 / Bonna Nível 3",
+          "🔥 1M de gemas",
+          "🔥 Elite On",
+          "🔥 23m Tropas",
+          "💳 Opção parcelada: 2x R$ 250,00"
+        ]
+      },
+      {
+        ref: "REF R 65",
+        stats: "✨Mix 600%+ | 41m Tropas✨",
+        imgUrl: "REF R 65.jpeg",
+        driveUrl: "https://photos.app.goo.gl/hXDPcNdUBCfHxKQp8",
+        priceTotal: 550,
+        priceEntry: 250,
+        types: ["600%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 MIX (Fúria) 646/693/635%",
+          "🔥 Set Caça 💛🧡",
+          "🔥 41m Tropas",
+          "🔥 Bag Top",
+          "🔥 Elite On"
+        ]
+      },
+      {
+        ref: "REF MC 65",
+        stats: "⚡ 1500%+ FF | 8 Champs 🧡⚡",
+        imgUrl: "REF MC 65.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1dPzJ7LH3ff7287y5_acgArezF3qylD_G",
+        priceTotal: 55000,
+        priceEntry: 7500,
+        types: ["1300%", "4 champ+", "restrita_ate_1699", "skin_lider", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1542/1525/1522% FF",
+          "🔥 8 Champs 🧡",
+          "🔥 ASTRO CHAMP 13/12/9/7/6/6",
+          "🔥 6 Skins Leaders 😱",
+          "🔥 Tropas Mágicas Lv2 💜",
+          "🔥 Restrita K1467"
+        ]
+      },
+      {
+        ref: "REF MC 84",
+        stats: "⚡ FULL CHAMP 1200%+ FF ⚡",
+        imgUrl: "REF MC 84.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/17UBatEzEDNA6fMP9Mac67NG3YOHioR37",
+        priceTotal: 22000,
+        priceEntry: 1500,
+        types: ["1200%", "full champ", "4 champ+", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1229/1133/1268% FF",
+          "🔥 FULL CHAMP 🧡",
+          "🔥 Skin De Exército",
+          "🔥 17 Heróis 💛 (3 de WoW 💛)",
+          "🔥 Tropas Mágicas Lv1 💜"
+        ]
+      },
+      {
+        ref: "REF S 1063",
+        stats: "✨Filler top✨",
+        imgUrl: "REF S 1063.jpeg",
+        driveUrl: "https://photos.app.goo.gl/1sN5ZCZ2E79Z6BQL9",
+        priceTotal: 500,
+        priceEntry: 250,
+        types: ["800%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Individuais: 800%",
+          "🔥 Mix 600%",
+          "🔥 Muitas Tropas",
+          "🔥 Quase 1m de gemas",
+          "🔥 Fams Pagos",
+          "🔥 Pesquisas avançadas",
+          "🔥 Elite/loja"
+        ]
+      },
+      {
+        ref: "REF MS 600",
+        stats: "💥RL Facilitada💥",
+        imgUrl: "REF MS 600.jpeg",
+        driveUrl: "https://photos.app.goo.gl/HHLgVaULjnxgMja17",
+        priceTotal: 10500,
+        priceEntry: 1000,
+        types: ["1100%", "4 champ+"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1100+%",
+          "🔥 7 Champs (6🧡 + 1💛)",
+          "🔥 2 Acessórios (1🧡 + 1💛)",
+          "🔥 5 Taças (4🧡 + 1💛)",
+          "🔥 Top 1165% 😎",
+          "🔥 18 Heróis 💛",
+          "🔥 Todos os familiares com habilidades maximizadas"
+        ]
+      },
+      {
+        ref: "REF MBS 365",
+        stats: "✨RL Básica✨",
+        imgUrl: "REF MBS 365.jpeg",
+        driveUrl: "https://photos.app.goo.gl/FSLcXcvTbuHkUxYv5",
+        priceTotal: 2200,
+        priceEntry: 300,
+        types: ["900%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 992%",
+          "🔥 3 Heróis de WoW 💛",
+          "🔥 2 Champs 💛",
+          "🔥 Set de Caça Full 🧡",
+          "🔥 4 Fams Lv 10 🐉"
+        ]
+      },
+      {
+        ref: "REF MS 513",
+        stats: "✨Festa no Coliseu✨",
+        imgUrl: "REF MS 513.jpeg",
+        driveUrl: "https://photos.app.goo.gl/MGVDpsL7TuQzkEfQ7",
+        priceTotal: 3800,
+        priceEntry: 800,
+        types: ["1100%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Inf 1107%",
+          "🔥 5 Fams Pagos",
+          "🔥 12 Heróis 💛",
+          "🔥 2 Champs 💛"
+        ]
+      },
+      {
+        ref: "REF S 1065",
+        stats: "✨RL Bem Equilibrada✨",
+        imgUrl: "REF S 1065.jpeg",
+        driveUrl: "https://photos.app.goo.gl/tFYoaeHDeHP2BeJJ7",
+        priceTotal: 10000,
+        priceEntry: 1000,
+        types: ["1100%", "4 champ+"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1143/1114/1158% (Fortes e Fúria)",
+          "🔥 7 Taças (6🧡 + 1💛)",
+          "🔥 6 Champs 🧡",
+          "🔥 12 Heróis Pagos 💛",
+          "🔥 Full Fam Pago Max"
+        ]
+      },
+      {
+        ref: "REF S 1067",
+        stats: "✈️ Migra até o 1679 ✈️",
+        imgUrl: "REF S 1067.jpeg",
+        driveUrl: "https://photos.app.goo.gl/iTjxPT73mqR8DFUB9",
+        priceTotal: 20000,
+        priceEntry: 2000,
+        types: ["1100%", "4 champ+", "restrita_ate_1699", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Migra até o 1679 ✈️",
+          "🔥 1100%",
+          "🔥 3 Taças / 6 Champs 🧡",
+          "🔥 Full Fam Pago Max",
+          "🔥 Heróis Pagos 💛 (3 de WoW)",
+          "🔥 Peças muito bem astrolitadas (Bônus max focado no Mix)",
+          "🔥 Mana lv1 💜"
+        ]
+      },
+      {
+        ref: "REF S 1069",
+        stats: "✈️ Migra até o 1711 ✈️",
+        imgUrl: "REF S 1069.jpeg",
+        driveUrl: "https://photos.app.goo.gl/NrKvzcxrVjcbf6ht8",
+        priceTotal: 12500,
+        priceEntry: 1000,
+        types: ["1100%", "4 champ+", "restrita_1700_plus", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Migra até o 1711 ✈️",
+          "🔥 1100%+",
+          "🔥 3 Taças / 4 Champs 🧡",
+          "🔥 Muito bem Astrolitada",
+          "🔥 Muitas Tropas",
+          "🔥 Poder fixo baixo",
+          "🔥 Full Fam Pago Max",
+          "🔥 Heróis Pagos 💛",
+          "🔥 Todos os tipos de Skins",
+          "🔥 Mana lv3 💜"
+        ]
+      },
+      {
+        ref: "REF GC 0898",
+        stats: "✨RL Facilitada✨",
+        imgUrl: "REF GC 0898.jpeg",
+        driveUrl: "https://photos.app.goo.gl/6KEJmn4xqnkzEZK16",
+        priceTotal: 5000,
+        priceEntry: 800,
+        types: ["1100%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1100% inf",
+          "🔥 03 CHAMPS 🧡",
+          "🔥 04 TAÇAS 🧡",
+          "🔥 11 Heróis 💛",
+          "🔥 07 FAMS PAGOS FULL"
+        ]
+      },
+      {
+        ref: "REF MGS 4060",
+        stats: "FULL CHAMP 1.300%",
+        imgUrl: "REF MGS 4060.jpeg",
+        driveUrl: "https://photos.app.goo.gl/zpJ3FeFkSuax1mEv6",
+        priceTotal: 22500,
+        priceEntry: 1500,
+        types: ["1300%", "full champ", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 13 Champs 🧡",
+          "🔥 07 Taças 💛🧡",
+          "🔥 22 Heróis Pagos",
+          "🔥 Skin Rota / Exército",
+          "🔥 Tropas Mágicas 💜"
+        ]
+      },
+      {
+        ref: "REF MS 515",
+        stats: "✨8 Champs + 6 taças✨",
+        imgUrl: "REF MS 515.jpeg",
+        driveUrl: "https://photos.app.goo.gl/NoSC4mScG72AMSyK6",
+        priceTotal: 12800,
+        priceEntry: 2500,
+        types: ["1200%", "4 champ+"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Cav 1200%",
+          "🔥 8 Champs 🧡",
+          "🔥 6 Taças 🧡",
+          "🔥 25 Heróis 💛"
+        ]
+      }
+    ];
+
+    const featuredRefs = [
+      "REF MIC 74",   
+      "REF MC 65",    
+      "REF MMIC 85",  
+      "REF MMIC 81",  
+      "REF MR603"     
+    ];
+
+    let currentFeaturedIndex = 0;
+    let featuredTimer = null;
+
+    let selectedTypes = ["all"];
+    let currentRefForModal = "";
+
+    function toggleDrawer() { document.getElementById('whatsapp-drawer').classList.toggle('open'); }
+
+    function toggleFilterPanel() {
+      document.getElementById('filter-card').classList.toggle('open');
+    }
+
+    function renderFeatured() {
+      const container = document.getElementById('featured-card-content');
+      
+      if (featuredRefs.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color: #94a3b8; width: 100%; padding: 20px;">Nenhuma conta em destaque no momento.</p>';
+        return;
+      }
+
+      const ref = featuredRefs[currentFeaturedIndex];
+      const acc = accounts.find(a => a.ref === ref);
+
+      if (!acc) return;
+
+      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      const soldClass = acc.vendida ? 'sold' : '';
+      const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
+      const buyButtonHtml = acc.vendida 
+        ? `<button class="btn btn-sold">🚫 Vendida</button>` 
+        : `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+
+      container.innerHTML = `
+        <div class="featured-img-box ${soldClass}">
+          ${soldStampHtml}
+          <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+        </div>
+        <div class="featured-info">
+          <div class="featured-title">${acc.ref}</div>
+          <div style="color: #cbd5e1; font-weight: bold;">${acc.stats}</div>
+          <ul class="details-list">${detailsHtml}</ul>
+          <div class="price-box">
+            <div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
+            <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+          </div>
+          <div class="actions">
+            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive">📁 Fotos</a>
+            ${buyButtonHtml}
+            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function nextFeatured() {
+      if (featuredRefs.length === 0) return;
+      currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
+      renderFeatured();
+      resetFeaturedTimer();
+    }
+
+    function prevFeatured() {
+      if (featuredRefs.length === 0) return;
+      currentFeaturedIndex = (currentFeaturedIndex - 1 + featuredRefs.length) % featuredRefs.length;
+      renderFeatured();
+      resetFeaturedTimer();
+    }
+
+    function resetFeaturedTimer() {
+      if (featuredTimer) clearInterval(featuredTimer);
+      if (featuredRefs.length === 0) return;
+      featuredTimer = setInterval(() => {
+        currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
+        renderFeatured();
+      }, 5000);
+    }
+
+    function toggleTypeTag(element, type) {
+      if (type.toLowerCase() === 'all') {
+        selectedTypes = ['all'];
+        document.querySelectorAll('.type-tag').forEach(tag => tag.classList.remove('active'));
+        element.classList.add('active');
+      } else {
+        const allTag = document.querySelector('.type-tag[data-type="all"]');
+        if (allTag) allTag.classList.remove('active');
+        
+        const index = selectedTypes.indexOf('all');
+        if (index > -1) selectedTypes.splice(index, 1);
+
+        element.classList.toggle('active');
+        if (element.classList.contains('active')) {
+          selectedTypes.push(type.toLowerCase());
+        } else {
+          const tIndex = selectedTypes.indexOf(type.toLowerCase());
+          if (tIndex > -1) selectedTypes.splice(tIndex, 1);
+        }
+
+        if (selectedTypes.length === 0) {
+          selectedTypes = ['all'];
+          if (allTag) allTag.classList.add('active');
+        }
+      }
+      applyFilters();
+    }
+
+    function isOlderThanTwoWeeks(dateString) {
+      if (!dateString) return false;
+      const soldDate = new Date(dateString);
+      const today = new Date();
+      const diffTime = today - soldDate;
+      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      return diffDays > 14;
+    }
+
+    function getFilteredAccounts() {
+      const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
+      const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
+      const sortOrder = document.getElementById('sort-order').value;
+
+      const checkedChamps = Array.from(document.querySelectorAll('#champs-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
+      const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
+
+      let filtered = accounts.filter(acc => {
+        if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
+
+        if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
+
+        if (!selectedTypes.includes('all')) {
+          const hasType = selectedTypes.some(t => acc.types.some(accType => accType.toLowerCase() === t.toLowerCase()));
+          if (!hasType) return false;
+        }
+
+        if (checkedChamps.length > 0) {
+          const hasChamp = checkedChamps.some(c => acc.types.some(accType => accType.toLowerCase().includes(c)));
+          if (!hasChamp) return false;
+        }
+
+        if (checkedFeatures.length > 0) {
+          const hasFeature = checkedFeatures.some(f => acc.types.some(accType => accType.toLowerCase().includes(f)));
+          if (!hasFeature) return false;
+        }
+
+        return true;
+      });
+
+      if (sortOrder === 'asc') {
+        filtered.sort((a, b) => a.priceTotal - b.priceTotal);
+      } else {
+        filtered.sort((a, b) => b.priceTotal - a.priceTotal);
+      }
+
+      return filtered;
+    }
+
+    function renderCardHTML(acc) {
+      const soldClass = acc.vendida ? 'sold' : '';
+      const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
+      const buyButtonHtml = acc.vendida 
+        ? `<button class="btn btn-sold" disabled>🚫 Vendida</button>` 
+        : `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+
+      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+
+      return `
+        <div class="card ${soldClass}" id="${acc.ref.replace(/\s+/g, '-')}">
+          <div class="card-header-badge">${acc.stats}</div>
+          <div class="card-img-container">
+            ${soldStampHtml}
+            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+          </div>
+          <div class="card-body">
+            <div class="ref-title">${acc.ref}</div>
+            <ul class="details-list">${detailsHtml}</ul>
+            <div class="price-box">
+              <div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
+              <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+            </div>
+            <div class="actions">
+              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive">📁 Fotos</a>
+              ${buyButtonHtml}
+              <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCatalog(list) {
+      const container = document.getElementById('catalog-container');
+      container.innerHTML = '';
+
+      const activeAccounts = accounts.filter(acc => !acc.vendida || !isOlderThanTwoWeeks(acc.dataVendida));
+
+      const badge = document.getElementById('filter-count-badge');
+      if (list.length === activeAccounts.length) {
+        badge.innerText = `(Exibindo todas as ${list.length} contas)`;
+      } else {
+        badge.innerText = `(${list.length} conta${list.length === 1 ? '' : 's'} encontrada${list.length === 1 ? '' : 's'})`;
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color: #94a3b8; padding: 30px;">Nenhuma conta cadastrada ou encontrada com os filtros selecionados.</p>';
+      } else {
+        list.forEach(acc => {
+          container.innerHTML += renderCardHTML(acc);
+        });
+      }
+
+      renderSoldSection();
+    }
+
+    function renderSoldSection() {
+      const soldContainer = document.getElementById('sold-container');
+      const soldSection = document.getElementById('sold-section');
+      soldContainer.innerHTML = '';
+
+      const oldSoldAccounts = accounts.filter(acc => acc.vendida && isOlderThanTwoWeeks(acc.dataVendida));
+
+      if (oldSoldAccounts.length > 0) {
+        soldSection.style.display = 'block';
+        oldSoldAccounts.forEach(acc => {
+          soldContainer.innerHTML += renderCardHTML(acc);
+        });
+      } else {
+        soldSection.style.display = 'none';
+      }
+    }
+
+    function applyFilters() {
+      const filtered = getFilteredAccounts();
+      renderCatalog(filtered);
+    }
+
+    function clearFilters() {
+      document.getElementById('price-min').value = '';
+      document.getElementById('price-max').value = '';
+      document.getElementById('sort-order').value = 'desc';
+      
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      
+      selectedTypes = ['all'];
+      document.querySelectorAll('.type-tag').forEach(tag => {
+        if (tag.getAttribute('data-type') === 'all') tag.classList.add('active');
+        else tag.classList.remove('active');
+      });
+
+      applyFilters();
+    }
+
+    function openVendorModal(ref) {
+      currentRefForModal = ref;
+      const vendorList = document.getElementById('vendor-list');
+      vendorList.innerHTML = '';
+
+      VENDEDORES.forEach(v => {
+        const msg = encodeURIComponent(`Olá ${v.nome}! Tenho interesse na conta ${ref} do catálogo STARK GAMES.`);
+        const url = `https://wa.me/${v.numero}?text=${msg}`;
+        
+        vendorList.innerHTML += `
+          <a href="${url}" target="_blank" class="vendor-card">
+            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}">
+            <div class="vendor-info">
+              <div class="vendor-name">${v.nome}</div>
+              <div class="vendor-status">Atendimento Online</div>
+            </div>
+          </a>
+        `;
+      });
+
+      document.getElementById('vendor-modal').style.display = 'flex';
+    }
+
+    function closeVendorModal() {
+      document.getElementById('vendor-modal').style.display = 'none';
+    }
+
+    function shareAccount(ref) {
+      const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl);
+        alert(`Link da conta ${ref} copiado para a área de transferência!`);
+      } else {
+        alert(`Link: ${shareUrl}`);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      applyFilters();
+      renderFeatured();
+      resetFeaturedTimer();
+    });
+  </script>
+</body>
+</html>
