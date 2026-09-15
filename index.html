@@ -2017,12 +2017,12 @@
 
       VENDEDORES.forEach(v => {
         const textoMensagem = 
-          `🦁 *STARK GAMES - DEPARTAMENTO DE VENDAS* 🦁\n` +
+          `🦁 *STARK GAMES - COMPRA DE CONTA* 🦁\n` +
           `━━━━━━━━━━━━━━━━━━━━━━\n` +
           `👋 Olá *${v.nome}*! Tenho interesse em fechar negócio nesta conta:\n\n` +
           detalhesConta + `\n` +
-          `🔗 *Link do Anúncio no Catálogo:*\n${directLink}\n\n` +
-          `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
+          `🔗 *Link do Anúncio:* ${directLink}\n` +
+          `📁 *Link das Fotos:* ${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
           `━━━━━━━━━━━━━━━━━━━━━━\n` +
           `🚀 _A aguardar atendimento!_`;
         
@@ -2050,11 +2050,21 @@
       const acc = accounts.find(a => a.ref === ref);
       const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
       
+      let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
+
       const textoShare = 
         `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
-        `👑 *${ref}* - ${acc ? acc.stats : ''}\n` +
-        `💰 *Valor:* R$ ${acc ? acc.priceTotal.toLocaleString('pt-BR') : ''}\n\n` +
-        `👉 *Confira os detalhes e fotos no catálogo oficial:*\n${shareUrl}`;
+        `━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `👑 *${acc ? acc.ref : ref}*\n` +
+        `📊 *Status:* ${acc ? acc.stats : ''}\n\n` +
+        `📋 *DETALHES DA CONTA:*\n` +
+        detalhesLista + `\n\n` +
+        `💰 *Valor Total:* R$ ${acc ? acc.priceTotal.toLocaleString('pt-BR') : ''}\n` +
+        `💳 *Valor da Entrada:* R$ ${acc ? acc.priceEntry.toLocaleString('pt-BR') : ''}\n\n` +
+        `🔗 *Link Direto no Catálogo:*\n${shareUrl}\n` +
+        `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `🚀 *Garanta já a sua conta com segurança na STARK GAMES!*`;
 
       const whatsappShareUrl = `https://api.whatsapp.com/send?text=` + encodeURIComponent(textoShare);
       window.open(whatsappShareUrl, '_blank');
