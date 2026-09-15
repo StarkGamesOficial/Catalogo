@@ -2013,16 +2013,20 @@
       const acc = accounts.find(a => a.ref === ref);
       const directLink = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
       
-      let detalhesConta = acc ? `*${acc.ref}* - ${acc.stats}\nValor: R$ ${acc.priceTotal.toLocaleString('pt-BR')} (Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})\n` : `*${ref}*\n`;
+      let detalhesConta = acc ? `👑 *${acc.ref}* - ${acc.stats}\n💰 *Valor Total:* R$ ${acc.priceTotal.toLocaleString('pt-BR')} *(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})*\n` : `👑 *${ref}*\n`;
 
       VENDEDORES.forEach(v => {
-        const msg = encodeURIComponent(
-          `Olá ${v.nome}! Tenho interesse em negociar esta conta do catálogo STARK GAMES:\n\n` +
+        const textoMensagem = 
+          `🦁 *STARK GAMES - DEPARTAMENTO DE VENDAS* 🦁\n` +
+          `━━━━━━━━━━━━━━━━━━━━━━\n` +
+          `👋 Olá *${v.nome}*! Tenho interesse em fechar negócio nesta conta:\n\n` +
           detalhesConta + `\n` +
-          `🔗 *Link Direto no Catálogo:* ${directLink}\n` +
-          `📁 *Link das Fotos:* ${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}`
-        );
-        const url = `https://wa.me/${v.numero}?text=${msg}`;
+          `🔗 *Link do Anúncio no Catálogo:*\n${directLink}\n\n` +
+          `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
+          `━━━━━━━━━━━━━━━━━━━━━━\n` +
+          `🚀 _A aguardar atendimento!_`;
+        
+        const url = `https://wa.me/${v.numero}?text=` + encodeURIComponent(textoMensagem);
         
         vendorList.innerHTML += `
           <a href="${url}" target="_blank" class="vendor-card">
@@ -2043,13 +2047,17 @@
     }
 
     function shareAccount(ref) {
+      const acc = accounts.find(a => a.ref === ref);
       const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(shareUrl);
-        alert(`Link direto da conta ${ref} copiado para a área de transferência!`);
-      } else {
-        alert(`Link: ${shareUrl}`);
-      }
+      
+      const textoShare = 
+        `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
+        `👑 *${ref}* - ${acc ? acc.stats : ''}\n` +
+        `💰 *Valor:* R$ ${acc ? acc.priceTotal.toLocaleString('pt-BR') : ''}\n\n` +
+        `👉 *Confira os detalhes e fotos no catálogo oficial:*\n${shareUrl}`;
+
+      const whatsappShareUrl = `https://api.whatsapp.com/send?text=` + encodeURIComponent(textoShare);
+      window.open(whatsappShareUrl, '_blank');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
