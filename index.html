@@ -2010,8 +2010,18 @@
       const vendorList = document.getElementById('vendor-list');
       vendorList.innerHTML = '';
 
+      const acc = accounts.find(a => a.ref === ref);
+      const directLink = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
+      
+      let detalhesConta = acc ? `*${acc.ref}* - ${acc.stats}\nValor: R$ ${acc.priceTotal.toLocaleString('pt-BR')} (Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})\n` : `*${ref}*\n`;
+
       VENDEDORES.forEach(v => {
-        const msg = encodeURIComponent(`Olá ${v.nome}! Tenho interesse na conta ${ref} do catálogo STARK GAMES.`);
+        const msg = encodeURIComponent(
+          `Olá ${v.nome}! Tenho interesse em negociar esta conta do catálogo STARK GAMES:\n\n` +
+          detalhesConta + `\n` +
+          `🔗 *Link Direto no Catálogo:* ${directLink}\n` +
+          `📁 *Link das Fotos:* ${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}`
+        );
         const url = `https://wa.me/${v.numero}?text=${msg}`;
         
         vendorList.innerHTML += `
@@ -2036,7 +2046,7 @@
       const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
       if (navigator.clipboard) {
         navigator.clipboard.writeText(shareUrl);
-        alert(`Link da conta ${ref} copiado para a área de transferência!`);
+        alert(`Link direto da conta ${ref} copiado para a área de transferência!`);
       } else {
         alert(`Link: ${shareUrl}`);
       }
