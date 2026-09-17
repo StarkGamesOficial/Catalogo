@@ -2111,7 +2111,6 @@
       }
     ];
 
-    // AUTOMATIZAÇÃO: Pega automaticamente as 5 contas mais caras que não estão vendidas
     let featuredRefs = [];
 
     function updateFeaturedRefs() {
@@ -2155,7 +2154,7 @@
       container.innerHTML = `
         <div class="featured-img-box ${soldClass}">
           ${soldStampHtml}
-          <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+          <img src="${acc.imgUrl}" alt="${acc.ref}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
         </div>
         <div class="featured-info">
           <div class="featured-title">${acc.ref}</div>
@@ -2288,7 +2287,7 @@
           <div class="card-header-badge">${acc.stats}</div>
           <div class="card-img-container">
             ${soldStampHtml}
-            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
           </div>
           <div class="card-body">
             <div class="ref-title">${acc.ref}</div>
