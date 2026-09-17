@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STARK GAMES - Catálogo de Contas Lords Mobile</title>
   
-  <!-- ÍCONES MAIORES DA STARK GAMES -->
+  <!-- ÍCONES DA STARK GAMES -->
   <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="32x32">
   <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="192x192">
   <link rel="apple-touch-icon" href="favicon.jpeg" sizes="180x180">
@@ -2111,13 +2111,14 @@
       }
     ];
 
-    const featuredRefs = [
-      "REF MIC 74",   
-      "REF MC 65",    
-      "REF MMIC 85",  
-      "REF MMIC 81",  
-      "REF MR603"     
-    ];
+    // AUTOMATIZAÇÃO: Pega automaticamente as 5 contas mais caras que não estão vendidas
+    let featuredRefs = [];
+
+    function updateFeaturedRefs() {
+      const activeAccs = accounts.filter(acc => !acc.vendida);
+      activeAccs.sort((a, b) => b.priceTotal - a.priceTotal);
+      featuredRefs = activeAccs.slice(0, 5).map(acc => acc.ref);
+    }
 
     let currentFeaturedIndex = 0;
     let featuredTimer = null;
@@ -2434,6 +2435,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      updateFeaturedRefs();
       applyFilters();
       renderFeatured();
       resetFeaturedTimer();
