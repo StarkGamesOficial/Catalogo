@@ -35,7 +35,7 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
-    /* CARROSSEL DE DESTAQUES COM ALTURA FIXA E COVER PARA ESTABILIDADE NO MOBILE */
+    /* CARROSSEL DE DESTAQUES COM AJUSTE PROPORCIONAL PARA NÃO CORTAR IMAGENS */
     .featured-container {
       max-width: 1200px;
       margin: 0 auto 30px auto;
@@ -79,7 +79,7 @@
     .featured-img-box {
       flex: 1.2;
       min-width: 320px;
-      height: 320px; /* Altura fixa para manter a estabilidade no mobile */
+      max-height: 400px;
       overflow: hidden;
       border-radius: 12px;
       border: 1px solid #334155;
@@ -92,8 +92,9 @@
 
     .featured-img-box img {
       width: 100%;
-      height: 100%;
-      object-fit: cover; /* Preenche todo o espaço sem tarjas pretas */
+      height: auto;
+      max-height: 400px;
+      object-fit: contain; /* Exibe a imagem inteira sem cortes */
       display: block;
     }
 
@@ -2980,7 +2981,7 @@
           <a href="${url}" target="_blank" class="vendor-card">
             <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=22c55e&color=fff&size=128'">
             <div class="vendor-info">
-              <div class="vendedor-name">${v.nome}</div>
+              <div class="vendor-name">${v.nome}</div>
               <div class="vendor-status">Atendimento Online</div>
             </div>
           </a>
