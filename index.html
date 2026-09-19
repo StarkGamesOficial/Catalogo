@@ -523,20 +523,19 @@
 
   <script>
     const VENDEDORES = [
-      { nome: "Ribas", numero: "5555981208377", foto: "https://ui-avatars.com/api/?name=Ribas+MM&background=22c55e&color=fff&size=128" },
-      { nome: "Missinha", numero: "5551991204526", foto: "https://ui-avatars.com/api/?name=Missinha&background=0284c7&color=fff&size=128" },
-      { nome: "Dr. Abobrinha", numero: "5514997661879", foto: "https://ui-avatars.com/api/?name=Dr+Abobrinha&background=f59e0b&color=fff&size=128" },
-      { nome: "Samuel", numero: "5522992336426", foto: "https://ui-avatars.com/api/?name=Samuel&background=8b5cf6&color=fff&size=128" },
-      { nome: "Melk", numero: "5521971631325", foto: "https://ui-avatars.com/api/?name=Melk&background=ec4899&color=fff&size=128" },
-      { nome: "Guilherme", numero: "5511944605862", foto: "https://ui-avatars.com/api/?name=Guilherme&background=10b981&color=fff&size=128" },
-      { nome: "Caue", numero: "5511956041724", foto: "https://ui-avatars.com/api/?name=Caue&background=6366f1&color=fff&size=128" },
-      { nome: "Fernando", numero: "5582993585154", foto: "https://ui-avatars.com/api/?name=Fernando&background=14b8a6&color=fff&size=128" },
-      { nome: "Ace", numero: "5575988032672", foto: "https://ui-avatars.com/api/?name=Ace&background=f97316&color=fff&size=128" },
-      { nome: "Felipe (CK)", numero: "5535996702006", foto: "https://ui-avatars.com/api/?name=Felipe+CK&background=ef4444&color=fff&size=128" }
+      { nome: "Ribas", numero: "5555981208377", foto: "ribas.jpeg" },
+      { nome: "Missinha", numero: "5551991204526", foto: "missinha.jpeg" },
+      { nome: "Dr. Abobrinha", numero: "5514997661879", foto: "dr-abobrinha.jpeg" },
+      { nome: "Samuel", numero: "5522992336426", foto: "samuel.jpeg" },
+      { nome: "Melk", numero: "5521971631325", foto: "melk.jpeg" },
+      { nome: "Guilherme", numero: "5511944605862", foto: "guilherme.jpeg" },
+      { nome: "Caue", numero: "5511956041724", foto: "caue.jpeg" },
+      { nome: "Fernando", numero: "5582993585154", foto: "fernando.jpeg" },
+      { nome: "Ace", numero: "5575988032672", foto: "ace.jpeg" },
+      { nome: "Felipe (CK)", numero: "5535996702006", foto: "felipe.jpeg" }
     ];
 
     const accounts = [
-      // 🌟 NOVAS CONTAS ADICIONADAS 🌟
       {
         ref: "REF MC 68",
         stats: "🔥 IND 1464/1404/1425%FF | 11 Champs 🧡💛 + Tropas Mágica Lvl 3 💜😱",
@@ -733,7 +732,6 @@
           "• 🔥> 48M de Tropas/ 406M de Lunita"
         ]
       },
-      // 🌟 NOVAS CONTAS ADICIONADAS ANTERIORMENTE 🌟
       {
         ref: "REF FE V.020",
         stats: "🔥 Restrita K1715 | Ind 777% + 48M de Tropas 🔥",
@@ -1042,7 +1040,25 @@
           "🔳 +28M de tropas 😱"
         ]
       },
-      // 📋 RESTANTE DO ESTOQUE
+      {
+        ref: "REF: K 7152",
+        stats: "✨ Filler Recheada | Forte & Fúria MIX 650% + 39M Tropas ✨",
+        imgUrl: "REF K 7152.jpeg",
+        driveUrl: "https://photos.app.goo.gl/uFXSmu1uuAAfi8ja8",
+        priceTotal: 500,
+        priceEntry: 200,
+        types: ["Fillers", "800%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Filler Recheada Muita T4",
+          "🔥 Forte & Fúria MIX 650%",
+          "🔥 2 Taças 💜 / 9 Halos 💛",
+          "🔥 Labirinto Elite",
+          "🔥 212M de Lunita / 30B de Rss",
+          "🔥 39M de Tropas / 20M de T4"
+        ]
+      },
       {
         ref: "REF: K 1176",
         stats: "✨ RL 1200% | 3 Champs 🧡 + 6 Taças + 2 Skins de Líder ✨",
@@ -2960,7 +2976,7 @@
         
         vendorList.innerHTML += `
           <a href="${url}" target="_blank" class="vendor-card">
-            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}">
+            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=22c55e&color=fff&size=128'">
             <div class="vendor-info">
               <div class="vendor-name">${v.nome}</div>
               <div class="vendor-status">Atendimento Online</div>
@@ -2977,7 +2993,6 @@
     }
 
     function shareAccount(ref) {
-      const accounts = accounts; // reference fix
       const acc = accounts.find(a => a.ref === ref);
       const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
       
