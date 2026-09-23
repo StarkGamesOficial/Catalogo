@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STARK GAMES - Catálogo de Contas Lords Mobile</title>
   
+  <!-- GOOGLE ANALYTICS (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3MDCXHENS8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3MDCXHENS8');
+  </script>
+
   <!-- ÍCONES DA STARK GAMES -->
   <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="32x32">
   <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="192x192">
@@ -2481,24 +2490,6 @@
         ]
       },
       {
-        ref: "REF AB 095",
-        stats: "✨ Mix 700% | 1 Taça 🧡 + Mix 5 Peças Míticas ✨",
-        imgUrl: "REF AB 095.jpeg",
-        driveUrl: "https://photos.app.goo.gl/wk1htyrLfsfeVWp47",
-        priceTotal: 750,
-        priceEntry: 250,
-        types: ["900%"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 1 Taça 🧡 / Mix 5 Peças Míticas 🔥",
-          "🔥 Mix 700% / 3 Falanges 900%",
-          "🔥 Labirinto Elite / 27M de Tropas",
-          "🔥 Mister Boom + Vigilante 💛 / 82 Dias de Acc",
-          "🔥 5 Slots / 300K de Gemas"
-        ]
-      },
-      {
         ref: "REF C 62",
         stats: "✨ IND 900%+ | 7 Heróis 💛 + 50M de Tropas ✨",
         imgUrl: "REF C 62.jpeg",
@@ -2840,7 +2831,7 @@
             <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
           </div>
           <div class="actions">
-            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive">📁 Fotos</a>
+            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
             ${buyButtonHtml}
             <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
           </div>
@@ -2953,7 +2944,7 @@
       const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
       const buyButtonHtml = acc.vendida 
         ? `<button class="btn btn-sold" disabled>🚫 Vendida</button>` 
-        : `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+        : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
       const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
 
@@ -2972,13 +2963,18 @@
               <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
             </div>
             <div class="actions">
-              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive">📁 Fotos</a>
+              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
               ${buyButtonHtml}
               <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
             </div>
           </div>
         </div>
       `;
+    }
+
+    function trackAndOpenModal(ref) {
+      gtag('event', 'interesse_compra', { 'event_category': 'Conta', 'event_label': ref });
+      openVendorModal(ref);
     }
 
     function renderCatalog(list) {
@@ -3069,7 +3065,7 @@
         const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
         
         vendorList.innerHTML += `
-          <a href="${url}" target="_blank" class="vendor-card">
+          <a href="${url}" target="_blank" class="vendor-card" onclick="gtag('event', 'escolha_vendedor', { 'event_category': 'Vendedor', 'event_label': '${v.nome} - ${ref}' });">
             <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='${fallbackAvatar}'">
             <div class="vendor-info">
               <div class="vendor-name">${v.nome}</div>
@@ -3105,6 +3101,8 @@
         `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
         `━━━━━━━━━━━━━━━━━━━━━━\n` +
         `🚀 *Garanta já a sua conta com segurança na Stark Games!*`;
+
+      gtag('event', 'compartilhar_conta', { 'event_category': 'Conta', 'event_label': ref });
 
       const whatsappShareUrl = `https://api.whatsapp.com/send?text=` + encodeURIComponent(textoShare);
       window.open(whatsappShareUrl, '_blank');
