@@ -526,8 +526,8 @@
 
   <script>
     const VENDEDORES = [
-      { nome: "Ribas", numero: "5555981208377", foto: "ribas.jpeg" },
-      { nome: "Missinha", numero: "5551991204526", foto: "missinha.jpeg" },
+      { nome: "Ribas", numero: "5555981208377", foto: "Ribas.jpeg" },
+      { nome: "Missinha", numero: "5551991204526", foto: "Missinha.jpeg" },
       { nome: "Dr. Abobrinha", numero: "5514997661879", foto: "dr-abobrinha.jpeg" },
       { nome: "Samuel", numero: "5522992336426", foto: "samuel.jpeg" },
       { nome: "Melk", numero: "5521971631325", foto: "melk.jpeg" },
@@ -539,7 +539,6 @@
     ];
 
     const accounts = [
-      // 🌟 NOVOS ANÚNCIOS ADICIONADOS HOJE 🌟
       {
         ref: "REF C 73",
         stats: "⚡ FULL CHAMP 1400%+ FF | 8 Champs 🧡💛 + 4 Skins de Líder + Tropas Mágicas Lvl 2 💜 ⚡",
@@ -682,7 +681,6 @@
           "🔥 5M de cada T5"
         ]
       },
-      // 🌟 DEMAIS CONTAS DO CATÁLOGO 🌟
       {
         ref: "REF MC 68",
         stats: "🔥 IND 1464/1404/1425%FF | 11 Champs 🧡💛 + Tropas Mágica Lvl 3 💜😱",
@@ -1103,7 +1101,7 @@
         driveUrl: "https://drive.google.com/drive/folders/1OlCzrDdOgfduXijDVk7QGt5j3i5iA4o9",
         priceTotal: 400,
         priceEntry: 200,
-        types: ["restrita_ate_1699", "skin_lider"],
+        types: ["restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -2483,23 +2481,6 @@
         ]
       },
       {
-        ref: "REF AB 092",
-        stats: "✨ Mix 600% | 1.4M de Gemas + 110M de Tropas ✨",
-        imgUrl: "REF AB 092.jpeg",
-        driveUrl: "https://photos.app.goo.gl/qhNwnjbm2mZ1Bxhi7",
-        priceTotal: 650,
-        priceEntry: 250,
-        types: ["Fillers"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 1 Taça 💜 / 10 Halos 💛",
-          "🔥 51B de Recursos / Mix 600%",
-          "🔥 1.4M de Gemas / Labirinto Elite",
-          "🔥 110M de Tropas (22M de T4)"
-        ]
-      },
-      {
         ref: "REF AB 095",
         stats: "✨ Mix 700% | 1 Taça 🧡 + Mix 5 Peças Míticas ✨",
         imgUrl: "REF AB 095.jpeg",
@@ -3085,9 +3066,11 @@
         
         const url = `https://wa.me/${v.numero}?text=` + encodeURIComponent(textoMensagem);
         
+        const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
+        
         vendorList.innerHTML += `
           <a href="${url}" target="_blank" class="vendor-card">
-            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=22c55e&color=fff&size=128'">
+            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='${fallbackAvatar}'">
             <div class="vendor-info">
               <div class="vendor-name">${v.nome}</div>
               <div class="vendor-status">Atendimento Online</div>
