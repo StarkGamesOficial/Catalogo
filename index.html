@@ -1,164 +1,3119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Google tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3MDCXHENS8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3MDCXHENS8');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STARK GAMES - Catálogo de Contas Lords Mobile</title>
+  
+  <!-- GOOGLE ANALYTICS (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3MDCXHENS8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3MDCXHENS8');
+  </script>
 
-      function trackInterest(accountRef) {
-          gtag('event', 'interesse_compra', {
-              'event_category': 'Catalogo',
-              'event_label': accountRef
-          });
-      }
+  <!-- ÍCONES DA STARK GAMES -->
+  <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="32x32">
+  <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="192x192">
+  <link rel="apple-touch-icon" href="favicon.jpeg" sizes="180x180">
 
-      function trackPhotos(accountRef) {
-          gtag('event', 'clique_fotos', {
-              'event_category': 'Catalogo',
-              'event_label': accountRef
-          });
-      }
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STARK GAMES - Catálogo Oficial</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 20px; }
-        h1 { text-align: center; color: #f39c12; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .card { background-color: #1e1e1e; border: 2px solid #f39c12; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-        .card h2 { color: #f1c40f; margin-top: 0; }
-        
-        /* Estilo especial para contas vendidas */
-        .card.sold {
-            background-color: #161616;
-            border: 2px solid #555;
-            opacity: 0.7;
-        }
-        .card.sold h2 {
-            color: #e74c3c;
-        }
-        .badge-sold {
-            background-color: #e74c3c;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            font-weight: bold;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    
+    body { 
+      background-image: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), url('fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-color: #0b0f19;
+      color: #f8fafc; 
+      padding: 20px; 
+    }
+    
+    header { text-align: center; margin-bottom: 25px; padding: 10px 0; }
+    
+    .header-banner {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
 
-        .details { margin: 15px 0; line-height: 1.6; }
-        .price { font-size: 1.2em; font-weight: bold; color: #2ecc71; margin: 10px 0; }
-        .card.sold .price { color: #888; }
-        
-        .btn { display: inline-block; background-color: #27ae60; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-right: 10px; margin-top: 10px; }
-        .btn-photos { background-color: #2980b9; }
-        .btn-disabled { background-color: #444; color: #888; pointer-events: none; }
-        .btn:hover { opacity: 0.8; }
-    </style>
+    /* CARROSSEL DE DESTAQUES COM AJUSTE PROPORCIONAL PARA NÃO CORTAR IMAGENS */
+    .featured-container {
+      max-width: 1200px;
+      margin: 0 auto 30px auto;
+      background: rgba(15, 23, 42, 0.95);
+      border: 2px solid #f59e0b;
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+      position: relative;
+    }
+
+    .featured-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    .featured-badge {
+      background: #f59e0b;
+      color: #000;
+      font-weight: 900;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .featured-card {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .featured-img-box {
+      flex: 1.2;
+      min-width: 320px;
+      max-height: 400px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      position: relative;
+    }
+
+    .featured-img-box img {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .featured-info {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .featured-title { font-size: 1.7rem; color: #f59e0b; font-weight: bold; }
+    
+    .featured-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-nav {
+      background: #334155;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .btn-nav:hover { background: #f59e0b; color: #000; }
+
+    .glow-divider {
+      width: 85%;
+      height: 2px;
+      margin: 40px auto;
+      background: linear-gradient(90deg, transparent, #00ffcc, transparent);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+    }
+
+    /* ABA LATERAL FLUTUANTE */
+    .whatsapp-drawer-wrapper {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .whatsapp-drawer-toggle {
+      background: #25d366;
+      color: #fff;
+      padding: 16px 12px;
+      border-radius: 12px 0 0 12px;
+      cursor: pointer;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: -4px 0 15px rgba(37, 211, 102, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: none;
+    }
+    .whatsapp-drawer-toggle:hover { background: #1da851; }
+    .whatsapp-drawer-toggle span { transform: rotate(180deg); }
+
+    .whatsapp-drawer-content {
+      width: 0;
+      opacity: 0;
+      visibility: hidden;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid #1e293b;
+      border-right: none;
+      border-radius: 12px 0 0 12px;
+      padding: 0;
+      backdrop-filter: blur(12px);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      max-height: 85vh;
+    }
+
+    .whatsapp-drawer-wrapper.open .whatsapp-drawer-content,
+    .whatsapp-drawer-wrapper:hover .whatsapp-drawer-content {
+      width: 320px;
+      opacity: 1;
+      visibility: visible;
+      padding: 20px;
+    }
+
+    .drawer-header { border-bottom: 1px solid #334155; padding-bottom: 12px; margin-bottom: 15px; text-align: center; }
+    .drawer-title { font-size: 1.05rem; font-weight: bold; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .drawer-subtitle { font-size: 0.8rem; color: #94a3b8; margin-top: 4px; }
+
+    .drawer-groups-list { display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; padding-right: 4px; }
+    .drawer-group-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .drawer-group-btn:hover { background: #25d366; color: #fff; border-color: #25d366; transform: translateX(-4px); }
+
+    /* PAINEL DE FILTROS */
+    .filter-card { 
+      background: rgba(22, 30, 46, 0.85); 
+      border: 1px solid #1e293b; 
+      border-radius: 12px; 
+      margin-bottom: 20px; 
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .filter-toggle-header {
+      padding: 18px 24px;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .filter-toggle-header:hover { background: rgba(30, 41, 59, 0.8); }
+
+    .filter-toggle-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filter-toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      color: #22c55e;
+    }
+
+    .filter-card.open .filter-toggle-icon { transform: rotate(180deg); }
+
+    .filter-body {
+      display: none;
+      padding: 24px;
+      border-top: 1px solid #1e293b;
+    }
+
+    .filter-card.open .filter-body { display: block; }
+
+    .filter-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; margin-top: 15px; }
+    .filter-section-header:first-child { margin-top: 0; }
+    .filter-section-title { font-size: 0.85rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; }
+
+    .type-tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+    .type-tag { padding: 8px 16px; background: #0f172a; border: 1px solid #334155; color: #cbd5e1; font-weight: 600; border-radius: 20px; cursor: pointer; transition: 0.2s; font-size: 0.85rem; user-select: none; }
+    .type-tag:hover { border-color: #22c55e; color: #fff; }
+    .type-tag.active { background: #22c55e; color: #fff; border-color: #22c55e; }
+
+    .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 15px; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #e2e8f0; cursor: pointer; }
+    .checkbox-item input { accent-color: #22c55e; width: 16px; height: 16px; cursor: pointer; }
+
+    .price-sort-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    .input-box label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: bold; }
+    .input-box input, .input-box select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
+    .input-box input:focus, .input-box select:focus { border-color: #22c55e; }
+
+    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #1e293b; padding-top: 15px; }
+    .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
+    .btn-clear:hover { color: #f87171; }
+
+    .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    .card { background: rgba(22, 30, 46, 0.90); border-radius: 14px; overflow: hidden; border: 1px solid #1e293b; transition: all 0.3s ease; display: flex; flex-direction: column; backdrop-filter: blur(6px); scroll-margin-top: 20px; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(34, 197, 94, 0.15); border-color: #22c55e; }
+    
+    .card-header-badge { background: #f59e0b; color: #000; font-weight: 900; padding: 6px 12px; font-size: 0.85rem; text-transform: uppercase; text-align: center; }
+    
+    .card-img-container { position: relative; width: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+    .card-img { width: 100%; height: auto; display: block; }
+    
+    /* ESTILOS PARA CONTA VENDIDA */
+    .card.sold .card-img { filter: grayscale(100%) brightness(50%); }
+    .sold-stamp {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-12deg);
+      background: rgba(220, 38, 38, 0.95);
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 900;
+      padding: 10px 30px;
+      border: 4px dashed #fff;
+      border-radius: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .ref-title { color: #f59e0b; font-size: 1.3rem; font-weight: bold; margin-bottom: 12px; }
+    
+    .details-list { list-style: none; margin-bottom: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; }
+    .details-list li { background: #0f172a; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; color: #e2e8f0; }
+
+    .price-box { background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
+    .main-price { font-size: 1.5rem; color: #10b981; font-weight: 800; }
+    .down-payment { font-size: 0.9rem; color: #f59e0b; margin-top: 4px; font-weight: 600; }
+
+    .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
+    .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: background 0.2s, transform 0.1s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
+    .btn-drive { background: #334155; color: #f8fafc; }
+    .btn-drive:hover { background: #475569; }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-whatsapp:hover { background: #1da851; }
+    .btn-share { background: #0284c7; color: #fff; }
+    .btn-share:hover { background: #0369a1; }
+    
+    .btn-sold { background: #475569; color: #94a3b8; cursor: not-allowed; }
+
+    /* SEÇÃO / ABA DE CONTAS VENDIDAS */
+    .sold-section-container {
+      margin-top: 60px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .sold-section-title {
+      font-size: 1.5rem;
+      color: #ef4444;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    /* MODAL DE VENDEDORES EM GRID DE 2 COLUNAS */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
+    .modal-box { 
+      background: #161e2e; 
+      border: 1px solid #334155; 
+      border-radius: 16px; 
+      max-width: 650px; 
+      width: 100%; 
+      padding: 25px; 
+      text-align: center; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+      max-height: 90vh; 
+      display: flex; 
+      flex-direction: column; 
+    }
+    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; }
+    .modal-subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
+    
+    .vendor-list { 
+      display: grid; 
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: 10px; 
+      overflow-y: auto; 
+      padding-right: 5px; 
+      max-height: 60vh;
+    }
+    @media(max-width: 600px) {
+      .vendor-list { grid-template-columns: 1fr; }
+    }
+    
+    .vendor-card { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #1e293b; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: #fff; transition: all 0.2s ease; text-align: left; }
+    .vendor-card:hover { border-color: #22c55e; background: #1e293b; transform: translateY(-2px); }
+    .vendor-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #22c55e; flex-shrink: 0; }
+    .vendor-info { flex: 1; min-width: 0; }
+    .vendor-name { font-weight: bold; font-size: 0.9rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .vendor-status { font-size: 0.75rem; color: #22c55e; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+    .vendor-status::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block; }
+    
+    .btn-close-modal { margin-top: 15px; background: transparent; border: 1px solid #334155; color: #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; flex-shrink: 0; }
+    .btn-close-modal:hover { background: #334155; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🦁 STARK GAMES 🦁</h1>
-        <p style="text-align: center; color: #aaa;">As melhores contas e recursos para Lords Mobile</p>
 
-        <!-- REF M 800 -->
-        <div class="card">
-            <h2>REF M 800</h2>
-            <div class="details">
-                🔥 > 07 Champs🧡<br>
-                🔥 > Atk 1300%<br>
-                🔥 > 3 SkinS Líder<br>
-                🔥 > Mana Lv 1💜<br>
-                🔥 > Skin de Exército🤯
-            </div>
-            <div class="price">
-                💸 R$ 19.500,00 - Valor<br>
-                🪙 R$ 2.500,00 - Entrada
-            </div>
-            <a href="https://photos.app.goo.gl/WCC8qaRSDP4FQoSc8" target="_blank" class="btn btn-photos" onclick="trackPhotos('REF M 800')">📸 Ver Fotos</a>
-            <a href="https://wa.me/55981208377?text=Olá,%20tenho%20interesse%20na%20conta%20REF%20M%20800" target="_blank" class="btn" onclick="trackInterest('REF M 800')">💬 Tenho Interesse</a>
-        </div>
+  <header>
+    <img src="banner-cabecalho.jpg" alt="STARK GAMES - Catálogo Oficial de Contas" class="header-banner">
+  </header>
 
-        <!-- REF GMS 1709 -->
-        <div class="card">
-            <h2>REF GMS 1709</h2>
-            <div class="details">
-                ⚔️ RESTRITA K 1477<br>
-                🔥> 04 CHAMPS💛🧡<br>
-                🔥> SKIN LÍDER/ MEGA<br>
-                🔥> TROPAS 19M<br>
-                🔥> BÔNUS 1.000%<br>
-                🔥> MANA LVL 01💜
-            </div>
-            <div class="price">
-                💸 R$ 4.500,00 - Valor<br>
-                🪙 R$ 1.500,00 - Entrada
-            </div>
-            <a href="https://photos.app.goo.gl/cKThwLcLFh2on4vaA" target="_blank" class="btn btn-photos" onclick="trackPhotos('REF GMS 1709')">📸 Ver Fotos</a>
-            <a href="https://wa.me/55981208377?text=Olá,%20tenho%20interesse%20na%20conta%20REF%20GMS%201709" target="_blank" class="btn" onclick="trackInterest('REF GMS 1709')">💬 Tenho Interesse</a>
-        </div>
-
-        <!-- REF AB 103 -->
-        <div class="card">
-            <h2>REF AB 103 (Forte & Fúria)</h2>
-            <div class="details">
-                🔥> 3 Taças 🧡 / Mix Full Mítico🧡🔥<br>
-                🔥> 7 Fams Pagos / 3 Full Lv.10<br>
-                🔥> Low Quest + Full Pesquisas Pagas / Wow 3 {90%}<br>
-                🔥> Individual 1075% / Mix 800%<br>
-                🔥> 22 Heróis Pagos 💛 / 6900 Dias de ACC<br>
-                🔥> Tropas Mana LV.01 / 75M de Tropas (5M T5)<br>
-                🔥> 2.8M Gemas + 6K Fichas Magnatas + 231B RSS<br>
-                🔥> 3B De Lunita / Muitos Baús e Consumíveis
-            </div>
-            <div class="price">
-                💸 R$ 4.400,00 - Valor<br>
-                🪙 R$ 1.000,00 - Entrada
-            </div>
-            <a href="https://photos.app.goo.gl/sk2ramu6VqjtCosu6" target="_blank" class="btn btn-photos" onclick="trackPhotos('REF AB 103')">📸 Ver Fotos</a>
-            <a href="https://wa.me/55981208377?text=Olá,%20tenho%20interesse%20na%20conta%20REF%20AB%20103" target="_blank" class="btn" onclick="trackInterest('REF AB 103')">💬 Tenho Interesse</a>
-        </div>
-
-        <!-- REF AB 102 -->
-        <div class="card">
-            <h2>REF AB 102</h2>
-            <div class="details">
-                🔥> 1 Taça 🧡 / Mix 700%<br>
-                🔥> Individual 770% + Selo Capacete<br>
-                🔥> T5 Desbloqueada / 330M de Lunita<br>
-                🔥> 15M/Tropas(7M T4) / 44B de Rss
-            </div>
-            <div class="price">
-                💸 R$ 500,00 - Valor<br>
-                🪙 R$ 200,00 - Entrada
-            </div>
-            <a href="https://photos.app.goo.gl/dbqPqdbAVTihtMvp9" target="_blank" class="btn btn-photos" onclick="trackPhotos('REF AB 102')">📸 Ver Fotos</a>
-            <a href="https://wa.me/55981208377?text=Olá,%20tenho%20interesse%20na%20conta%20REF%20AB%20102" target="_blank" class="btn" onclick="trackInterest('REF AB 102')">💬 Tenho Interesse</a>
-        </div>
-
-        <!-- REF AB 069 - VENDIDA -->
-        <div class="card sold">
-            <h2>REF AB 069 (Forte & Fúria +Troca) <span class="badge-sold">VENDIDA</span></h2>
-            <div class="details">
-                •🔥> 3 Taças 🧡 / 1 Champ 🧡<br>
-                •🔥> 6 Heróis Pagos 💛/ 4 Fams Pagos (1 Full Lv.10)<br>
-                •🔥> Full Pesquisas Pagas / Wow 3 • 80%<br>
-                •🔥> 31M de Tropas (11M de T4) / Skin de CT Exclusiva
-            </div>
-            <div class="price">
-                💸 R$ 2.000,00 - Valor (Vendido)<br>
-                🪙 R$ 300,00 - Entrada
-            </div>
-            <span class="btn btn-disabled">❌ Conta Vendida</span>
-        </div>
-
+  <!-- CARROSSEL DE CONTA EM DESTAQUE -->
+  <section class="featured-container" id="featured-section">
+    <div class="featured-header">
+      <div class="featured-badge">🔥 Conta em Destaque 🔥</div>
+      <div class="featured-controls">
+        <button class="btn-nav" onclick="prevFeatured()">❮ Anterior</button>
+        <button class="btn-nav" onclick="nextFeatured()">Próxima ❯</button>
+      </div>
     </div>
+    <div class="featured-card" id="featured-card-content">
+      <!-- Preenchido via JavaScript -->
+    </div>
+  </section>
+
+  <div class="whatsapp-drawer-wrapper" id="whatsapp-drawer">
+    <div class="whatsapp-drawer-toggle" onclick="toggleDrawer()">
+      <span>💬 Nossos Grupos</span>
+    </div>
+    <div class="whatsapp-drawer-content">
+      <div class="drawer-header">
+        <div class="drawer-title">💬 Grupos no WhatsApp</div>
+        <div class="drawer-subtitle">Acesse nossos canais oficiais</div>
+      </div>
+      <div class="drawer-groups-list">
+        <a href="https://chat.whatsapp.com/HJgyZ76Rm4zACjpRyyGSey" target="_blank" rel="noopener" class="drawer-group-btn"><span>🏆 STARK LORDS VIP 🏆</span></a>
+        <a href="https://chat.whatsapp.com/GbySR9Fq65SAe6a1JjVEHu" target="_blank" rel="noopener" class="drawer-group-btn"><span>Stark - Made In China Oficial</span></a>
+        <a href="https://chat.whatsapp.com/HUwYV26idV2HbwSSu713SS" target="_blank" rel="noopener" class="drawer-group-btn"><span>🔥 Stark Games - 10K+ 🔥</span></a>
+        <a href="https://chat.whatsapp.com/HmOvR7DX8zrKnwht9JUAL3" target="_blank" rel="noopener" class="drawer-group-btn"><span>🛑 STARK - RESTRITAS ⛓️</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAINEL DE FILTROS OCULTO/EXPANDÍVEL -->
+  <section class="filter-card" id="filter-card">
+    <div class="filter-toggle-header" onclick="toggleFilterPanel()">
+      <div class="filter-toggle-title">
+        🔍 FILTRAR CONTAS <span id="filter-count-badge" style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(Exibindo todas as contas)</span>
+      </div>
+      <div class="filter-toggle-icon">▼</div>
+    </div>
+
+    <div class="filter-body">
+      <div class="filter-section-header"><div class="filter-section-title">Tipo / Atributo da Conta (Múltipla Seleção)</div></div>
+      <div class="type-tags-container" id="type-tags-box">
+        <div class="type-tag active" data-type="all" onclick="toggleTypeTag(this, 'all')">Todas</div>
+        <div class="type-tag" data-type="Fillers" onclick="toggleTypeTag(this, 'Fillers')">Fillers</div>
+        <div class="type-tag" data-type="800%" onclick="toggleTypeTag(this, '800%')">800%</div>
+        <div class="type-tag" data-type="900%" onclick="toggleTypeTag(this, '900%')">900%</div>
+        <div class="type-tag" data-type="1000%" onclick="toggleTypeTag(this, '1000%')">1000%</div>
+        <div class="type-tag" data-type="1100%" onclick="toggleTypeTag(this, '1100%')">1100%</div>
+        <div class="type-tag" data-type="1200%" onclick="toggleTypeTag(this, '1200%')">1200%</div>
+        <div class="type-tag" data-type="1300%" onclick="toggleTypeTag(this, '1300%')">1300%</div>
+        <div class="type-tag" data-type="1400%" onclick="toggleTypeTag(this, '1400%')">1400%</div>
+        <div class="type-tag" data-type="1500%+" onclick="toggleTypeTag(this, '1500%+')">1500%+</div>
+      </div>
+
+      <div class="filter-section-header"><div class="filter-section-title">Quantidade de Champs</div></div>
+      <div class="checkbox-grid" id="champs-checkboxes">
+        <label class="checkbox-item"><input type="checkbox" value="1 champ" onchange="applyFilters()"> 1 Champ</label>
+        <label class="checkbox-item"><input type="checkbox" value="2 champ" onchange="applyFilters()"> 2 Champs</label>
+        <label class="checkbox-item"><input type="checkbox" value="3 champ" onchange="applyFilters()"> 3 Champs</label>
+        <label class="checkbox-item"><input type="checkbox" value="full champ" onchange="applyFilters()"> Full Champs</label>
+        <label class="checkbox-item"><input type="checkbox" value="4 champ+" onchange="applyFilters()"> 4 Champs+</label>
+      </div>
+
+      <div class="filter-section-header"><div class="filter-section-title">Outras Características Específicas</div></div>
+      <div class="checkbox-grid" id="features-checkboxes">
+        <label class="checkbox-item"><input type="checkbox" value="tropa_magica_mana" onchange="applyFilters()"> Tropa Mágica / Mana</label>
+        <label class="checkbox-item"><input type="checkbox" value="skin_lider" onchange="applyFilters()"> Skin de Líder</label>
+        <label class="checkbox-item"><input type="checkbox" value="skin_exercito" onchange="applyFilters()"> Skin de Exército</label>
+        <label class="checkbox-item"><input type="checkbox" value="trap" onchange="applyFilters()"> Traps</label>
+        <label class="checkbox-item"><input type="checkbox" value="restrita_ate_1699" onchange="applyFilters()"> Restrita (K) até 1699</label>
+        <label class="checkbox-item"><input type="checkbox" value="restrita_1700_plus" onchange="applyFilters()"> Restrita (K) 1700+</label>
+        <label class="checkbox-item"><input type="checkbox" value="low quest" onchange="applyFilters()"> Low Quest</label>
+      </div>
+
+      <div class="filter-section-header"><div class="filter-section-title">Valores & Ordenação</div></div>
+      <div class="price-sort-grid">
+        <div class="input-box">
+          <label>Valor Mínimo (R$)</label>
+          <input type="number" id="price-min" placeholder="R$ 0" oninput="applyFilters()">
+        </div>
+        <div class="input-box">
+          <label>Valor Máximo (R$)</label>
+          <input type="number" id="price-max" placeholder="R$ 50.000+" oninput="applyFilters()">
+        </div>
+        <div class="input-box">
+          <label>Ordenar Por Preço</label>
+          <select id="sort-order" onchange="applyFilters()">
+            <option value="desc" selected>Do Maior para o Menor Valor</option>
+            <option value="asc">Do Menor para o Maior Valor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-footer">
+        <button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- CATÁLOGO PRINCIPAL -->
+  <main class="catalog" id="catalog-container"></main>
+
+  <!-- ABA / SEÇÃO DE CONTAS JÁ VENDIDAS (APÓS 2 SEMANAS) -->
+  <section class="sold-section-container" id="sold-section" style="display: none;">
+    <div class="sold-section-title">🔒 Histórico de Contas Vendidas</div>
+    <div class="catalog" id="sold-container"></div>
+  </section>
+
+  <div class="modal-overlay" id="vendor-modal">
+    <div class="modal-box">
+      <div class="modal-title">Escolha o Vendedor</div>
+      <div class="modal-subtitle">Com quem você deseja efetuar a compra?</div>
+      <div class="vendor-list" id="vendor-list"></div>
+      <button class="btn-close-modal" onclick="closeVendorModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <script>
+    const VENDEDORES = [
+      { nome: "Ribas", numero: "5555981208377", foto: "Ribas.jpeg" },
+      { nome: "Missinha", numero: "5551991204526", foto: "Missinha.jpeg" },
+      { nome: "Dr. Abobrinha", numero: "5514997661879", foto: "dr-abobrinha.jpeg" },
+      { nome: "Samuel", numero: "5522992336426", foto: "samuel.jpeg" },
+      { nome: "Melk", numero: "5521971631325", foto: "melk.jpeg" },
+      { nome: "Guilherme", numero: "5511944605862", foto: "guilherme.jpeg" },
+      { nome: "Caue", numero: "5511956041724", foto: "caue.jpeg" },
+      { nome: "Fernando", numero: "5582993585154", foto: "fernando.jpeg" },
+      { nome: "Ace", numero: "5575988032672", foto: "ace.jpeg" },
+      { nome: "Felipe (CK)", numero: "5535996702006", foto: "felipe.jpeg" }
+    ];
+
+    const accounts = [
+      {
+        ref: "REF C 73",
+        stats: "⚡ FULL CHAMP 1400%+ FF | 8 Champs 🧡💛 + 4 Skins de Líder + Tropas Mágicas Lvl 2 💜 ⚡",
+        imgUrl: "REF C 73.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1UwYcLapk6Dl5CD17_Q7MQ35_p6vb5NSS",
+        priceTotal: 42000,
+        priceEntry: 4000,
+        types: ["1400%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1411/1401/1467% FF",
+          "🔥 FULL CHAMP (8 Champs 🧡💛)",
+          "🔥 ASTRO CHAMP 15/14/9/6/5",
+          "🔥 4 Skins de Líder",
+          "🔥 Tropas Mágicas Lvl 2 💜"
+        ]
+      },
+      {
+        ref: "REF MC 88",
+        stats: "⚡ FULL CHAMP 1300%+ FF | 13 Champs 🧡💛 + Skin de Líder + Mana Lv1 💜 ⚡",
+        imgUrl: "REF MC 88.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1PE_87E40k4Dx0zo3q696jkYsczSGD6mE",
+        priceTotal: 35000,
+        priceEntry: 5000,
+        types: ["1300%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1398/1300/1369% FF",
+          "🔥 FULL CHAMP (12 Champs 🧡 + 1 💛)",
+          "🔥 26 Heróis 💛 (2x11K 😱)",
+          "🔥 Skin de Líder",
+          "🔥 Tropas Mágicas Lv1 💜",
+          "🔥 226 Estrelas de Castelo 🏰"
+        ]
+      },
+      {
+        ref: "REF MMI 029",
+        stats: "⚡ 1 Champ 💛 | Bônus Max 1075% + 31M de Tropas ⚡",
+        imgUrl: "REF MMI 029.jpeg",
+        driveUrl: "https://photos.app.goo.gl/KN6JZTf5djHG6vqG9",
+        priceTotal: 2000,
+        priceEntry: 300,
+        types: ["1000%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Champ 💛",
+          "🔥 Bônus Max 1075%",
+          "🔥 31M de Tropas"
+        ]
+      },
+      {
+        ref: "REF MMI 028",
+        stats: "⚡ 2 Champs | Bônus max 1060% + 39M de Tropas ⚡",
+        imgUrl: "REF MMI 028.jpeg",
+        driveUrl: "https://photos.app.goo.gl/yibet42v6NWK1443A",
+        priceTotal: 4400,
+        priceEntry: 700,
+        types: ["1000%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 2 Champs",
+          "🔥 Bônus max 1060%",
+          "🔥 39M de Tropas"
+        ]
+      },
+      {
+        ref: "REF GM 1709",
+        stats: "🔥 Restrita K1477 | 4 Champs + Skin de Líder/Mega + Mana Lv.1 💜 🔥",
+        imgUrl: "REF GM 1709.jpeg",
+        driveUrl: "https://photos.app.goo.gl/cKThwLcLFh2on4vaA",
+        priceTotal: 8500,
+        priceEntry: 1500,
+        types: ["1000%", "4 champ+", "skin_lider", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K 1477",
+          "🔥 04 CHAMPS 💛🧡",
+          "🔥 Skin de Líder / Mega",
+          "🔥 19M de Tropas",
+          "🔥 Bônus 1.000%",
+          "🔥 Mana Lvl 01 💜"
+        ]
+      },
+      {
+        ref: "REF KM",
+        stats: "✨ Filler | IND 800% + Sets Bem Upados + 2 Taças 💛 ✨",
+        imgUrl: "REF KM.jpeg",
+        driveUrl: "https://photos.app.goo.gl/EidS2EqBJ3CZCRco8",
+        priceTotal: 550,
+        priceEntry: 200,
+        types: ["800%", "Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Filler Linda Na Área - IND 800%",
+          "🔥 Sets Bem Upados 💛🧡",
+          "🔥 02 Taças 💛",
+          "🔥 Familiares Pagos"
+        ]
+      },
+      {
+        ref: "REF KM 01",
+        stats: "✨ RL Simples 1000% | 3 Taças 🧡 + 6 Fams PG Full + Skin de Exército ✨",
+        imgUrl: "REF KM 01.jpeg",
+        driveUrl: "https://photos.app.goo.gl/wcGfwxvik12NwfGD7",
+        priceTotal: 2800,
+        priceEntry: 800,
+        types: ["1000%", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RL Simples 1000% ⚔️",
+          "🔥 Heróis Pagos 💛",
+          "🔥 03 Taças 🧡",
+          "🔥 06 Familiares PG Full 🐉",
+          "🔥 Skin de Exército"
+        ]
+      },
+      {
+        ref: "REF KM 02",
+        stats: "✨ IND +900% | Baleia de Guerra + 1 Taça 🧡 + 5M cada T5 ✨",
+        imgUrl: "REF KM 02.jpeg",
+        driveUrl: "https://photos.app.goo.gl/oWhG2ugh6b1rKk429",
+        priceTotal: 1000,
+        priceEntry: 300,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND +900% ⚔️",
+          "🔥 Baleia de Guerra",
+          "🔥 Heróis Pagos 💛",
+          "🔥 01 Taça 🧡",
+          "🔥 Familiar Pago",
+          "🔥 5M de cada T5"
+        ]
+      },
+      {
+        ref: "REF MC 68",
+        stats: "🔥 IND 1464/1404/1425%FF | 11 Champs 🧡💛 + Tropas Mágica Lvl 3 💜😱",
+        imgUrl: "REF MC 68.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1vNAFK1WGWeM_czoQEcoHwokZtPGSOufm",
+        priceTotal: 38000,
+        priceEntry: 8000,
+        types: ["1400%", "full champ", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 - IND 1464/1404/1425%FF",
+          "🔳 - 11 CHAMPS 🧡💛",
+          "🔳 - ASTRO CHAMP 13/10/10/10/6",
+          "🔳 - 88 Abençoados",
+          "🔳 - Tropas Mágica Lvl 3 💜😱"
+        ]
+      },
+      {
+        ref: "REF M 57",
+        stats: "🔥 IND 958/943/905%FF | Fam 10/10/9/5/4🐉 + Tropas Mágica Lvl 1 💜",
+        imgUrl: "REF M 57.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1O6aAn5_01G9voOXLp5omQCPkzaKZ_l2X",
+        priceTotal: 1500,
+        priceEntry: 350,
+        types: ["900%", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 - IND 958/943/905%FF",
+          "🔳 - FAM 10/10/9/5/4🐉",
+          "🔳 - Heróis 💛 ( 3 de WoW 💛)",
+          "🔳 - Tropas Mágica Lvl 1 💜"
+        ]
+      },
+      {
+        ref: "REF C 63",
+        stats: "🔥 IND 910/967/889%FF | 2 Taças Miticas 🧡 + 40M de Tropas",
+        imgUrl: "REF C 63.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1WlZU_-aOIduf6Xr6o2o39U2hLdhFf3a7",
+        priceTotal: 1800,
+        priceEntry: 350,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 - IND 910/967/889%FF",
+          "🔳 - MIX 777/797/636%FF",
+          "🔳 - 2 Taças Miticas 🧡",
+          "🔳 - Heróis 💛",
+          "🔳 - 40M de Tropas"
+        ]
+      },
+      {
+        ref: "REF C 55",
+        stats: "🔥 RESTRITA K1870 | IND 802/780/848%FF + 1 CHAMP Miticos🧡",
+        imgUrl: "REF C 55.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1enlNOxskC-XtHlTQSTCeoUnq1ReXE4bb",
+        priceTotal: 4200,
+        priceEntry: 800,
+        types: ["800%", "restrita_1700_plus", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "- RESTRITA K1870",
+          "🔳 - IND 802/780/848%FF",
+          "🔳 - MIX 638/594/665%FF",
+          "🔳 - 1 CHAMP Miticos🧡+ 1 💜 (5 Crinas Gold 💛)",
+          "🔳 - Peças faltando apenas Ambar"
+        ]
+      },
+      {
+        ref: "REF FE V.003",
+        stats: "🔥 IND 634/678/698% | T5 Liberada + Taças 💜💜",
+        imgUrl: "REF FE V.003.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Uk1zFsuP37umN0xtZYKUp35SWax0DKiW",
+        priceTotal: 400,
+        priceEntry: 200,
+        types: ["800%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 - IND 634/678/698%",
+          "🔥 - TARÇAS 💜💜",
+          "🔥 - +10M de TROPAS 🔥",
+          "🔥- BONUS SÓ FÚRIA ⚔️",
+          "🔥- T5 LIBERADAS 😈"
+        ]
+      },
+      {
+        ref: "REF FE V.019",
+        stats: "🔥 IND 1031/1030/1094%F | 3 Taças 🧡🧡🧡 + Skins de Exército",
+        imgUrl: "REF FE V.019.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1KxZMOk1SpLUQikhTJ6bd8BHdAagf2A42",
+        priceTotal: 4500,
+        priceEntry: 600,
+        types: ["1000%", "skin_lider", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 - IND 1031/1030/1094%F",
+          "🔥 - 3 TARÇAS 🧡🧡🧡",
+          "🔥 - +31M de TROPAS 🔥",
+          "🔥- 3 SKIN DE EXÉRCITO 😈 🧙‍♀️ 🦁",
+          "🔥- SKIN DE LÍDER 🫡",
+          "✅ À vista: R$ 3.000,00"
+        ]
+      },
+      {
+        ref: "REF FE V.011",
+        stats: "🔥 Restrita K1287 | Ind ~650% + T5 + 2 Taças 💛💜 🔥",
+        imgUrl: "REF FE V.009.jpeg",
+        driveUrl: "https://drive.google.com/file/d/1pwzjEMSlSkZ6ciquchi3Q25_qIo2Besk/view?usp=drivesdk",
+        priceTotal: 400,
+        priceEntry: 200,
+        types: ["restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1287 ✈️",
+          "🔳 IND 650/650/655 SOFURIA",
+          "🔳 T5 LIBERADA ✳️",
+          "🔳 2 TAÇAS 💛💜",
+          "🔳 +28M de tropas 😱"
+        ]
+      },
+      {
+        ref: "REF FC 01",
+        stats: "✨ MIX 582/592/597%FF | 25M de Tropas (4M T4)",
+        imgUrl: "REF FC 01.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1sseyZhTteQUrKyvFVUiOYMZctYYyTQ6c",
+        priceTotal: 350,
+        priceEntry: 0,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 - MIX 582/592/597%FF",
+          "🔳 - 14M Poder Missao Territorio",
+          "🔳 - 25M de Tropas(4M T4)"
+        ]
+      },
+      {
+        ref: "REF C 64",
+        stats: "✨ IND 1056/1004/1036%FF | 3 Taças Miticas 🧡 + 16 Heróis 💛",
+        imgUrl: "REF C 64.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1OROPNPqjr-uFia4CmvyHXs_XzxMqC8vR",
+        priceTotal: 3000,
+        priceEntry: 400,
+        types: ["1000%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "⚡ - IND 1056/1004/1036%FF",
+          "⚡ - 3 TAÇAS Miticas 🧡",
+          "⚡ - 4 FAM FULL + 1 Nvl 7 🐉",
+          "⚡ - 16 Heróis 💛(3 de WoW💛)"
+        ]
+      },
+      {
+        ref: "REF AB 078",
+        stats: "✨ Forte & Fúria | 3 Taças 🧡 + 2 Champs 💛 + 48M Tropas + 406M Lunita ✨",
+        imgUrl: "REF AB 078.jpeg",
+        driveUrl: "https://photos.app.goo.gl/fmsxJ8C7xxN7oEkQ8",
+        priceTotal: 3200,
+        priceEntry: 500,
+        types: ["2 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "• 🔥> 3 Taças 🧡 / 2 Champs 💛",
+          "• 🔥> 5 Heróis Pagos 💛 / 6 Fams Pagos Full Lv.10",
+          "• 🔥> 5 Peças Mob Astro 15 / Low Quest + Low Might",
+          "• 🔥> 2 Falanges 1100% / Tropas Mana Lv.01",
+          "• 🔥> 38B de Rss / Muito Acc Na Bag",
+          "• 🔥> 48M de Tropas/ 406M de Lunita"
+        ]
+      },
+      {
+        ref: "REF FE V.020",
+        stats: "🔥 Restrita K1715 | Ind 777% + 48M de Tropas 🔥",
+        imgUrl: "REF FE V.020.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Qu4EGwAwZ8l2hrV4yNgL5UB2wCPykKOQ",
+        priceTotal: 1500,
+        priceEntry: 300,
+        types: ["800%", "restrita_1700_plus"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1715 🫡",
+          "🔥 IND 777/778/778% F",
+          "🔥 1 TAÇAS 💛",
+          "🔥 +48M de TROPAS 🔥",
+          "🔥 EQUIPAMENTO DE CAÇA TOP",
+          "✅ À vista: R$ 1.300,00"
+        ]
+      },
+      {
+        ref: "REF M 069",
+        stats: "🔥 Elite Open | 47M Tropas + Mix 700% 🔥",
+        imgUrl: "REF M 069.jpeg",
+        driveUrl: "https://photos.app.goo.gl/hWoGbNMLoiwGENM2A",
+        priceTotal: 650,
+        priceEntry: 300,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Elite Open",
+          "🔥 47M Tropas",
+          "🔥 Mix 700%"
+        ]
+      },
+      {
+        ref: "REF FE V.022",
+        stats: "🔥 Restrita K1286 | Ind 740%+ + 2 Taças Míticas 🧡💜 ✨",
+        imgUrl: "REF FE V.022.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/14dw9xEHeZMGL5QNFAAe9br1KC5EtMPwg",
+        priceTotal: 1100,
+        priceEntry: 250,
+        types: ["800%", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1286 🫡",
+          "🔳 IND 740/815/778% FF",
+          "🔳 MIX 685/671/608% FF",
+          "🔳 2 Taças Míticas 🧡💜",
+          "🔳 Wonder 1 Full / Wonder 2 85% 💛",
+          "🔳 Selos 96% 🫡"
+        ]
+      },
+      {
+        ref: "REF FE V.024",
+        stats: "🔥 Restrita K1271 | Ind 879% + 3 Taças Míticas 💛💛🧡 ✨",
+        imgUrl: "REF FE V.024.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1WrHPBn3biwRhEgjXjhMPf4A0uJ9Ix-1V",
+        priceTotal: 1400,
+        priceEntry: 250,
+        types: ["900%", "restrita_ate_1699", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1271 🫡",
+          "🔳 IND 879/864/845% F",
+          "🔳 MIX 700/652/616% F",
+          "🔳 3 Taças Míticas 💛💛🧡",
+          "🔳 HERÓI 💛 HP 517% 🫡",
+          "🔳 1 champ 🫡"
+        ]
+      },
+      {
+        ref: "REF S 1071",
+        stats: "✈️ Migra até 1635 | 600M de Poder em Tropas + Sereia 💛 ✈️",
+        imgUrl: "REF S 1071.jpeg",
+        driveUrl: "https://photos.app.goo.gl/9XJsJ4D68FsP2bjp9",
+        priceTotal: 700,
+        priceEntry: 200,
+        types: ["800%"],
+        vendida: true,
+        dataVendida: "2026-09-20",
+        details: [
+          "✈️ Migra até o 1635 ✈️",
+          "🔥 593/541/561% (Sem Fortes)",
+          "🔥 600m de poder em Tropas",
+          "🔥 Sereia 💛",
+          "🔥 Conta bem montada, com poder fixo baixo e pesquisas selecionadas"
+        ]
+      },
+      {
+        ref: "REF AB 100",
+        stats: "✨ 2 Taças 💜 + Mix 5 Peças 🧡 | 41M Tropas + T5 + 370M Lunita ✨",
+        imgUrl: "REF AB 100.jpeg",
+        driveUrl: "https://photos.app.goo.gl/me61G6LidSdMV8TdA",
+        priceTotal: 400,
+        priceEntry: 150,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 2 Taças 💜 + Mix 5 Peças 🧡 🔥",
+          "🔥 Mix 600% / Low Quest + Low Might",
+          "🔥 T5 + 4 Slots / 370M de Lunita",
+          "🔥 41M de Tropas + Muito ACC Na Bag"
+        ]
+      },
+      {
+        ref: "REF FE V.026",
+        stats: "🔥 Restrita K1617 | Ind 720%+ + Elite em Loja + 27M Tropas 🔥",
+        imgUrl: "REF FE V.026.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1wb8uXPcfTcnjWzwO6w4tntysAjCgsHKn",
+        priceTotal: 2200,
+        priceEntry: 300,
+        types: ["800%", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1617 🫡",
+          "🔳 IND 720/778/815% FF",
+          "🔳 MIX 669/654/663% FF",
+          "🔳 2 Taças Míticas 🧡💜",
+          "🔳 Elite é loja +27m de tropas 🏬"
+        ]
+      },
+      {
+        ref: "REF FE V.025",
+        stats: "🔥 Restrita K1721 | Ind 1003%+ + Mix 812% + Elite em Loja 🔥",
+        imgUrl: "REF FE V.025.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/13iEM0bhXyCU_sdL83DKN4ezFcmJTnDNy",
+        priceTotal: 7000,
+        priceEntry: 1000,
+        types: ["1000%", "restrita_1700_plus"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1721 🫡",
+          "🔳 IND 1003/877/1024% FF",
+          "🔳 MIX 812/30/720% FF",
+          "🔳 2 Taças Míticas 🧡💜",
+          "🔳 Elite é loja +27m de tropas 🏬"
+        ]
+      },
+      {
+        ref: "REF FÉ V.013",
+        stats: "✨ Ind 791% | 2 Taças 💛💛 + 1 Champ Mística 🧡💙 + 33M Tropas ✨",
+        imgUrl: "REF FÉ V.013.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/191IW0rfk1xjfz38K7XdSIpabyUz5jGcQ",
+        priceTotal: 1300,
+        priceEntry: 300,
+        types: ["800%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 IND 791/715/712 FF",
+          "🔳 MIX 660/706/669 FF",
+          "🔳 2 TAÇAS 💛💛",
+          "🔳 1 CHAMP Mística 🧡💙",
+          "🔳 +33m de tropas"
+        ]
+      },
+      {
+        ref: "REF AB 101",
+        stats: "✨ Forte & Fúria | 1 Taça 🧡 + 1 💛 + 5 Fams Pagos + Falange 1000% ✨",
+        imgUrl: "REF AB 101.jpeg",
+        driveUrl: "https://photos.app.goo.gl/AvzUjCoNuLLV7FNe7",
+        priceTotal: 1500,
+        priceEntry: 300,
+        types: ["1000%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "• 🔥 1 Taça 🧡 + 1 💛 / Mix 7 Peças 🧡 🔥",
+          "• 🔥 5 Fams Pagos / 2 Full Lv.10",
+          "• 🔥 Full Pesquisas Pagas / Wow 3 {80%}",
+          "• 🔥 1 Falange 1000% / Mix 700%",
+          "• 🔥 2 Heróis De Wow 💛 / Vigilante Meister Boom 💛"
+        ]
+      },
+      {
+        ref: "REF FE V.023",
+        stats: "🔥 Restrita K1511 | Ind 1057%+ + Wonder 1 Full HP 691% + 3 Champs 🔥",
+        imgUrl: "REF FE V.023.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1G-2VIJ4dNc86erglhokgG3VMeXv3YqMq",
+        priceTotal: 5700,
+        priceEntry: 800,
+        types: ["1000%", "restrita_ate_1699", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1511 🫡",
+          "🔳 IND 1057/1032/1078% FF",
+          "🔳 MIX 847/697/739% FF",
+          "🔳 2 Taças Míticas 🧡🧡",
+          "🔳 wonder 1 Full HP 691% 🫡",
+          "🔳 3 champ RESTRITA"
+        ]
+      },
+      {
+        ref: "REF FE V.027",
+        stats: "✨ Ind 927% | 2 Taças Míticas 🧡💜 + 42M Tropas + 14M T4 ✨",
+        imgUrl: "REF FE V.027.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1PUvkqUF-JC4K5ROdJjfwTgFDOPrpSysZ",
+        priceTotal: 900,
+        priceEntry: 250,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 IND 810/814/927% FF",
+          "🔳 MIX 696/689/692% FF",
+          "🔳 2 Taças Míticas 🧡💜",
+          "🔳 +42,m de tropas 🫣",
+          "🔳 + 14m de t4 🫡"
+        ]
+      },
+      {
+        ref: "REF FÉ V.018",
+        stats: "✨ Fúria Ind 920% | 2 Taças 💛💛 + Elite e Loja + Herói Pago ✨",
+        imgUrl: "REF FÉ V.018.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1QElISO14ZjkMns6DojR5AkTG7tzYN8lW",
+        priceTotal: 1300,
+        priceEntry: 300,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 MIX 627/553/619 FURIA ✅",
+          "🔳 IND 813/835/920 FURIA ✅",
+          "🔳 2 TAÇAS 💛💛",
+          "🔳 ELITE E LOJA 👏🏼",
+          "🔳 HERÓI PAGO 🫡"
+        ]
+      },
+      {
+        ref: "REF FE V.010",
+        stats: "🔥 Restrita K1236 | Skin de Rota + 1 Taça 💜 + 18M Tropas 🔥",
+        imgUrl: "REF FE V.010.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1OlCzrDdOgfduXijDVk7QGt5j3i5iA4o9",
+        priceTotal: 400,
+        priceEntry: 200,
+        types: ["restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1236",
+          "🔳 IND 655/605/594 SOFURIA",
+          "🔳 SKIN DE ROTA ✳️",
+          "🔳 1 TAÇAS 💜",
+          "🔳 +18M de tropas 😱"
+        ]
+      },
+      {
+        ref: "REF FE V.055",
+        stats: "✨ T5 Liberada | 2 Taças 💜💜 + Farm bem upado + 1 Champ 🧡 ✨",
+        imgUrl: "REF FE V.055.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1AnAToXTCeD-mW34h-3OsSUdY1c3OLiX-",
+        priceTotal: 500,
+        priceEntry: 200,
+        types: ["1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 IND 559/607/557 SEMFURIA",
+          "🔳 T5 LIBERADA ✳️",
+          "🔳 2 TAÇAS 💜💜",
+          "🔳 FARM BEM UPADO",
+          "🔳 1 CHAMP 🧡"
+        ]
+      },
+      {
+        ref: "REF FE V.006",
+        stats: "✨ Ind 713% | T5 + 11 Familiares Full ⚔️ + Taças 💜 💛 ✨",
+        imgUrl: "REF FE V.006.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1aTBgOQXgLBk0t1omP7NA85_U9es-gXWK",
+        priceTotal: 450,
+        priceEntry: 200,
+        types: ["800%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 662/680/713%",
+          "🔥 TARÇAS 💜 💛",
+          "🔥 +12M de TROPAS 🔥",
+          "🔥 11 FAMILIARES FULL ⚔️",
+          "🔥 T5 LIBERADAS 😈",
+          "✅ À vista tem desconto"
+        ]
+      },
+      {
+        ref: "REF FE V.009",
+        stats: "🔥 Restrita K1287 | Ind ~650% (Fúria) + T5 + 2 Taças 💛💜 🔥",
+        imgUrl: "REF FE V.009.jpeg",
+        driveUrl: "https://drive.google.com/file/d/1pwzjEMSlSkZ6ciquchi3Q25_qIo2Besk/view?usp=drivesdk",
+        priceTotal: 400,
+        priceEntry: 200,
+        types: ["restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RESTRITA K1287 ✈️",
+          "🔳 IND 650/650/655 SOFURIA",
+          "🔳 T5 LIBERADA ✳️",
+          "🔳 2 TAÇAS 💛💜",
+          "🔳 +28M de tropas 😱"
+        ]
+      },
+      {
+        ref: "REF: K 7152",
+        stats: "✨ Filler Recheada | Forte & Fúria MIX 650% + 39M Tropas ✨",
+        imgUrl: "REF K 7152.jpeg",
+        driveUrl: "https://photos.app.goo.gl/uFXSmu1uuAAfi8ja8",
+        priceTotal: 500,
+        priceEntry: 200,
+        types: ["Fillers", "800%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Filler Recheada Muita T4",
+          "🔥 Forte & Fúria MIX 650%",
+          "🔥 2 Taças 💜 / 9 Halos 💛",
+          "🔥 Labirinto Elite",
+          "🔥 212M de Lunita / 30B de Rss",
+          "🔥 39M de Tropas / 20M de T4"
+        ]
+      },
+      {
+        ref: "REF: K 1176",
+        stats: "✨ RL 1200% | 3 Champs 🧡 + 6 Taças + 2 Skins de Líder ✨",
+        imgUrl: "REF K 1176.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1_-_NX5Zt3dINvBtAvZGyeJOCk0v0_UFW",
+        priceTotal: 14000,
+        priceEntry: 1000,
+        types: ["1200%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 INF 🛡️ 1222% / ARC 🏹 1175% / CAV 🐴 1222%",
+          "🔥 CHAMPS 03 🧡",
+          "🔥 MANA 01 💜",
+          "🔥 Taças 06 🧡💛",
+          "🔥 2 Skins de Líder + 1 Rota / 2 Exército",
+          "🔥 Heróis Lendários 💛 / Familiares Pagos Full 🐉",
+          "💳 Parcelamento: Entrada de R$ 1.000,00 + Mensais de R$ 500,00"
+        ]
+      },
+      {
+        ref: "REF R 106",
+        stats: "⚡ IND (FF) 1048%/1059%/1048% | 1 Champ 💛 + Tropas Mágicas 80% ⚡",
+        imgUrl: "REF R 106.jpeg",
+        driveUrl: "https://photos.app.goo.gl/fWQkm9cKsqdVvwSo7",
+        priceTotal: 2500,
+        priceEntry: 500,
+        types: ["1000%", "1 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1048%/1059%/1048%",
+          "🔥 1 Champ 💛",
+          "🔥 10 Heróis 💛",
+          "🔥 5 Fam Pagos Full + 1 Niv 9 🐉",
+          "🔥 Tropas Mágicas 80% 💜"
+        ]
+      },
+      {
+        ref: "REF: K 2006",
+        stats: "✨ RL Insana Restrita K1840 | +1300% + Mana 4 💜 + Skins ✨",
+        imgUrl: "REF K 2006.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1iqRtLcGpSQhFAUgC5vXZ_SWFFALngCIV?usp=drive_link",
+        priceTotal: 46000,
+        priceEntry: 5000,
+        types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RL Insana Restrita K1840 +1300%",
+          "🔥 MANA 04 💜",
+          "🔥 Castelo Nível 5",
+          "🔥 Heróis Lendários 💛",
+          "🔥 Familiares Pagos Full 🐉",
+          "🔥 1 Skin de Rota / 3 Skins de Exército",
+          "💳 Parcelamento: Entrada de R$ 5.000,00 + Mensais de R$ 1.500,00"
+        ]
+      },
+      {
+        ref: "REF: K 6273",
+        stats: "✨ Filler Braba Restrita K1447 | 600% Mix + 1 Champ 🧡 ✨",
+        imgUrl: "REF K 6273.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1rwclsTgoBX_LZTVVdBqEypKAQ-upB5g-",
+        priceTotal: 900,
+        priceEntry: 350,
+        types: ["800%", "1 champ", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Filler Braba Restrita",
+          "🔥 +600% MIX",
+          "🔥 Voa Até K1447",
+          "🔥 1 Champ 🧡 / 1 Taça 💛",
+          "🔥 Familiar Pago Full",
+          "🔥 Labirinto Elite"
+        ]
+      },
+      {
+        ref: "REF: K 3569",
+        stats: "✨ Super Restrita K1539 | Inf 1200% + Cav 1186% + Skins ✨",
+        imgUrl: "REF K 3569.jpeg",
+        driveUrl: "https://i3d.me/Ref2515",
+        priceTotal: 7500,
+        priceEntry: 800,
+        types: ["1200%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 INF 🛡️ 1200% / ARC 🏹 1119% / CAV 🐴 1186%",
+          "🔥 VOA ATÉ K1539",
+          "🔥 8 Familiares Pagos Full / Heróis Pagos 💛",
+          "🔥 Mana NV1 💜 / Skin de Rota e Exército",
+          "💳 Opções de Parcelamento:",
+          "  • Entrada R$ 800,00 + Parc. R$ 800,00",
+          "  • Entrada R$ 1.100,00 + Parc. R$ 500,00"
+        ]
+      },
+      {
+        ref: "REF: K 8511",
+        stats: "✨ Restrita K1505 | Inf 1083% + 2 Champs 🧡 + 3 Taças 🧡 ✨",
+        imgUrl: "REF K 8511.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1wyYDOq0BguRh-d3CTj5TpwGPXijp1wGG",
+        priceTotal: 5000,
+        priceEntry: 700,
+        types: ["1000%", "2 champ", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 INF 🛡️ 1083% / ARC 🏹 1055% / CAV 🐴 1056%",
+          "🔥 Restrita Voa Até K1505",
+          "🔥 2 Champ 🧡 / 3 Taças 🧡",
+          "🔥 6 Familiares Pagos Full",
+          "🔥 Heróis Pagos 💛 / Skin De Rota / Mana 1 💜",
+          "💸 R$ 5.000,00 (Desconto à vista)"
+        ]
+      },
+      {
+        ref: "REF: K 5902",
+        stats: "✨ Trap Rally Mítica | Inf 959% + 1 Champ 🧡 + 2 Taças 🧡 ✨",
+        imgUrl: "REF K 5902.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1EsWx8eg3ymcN282gZALm--_Fmrh2tN1Z",
+        priceTotal: 2300,
+        priceEntry: 350,
+        types: ["900%", "1 champ", "trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 INF 🛡️ 959% / ARC 🏹 858% / CAV 🐴 987%",
+          "🔥 1 Champ 🧡 / 2 Taças 🧡",
+          "🔥 3 Familiares Pagos Full / Heróis Pagos 💛",
+          "🔥 Conta Bem Astrolitada",
+          "💸 R$ 2.300,00 (Desconto à vista)"
+        ]
+      },
+      {
+        ref: "REF AB 099",
+        stats: "✨ Falanges 1000% | 55M de Tropas + Wonder III (90%) ✨",
+        imgUrl: "REF AB 099.jpeg",
+        driveUrl: "https://photos.app.goo.gl/iJcQeZVFFroHEeVA7",
+        priceTotal: 1800,
+        priceEntry: 300,
+        types: ["1000%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 🧡 + 2💛 / 3 Champs 💜 🔥",
+          "🔥 4 Fams Pagos / 215M Lunita",
+          "🔥 Full Pesquisas Pagas / Wow 3 {90%}",
+          "🔥 3 Falanges 1000% / Mix 700%",
+          "🔥 55M de Tropas / 18M T4 + 3M T5"
+        ]
+      },
+      {
+        ref: "REF R 105",
+        stats: "✨ Restrita K1509 | Ind ~800% + 30M de Tropas ✨",
+        imgUrl: "REF R 105.jpeg",
+        driveUrl: "https://photos.app.goo.gl/rmRKERorsNo5pSFB7",
+        priceTotal: 900,
+        priceEntry: 300,
+        types: ["800%", "restrita_ate_1699", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Restrita K1509",
+          "🔥 IND (FF) 782%/772%/808%",
+          "🔥 1 Champ 💛 / Vigilante e Boom 💛",
+          "🔥 30M de Tropas 💂‍♀️",
+          "🔥 Tropas Mágicas 1 💜"
+        ]
+      },
+      {
+        ref: "REF AB 097",
+        stats: "✨ Ind 1200% | 2 Champs 🧡 + 3 Taças 🧡 + Wonder III ✨",
+        imgUrl: "REF AB 097.jpeg",
+        driveUrl: "https://photos.app.goo.gl/PBLUB8tu4KGn4RmBA",
+        priceTotal: 5000,
+        priceEntry: 400,
+        types: ["1200%", "2 champ", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 + 1 💛 / 2 Champs 🧡",
+          "🔥 10 Heróis Pagos 💛 / 6 Fams Pagos Full Lv.10",
+          "🔥 Full Pesquisas Pagas / Wonder 3 {80% Concluído}",
+          "🔥 Individual 1200% / 3 Skins de CT Exclusivas"
+        ]
+      },
+      {
+        ref: "REF AB 098",
+        stats: "✨ Mix Full Mítico 🧡 | Ind 1000% + Wonder II Full ✨",
+        imgUrl: "REF AB 098.jpeg",
+        driveUrl: "https://photos.app.goo.gl/VCzyZqgWR4SBWXF6A",
+        priceTotal: 1800,
+        priceEntry: 300,
+        types: ["1000%", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 / Mix Full Mítico 🧡 🔥",
+          "🔥 4 Fams Pagos (2 Full Lv.10 + 1 Lv.09)",
+          "🔥 Wonder 2 Full / Selos Calça, Capacete, Armadura",
+          "🔥 Individual 1000% / Mix 700%",
+          "🔥 45M de Tropas / 490K de Gemas",
+          "🔥 Tropas Mana Lv.01 / 120M de Lunita"
+        ]
+      },
+      {
+        ref: "REF AB 081",
+        stats: "✨ Mix 600% | 54M de Tropas + T5 Desbloqueada (Trap) ✨",
+        imgUrl: "REF AB 081.jpeg",
+        driveUrl: "https://photos.app.goo.gl/feXCftbK6MSRjTe97",
+        priceTotal: 450,
+        priceEntry: 200,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 💛 + 1 💜",
+          "🔥 Mix 600% + 54 Pergaminhos de Migração",
+          "🔥 T5 Desbloqueada / 80M de Lunita",
+          "🔥 54M de Tropas + 26B de RSS"
+        ]
+      },
+      {
+        ref: "REF AB 069",
+        stats: "✨ Inf 1059% | 1 Champ 🧡 + 3 Taças 🧡 + Skin CT Exclusiva ✨",
+        imgUrl: "REF AB 069.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ka6A6rCT6MVquRGEA",
+        priceTotal: 2000,
+        priceEntry: 300,
+        types: ["1000%", "1 champ", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 / 1 Champ 🧡",
+          "🔥 6 Heróis Pagos 💛 / 4 Fams Pagos (1 Full Lv.10)",
+          "🔥 Full Pesquisas Pagas / Infantaria 1059%",
+          "🔥 31M de Tropas (11M de T4) / Skin de CT Exclusiva"
+        ]
+      },
+      {
+        ref: "REF MI 1827",
+        stats: "⚡ 1200%+ | 4 Champs 🧡 + Skin de Líder ⚡",
+        imgUrl: "REF MI 1827.jpeg",
+        driveUrl: "https://photos.app.goo.gl/6E8tNHBsJmN8f3en7",
+        priceTotal: 10500,
+        priceEntry: 1500,
+        types: ["1200%", "4 champ+", "skin_lider", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1227% / 1130% / 1190%",
+          "🔥 4 Champs ✅",
+          "🔥 Skin de Líder",
+          "🔥 Mana lvl 1 💜",
+          "🔥 Full Fam + HP 700%+"
+        ]
+      },
+      {
+        ref: "REF MI 603",
+        stats: "⚡ 1150% Bônus | 7 Champs + Mana Lv1 ⚡",
+        imgUrl: "REF MI 603.jpeg",
+        driveUrl: "https://photos.app.goo.gl/RTrRThPTCQBgEA8UA",
+        priceTotal: 9900,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1150% 🔥",
+          "🔥 7 Champs (6 + 1)",
+          "🔥 Lotada de Tropas",
+          "🔥 Tropa Mana Lv1 💜",
+          "🛑 Aceita conta de entrada"
+        ]
+      },
+      {
+        ref: "REF MI1711",
+        stats: "✨ Mix 700%+ | 53M de Tropas (Trap) ✨",
+        imgUrl: "REF MI1711.jpeg",
+        driveUrl: "https://photos.app.goo.gl/hCWiA6JBYzexhA5r6",
+        priceTotal: 1200,
+        priceEntry: 400,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 MIX 725/730/700%",
+          "🔥 690M de poder em Tropas 💛",
+          "🔥 53M de tropas",
+          "💸 De R$ 1.500,00 por APENAS R$ 1.200,00"
+        ]
+      },
+      {
+        ref: "REF MMIC 83",
+        stats: "⚡ FULL CHAMP 1200%+ FF | Skin de Exército ⚡",
+        imgUrl: "REF MMIC 83.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1hfHV2qZd0kMVQhf0eVA4LY3H4IAQa8cd",
+        priceTotal: 23000,
+        priceEntry: 2000,
+        types: ["1200%", "full champ", "4 champ+", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1283/1205/1311% FF",
+          "🔥 FULL CHAMP 🧡",
+          "🔥 Skin de Exército",
+          "🔥 8 FULL FAM 🐉",
+          "🔥 4 Taças 🧡",
+          "🔥 Tropas Mágicas Lvl 1 💜"
+        ]
+      },
+      {
+        ref: "REF MIC 74",
+        stats: "⚡ FULL CHAMP 1500%+ FF | 22 Champs 🧡 + Skin de Líder e Exército ⚡",
+        imgUrl: "REF MIC 74.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1QC3H-r4ramHjuPvHZKfEwEGMWMikFll-",
+        priceTotal: 80000,
+        priceEntry: 12000,
+        types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1575/1542/1547% FF",
+          "🔥 FULL CHAMP (22 Champs 🧡)",
+          "🔥 Skin de Líder e Exército",
+          "🔥 ASTRO CHAMP 1x15 1x13 10x12",
+          "🔥 3x11K Lendário 💛😱",
+          "🔥 Tropas Mágicas Lvl 2 💜"
+        ]
+      },
+      {
+        ref: "REF MMIC 81",
+        stats: "⚡ FULL CHAMP 1400%+ FF | 9 Champs 🧡💛 + Skin de Líder ⚡",
+        imgUrl: "REF MMIC 81.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1_NwGO8MA3iWU5o1G9FAa1aTrCkS5w42Y",
+        priceTotal: 39000,
+        priceEntry: 3500,
+        types: ["1400%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1430/1381/1432% FF",
+          "🔥 FULL CHAMP (9 Champs 🧡💛)",
+          "🔥 Skin de Líder",
+          "🔥 ASTRO CHAMP 13/12/10/8/8",
+          "🔥 Tropas Mágicas Lvl 1 💜",
+          "🔥 RESTRITA K1313"
+        ]
+      },
+      {
+        ref: "REF MMIC 85",
+        stats: "⚡ FULL CHAMP 1500%+ FF | 12 Champs 🧡💛 + Skin de Líder e Exército ⚡",
+        imgUrl: "REF MMIC 85.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1LxaYE22-ry1I_Wh4WtATpwtfK7-HlIcR",
+        priceTotal: 48000,
+        priceEntry: 6000,
+        types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1522/1482/1523% FF",
+          "🔥 FULL CHAMP (12 Champs 🧡💛)",
+          "🔥 Skin de Líder e Exército",
+          "🔥 ASTRO CHAMP 6x12 1x10",
+          "🔥 26 HERÓIS 💛",
+          "🔥 Tropas Mágicas Lvl 2 💜 (90%)"
+        ]
+      },
+      {
+        ref: "REF MI142",
+        stats: "✨ IND 900%+ | 2 Champs 🧡 + Skin de Exército ✨",
+        imgUrl: "REF MI142.jpeg",
+        driveUrl: "https://photos.app.goo.gl/1Yykf6Fre5wan8E97",
+        priceTotal: 4750,
+        priceEntry: 400,
+        types: ["900%", "2 champ", "skin_exercito", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Inv (Fúria) 900%/883%/790%",
+          "🔥 2 Champs 🧡 + 1 💛",
+          "🔥 2 Taças 🧡",
+          "🔥 4 Fam Pagos Full",
+          "🔥 Skin de Exército",
+          "🔥 Elite On",
+          "🔥 Restrita K1670",
+          "💸 De R$ 5.000,00 por APENAS R$ 4.750,00 (Aceita conta de entrada)"
+        ]
+      },
+      {
+        ref: "REF M 602",
+        stats: "⚡ Bônus 1400% | 2 Skins de Líder + Itens Monstruosos ⚡",
+        imgUrl: "REF M 602.jpeg",
+        driveUrl: "https://photos.app.goo.gl/egdP91ufREEbzVKH6",
+        priceTotal: 22500,
+        priceEntry: 3500,
+        types: ["1400%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1400%",
+          "🔥 2 Skins de Líder",
+          "🔥 Itens Monstruosos 🧡",
+          "🔥 Tropas Mágicas Mana Lv1 💜",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF M 401",
+        stats: "✨ Bônus 1200% | 3 Champs 🧡 + Tropas Mágicas Lv 1 ✨",
+        imgUrl: "REF M 401.jpeg",
+        driveUrl: "https://photos.app.goo.gl/J8yy6hn39yyXjPzv7",
+        priceTotal: 6800,
+        priceEntry: 850,
+        types: ["1200%", "3 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1.200%",
+          "🔥 3 Champs 🧡",
+          "🔥 Tropas Mágicas Lv 1 💜",
+          "🔥 8 Fams Lv 10 🐉"
+        ]
+      },
+      {
+        ref: "REF RMIJ 1338",
+        stats: "✨ Bônus 1100% | 4 Champs + Skins de Rota e Exército ✨",
+        imgUrl: "REF RMIJ 1338.jpeg",
+        driveUrl: "https://photos.app.goo.gl/oc69PN8uUNM4YZ9u7",
+        priceTotal: 5000,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1100% / K1695",
+          "🔥 4 Champs 🧡",
+          "🔥 30M de Tropas 💂‍♀️",
+          "🔥 Skins de Rota + Exército",
+          "🔥 Tropas Mágicas Mana Lv1 💜",
+          "🔥 8 Familiares ✅",
+          "💸 De R$ 9.000,00 por APENAS R$ 5.000,00 à vista (Entrada de R$ 1.500,00)"
+        ]
+      },
+      {
+        ref: "REF MG 1134",
+        stats: "✨ Fúria 1200%+ | 1 Champ + 20 Heróis 💛 ✨",
+        imgUrl: "REF MG 1134.jpeg",
+        driveUrl: "https://photos.app.goo.gl/BnRbooB9sAZfVkzD9",
+        priceTotal: 9000,
+        priceEntry: 800,
+        types: ["1200%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Apenas Fúria",
+          "🔥 1200%+ / 1 Champ 🧡",
+          "🔥 20 Heróis 💛 + 3 💜",
+          "🔥 521 Stars / 856 lvls + 15 Abençoados",
+          "🛑 Aceita conta como entrada"
+        ]
+      },
+      {
+        ref: "REF MIA 1218",
+        stats: "✨ Fúria 900% | Skin de Exército + Wonder II Full ✨",
+        imgUrl: "REF MIA 1218.jpeg",
+        driveUrl: "https://photos.app.goo.gl/d7JnwhNKeLQVJ3HG7",
+        priceTotal: 2000,
+        priceEntry: 300,
+        types: ["900%", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Apenas Fúria / Skin de Exército",
+          "🔥 Bônus 900% / K1725",
+          "🔥 Wonder II Full / Low Power",
+          "🔥 Tropas Mágicas Mana Lv1 (95%) 💜",
+          "🔥 Familiares ✅"
+        ]
+      },
+      {
+        ref: "REF MIB 1203",
+        stats: "✨ Fúria 1000%+ | Skin de Exército + Tropas Mágicas Lv 1 ✨",
+        imgUrl: "REF MIB 1203.jpeg",
+        driveUrl: "https://photos.app.goo.gl/bYyBdmZYHNkAuzuo6",
+        priceTotal: 4500,
+        priceEntry: 800,
+        types: ["1000%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Apenas Fúria / Skins de Exército",
+          "🔥 Bônus 1020% / K1650",
+          "🔥 454 Stars / 835 lvls + 8 Abençoados",
+          "🔥 Mana lvl 1 / Low Power 💜"
+        ]
+      },
+      {
+        ref: "REF M 604",
+        stats: "✨ Bônus 1105% | 3 Champs + Lotada de Tropas ✨",
+        imgUrl: "REF M 604.jpeg",
+        driveUrl: "https://photos.app.goo.gl/M5cNsL3xszTM2PrE9",
+        priceTotal: 5500,
+        priceEntry: 1000,
+        types: ["1100%", "3 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1105%",
+          "🔥 3 Champs (2 + 1)",
+          "🔥 Lotado de Tropas",
+          "🔥 Evolução Mana 65% 💜",
+          "🛑 Aceita conta de entrada"
+        ]
+      },
+      {
+        ref: "REF M 601",
+        stats: "⚡ Bônus 1375% | 6 Champs 🧡 + Skins ⚡",
+        imgUrl: "REF M 601.jpeg",
+        driveUrl: "https://photos.app.goo.gl/7TU7Dify9WLHyekx7",
+        priceTotal: 21500,
+        priceEntry: 3000,
+        types: ["1300%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: true,
+        dataVendida: "2026-09-16",
+        details: [
+          "🔥 Bônus 1375%",
+          "🔥 6 Champs 🧡",
+          "🔥 4 Taças 🧡",
+          "🔥 Itens Monstruosos 🧡",
+          "🔥 Tropas Mágicas Mana Lv1 💜",
+          "🔥 Skin de Líder e Exército",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF AC. Adr 02",
+        stats: "✨Ind 749% | 25.8M Tropas + Elite✨",
+        imgUrl: "REF AC. Adr 02.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1PdWKUc-3HgKm13_6gyLidy4Dall8ExyN",
+        priceTotal: 350,
+        priceEntry: 200,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 749% ⚔️",
+          "🔥 25.8M de Tropas 💂‍♀️",
+          "🔥 1 Taça 💜",
+          "🔥 Elite Ativado"
+        ]
+      },
+      {
+        ref: "REF G2601 3",
+        stats: "✨RL 946% | 2 Champs 💛 + 2 Taças 🧡💛✨",
+        imgUrl: "REF G2601 3.jpeg",
+        driveUrl: "https://photos.app.goo.gl/bJKzkqny2q6oTWbK8",
+        priceTotal: 2200,
+        priceEntry: 400,
+        types: ["2 champ", "900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 RL 946% Sem Fúria ⚔️",
+          "🔥 2 Champs 💛",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 3 Famílias Pagos + 10 Heróis Pagos 💛"
+        ]
+      },
+      {
+        ref: "REF AC. 1690",
+        stats: "✨Ind 912% | 1 Champ 🧡 + 2 Taças 🧡💛✨",
+        imgUrl: "REF AC. 1690.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1QWFns97R7yqWXVFUsFDY5PErzPX9Rwce",
+        priceTotal: 1650,
+        priceEntry: 500,
+        types: ["900%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 912% ⚔️",
+          "🔥 1 Champ 🧡",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 20.2M de Tropas"
+        ]
+      },
+      {
+        ref: "REF M 300",
+        stats: "✨Mix 700% | 2 Taças 💛 + 900k Gemas 💎✨",
+        imgUrl: "REF M 300.jpeg",
+        driveUrl: "https://photos.app.goo.gl/RQgxFgRzcApoF9qx9",
+        priceTotal: 1250,
+        priceEntry: 300,
+        types: ["trap"],
+        vendida: true,
+        dataVendida: "2026-09-16",
+        details: [
+          "🔥 Mix 700% ⚔️",
+          "🔥 2 Taças 💛 + Mix Astro",
+          "🔥 1 Pet Full 10 + 1 Lv.04",
+          "🔥 2 Peças Astro Full 15 / 1 Lv.13",
+          "🔥 900k Gemas / 240M de Lunita"
+        ]
+      },
+      {
+        ref: "REF GM 1407",
+        stats: "✨Filler 1.5M T5 | 2M Gemas + 1 Champ 🧡✨",
+        imgUrl: "REF GM 1407.jpeg",
+        driveUrl: "https://photos.app.goo.gl/dNmCao1WFhJ8HkG89",
+        priceTotal: 1200,
+        priceEntry: 300,
+        types: ["Fillers", "900%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Maior Bônus 950% ⚔️",
+          "🔥 1.5M de T5",
+          "🔥 2M de Gemas 💜",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 1 Champ 💛",
+          "🔥 4 Familiares Pagos"
+        ]
+      },
+      {
+        ref: "REF AC. Wl",
+        stats: "✨Ind 747% | 2M+ Gemas + 27.5M Tropas✨",
+        imgUrl: "REF AC. Wl.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Fb6TxSw-z32eKnyGr7zwfwLfGJ-elYPX",
+        priceTotal: 500,
+        priceEntry: 300,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 747% ⚔️",
+          "🔥 27.5M de Tropas 💂‍♂️",
+          "🔥 2 Taças (💛💜)",
+          "🔥 5 Slots",
+          "🔥 +2M de Gemas 💎",
+          "🔥 Bolsa bem gorda"
+        ]
+      },
+      {
+        ref: "REF AC. La",
+        stats: "✨Mix 494% | 2.44M Gemas + 28.4M Tropas✨",
+        imgUrl: "REF AC. La.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/16d0iW44sVwDSaEUGAzz0kxi29jESvl8z",
+        priceTotal: 450,
+        priceEntry: 300,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 494% ⚔️",
+          "🔥 28.4M de Tropas (9M T4) 💂‍♂️",
+          "🔥 3 Taças 💜",
+          "🔥 4 Slots",
+          "🔥 2.44M de Gemas + 1.3M de Estrelas",
+          "🔥 Bastante Aceleradores na Bolsa"
+        ]
+      },
+      {
+        ref: "REF Jad AC",
+        stats: "✨Ind 941% | Mix 760% + 2 Taças 🧡💛✨",
+        imgUrl: "REF Jad AC.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1-MpM2l544eZmhDg6GI3-n-VtVRvv52Tl",
+        priceTotal: 1500,
+        priceEntry: 500,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 941% / Mix 760% ⚔️",
+          "🔥 2 Taças (🧡💛)",
+          "🔥 T5 + Elite 💂‍♀️",
+          "🔥 +240K de Gemas 💎",
+          "🔥 5 Slots + Fams Pagos"
+        ]
+      },
+      {
+        ref: "REF AC 190",
+        stats: "✨Mix 500% | T5 Liberada + Boa Bag✨",
+        imgUrl: "REF AC 190.jpeg",
+        driveUrl: "https://photos.app.goo.gl/FCa7Y1bqUYyq7Sob8",
+        priceTotal: 1450,
+        priceEntry: 400,
+        types: ["restrita_1700_plus"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 500% 🔥",
+          "🔥 T5 Liberada",
+          "🔥 1M de cada T4",
+          "🔥 Boa Bag",
+          "🔥 Restrita K1720"
+        ]
+      },
+      {
+        ref: "REF AC. KA",
+        stats: "✨Mix 635% | 3 Taças 💜 + 790K Gemas 💎✨",
+        imgUrl: "REF AC. KA.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1ODXfeR2_VIS3UX98I7sA-fgzB69R3g4Q",
+        priceTotal: 350,
+        priceEntry: 350,
+        types: ["trap"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 635% ⚔️",
+          "🔥 3 Taças 💜",
+          "🔥 40.7M de Tropas 💂‍♀️",
+          "🔥 790K de Gemas 💎",
+          "🔥 Pré T5"
+        ]
+      },
+      {
+        ref: "REF AC. Ad",
+        stats: "✨Ind 956% | 2 Taças 💛 + 2 Fam Pagos✨",
+        imgUrl: "REF AC. Ad.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1IrqyCPGfubv91X3s45sV2zFf_aOkGbwz",
+        priceTotal: 650,
+        priceEntry: 300,
+        types: ["900%", "Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Ind 956% ⚔️",
+          "🔥 2 Taças 💛",
+          "🔥 2 Fam Pagos",
+          "🔥 5 Slots"
+        ]
+      },
+      {
+        ref: "REF AC. JP",
+        stats: "✨Mix 702% | 2 Taças + 370K Gemas💎✨",
+        imgUrl: "REF AC. JP.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1b6NwIv183ZGI0wCNiOZjoyWdTK5sfKxf",
+        priceTotal: 500,
+        priceEntry: 300,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Mix 702% ⚔️",
+          "🔥 2 Taças (💛💜)",
+          "🔥 18.4M de Tropas 💂‍♀️",
+          "🔥 370K de Gemas 💎",
+          "🔥 5 Slots"
+        ]
+      },
+      {
+        ref: "REF M 365",
+        stats: "⚡ 1200%+ | 4 Champs 🧡 + 5 Taças 🧡💛 | Mana 80% ⚡",
+        imgUrl: "REF M 365.jpeg",
+        driveUrl: "https://photos.app.goo.gl/J8zppXGKrYHLVPzu8",
+        priceTotal: 8800,
+        priceEntry: 1000,
+        types: ["1200%", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND Bruta 1204%",
+          "🔥 4 Champs 🧡",
+          "🔥 5 Taças (4🧡 + 1💛)",
+          "🔥 Mana 80%",
+          "🔥 6 Fams Lv10 + Vorme Lv9"
+        ]
+      },
+      {
+        ref: "REF MR 111",
+        stats: "⚡ IND FF 1000%+ | 1 Champ 🧡 + Skin Exército ⚡",
+        imgUrl: "REF MR 111.jpeg",
+        driveUrl: "https://photos.app.goo.gl/q76ogNhyGAMHfJnH9",
+        priceTotal: 2800,
+        priceEntry: 600,
+        types: ["1000%", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1046%/1015%/1050%",
+          "🔥 1 Champ 🧡",
+          "🔥 6 Fam Pagos Full",
+          "🔥 Skin de Exército",
+          "🔥 5 Heróis 💛 (3 WH 💛)"
+        ]
+      },
+      {
+        ref: "REF MR 360",
+        stats: "⚡ IND FF 1100%+ | 7 Champs + 5 Taças 🧡✨",
+        imgUrl: "REF MR 360.jpeg",
+        driveUrl: "https://photos.app.goo.gl/4VNyE8eJ4LdgGjAt7",
+        priceTotal: 10500,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1150%/1110%/1153%",
+          "🔥 7 Champs (6🧡 + 1💛)",
+          "🔥 5 Taças 🧡",
+          "🔥 1M Gemas 💎",
+          "🔥 27m Tropas",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF MB 09",
+        stats: "✨IND 800%+ | 1.6M Gemas 💎 + T5 Full✨",
+        imgUrl: "REF MB 09.jpeg",
+        driveUrl: "https://photos.app.goo.gl/VrS4vjz2acFRcTAh8",
+        priceTotal: 750,
+        priceEntry: 300,
+        types: ["800%", "tropa_magica_mana"],
+        vendida: true,
+        dataVendida: "2026-09-17",
+        details: [
+          "🔥 IND 880%/830%/865%",
+          "🔥 1.6M de Gemas 💎",
+          "🔥 Tropas Mágicas 85%",
+          "🔥 Bag Top",
+          "🔥 1M de cada T5 (51m Total)"
+        ]
+      },
+      {
+        ref: "REF R 200",
+        stats: "⚡ IND FF 1100%+ | 7 Champs + Skin Exército ⚡",
+        imgUrl: "REF R 200.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ifBuYVgnqRwTMvqx8",
+        priceTotal: 12000,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1169%/1103%/1130%",
+          "🔥 7 Champs (7🧡 + 1💛)",
+          "🔥 11k Tomes de Ouro 📜",
+          "🔥 1M Gemas 💎",
+          "🔥 Skin de Exército",
+          "🔥 7 Fams Pagos Full"
+        ]
+      },
+      {
+        ref: "REF R 204",
+        stats: "✨IND FF 900%+ | 2 Taças 🧡 + 1M Gemas 💎✨",
+        imgUrl: "REF R 204.jpeg",
+        driveUrl: "https://photos.app.goo.gl/oV5GS8QQbZmMrp7c8",
+        priceTotal: 2500,
+        priceEntry: 500,
+        types: ["900%", "tropa_magica_mana"],
+        vendida: true,
+        dataVendida: "2026-09-16",
+        details: [
+          "🔥 IND (FF) 977%/966%/901%",
+          "🔥 2 Taças 🧡 + 1 💛 (quase upando)",
+          "🔥 1M Gemas 💎",
+          "🔥 45m Tropas",
+          "🔥 Tropas Mágicas Lv1 💜",
+          "🛑 Aceita conta na entrada"
+        ]
+      },
+      {
+        ref: "REF RM 201",
+        stats: "✨IND FF 1000%+ | 3 Champs + 3 Taças 🧡💛✨",
+        imgUrl: "REF RM 201.jpeg",
+        driveUrl: "https://photos.app.goo.gl/6zXoUA5V7URxmmhd8",
+        priceTotal: 3800,
+        priceEntry: 800,
+        types: ["1000%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1050%/1010%/1007%",
+          "🔥 3 Champs (🧡💛)",
+          "🔥 3 Taças (🧡💛)",
+          "🔥 5 Fam Full + 1 Niv7",
+          "🔥 Elite On",
+          "🔥 Heróis (3 WH 💛)"
+        ]
+      },
+      {
+        ref: "REF R 203",
+        stats: "✨IND FF 1000%+ | 1 Champ 🧡 + 2.4M Gemas 😱✨",
+        imgUrl: "REF R 203.jpeg",
+        driveUrl: "https://photos.app.goo.gl/MdGkZBaiYWJ4xVkG7",
+        priceTotal: 3000,
+        priceEntry: 800,
+        types: ["1000%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1091%/1045%/1170%",
+          "🔥 1 Champ 🧡",
+          "🔥 2 Taças 🧡",
+          "🔥 Heróis P2W 💛",
+          "🔥 44m Tropas",
+          "🔥 2.4m Gemas 😱"
+        ]
+      },
+      {
+        ref: "REF R 199",
+        stats: "✨IND FF 1000%+ | 3 Champs + 3 Taças 🧡💛✨",
+        imgUrl: "REF R 199.jpeg",
+        driveUrl: "https://photos.app.goo.gl/T9D5NhySNo5Yvu7aA",
+        priceTotal: 3500,
+        priceEntry: 600,
+        types: ["1000%", "3 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1059%/1013%/1019%",
+          "🔥 3 Champs (2🧡 + 1💛)",
+          "🔥 3 Taças (2🧡 + 1💛)",
+          "🔥 3 Fam Full + 1 Niv9 + 1 Niv8",
+          "🔥 Tropas Mágicas Lv1 💜",
+          "🔥 Heróis Pagos 💛"
+        ]
+      },
+      {
+        ref: "REF R 206",
+        stats: "✨IND 900%+ | 1 Champ 💛 + Tecelã 💛✨",
+        imgUrl: "REF R 206.jpeg",
+        driveUrl: "https://photos.app.goo.gl/4KHnB51TWpLDQJY96",
+        priceTotal: 1100,
+        priceEntry: 400,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 889%/935%/903%",
+          "🔥 1 Champ 💛",
+          "🔥 Tecelã 💛",
+          "🔥 Wonder II",
+          "🔥 46m Tropas"
+        ]
+      },
+      {
+        ref: "REF MR603",
+        stats: "⚡ 1400% Bônus | FULL CHAMP 🧡💛⚡",
+        imgUrl: "REF MR603.jpeg",
+        driveUrl: "https://photos.app.goo.gl/DtozP468XDgWZT3z8",
+        priceTotal: 34500,
+        priceEntry: 3500,
+        types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: true,
+        dataVendida: "2026-09-20",
+        details: [
+          "🔥 Bônus 1400%",
+          "🔥 FULL CHAMP (10🧡 + 1💛)",
+          "🔥 Skin de Líder, Exército e Rota",
+          "🔥 30 Heróis 💛",
+          "🔥 Tropas Mágicas Mana Lv2 💜",
+          "💳 Entrada de R$ 3.500,00 + Parcelas de R$ 1.200,00"
+        ]
+      },
+      {
+        ref: "REF R 98",
+        stats: "✨IND FF 1000% | 3 Champs + Aceita Conta✨",
+        imgUrl: "REF R 98.jpeg",
+        driveUrl: "https://photos.app.goo.gl/vEV12H8snDDWhqyW8",
+        priceTotal: 2500,
+        priceEntry: 400,
+        types: ["1000%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND (FF) 1034/975/984%",
+          "🔥 3 Champs (🧡💛)",
+          "🔥 3 Heróis 💛",
+          "🔥 27m Tropas / Elite On",
+          "🔥 2 Fam P2W Full + 1 Niv 9",
+          "🛑 Aceita conta na negociação"
+        ]
+      },
+      {
+        ref: "REF R 125",
+        stats: "✨IND FF 1000%+ | 2 Champs 🧡✨",
+        imgUrl: "REF R 125.jpeg",
+        driveUrl: "https://photos.app.goo.gl/nim4c1XhTYujZfxn7",
+        priceTotal: 4000,
+        priceEntry: 500,
+        types: ["1000%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND FF 1094%/1002%/1106%",
+          "🔥 2 Champs 🧡",
+          "🔥 Set Caça 🧡",
+          "🔥 4 Fam Pagos Full + 1 Niv 9",
+          "🔥 Heróis (3 WH 💛) / Elite On",
+          "🔥 37m Tropas"
+        ]
+      },
+      {
+        ref: "REF MR 605",
+        stats: "✨Bônus 1225% | 2 Champs + 4 Taças✨",
+        imgUrl: "REF MR 605.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ewBo5uRY9y71YjUy9",
+        priceTotal: 7500,
+        priceEntry: 1000,
+        types: ["1200%", "2 champ", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1225%",
+          "🔥 2 Champs (🧡💛)",
+          "🔥 4 Taças 🧡",
+          "🔥 3 Heróis WoW 💛",
+          "🔥 Tropas Mágicas Lv1 💜 (Mana)",
+          "🔥 Skin de Exército"
+        ]
+      },
+      {
+        ref: "REF R 208",
+        stats: "✨IND 900% | 1M Gemas + 23m Tropas✨",
+        imgUrl: "REF R 208.jpeg",
+        driveUrl: "https://photos.app.goo.gl/kBRGcxkCk9yHUjWw8",
+        priceTotal: 450,
+        priceEntry: 250,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 883%/859%/906%",
+          "🔥 Coelho Nível 5 / Bonna Nível 3",
+          "🔥 1M de gemas",
+          "🔥 Elite On",
+          "🔥 23m Tropas",
+          "💳 Opção parcelada: 2x R$ 250,00"
+        ]
+      },
+      {
+        ref: "REF R 65",
+        stats: "✨Mix 600%+ | 41m Tropas✨",
+        imgUrl: "REF R 65.jpeg",
+        driveUrl: "https://photos.app.goo.gl/hXDPcNdUBCfHxKQp8",
+        priceTotal: 550,
+        priceEntry: 250,
+        types: ["600%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 MIX (Fúria) 646/693/635%",
+          "🔥 Set Caça 💛🧡",
+          "🔥 41m Tropas",
+          "🔥 Bag Top",
+          "🔥 Elite On"
+        ]
+      },
+      {
+        ref: "REF MC 65",
+        stats: "⚡ 1500%+ FF | 8 Champs 🧡⚡",
+        imgUrl: "REF MC 65.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1dPzJ7LH3ff7287y5_acgArezF3qylD_G",
+        priceTotal: 55000,
+        priceEntry: 7500,
+        types: ["1300%", "4 champ+", "restrita_ate_1699", "skin_lider", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1542/1525/1522% FF",
+          "🔥 8 Champs 🧡",
+          "🔥 ASTRO CHAMP 13/12/9/7/6/6",
+          "🔥 6 Skins Leaders 😱",
+          "🔥 Tropas Mágicas Lv2 💜",
+          "🔥 Restrita K1467"
+        ]
+      },
+      {
+        ref: "REF MC 84",
+        stats: "⚡ FULL CHAMP 1200%+ FF ⚡",
+        imgUrl: "REF MC 84.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/17UBatEzEDNA6fMP9Mac67NG3YOHioR37",
+        priceTotal: 22000,
+        priceEntry: 1500,
+        types: ["1200%", "full champ", "4 champ+", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1229/1133/1268% FF",
+          "🔥 FULL CHAMP 🧡",
+          "🔥 Skin De Exército",
+          "🔥 17 Heróis 💛 (3 de WoW 💛)",
+          "🔥 Tropas Mágicas Lv1 💜"
+        ]
+      },
+      {
+        ref: "REF S 1063",
+        stats: "✨Filler top✨",
+        imgUrl: "REF S 1063.jpeg",
+        driveUrl: "https://photos.app.goo.gl/1sN5ZCZ2E79Z6BQL9",
+        priceTotal: 500,
+        priceEntry: 250,
+        types: ["800%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Individuais: 800%",
+          "🔥 Mix 600%",
+          "🔥 Muitas Tropas",
+          "🔥 Quase 1m de gemas",
+          "🔥 Fams Pagos",
+          "🔥 Pesquisas avançadas",
+          "🔥 Elite/loja"
+        ]
+      },
+      {
+        ref: "REF MS 600",
+        stats: "💥RL Facilitada💥",
+        imgUrl: "REF MS 600.jpeg",
+        driveUrl: "https://photos.app.goo.gl/HHLgVaULjnxgMja17",
+        priceTotal: 10500,
+        priceEntry: 1000,
+        types: ["1100%", "4 champ+"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1100+%",
+          "🔥 7 Champs (6🧡 + 1💛)",
+          "🔥 2 Acessórios (1🧡 + 1💛)",
+          "🔥 5 Taças (4🧡 + 1💛)",
+          "🔥 Top 1165% 😎",
+          "🔥 18 Heróis 💛",
+          "🔥 Todos os familiares com habilidades maximizadas"
+        ]
+      },
+      {
+        ref: "REF MBS 365",
+        stats: "✨RL Básica✨",
+        imgUrl: "REF MBS 365.jpeg",
+        driveUrl: "https://photos.app.goo.gl/FSLcXcvTbuHkUxYv5",
+        priceTotal: 2200,
+        priceEntry: 300,
+        types: ["900%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 992%",
+          "🔥 3 Heróis de WoW 💛",
+          "🔥 2 Champs 💛",
+          "🔥 Set de Caça Full 🧡",
+          "🔥 4 Fams Lv 10 🐉"
+        ]
+      },
+      {
+        ref: "REF MS 513",
+        stats: "✨Festa no Coliseu✨",
+        imgUrl: "REF MS 513.jpeg",
+        driveUrl: "https://photos.app.goo.gl/MGVDpsL7TuQzkEfQ7",
+        priceTotal: 3800,
+        priceEntry: 800,
+        types: ["1100%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Inf 1107%",
+          "🔥 5 Fams Pagos",
+          "🔥 12 Heróis 💛",
+          "🔥 2 Champs 💛"
+        ]
+      },
+      {
+        ref: "REF S 1067",
+        stats: "✈️ Migra até o 1679 ✈️",
+        imgUrl: "REF S 1067.jpeg",
+        driveUrl: "https://photos.app.goo.gl/iTjxPT73mqR8DFUB9",
+        priceTotal: 20000,
+        priceEntry: 2000,
+        types: ["1100%", "4 champ+", "restrita_ate_1699", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Migra até o 1679 ✈️",
+          "🔥 1100%",
+          "🔥 3 Taças / 6 Champs 🧡",
+          "🔥 Full Fam Pago Max",
+          "🔥 Heróis Pagos 💛 (3 de WoW)",
+          "🔥 Peças muito bem astrolitadas (Bônus max focado no Mix)",
+          "🔥 Mana lv1 💜"
+        ]
+      },
+      {
+        ref: "REF S 1069",
+        stats: "✈️ Migra até o 1711 ✈️",
+        imgUrl: "REF S 1069.jpeg",
+        driveUrl: "https://photos.app.goo.gl/NrKvzcxrVjcbf6ht8",
+        priceTotal: 12500,
+        priceEntry: 1000,
+        types: ["1100%", "4 champ+", "restrita_1700_plus", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Migra até o 1711 ✈️",
+          "🔥 1100%+",
+          "🔥 3 Taças / 4 Champs 🧡",
+          "🔥 Muito bem Astrolitada",
+          "🔥 Muitas Tropas",
+          "🔥 Poder fixo baixo",
+          "🔥 Full Fam Pago Max",
+          "🔥 Heróis Pagos 💛",
+          "🔥 Todos os tipos de Skins",
+          "🔥 Mana lv3 💜"
+        ]
+      },
+      {
+        ref: "REF GC 0898",
+        stats: "✨RL Facilitada✨",
+        imgUrl: "REF GC 0898.jpeg",
+        driveUrl: "https://photos.app.goo.gl/6KEJmn4xqnkzEZK16",
+        priceTotal: 5000,
+        priceEntry: 800,
+        types: ["1100%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1100% inf",
+          "🔥 03 CHAMPS 🧡",
+          "🔥 04 TAÇAS 🧡",
+          "🔥 11 Heróis 💛",
+          "🔥 07 FAMS PAGOS FULL"
+        ]
+      },
+      {
+        ref: "REF MGS 4060",
+        stats: "FULL CHAMP 1.300%",
+        imgUrl: "REF MGS 4060.jpeg",
+        driveUrl: "https://photos.app.goo.gl/zpJ3FeFkSuax1mEv6",
+        priceTotal: 22500,
+        priceEntry: 1500,
+        types: ["1300%", "full champ", "skin_exercito", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 13 Champs 🧡",
+          "🔥 07 Taças 💛🧡",
+          "🔥 22 Heróis Pagos",
+          "🔥 Skin Rota / Exército",
+          "🔥 Tropas Mágicas 💜"
+        ]
+      },
+      {
+        ref: "REF MIG 2205",
+        stats: "✨ Mana 90% | Won II Full + Heróis/Fams Pagos ✨",
+        imgUrl: "REF MIG 2205.jpeg",
+        driveUrl: "https://photos.app.goo.gl/gMepqiiaBh55UrH77",
+        priceTotal: 2100,
+        priceEntry: 350,
+        types: ["tropa_magica_mana", "restrita_1700_plus"],
+        vendida: true,
+        dataVendida: "2026-09-16",
+        details: [
+          "🔥 Mana 90% / Elite Ativado",
+          "🔥 Herói 💛 / Fam Pago ✅",
+          "🔥 Won II Full",
+          "💸 De R$ 2.500,00 por APENAS R$ 2.100,00",
+          "🪙 Entrada de R$ 350,00"
+        ]
+      },
+      {
+        ref: "REF MS 515",
+        stats: "✨8 Champs + 6 taças✨",
+        imgUrl: "REF MS 515.jpeg",
+        driveUrl: "https://photos.app.goo.gl/NoSC4mScG72AMSyK6",
+        priceTotal: 12800,
+        priceEntry: 2500,
+        types: ["1200%", "4 champ+"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Cav 1200%",
+          "🔥 8 Champs 🧡",
+          "🔥 6 Taças 🧡",
+          "🔥 25 Heróis 💛"
+        ]
+      },
+      {
+        ref: "REF AB 068",
+        stats: "✨ Forte & Fúria | 1 Champ 🧡 + 1 Taça 🧡 + Ind 1000% ✨",
+        imgUrl: "REF AB 068.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ZxtFkF1d5YzdSdpR6",
+        priceTotal: 1300,
+        priceEntry: 250,
+        types: ["1000%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 🧡 + 1 💛 / 1 Champ 🧡",
+          "🔥 5 Heróis Pagos 💛 / Labirinto • Elite",
+          "🔥 Full Pesquisas Pagas / Wow 3 • 80%",
+          "🔥 Mix 700% / Individual 1000%",
+          "🔥 Bon Appétit Lv.08 + Abelha Lv.04"
+        ]
+      },
+      {
+        ref: "REF C 62",
+        stats: "✨ IND 900%+ | 7 Heróis 💛 + 50M de Tropas ✨",
+        imgUrl: "REF C 62.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Z-46UWpSqlDoT1LZeQ2DmnfKzqYwAF99",
+        priceTotal: 2350,
+        priceEntry: 500,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 945/934/929% FF",
+          "🔥 7 Heróis 💛 (3 de WoW 💛)",
+          "🔥 Famíliares 10/7/3 🐉",
+          "🔥 50M de Tropas 💂‍♀️"
+        ]
+      },
+      {
+        ref: "REF C 50",
+        stats: "⚡ FULL CHAMP 1400%+ FF | 13 Champs 🧡 + Tropas Mágicas Lvl 2 💜 ⚡",
+        imgUrl: "REF C 50.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1JJTAgX2n6XIkDZa6jVY0kDoTohrVi2T4",
+        priceTotal: 44500,
+        priceEntry: 6500,
+        types: ["1400%", "full champ", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1486/1362/1477% FF",
+          "🔥 13 CHAMPS 🧡",
+          "🔥 ASTRO CHAMP 13/10/9/9/9",
+          "🔥 2x11K Lendário 💛😱",
+          "🔥 Tropas Mágicas Lvl 2 💜"
+        ]
+      },
+      {
+        ref: "REF MC 31",
+        stats: "✨ IND 1200%+ FF | Low Quest + Tropa Mágica LVL 1 💜 ✨",
+        imgUrl: "REF MC 31.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Yxk6aND7fFizxwI5V9yY65BaLriUZTCb",
+        priceTotal: 11500,
+        priceEntry: 1500,
+        types: ["1200%", "low quest", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1214/1206/1198% FF",
+          "🔥 Low Quest",
+          "🔥 Tropa Mágica LVL 1 💜",
+          "🔥 Muito Astro Mob 😱😱",
+          "🔥 Restrita K1663"
+        ]
+      },
+      {
+        ref: "REF AB 065",
+        stats: "✨ Forte & Fúria | 2 Champs 🧡 + 3 Taças 🧡 + Ind 1100% ✨",
+        imgUrl: "REF AB 065.jpeg",
+        driveUrl: "https://photos.app.goo.gl/UNr5Ewk2ywC5g1FT6",
+        priceTotal: 4400,
+        priceEntry: 600,
+        types: ["1100%", "2 champ", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 / 2 Champs 🧡",
+          "🔥 8 Fams Pagos Lv.10 / Individual 1100%",
+          "🔥 5 Peças Mob Astro 15 / 5 Selos Sombrios",
+          "🔥 15 Heróis Pagos 💛 / Várias Skins de CT",
+          "🔥 26M de Tropas / 250M de Lunita"
+        ]
+      },
+      {
+        ref: "REF AB 084",
+        stats: "✨ Forte & Fúria | Mix 650%+ + 21M de Tropas ✨",
+        imgUrl: "REF AB 084.jpeg",
+        driveUrl: "https://photos.app.goo.gl/1W1Kg45GC5o7QXNL8",
+        priceTotal: 380,
+        priceEntry: 150,
+        types: ["Fillers"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 💜 / 10 Halos 💛",
+          "🔥 Mix 650%+ / Falanges Individual 780%+",
+          "🔥 5 Slots / 115M de Lunita",
+          "🔥 21M de Tropas (11M de T4) / 400K de Gemas"
+        ]
+      },
+      {
+        ref: "REF MC 37",
+        stats: "✨ IND 1000%+ FF | 2 Champs 🧡💛 + 4 Taças ✨",
+        imgUrl: "REF MC 37.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1553o9X_Yt0ngCy6jEuMJGfpy9OHvDVlu",
+        priceTotal: 2700,
+        priceEntry: 500,
+        types: ["1000%", "2 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 IND 1008/954/965% FF",
+          "🔥 2 Champs 🧡💛",
+          "🔥 4 Taças 🧡💛",
+          "🔥 4 Famíliares Full + 1 Lvl 2 🐉"
+        ]
+      },
+      {
+        ref: "REF M 603",
+        stats: "✨ Bônus 1100%+ | 4 Champs + Tropa Mana Lv.1 💜 ✨",
+        imgUrl: "REF M 603.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ia74UeqL6Sd3TZMeA",
+        priceTotal: 6000,
+        priceEntry: 1500,
+        types: ["1100%", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 4 Champs (3+1)",
+          "🔥 Bônus 1145%",
+          "🔥 Lotado de Tropas 💂‍♀️",
+          "🔥 Tropa Mana Lv.1 💜",
+          "🥳 Aceita conta de entrada"
+        ]
+      },
+      {
+        ref: "REF AB 082",
+        stats: "✨ IND 1100% | 1 Champ 💛 + Tropa Mana Lv.1 💜 ✨",
+        imgUrl: "REF AB 082.jpeg",
+        driveUrl: "https://photos.app.goo.gl/GGoYagkgvNzrvfvg8",
+        priceTotal: 1200,
+        priceEntry: 300,
+        types: ["1100%", "1 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 💛 / 1 Champ 💛",
+          "🔥 5 Fams Pagos / 1 Lv.10 + 1 Lv.09",
+          "🔥 5 Slots Full + 5 Peças Mob Astro 15",
+          "🔥 Tropas Mana Lv.01 / 2.3M de T5",
+          "🔥 25M de Tropas / 110M de Lunita",
+          "🔥 Individual 1100% / Mix 700%"
+        ]
+      },
+      {
+        ref: "REF AB 086",
+        stats: "✨ IND 900% | 1 Taça 🧡 + Tropa Mana Lv.1 💜 + Restrita K1499 ✨",
+        imgUrl: "REF AB 086.jpeg",
+        driveUrl: "https://photos.app.goo.gl/WgkEk5jpQzmzcgx96",
+        priceTotal: 1800,
+        priceEntry: 350,
+        types: ["900%", "tropa_magica_mana", "skin_exercito", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 🧡 + 1 💛 / 1 Mob Astro 15 + 2 Lv.12",
+          "🔥 2 Fams Pagos Full Lv.10 / 2 Skins De CT Exclusivas",
+          "🔥 Individual 900% / Mix 800%",
+          "🔥 Tropas Mana Lv.01 / Restrita K1499",
+          "🔥 41M de Tropas / 255M de Lunita"
+        ]
+      },
+      {
+        ref: "REF AB 087",
+        stats: "✨ IND 880% | 1 Champ 💛 + 2 Taças 💛 + Restrita K1440 ✨",
+        imgUrl: "REF AB 087.jpeg",
+        driveUrl: "https://photos.app.goo.gl/XaD2LmP5pWTr7cdH9",
+        priceTotal: 1000,
+        priceEntry: 250,
+        types: ["800%", "1 champ", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 2 Taças 💛 + 11 Halos 💛 / 1 Champ 💛",
+          "🔥 2 Fams Pagos Full Lv.10 / Restrita K1440",
+          "🔥 Labirinto Elite / 1 Herói Pago 💛",
+          "🔥 4 Slots / Selos 80% Concluídos",
+          "🔥 Mix 650% / Individual 880%"
+        ]
+      },
+      {
+        ref: "REF AB 089",
+        stats: "✨ IND 1000% | 1 Champ 🧡 + 1 Taça 🧡 ✨",
+        imgUrl: "REF AB 089.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ucmAxy1FKF3D1rMk9",
+        priceTotal: 1800,
+        priceEntry: 350,
+        types: ["1000%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 🧡 + 2💛 / 1 Champ 🧡",
+          "🔥 5 Fams Pagos (1 Full 10 + 1 Lv.09)",
+          "🔥 Full Pesquisas Pagas / Wow 3 [85% Concluído]",
+          "🔥 1.6M de Gemas / Elite/Loja",
+          "🔥 28M de Tropas / 579M de Lunita",
+          "🔥 Individual 1000% / Mix 700%"
+        ]
+      },
+      {
+        ref: "REF AB 094",
+        stats: "✨ Mix 700% | 2 Taças 💛 + Mix 5 Peças Míticas 🧡 ✨",
+        imgUrl: "REF AB 094.jpeg",
+        driveUrl: "https://photos.app.goo.gl/3Ze4QgkXMDcVJ6vn6",
+        priceTotal: 650,
+        priceEntry: 250,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 2 Taças 💛 / Mix 5 Peças Míticas 🔥",
+          "🔥 6 Fams Pagos / 5 Slots",
+          "🔥 Selos Full / 27M de Tropas",
+          "🔥 Wow 2 {90% Concluído} / 500K de Gemas",
+          "🔥 Individual 900% / Mix 700%"
+        ]
+      },
+      {
+        ref: "REF AB 091",
+        stats: "✨ 4 Champs + 4 Taças 🧡 | Skin Exército Grimlock + Tropa Mana Lv.1 💜 ✨",
+        imgUrl: "REF AB 091.jpeg",
+        driveUrl: "https://photos.app.goo.gl/QDdS3f5Fd6fBCwDRA",
+        priceTotal: 6200,
+        priceEntry: 500,
+        types: ["4 champ+", "tropa_magica_mana", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 4 Taças 🧡 / 3 Champs 🧡 + 1 💛",
+          "🔥 6 Fams Pagos Full Lv.10",
+          "🔥 2 Falanges 1100% / Mix 700%",
+          "🔥 Skin De Exército Grimlock / Skin de CT Unicórnio",
+          "🔥 Tropa Mana Lv.01 / 7 Heróis Pagos 💛"
+        ]
+      },
+      {
+        ref: "REF AB 093",
+        stats: "✨ IND 900% | 2 Taças 💛 + Mix 6 Peças Míticas 🔥 + Skin Joker ✨",
+        imgUrl: "REF AB 093.jpeg",
+        driveUrl: "https://photos.app.goo.gl/ne8i5qDVLVA79mEKA",
+        priceTotal: 650,
+        priceEntry: 250,
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 2 Taças 💛 / Mix 6 Peças Míticas 🔥",
+          "🔥 Asa Negra Lv.05 / 4 Slots",
+          "🔥 Labirinto Elite / Vigilante e Meister 💛",
+          "🔥 1 Skin de Rota / Skin Castelo {Joker}",
+          "🔥 Individual 900% / Mix 650%"
+        ]
+      },
+      {
+        ref: "REF AB 088",
+        stats: "✨ IND 890% | 2 Champs 🧡 + 1 Taça 🧡 + Skin de Exército ✨",
+        imgUrl: "REF AB 088.jpeg",
+        driveUrl: "https://photos.app.goo.gl/uCNku4FjHi2APRJe9",
+        priceTotal: 2400,
+        priceEntry: 400,
+        types: ["900%", "2 champ", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Taça 🧡 + 1 💛 / 2 Champs 🧡",
+          "🔥 2 Fams Pagos Full Lv.10 / 1 Skin de Exército",
+          "🔥 4 Slots Full / 2 Heróis PG 💛",
+          "🔥 0 Quest (Missão Territorial)",
+          "🔥 Mix 800% / Individual 890%"
+        ]
+      },
+      {
+        ref: "REF K 2833",
+        stats: "✨ Super Filler 1000% | 1 Champ 🧡 + 2 Taças 💛 ✨",
+        imgUrl: "REF K 2833.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/16V-K1Ee76edmKxcclvFbKOMQ4hVtGP4K",
+        priceTotal: 1300,
+        priceEntry: 350,
+        types: ["1000%", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1 Champ 🧡 / 2 Taças 💛",
+          "🔥 Familiar Pago Full",
+          "🔥 Heróis Pagos 💛",
+          "🔥 Labirinto Elite"
+        ]
+      }
+    ];
+
+    let featuredRefs = [];
+
+    function updateFeaturedRefs() {
+      const activeAccs = accounts.filter(acc => !acc.vendida);
+      activeAccs.sort((a, b) => b.priceTotal - a.priceTotal);
+      featuredRefs = activeAccs.slice(0, 5).map(acc => acc.ref);
+    }
+
+    let currentFeaturedIndex = 0;
+    let featuredTimer = null;
+
+    let selectedTypes = ["all"];
+    let currentRefForModal = "";
+
+    function toggleDrawer() { document.getElementById('whatsapp-drawer').classList.toggle('open'); }
+
+    function toggleFilterPanel() {
+      document.getElementById('filter-card').classList.toggle('open');
+    }
+
+    function renderFeatured() {
+      const container = document.getElementById('featured-card-content');
+      
+      if (featuredRefs.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color: #94a3b8; width: 100%; padding: 20px;">Nenhuma conta em destaque no momento.</p>';
+        return;
+      }
+
+      const ref = featuredRefs[currentFeaturedIndex];
+      const acc = accounts.find(a => a.ref === ref);
+
+      if (!acc) return;
+
+      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      const soldClass = acc.vendida ? 'sold' : '';
+      const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
+      const buyButtonHtml = acc.vendida 
+        ? `<button class="btn btn-sold">🚫 Vendida</button>` 
+        : `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+
+      container.innerHTML = `
+        <div class="featured-img-box ${soldClass}">
+          ${soldStampHtml}
+          <img src="${acc.imgUrl}" alt="${acc.ref}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+        </div>
+        <div class="featured-info">
+          <div class="featured-title">${acc.ref}</div>
+          <div style="color: #cbd5e1; font-weight: bold;">${acc.stats}</div>
+          <ul class="details-list">${detailsHtml}</ul>
+          <div class="price-box">
+            <div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
+            <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+          </div>
+          <div class="actions">
+            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+            ${buyButtonHtml}
+            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function nextFeatured() {
+      if (featuredRefs.length === 0) return;
+      currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
+      renderFeatured();
+      resetFeaturedTimer();
+    }
+
+    function prevFeatured() {
+      if (featuredRefs.length === 0) return;
+      currentFeaturedIndex = (currentFeaturedIndex - 1 + featuredRefs.length) % featuredRefs.length;
+      renderFeatured();
+      resetFeaturedTimer();
+    }
+
+    function resetFeaturedTimer() {
+      if (featuredTimer) clearInterval(featuredTimer);
+      if (featuredRefs.length === 0) return;
+      featuredTimer = setInterval(() => {
+        currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
+        renderFeatured();
+      }, 5000);
+    }
+
+    function toggleTypeTag(element, type) {
+      if (type.toLowerCase() === 'all') {
+        selectedTypes = ['all'];
+        document.querySelectorAll('.type-tag').forEach(tag => tag.classList.remove('active'));
+        element.classList.add('active');
+      } else {
+        const allTag = document.querySelector('.type-tag[data-type="all"]');
+        if (allTag) allTag.classList.remove('active');
+        
+        const index = selectedTypes.indexOf('all');
+        if (index > -1) selectedTypes.splice(index, 1);
+
+        element.classList.toggle('active');
+        if (element.classList.contains('active')) {
+          selectedTypes.push(type.toLowerCase());
+        } else {
+          const tIndex = selectedTypes.indexOf(type.toLowerCase());
+          if (tIndex > -1) selectedTypes.splice(tIndex, 1);
+        }
+
+        if (selectedTypes.length === 0) {
+          selectedTypes = ['all'];
+          if (allTag) allTag.classList.add('active');
+        }
+      }
+      applyFilters();
+    }
+
+    function isOlderThanTwoWeeks(dateString) {
+      if (!dateString) return false;
+      const soldDate = new Date(dateString);
+      const today = new Date();
+      const diffTime = today - soldDate;
+      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      return diffDays > 14;
+    }
+
+    function getFilteredAccounts() {
+      const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
+      const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
+      const sortOrder = document.getElementById('sort-order').value;
+
+      const checkedChamps = Array.from(document.querySelectorAll('#champs-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
+      const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
+
+      let filtered = accounts.filter(acc => {
+        if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
+
+        if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
+
+        if (!selectedTypes.includes('all')) {
+          const hasType = selectedTypes.some(t => acc.types.some(accType => accType.toLowerCase() === t.toLowerCase()));
+          if (!hasType) return false;
+        }
+
+        if (checkedChamps.length > 0) {
+          const hasChamp = checkedChamps.some(c => acc.types.some(accType => accType.toLowerCase().includes(c)));
+          if (!hasChamp) return false;
+        }
+
+        if (checkedFeatures.length > 0) {
+          const hasFeature = checkedFeatures.some(f => acc.types.some(accType => accType.toLowerCase().includes(f)));
+          if (!hasFeature) return false;
+        }
+
+        return true;
+      });
+
+      if (sortOrder === 'asc') {
+        filtered.sort((a, b) => a.priceTotal - b.priceTotal);
+      } else {
+        filtered.sort((a, b) => b.priceTotal - a.priceTotal);
+      }
+
+      return filtered;
+    }
+
+    function renderCardHTML(acc) {
+      const soldClass = acc.vendida ? 'sold' : '';
+      const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
+      const buyButtonHtml = acc.vendida 
+        ? `<button class="btn btn-sold" disabled>🚫 Vendida</button>` 
+        : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
+
+      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+
+      return `
+        <div class="card ${soldClass}" id="${acc.ref.replace(/\s+/g, '-')}">
+          <div class="card-header-badge">${acc.stats}</div>
+          <div class="card-img-container">
+            ${soldStampHtml}
+            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+          </div>
+          <div class="card-body">
+            <div class="ref-title">${acc.ref}</div>
+            <ul class="details-list">${detailsHtml}</ul>
+            <div class="price-box">
+              <div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
+              <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+            </div>
+            <div class="actions">
+              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+              ${buyButtonHtml}
+              <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function trackAndOpenModal(ref) {
+      gtag('event', 'interesse_compra', { 'event_category': 'Conta', 'event_label': ref });
+      openVendorModal(ref);
+    }
+
+    function renderCatalog(list) {
+      const container = document.getElementById('catalog-container');
+      container.innerHTML = '';
+
+      const activeAccounts = accounts.filter(acc => !acc.vendida || !isOlderThanTwoWeeks(acc.dataVendida));
+
+      const badge = document.getElementById('filter-count-badge');
+      if (list.length === activeAccounts.length) {
+        badge.innerText = `(Exibindo todas as ${list.length} contas)`;
+      } else {
+        badge.innerText = `(${list.length} conta${list.length === 1 ? '' : 's'} encontrada${list.length === 1 ? '' : 's'})`;
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color: #94a3b8; padding: 30px;">Nenhuma conta cadastrada ou encontrada com os filtros selecionados.</p>';
+      } else {
+        list.forEach(acc => {
+          container.innerHTML += renderCardHTML(acc);
+        });
+      }
+
+      renderSoldSection();
+    }
+
+    function renderSoldSection() {
+      const soldContainer = document.getElementById('sold-container');
+      const soldSection = document.getElementById('sold-section');
+      soldContainer.innerHTML = '';
+
+      const oldSoldAccounts = accounts.filter(acc => acc.vendida && isOlderThanTwoWeeks(acc.dataVendida));
+
+      if (oldSoldAccounts.length > 0) {
+        soldSection.style.display = 'block';
+        oldSoldAccounts.forEach(acc => {
+          soldContainer.innerHTML += renderCardHTML(acc);
+        });
+      } else {
+        soldSection.style.display = 'none';
+      }
+    }
+
+    function applyFilters() {
+      const filtered = getFilteredAccounts();
+      renderCatalog(filtered);
+    }
+
+    function clearFilters() {
+      document.getElementById('price-min').value = '';
+      document.getElementById('price-max').value = '';
+      document.getElementById('sort-order').value = 'desc';
+      
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      
+      selectedTypes = ['all'];
+      document.querySelectorAll('.type-tag').forEach(tag => {
+        if (tag.getAttribute('data-type') === 'all') tag.classList.add('active');
+        else tag.classList.remove('active');
+      });
+
+      applyFilters();
+    }
+
+    function openVendorModal(ref) {
+      currentRefForModal = ref;
+      const vendorList = document.getElementById('vendor-list');
+      vendorList.innerHTML = '';
+
+      const acc = accounts.find(a => a.ref === ref);
+      const directLink = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
+      
+      let detalhesConta = acc ? `👑 *${acc.ref}* - ${acc.stats}\n💰 *Valor Total:* R$ ${acc.priceTotal.toLocaleString('pt-BR')} *(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})*\n` : `👑 *${ref}*\n`;
+
+      VENDEDORES.forEach(v => {
+        const textoMensagem = 
+          `🦁 *STARK GAMES - COMPRA DE CONTA* 🦁\n` +
+          `━━━━━━━━━━━━━━━━━━━━━━\n` +
+          `👋 Olá *${v.nome}*! Tenho interesse em fechar negócio nesta conta:\n\n` +
+          detalhesConta + `\n` +
+          `🔗 *Link do Anúncio:* ${directLink}\n` +
+          `📁 *Link das Fotos:* ${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
+          `━━━━━━━━━━━━━━━━━━━━━━\n` +
+          `🚀 _A aguardar atendimento!_`;
+        
+        const url = `https://wa.me/${v.numero}?text=` + encodeURIComponent(textoMensagem);
+        
+        const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
+        
+        vendorList.innerHTML += `
+          <a href="${url}" target="_blank" class="vendor-card" onclick="gtag('event', 'escolha_vendedor', { 'event_category': 'Vendedor', 'event_label': '${v.nome} - ${ref}' });">
+            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='${fallbackAvatar}'">
+            <div class="vendor-info">
+              <div class="vendor-name">${v.nome}</div>
+              <div class="vendor-status">Atendimento Online</div>
+            </div>
+          </a>
+        `;
+      });
+
+      document.getElementById('vendor-modal').style.display = 'flex';
+    }
+
+    function closeVendorModal() {
+      document.getElementById('vendor-modal').style.display = 'none';
+    }
+
+    function shareAccount(ref) {
+      const acc = accounts.find(a => a.ref === ref);
+      const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
+      
+      let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
+
+      const textoShare = 
+        `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `👑 *${acc ? acc.ref : ref}*\n` +
+        `📊 *Status:* ${acc ? acc.stats : ''}\n\n` +
+        `📋 *DETALHES DA CONTA:*\n` +
+        detalhesLista + `\n\n` +
+        `💰 *Valor Total:* R$ ${acc ? acc.priceTotal.toLocaleString('pt-BR') : ''}\n` +
+        `💳 *Valor da Entrada:* R$ ${acc ? acc.priceEntry.toLocaleString('pt-BR') : ''}\n\n` +
+        `🔗 *Link Direto no Catálogo:*\n${shareUrl}\n` +
+        `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `🚀 *Garanta já a sua conta com segurança na Stark Games!*`;
+
+      gtag('event', 'compartilhar_conta', { 'event_category': 'Conta', 'event_label': ref });
+
+      const whatsappShareUrl = `https://api.whatsapp.com/send?text=` + encodeURIComponent(textoShare);
+      window.open(whatsappShareUrl, '_blank');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateFeaturedRefs();
+      applyFilters();
+      renderFeatured();
+      resetFeaturedTimer();
+    });
+  </script>
 </body>
 </html>
