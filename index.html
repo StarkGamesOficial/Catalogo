@@ -23,7 +23,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     
     body { 
-      background-image: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), url('fundo.jpg');
+      background-image: linear-gradient(rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 0.8)), url('fundo.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -40,11 +40,11 @@
       height: auto;
       display: block;
       margin: 0 auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      box-shadow: 0 4px 25px rgba(245, 158, 11, 0.4);
     }
 
-    /* CARROSSEL DE DESTAQUES COM AJUSTE PROPORCIONAL PARA NÃO CORTAR IMAGENS */
+    /* CARROSSEL DE DESTAQUES COM NEON DOURADO */
     .featured-container {
       max-width: 1200px;
       margin: 0 auto 30px auto;
@@ -52,7 +52,7 @@
       border: 2px solid #f59e0b;
       border-radius: 16px;
       padding: 15px;
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
       position: relative;
     }
 
@@ -66,7 +66,7 @@
     }
 
     .featured-badge {
-      background: #f59e0b;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
       color: #000;
       font-weight: 900;
       padding: 6px 14px;
@@ -76,6 +76,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
     }
 
     .featured-card {
@@ -91,12 +92,13 @@
       max-height: 400px;
       overflow: hidden;
       border-radius: 12px;
-      border: 1px solid #334155;
+      border: 1px solid #f59e0b;
       display: flex;
       justify-content: center;
       align-items: center;
       background: #000;
       position: relative;
+      box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.3);
     }
 
     .featured-img-box img {
@@ -115,7 +117,7 @@
       gap: 12px;
     }
 
-    .featured-title { font-size: 1.7rem; color: #f59e0b; font-weight: bold; }
+    .featured-title { font-size: 1.7rem; color: #f59e0b; font-weight: bold; text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
     
     .featured-controls {
       display: flex;
@@ -139,8 +141,8 @@
       width: 85%;
       height: 2px;
       margin: 40px auto;
-      background: linear-gradient(90deg, transparent, #00ffcc, transparent);
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+      background: linear-gradient(90deg, transparent, #f59e0b, #ef4444, transparent);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.8);
     }
 
     /* ABA LATERAL FLUTUANTE */
@@ -167,7 +169,7 @@
       font-size: 0.95rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: -4px 0 15px rgba(37, 211, 102, 0.3);
+      box-shadow: -4px 0 15px rgba(37, 211, 102, 0.4);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -225,17 +227,18 @@
 
     /* PAINEL DE FILTROS */
     .filter-card { 
-      background: rgba(22, 30, 46, 0.85); 
-      border: 1px solid #1e293b; 
+      background: rgba(22, 30, 46, 0.90); 
+      border: 1px solid #334155; 
       border-radius: 12px; 
       margin-bottom: 20px; 
       backdrop-filter: blur(8px);
       overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
     .filter-toggle-header {
       padding: 18px 24px;
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(15, 23, 42, 0.8);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -243,7 +246,7 @@
       user-select: none;
       transition: background 0.2s;
     }
-    .filter-toggle-header:hover { background: rgba(30, 41, 59, 0.8); }
+    .filter-toggle-header:hover { background: rgba(30, 41, 59, 0.9); }
 
     .filter-toggle-title {
       font-size: 1.1rem;
@@ -265,7 +268,7 @@
     .filter-body {
       display: none;
       padding: 24px;
-      border-top: 1px solid #1e293b;
+      border-top: 1px solid #334155;
     }
 
     .filter-card.open .filter-body { display: block; }
@@ -277,7 +280,7 @@
     .type-tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
     .type-tag { padding: 8px 16px; background: #0f172a; border: 1px solid #334155; color: #cbd5e1; font-weight: 600; border-radius: 20px; cursor: pointer; transition: 0.2s; font-size: 0.85rem; user-select: none; }
     .type-tag:hover { border-color: #22c55e; color: #fff; }
-    .type-tag.active { background: #22c55e; color: #fff; border-color: #22c55e; }
+    .type-tag.active { background: #22c55e; color: #fff; border-color: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4); }
 
     .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 15px; }
     .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #e2e8f0; cursor: pointer; }
@@ -286,23 +289,55 @@
     .price-sort-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px; }
     .input-box label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: bold; }
     .input-box input, .input-box select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
-    .input-box input:focus, .input-box select:focus { border-color: #22c55e; }
+    .input-box input:focus, .input-box select:focus { border-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
 
-    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #1e293b; padding-top: 15px; }
+    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #334155; padding-top: 15px; }
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
+    /* CATÁLOGO COM EFEITO NEON GAMING NOS CARDS */
     .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-    .card { background: rgba(22, 30, 46, 0.90); border-radius: 14px; overflow: hidden; border: 1px solid #1e293b; transition: all 0.3s ease; display: flex; flex-direction: column; backdrop-filter: blur(6px); scroll-margin-top: 20px; }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(34, 197, 94, 0.15); border-color: #22c55e; }
+    .card { 
+      background: rgba(18, 24, 38, 0.95); 
+      border-radius: 14px; 
+      overflow: hidden; 
+      border: 2px solid #334155; 
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
+      display: flex; 
+      flex-direction: column; 
+      backdrop-filter: blur(8px); 
+      scroll-margin-top: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
     
-    .card-header-badge { background: #f59e0b; color: #000; font-weight: 900; padding: 6px 12px; font-size: 0.85rem; text-transform: uppercase; text-align: center; }
+    /* Efeito de brilho neon gaming dinâmico ao passar o rato */
+    .card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.35), 0 15px 30px rgba(0, 0, 0, 0.7); 
+      border-color: #f59e0b; 
+    }
     
-    .card-img-container { position: relative; width: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; }
-    .card-img { width: 100%; height: auto; display: block; }
+    .card-header-badge { 
+      background: linear-gradient(135deg, #f59e0b, #d97706); 
+      color: #000; 
+      font-weight: 900; 
+      padding: 8px 12px; 
+      font-size: 0.85rem; 
+      text-transform: uppercase; 
+      text-align: center;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+    }
+    
+    .card-img-container { position: relative; width: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid #1e293b; }
+    .card-img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
+    .card:hover .card-img { transform: scale(1.03); }
     
     /* ESTILOS PARA CONTA VENDIDA */
-    .card.sold .card-img { filter: grayscale(100%) brightness(50%); }
+    .card.sold .card-img { filter: grayscale(100%) brightness(40%); }
+    .card.sold { border-color: #ef4444 !important; opacity: 0.8; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
+    .card.sold .card-header-badge { background: #7f1d1d; color: #f8fafc; }
+    
     .sold-stamp {
       position: absolute;
       top: 50%;
@@ -317,33 +352,33 @@
       border-radius: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+      box-shadow: 0 0 25px rgba(0,0,0,0.9);
       z-index: 5;
       pointer-events: none;
     }
 
     .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .ref-title { color: #f59e0b; font-size: 1.3rem; font-weight: bold; margin-bottom: 12px; }
+    .ref-title { color: #f59e0b; font-size: 1.4rem; font-weight: 900; margin-bottom: 12px; text-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
     
     .details-list { list-style: none; margin-bottom: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; }
-    .details-list li { background: #0f172a; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; color: #e2e8f0; }
+    .details-list li { background: #0f172a; padding: 9px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; color: #e2e8f0; font-size: 0.9rem; }
 
-    .price-box { background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
-    .main-price { font-size: 1.5rem; color: #10b981; font-weight: 800; }
-    .down-payment { font-size: 0.9rem; color: #f59e0b; margin-top: 4px; font-weight: 600; }
+    .price-box { background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; box-shadow: inset 0 0 10px rgba(16, 185, 129, 0.1); }
+    .main-price { font-size: 1.6rem; color: #10b981; font-weight: 900; text-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+    .down-payment { font-size: 0.9rem; color: #f59e0b; margin-top: 4px; font-weight: 700; }
 
     .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
-    .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: background 0.2s, transform 0.1s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
+    .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
     .btn-drive { background: #334155; color: #f8fafc; }
-    .btn-drive:hover { background: #475569; }
+    .btn-drive:hover { background: #475569; box-shadow: 0 0 10px rgba(51, 65, 85, 0.5); }
     .btn-whatsapp { background: #25d366; color: #fff; }
-    .btn-whatsapp:hover { background: #1da851; }
+    .btn-whatsapp:hover { background: #1da851; box-shadow: 0 0 12px rgba(37, 211, 102, 0.6); }
     .btn-share { background: #0284c7; color: #fff; }
-    .btn-share:hover { background: #0369a1; }
+    .btn-share:hover { background: #0369a1; box-shadow: 0 0 10px rgba(2, 132, 199, 0.5); }
     
-    .btn-sold { background: #475569; color: #94a3b8; cursor: not-allowed; }
+    .btn-sold { background: #334155; color: #94a3b8; cursor: not-allowed; }
 
-    /* SEÇÃO / ABA DE CONTAS VENDIDAS */
+    /* SEÇÃO DE CONTAS VENDIDAS */
     .sold-section-container {
       margin-top: 60px;
       background: rgba(15, 23, 42, 0.85);
@@ -364,22 +399,22 @@
       padding-bottom: 10px;
     }
 
-    /* MODAL DE VENDEDORES EM GRID DE 2 COLUNAS */
+    /* MODAL DE VENDEDORES */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
     .modal-box { 
       background: #161e2e; 
-      border: 1px solid #334155; 
+      border: 2px solid #f59e0b; 
       border-radius: 16px; 
       max-width: 650px; 
       width: 100%; 
       padding: 25px; 
       text-align: center; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+      box-shadow: 0 20px 50px rgba(245, 158, 11, 0.25); 
       max-height: 90vh; 
       display: flex; 
       flex-direction: column; 
     }
-    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; }
+    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; text-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
     .modal-subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
     
     .vendor-list { 
@@ -394,8 +429,8 @@
       .vendor-list { grid-template-columns: 1fr; }
     }
     
-    .vendor-card { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #1e293b; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: #fff; transition: all 0.2s ease; text-align: left; }
-    .vendor-card:hover { border-color: #22c55e; background: #1e293b; transform: translateY(-2px); }
+    .vendor-card { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #334155; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: #fff; transition: all 0.2s ease; text-align: left; }
+    .vendor-card:hover { border-color: #22c55e; background: #1e293b; transform: translateY(-2px); box-shadow: 0 0 12px rgba(34, 197, 94, 0.3); }
     .vendor-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #22c55e; flex-shrink: 0; }
     .vendor-info { flex: 1; min-width: 0; }
     .vendor-name { font-weight: bold; font-size: 0.9rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -403,7 +438,7 @@
     .vendor-status::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block; }
     
     .btn-close-modal { margin-top: 15px; background: transparent; border: 1px solid #334155; color: #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; flex-shrink: 0; }
-    .btn-close-modal:hover { background: #334155; }
+    .btn-close-modal:hover { background: #334155; color: #fff; }
   </style>
 </head>
 <body>
@@ -444,7 +479,7 @@
     </div>
   </div>
 
-  <!-- PAINEL DE FILTROS OCULTO/EXPANDÍVEL -->
+  <!-- PAINEL DE FILTROS -->
   <section class="filter-card" id="filter-card">
     <div class="filter-toggle-header" onclick="toggleFilterPanel()">
       <div class="filter-toggle-title">
@@ -518,7 +553,7 @@
   <!-- CATÁLOGO PRINCIPAL -->
   <main class="catalog" id="catalog-container"></main>
 
-  <!-- ABA / SEÇÃO DE CONTAS JÁ VENDIDAS (APÓS 2 SEMANAS) -->
+  <!-- ABA DE CONTAS VENDIDAS -->
   <section class="sold-section-container" id="sold-section" style="display: none;">
     <div class="sold-section-title">🔒 Histórico de Contas Vendidas</div>
     <div class="catalog" id="sold-container"></div>
