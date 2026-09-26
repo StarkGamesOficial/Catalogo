@@ -23,7 +23,8 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     
     body { 
-      background-image: linear-gradient(rgba(11, 15, 25, 0.85), rgba(11, 15, 25, 0.85)), url('fundo.jpg');
+      /* Fundo totalmente limpo e brilhante com os leões, sem filtro escuro por cima */
+      background-image: url('fundo.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -48,7 +49,7 @@
     .featured-container {
       max-width: 1200px;
       margin: 0 auto 30px auto;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 15, 10, 0.95));
+      background: rgba(11, 15, 25, 0.92);
       border: 3px solid;
       border-image: linear-gradient(to bottom, #f59e0b, #ef4444) 1;
       border-radius: 16px;
@@ -186,7 +187,7 @@
       width: 0;
       opacity: 0;
       visibility: hidden;
-      background: rgba(15, 23, 42, 0.96);
+      background: rgba(11, 15, 25, 0.95);
       border: 1px solid #1e293b;
       border-right: none;
       border-radius: 12px 0 0 12px;
@@ -229,18 +230,18 @@
 
     /* PAINEL DE FILTROS */
     .filter-card { 
-      background: rgba(22, 30, 46, 0.90); 
+      background: rgba(11, 15, 25, 0.90); 
       border: 1px solid #334155; 
       border-radius: 12px; 
       margin-bottom: 20px; 
       backdrop-filter: blur(8px);
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
 
     .filter-toggle-header {
       padding: 18px 24px;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -297,25 +298,25 @@
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
-    /* CARDS COM ESTILO DE POSTER ÉPICO (BORDAS EM CHAMAS E NEON) */
+    /* CARDS COM FUNDO SÓLIDO PARA DEIXAR O FUNDO DOS LEÕES APARECER EM VOLTA */
     .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
     .card { 
-      background: linear-gradient(180deg, rgba(22, 30, 46, 0.96) 0%, rgba(11, 15, 25, 0.98) 100%); 
+      background: rgba(11, 15, 25, 0.94); 
       border-radius: 16px; 
       overflow: hidden; 
       border: 2px solid #f59e0b; 
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
       display: flex; 
       flex-direction: column; 
-      backdrop-filter: blur(8px); 
+      backdrop-filter: blur(10px); 
       scroll-margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 15px rgba(245, 158, 11, 0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(245, 158, 11, 0.15);
       position: relative;
     }
     
     .card:hover { 
       transform: translateY(-8px) scale(1.01); 
-      box-shadow: 0 0 30px rgba(245, 158, 11, 0.5), 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 0 25px rgba(239, 68, 68, 0.25); 
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.6), 0 20px 40px rgba(0, 0, 0, 0.9), inset 0 0 25px rgba(239, 68, 68, 0.3); 
       border-color: #ef4444; 
     }
     
@@ -377,7 +378,7 @@
     .ref-title { color: #f59e0b; font-size: 1.4rem; font-weight: 900; margin-bottom: 12px; text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
     
     .details-list { list-style: none; margin-bottom: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; }
-    .details-list li { background: rgba(15, 23, 42, 0.8); padding: 9px 12px; border-radius: 6px; border-left: 3px solid #ef4444; color: #e2e8f0; font-size: 0.9rem; }
+    .details-list li { background: rgba(15, 23, 42, 0.9); padding: 9px 12px; border-radius: 6px; border-left: 3px solid #ef4444; color: #e2e8f0; font-size: 0.9rem; }
 
     .price-box { background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; box-shadow: inset 0 0 12px rgba(16, 185, 129, 0.15); }
     .main-price { font-size: 1.6rem; color: #10b981; font-weight: 900; text-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
@@ -397,7 +398,7 @@
     /* SEÇÃO DE CONTAS VENDIDAS */
     .sold-section-container {
       margin-top: 60px;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(11, 15, 25, 0.90);
       border: 1px solid #334155;
       border-radius: 16px;
       padding: 25px;
