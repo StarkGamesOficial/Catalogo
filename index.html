@@ -23,7 +23,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     
     body { 
-      background-image: linear-gradient(rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 0.8)), url('fundo.jpg');
+      background-image: linear-gradient(rgba(11, 15, 25, 0.85), rgba(11, 15, 25, 0.85)), url('fundo.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -41,18 +41,19 @@
       display: block;
       margin: 0 auto;
       border-radius: 12px;
-      box-shadow: 0 4px 25px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 4px 30px rgba(245, 158, 11, 0.5);
     }
 
-    /* CARROSSEL DE DESTAQUES COM NEON DOURADO */
+    /* CARROSSEL DE DESTAQUES ÉPICO */
     .featured-container {
       max-width: 1200px;
       margin: 0 auto 30px auto;
-      background: rgba(15, 23, 42, 0.95);
-      border: 2px solid #f59e0b;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 15, 10, 0.95));
+      border: 3px solid;
+      border-image: linear-gradient(to bottom, #f59e0b, #ef4444) 1;
       border-radius: 16px;
       padding: 15px;
-      box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
       position: relative;
     }
 
@@ -66,8 +67,8 @@
     }
 
     .featured-badge {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #000;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
       font-weight: 900;
       padding: 6px 14px;
       border-radius: 20px;
@@ -76,7 +77,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
     .featured-card {
@@ -92,13 +94,13 @@
       max-height: 400px;
       overflow: hidden;
       border-radius: 12px;
-      border: 1px solid #f59e0b;
+      border: 2px solid #f59e0b;
       display: flex;
       justify-content: center;
       align-items: center;
       background: #000;
       position: relative;
-      box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.3);
+      box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.4);
     }
 
     .featured-img-box img {
@@ -117,7 +119,7 @@
       gap: 12px;
     }
 
-    .featured-title { font-size: 1.7rem; color: #f59e0b; font-weight: bold; text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+    .featured-title { font-size: 1.7rem; color: #f59e0b; font-weight: bold; text-shadow: 0 0 12px rgba(245, 158, 11, 0.6); }
     
     .featured-controls {
       display: flex;
@@ -139,10 +141,10 @@
 
     .glow-divider {
       width: 85%;
-      height: 2px;
+      height: 3px;
       margin: 40px auto;
-      background: linear-gradient(90deg, transparent, #f59e0b, #ef4444, transparent);
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.8);
+      background: linear-gradient(90deg, transparent, #f59e0b, #ef4444, #f59e0b, transparent);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
     }
 
     /* ABA LATERAL FLUTUANTE */
@@ -291,32 +293,45 @@
     .input-box input, .input-box select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
     .input-box input:focus, .input-box select:focus { border-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
 
-    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #334155; padding-top: 15px; }
+    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #1e293b; padding-top: 15px; }
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
-    /* CATÁLOGO COM EFEITO NEON GAMING NOS CARDS */
-    .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    /* CARDS COM ESTILO DE POSTER ÉPICO (BORDAS EM CHAMAS E NEON) */
+    .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
     .card { 
-      background: rgba(18, 24, 38, 0.95); 
-      border-radius: 14px; 
+      background: linear-gradient(180deg, rgba(22, 30, 46, 0.96) 0%, rgba(11, 15, 25, 0.98) 100%); 
+      border-radius: 16px; 
       overflow: hidden; 
-      border: 2px solid #334155; 
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
+      border: 2px solid #f59e0b; 
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
       display: flex; 
       flex-direction: column; 
       backdrop-filter: blur(8px); 
       scroll-margin-top: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 15px rgba(245, 158, 11, 0.15);
+      position: relative;
     }
     
-    /* Efeito de brilho neon gaming dinâmico ao passar o rato */
     .card:hover { 
-      transform: translateY(-8px); 
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.35), 0 15px 30px rgba(0, 0, 0, 0.7); 
-      border-color: #f59e0b; 
+      transform: translateY(-8px) scale(1.01); 
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.5), 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 0 25px rgba(239, 68, 68, 0.25); 
+      border-color: #ef4444; 
     }
     
+    /* TOPO DO CARD ESTILO LOGÓTIPO STARK */
+    .card-stark-header {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      padding: 6px;
+      text-align: center;
+      border-bottom: 1px solid #f59e0b;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #f59e0b;
+      text-transform: uppercase;
+    }
+
     .card-header-badge { 
       background: linear-gradient(135deg, #f59e0b, #d97706); 
       color: #000; 
@@ -326,17 +341,18 @@
       text-transform: uppercase; 
       text-align: center;
       letter-spacing: 0.5px;
-      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+      box-shadow: 0 2px 12px rgba(245, 158, 11, 0.4);
     }
     
-    .card-img-container { position: relative; width: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid #1e293b; }
+    .card-img-container { position: relative; width: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid #f59e0b; }
     .card-img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
-    .card:hover .card-img { transform: scale(1.03); }
+    .card:hover .card-img { transform: scale(1.04); }
     
     /* ESTILOS PARA CONTA VENDIDA */
     .card.sold .card-img { filter: grayscale(100%) brightness(40%); }
-    .card.sold { border-color: #ef4444 !important; opacity: 0.8; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
+    .card.sold { border-color: #ef4444 !important; opacity: 0.75; box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
     .card.sold .card-header-badge { background: #7f1d1d; color: #f8fafc; }
+    .card.sold .card-stark-header { color: #ef4444; border-color: #ef4444; }
     
     .sold-stamp {
       position: absolute;
@@ -358,23 +374,23 @@
     }
 
     .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .ref-title { color: #f59e0b; font-size: 1.4rem; font-weight: 900; margin-bottom: 12px; text-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+    .ref-title { color: #f59e0b; font-size: 1.4rem; font-weight: 900; margin-bottom: 12px; text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
     
     .details-list { list-style: none; margin-bottom: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; }
-    .details-list li { background: #0f172a; padding: 9px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; color: #e2e8f0; font-size: 0.9rem; }
+    .details-list li { background: rgba(15, 23, 42, 0.8); padding: 9px 12px; border-radius: 6px; border-left: 3px solid #ef4444; color: #e2e8f0; font-size: 0.9rem; }
 
-    .price-box { background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; box-shadow: inset 0 0 10px rgba(16, 185, 129, 0.1); }
-    .main-price { font-size: 1.6rem; color: #10b981; font-weight: 900; text-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+    .price-box { background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; box-shadow: inset 0 0 12px rgba(16, 185, 129, 0.15); }
+    .main-price { font-size: 1.6rem; color: #10b981; font-weight: 900; text-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
     .down-payment { font-size: 0.9rem; color: #f59e0b; margin-top: 4px; font-weight: 700; }
 
     .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
     .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
     .btn-drive { background: #334155; color: #f8fafc; }
-    .btn-drive:hover { background: #475569; box-shadow: 0 0 10px rgba(51, 65, 85, 0.5); }
+    .btn-drive:hover { background: #475569; box-shadow: 0 0 12px rgba(51, 65, 85, 0.6); }
     .btn-whatsapp { background: #25d366; color: #fff; }
-    .btn-whatsapp:hover { background: #1da851; box-shadow: 0 0 12px rgba(37, 211, 102, 0.6); }
+    .btn-whatsapp:hover { background: #1da851; box-shadow: 0 0 15px rgba(37, 211, 102, 0.7); }
     .btn-share { background: #0284c7; color: #fff; }
-    .btn-share:hover { background: #0369a1; box-shadow: 0 0 10px rgba(2, 132, 199, 0.5); }
+    .btn-share:hover { background: #0369a1; box-shadow: 0 0 12px rgba(2, 132, 199, 0.6); }
     
     .btn-sold { background: #334155; color: #94a3b8; cursor: not-allowed; }
 
@@ -409,12 +425,12 @@
       width: 100%; 
       padding: 25px; 
       text-align: center; 
-      box-shadow: 0 20px 50px rgba(245, 158, 11, 0.25); 
+      box-shadow: 0 20px 50px rgba(245, 158, 11, 0.3); 
       max-height: 90vh; 
       display: flex; 
       flex-direction: column; 
     }
-    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; text-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
     .modal-subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
     
     .vendor-list { 
@@ -430,7 +446,7 @@
     }
     
     .vendor-card { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #334155; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: #fff; transition: all 0.2s ease; text-align: left; }
-    .vendor-card:hover { border-color: #22c55e; background: #1e293b; transform: translateY(-2px); box-shadow: 0 0 12px rgba(34, 197, 94, 0.3); }
+    .vendor-card:hover { border-color: #22c55e; background: #1e293b; transform: translateY(-2px); box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
     .vendor-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #22c55e; flex-shrink: 0; }
     .vendor-info { flex: 1; min-width: 0; }
     .vendor-name { font-weight: bold; font-size: 0.9rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -3041,6 +3057,7 @@
 
       return `
         <div class="card ${soldClass}" id="${acc.ref.replace(/\s+/g, '-')}">
+          <div class="card-stark-header">🦁 STARK GAMES 🦁</div>
           <div class="card-header-badge">${acc.stats}</div>
           <div class="card-img-container">
             ${soldStampHtml}
