@@ -314,7 +314,7 @@
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
-    /* ETIQUETA DE DESCONTO / PREÇO ANTIGO */
+    /* ETIQUETA DE DESCONTO / PREÇO ANTIGO (MAIS DESTAQUE) */
     .promo-badge-tag {
       position: absolute;
       top: 12px;
@@ -331,10 +331,12 @@
       letter-spacing: 0.5px;
     }
     .old-price {
-      font-size: 0.9rem;
-      color: #94a3b8;
+      font-size: 1.15rem;
+      color: #fca5a5;
       text-decoration: line-through;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
     }
 
     /* CARDS */
@@ -494,7 +496,7 @@
     </div>
   </section>
 
-  <!-- CARROSSEL DE OFERTAS (ESTILO IDÊNTICO AO DESTAQUE) -->
+  <!-- CARROSSEL DE OFERTAS -->
   <section class="promo-container-box" id="promo-section" style="display: none;">
     <div class="promo-header">
       <div class="promo-badge-title">🔥 Ofertas 🔥</div>
@@ -521,7 +523,7 @@
         <a href="https://chat.whatsapp.com/HJgyZ76Rm4zACjpRyyGSey" target="_blank" rel="noopener" class="drawer-group-btn"><span>🏆 STARK LORDS VIP 🏆</span></a>
         <a href="https://chat.whatsapp.com/GbySR9Fq65SAe6a1JjVEHu" target="_blank" rel="noopener" class="drawer-group-btn"><span>Stark - Made In China Oficial</span></a>
         <a href="https://chat.whatsapp.com/HUwYV26idV2HbwSSu713SS" target="_blank" rel="noopener" class="drawer-group-btn"><span>🔥 Stark Games - 10K+ 🔥</span></a>
-        <a href="https://chat.whatsapp.com/HmOvR7DX8zrKnwht9JUAL3" target="_blank" rel="noopener" class="drawer-group-btn"><span>🛑 STARK - RESTRITAS ⛓️️</span></a>
+        <a href="https://chat.whatsapp.com/HmOvR7DX8zrKnwht9JUAL3" target="_blank" rel="noopener" class="drawer-group-btn"><span>🛑 STARK - RESTRITAS ⛓️</span></a>
       </div>
     </div>
   </div>
@@ -1028,7 +1030,7 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 RL Simples 1000% ⚔️️",
+          "🔥 RL Simples 1000% ⚔️",
           "🔥 Heróis Pagos 💛",
           "🔥 03 Taças 🧡",
           "🔥 06 Familiares PG Full 🐉",
@@ -1191,7 +1193,7 @@
         details: [
           "🔥 RESTRITA K1287 ✈️",
           "🔳 IND 650/650/655 SOFURIA",
-          "🔳 T5 LIBERADA ✳️",
+          "🔳 T5 LIBERADA ✳️️",
           "🔳 2 TAÇAS 💛💜",
           "🔳 +28M de tropas 😱"
         ]
@@ -1591,7 +1593,7 @@
         details: [
           "🔥 RESTRITA K1287 ✈️",
           "🔳 IND 650/650/655 SOFURIA",
-          "🔳 T5 LIBERADA ✳️",
+          "🔳 T5 LIBERADA ✳️️",
           "🔳 2 TAÇAS 💛💜",
           "🔳 +28M de tropas 😱"
         ]
@@ -2364,9 +2366,9 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 Ind 941% / Mix 760% ⚔️️",
+          "🔥 Ind 941% / Mix 760% ⚔️",
           "🔥 2 Taças (🧡💛)",
-          "🔥 T5 + Elite 💂‍♀️️",
+          "🔥 T5 + Elite 💂‍♀️",
           "🔥 +240K de Gemas 💎",
           "🔥 5 Slots + Fams Pagos"
         ]
@@ -3578,7 +3580,6 @@
       const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
 
       let filtered = accounts.filter(acc => {
-        // Regra corrigida: Conta vendida só some do catálogo principal APÓS 2 semanas.
         if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
 
         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
@@ -3685,7 +3686,6 @@
       const soldCard = document.getElementById('sold-card');
       soldContainer.innerHTML = '';
 
-      // Histórico mostra contas vendidas há mais de 2 semanas (permanente)
       const soldAccounts = accounts.filter(acc => acc.vendida && isOlderThanTwoWeeks(acc.dataVendida));
       const soldCountBadge = document.getElementById('sold-count-badge');
 
