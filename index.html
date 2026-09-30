@@ -521,7 +521,7 @@
         <a href="https://chat.whatsapp.com/HJgyZ76Rm4zACjpRyyGSey" target="_blank" rel="noopener" class="drawer-group-btn"><span>🏆 STARK LORDS VIP 🏆</span></a>
         <a href="https://chat.whatsapp.com/GbySR9Fq65SAe6a1JjVEHu" target="_blank" rel="noopener" class="drawer-group-btn"><span>Stark - Made In China Oficial</span></a>
         <a href="https://chat.whatsapp.com/HUwYV26idV2HbwSSu713SS" target="_blank" rel="noopener" class="drawer-group-btn"><span>🔥 Stark Games - 10K+ 🔥</span></a>
-        <a href="https://chat.whatsapp.com/HmOvR7DX8zrKnwht9JUAL3" target="_blank" rel="noopener" class="drawer-group-btn"><span>🛑 STARK - RESTRITAS ⛓️</span></a>
+        <a href="https://chat.whatsapp.com/HmOvR7DX8zrKnwht9JUAL3" target="_blank" rel="noopener" class="drawer-group-btn"><span>🛑 STARK - RESTRITAS ⛓️️</span></a>
       </div>
     </div>
   </div>
@@ -715,6 +715,26 @@
           "🔥 2 Champs Míticos 🧡",
           "🔥 1 TAÇA Mítica 🧡 + 1 💛",
           "🔥 FAM 7/6/6/4/3/3 🐉"
+        ]
+      },
+      {
+        ref: "REF MC 90",
+        stats: "🔥 IND 1143/1057/1105%FF | 3 CHAMPS 🧡 + 42M Tropas + Tropas Mágicas Lv1 💜 🔥",
+        imgUrl: "REF MC 90.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1k9aD-yM8wZuqjqNc7QROYSFtF275aQ0W",
+        priceTotal: 5000,
+        priceEntry: 700,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["1100%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        vendida: true,
+        dataVendida: "2026-09-30",
+        details: [
+          "🔥 IND 1143/1057/1105% FF",
+          "🔥 3 CHAMPS 🧡",
+          "🔥 Tropas Mágicas Lv1 💜",
+          "🔥 Skin Líder + Skin Exército/Rota",
+          "🔥 42M de Tropas"
         ]
       },
       {
@@ -1131,7 +1151,7 @@
           "🔥 - IND 634/678/698%",
           "🔥 - TARÇAS 💜💜",
           "🔥 - +10M de TROPAS 🔥",
-          "🔥- BONUS SÓ FÚRIA ⚔️️",
+          "🔥- BONUS SÓ FÚRIA ⚔️",
           "🔥- T5 LIBERADAS 😈"
         ]
       },
@@ -2344,9 +2364,9 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 Ind 941% / Mix 760% ⚔️",
+          "🔥 Ind 941% / Mix 760% ⚔️️",
           "🔥 2 Taças (🧡💛)",
-          "🔥 T5 + Elite 💂‍♀️",
+          "🔥 T5 + Elite 💂‍♀️️",
           "🔥 +240K de Gemas 💎",
           "🔥 5 Slots + Fams Pagos"
         ]
@@ -3558,7 +3578,8 @@
       const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
 
       let filtered = accounts.filter(acc => {
-        if (acc.vendida) return false;
+        // Regra corrigida: Conta vendida só some do catálogo principal APÓS 2 semanas.
+        if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
 
         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
 
@@ -3639,7 +3660,7 @@
       const container = document.getElementById('catalog-container');
       container.innerHTML = '';
 
-      const activeAccounts = accounts.filter(acc => !acc.vendida);
+      const activeAccounts = accounts.filter(acc => !acc.vendida || !isOlderThanTwoWeeks(acc.dataVendida));
 
       const badge = document.getElementById('filter-count-badge');
       if (list.length === activeAccounts.length) {
@@ -3664,7 +3685,8 @@
       const soldCard = document.getElementById('sold-card');
       soldContainer.innerHTML = '';
 
-      const soldAccounts = accounts.filter(acc => acc.vendida);
+      // Histórico mostra contas vendidas há mais de 2 semanas (permanente)
+      const soldAccounts = accounts.filter(acc => acc.vendida && isOlderThanTwoWeeks(acc.dataVendida));
       const soldCountBadge = document.getElementById('sold-count-badge');
 
       if (soldAccounts.length > 0) {
