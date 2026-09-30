@@ -144,26 +144,11 @@
     }
     .btn-nav:hover { background: #f59e0b; color: #000; }
 
-    /* AJUSTE ESPECÍFICO PARA TELEMÓVEIS (BOTÕES MENORES E MAIS COMPACTOS) */
     @media (max-width: 768px) {
-      .featured-header {
-        justify-content: center;
-        text-align: center;
-      }
-      .featured-badge {
-        font-size: 0.78rem;
-        padding: 5px 10px;
-      }
-      .featured-controls {
-        width: 100%;
-        justify-content: center;
-        gap: 6px;
-      }
-      .btn-nav {
-        padding: 6px 10px;
-        font-size: 0.75rem;
-        border-radius: 6px;
-      }
+      .featured-header { justify-content: center; text-align: center; }
+      .featured-badge { font-size: 0.78rem; padding: 5px 10px; }
+      .featured-controls { width: 100%; justify-content: center; gap: 6px; }
+      .btn-nav { padding: 6px 10px; font-size: 0.75rem; border-radius: 6px; }
     }
 
     .glow-divider {
@@ -254,8 +239,8 @@
     }
     .drawer-group-btn:hover { background: #25d366; color: #fff; border-color: #25d366; transform: translateX(-4px); }
 
-    /* PAINEL DE FILTROS */
-    .filter-card { 
+    /* PAINEL DE FILTROS E CARTÕES RETRÁTEIS */
+    .filter-card, .sold-card { 
       background: rgba(11, 15, 25, 0.90); 
       border: 1px solid #334155; 
       border-radius: 12px; 
@@ -264,8 +249,9 @@
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
+    .sold-card { border-color: #7f1d1d; margin-top: 40px; }
 
-    .filter-toggle-header {
+    .filter-toggle-header, .sold-toggle-header {
       padding: 18px 24px;
       background: rgba(15, 23, 42, 0.85);
       display: flex;
@@ -276,6 +262,8 @@
       transition: background 0.2s;
     }
     .filter-toggle-header:hover { background: rgba(30, 41, 59, 0.9); }
+    .sold-toggle-header { background: rgba(127, 29, 29, 0.25); }
+    .sold-toggle-header:hover { background: rgba(127, 29, 29, 0.4); }
 
     .filter-toggle-title {
       font-size: 1.1rem;
@@ -285,22 +273,24 @@
       align-items: center;
       gap: 10px;
     }
+    .sold-toggle-title { color: #ef4444; }
 
-    .filter-toggle-icon {
+    .filter-toggle-icon, .sold-toggle-icon {
       font-size: 1.2rem;
       transition: transform 0.3s ease;
       color: #22c55e;
     }
+    .sold-toggle-icon { color: #ef4444; }
 
-    .filter-card.open .filter-toggle-icon { transform: rotate(180deg); }
+    .filter-card.open .filter-toggle-icon, .sold-card.open .sold-toggle-icon { transform: rotate(180deg); }
 
-    .filter-body {
+    .filter-body, .sold-body {
       display: none;
       padding: 24px;
       border-top: 1px solid #334155;
     }
-
-    .filter-card.open .filter-body { display: block; }
+    .sold-card.open .sold-body, .filter-card.open .filter-body { display: block; }
+    .sold-card .sold-body { border-top-color: #7f1d1d; }
 
     .filter-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; margin-top: 15px; }
     .filter-section-header:first-child { margin-top: 0; }
@@ -324,7 +314,52 @@
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
-    /* CARDS COM FUNDO SÓLIDO PARA DEIXAR O FUNDO DOS LEÕES APARECER EM VOLTA */
+    /* SEÇÃO DE OFERTAS */
+    .promo-section-container {
+      margin-top: 40px;
+      background: rgba(11, 15, 25, 0.90);
+      border: 1px solid #f59e0b;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+    }
+    .promo-section-title {
+      font-size: 1.5rem;
+      color: #f59e0b;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    /* ETIQUETA DE DESCONTO NO CARD */
+    .promo-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #ef4444, #f59e0b);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+      z-index: 4;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .old-price {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    /* CARDS */
     .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
     .card { 
       background: rgba(11, 15, 25, 0.94); 
@@ -346,7 +381,6 @@
       border-color: #ef4444; 
     }
     
-    /* TOPO DO CARD ESTILO LOGÓTIPO STARK */
     .card-stark-header {
       background: linear-gradient(135deg, #111827, #1f2937);
       padding: 6px;
@@ -375,7 +409,6 @@
     .card-img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
     .card:hover .card-img { transform: scale(1.04); }
     
-    /* ESTILOS PARA CONTA VENDIDA */
     .card.sold .card-img { filter: grayscale(100%) brightness(40%); }
     .card.sold { border-color: #ef4444 !important; opacity: 0.75; box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
     .card.sold .card-header-badge { background: #7f1d1d; color: #f8fafc; }
@@ -420,27 +453,6 @@
     .btn-share:hover { background: #0369a1; box-shadow: 0 0 12px rgba(2, 132, 199, 0.6); }
     
     .btn-sold { background: #334155; color: #94a3b8; cursor: not-allowed; }
-
-    /* SEÇÃO DE CONTAS VENDIDAS */
-    .sold-section-container {
-      margin-top: 60px;
-      background: rgba(11, 15, 25, 0.90);
-      border: 1px solid #334155;
-      border-radius: 16px;
-      padding: 25px;
-    }
-    .sold-section-title {
-      font-size: 1.5rem;
-      color: #ef4444;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 2px solid #334155;
-      padding-bottom: 10px;
-    }
 
     /* MODAL DE VENDEDORES */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
@@ -591,15 +603,28 @@
     </div>
   </section>
 
+  <!-- ABA DE OFERTAS (SÓ APARECE SE HOUVER CONTAS COM DESCONTO RECENTE - ATÉ 2 SEMANAS) -->
+  <section class="promo-section-container" id="promo-section" style="display: none;">
+    <div class="promo-section-title">🔥 Ofertas 🔥</div>
+    <div class="catalog" id="promo-container"></div>
+  </section>
+
   <div class="glow-divider"></div>
 
   <!-- CATÁLOGO PRINCIPAL -->
   <main class="catalog" id="catalog-container"></main>
 
-  <!-- ABA DE CONTAS VENDIDAS -->
-  <section class="sold-section-container" id="sold-section" style="display: none;">
-    <div class="sold-section-title">🔒 Histórico de Contas Vendidas</div>
-    <div class="catalog" id="sold-container"></div>
+  <!-- ABA DE CONTAS VENDIDAS (ESTILO CARTÃO RETRÁTIL E GUARDADAS PARA SEMPRE) -->
+  <section class="sold-card" id="sold-card" style="display: none;">
+    <div class="sold-toggle-header" onclick="toggleSoldPanel()">
+      <div class="sold-toggle-title">
+        🔒 HISTÓRICO DE CONTAS VENDIDAS <span id="sold-count-badge" style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(0)</span>
+      </div>
+      <div class="sold-toggle-icon">▼</div>
+    </div>
+    <div class="sold-body">
+      <div class="catalog" id="sold-container"></div>
+    </div>
   </section>
 
   <div class="modal-overlay" id="vendor-modal">
@@ -633,6 +658,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1h4hcRujBDIKmzx_VWb6BB9Up7sbB6eGE",
         priceTotal: 7200,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -651,6 +678,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1_0HoVsfwAPlRm6kPzyR9QHuShddfeVXW",
         priceTotal: 5500,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -669,6 +698,8 @@
         driveUrl: "https://drive.google.com/drive/folders/19OuUusanzWJfkTcAM7GeFceTE642RDpX",
         priceTotal: 5500,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "2 champ", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -687,6 +718,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1BoNw3XmnWUElVgoJisLqcFoMZeO7k7FN",
         priceTotal: 4800,
         priceEntry: 700,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "2 champ", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -705,6 +738,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1UnzkM-rR02eiK47M6_2Ndhrs6847VkAD",
         priceTotal: 15000,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "4 champ+"],
         vendida: false,
         dataVendida: "",
@@ -722,6 +757,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1Eh77-bEnekgMc7GC7_x5gGHXWPW02HfC",
         priceTotal: 8500,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -740,6 +777,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1Yo7OVsGiJqBOoZuCiwRu84mV73jglv",
         priceTotal: 2700,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%"],
         vendida: false,
         dataVendida: "",
@@ -757,6 +796,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1zmFYnO0CMkEfhHH0e0i3iVTsJR1FezGO",
         priceTotal: 3500,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -775,6 +816,8 @@
         driveUrl: "https://photos.app.goo.gl/K31hjZu8XJ4xbUY86",
         priceTotal: 10500,
         priceEntry: 2000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -794,6 +837,8 @@
         driveUrl: "https://photos.app.goo.gl/WCC8qaRSDP4FQoSc8",
         priceTotal: 19500,
         priceEntry: 2500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1300%", "4 champ+", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -812,6 +857,8 @@
         driveUrl: "https://photos.app.goo.gl/sk2ramu6VqjtCosu6",
         priceTotal: 4400,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -833,6 +880,8 @@
         driveUrl: "https://photos.app.goo.gl/dbqPqdbAVTihtMvp9",
         priceTotal: 500,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["700%"],
         vendida: false,
         dataVendida: "",
@@ -850,6 +899,8 @@
         driveUrl: "https://photos.app.goo.gl/cKThwLcLFh2on4vaA",
         priceTotal: 4800,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "4 champ+", "skin_lider", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -869,6 +920,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1UwYcLapk6Dl5CD17_Q7MQ35_p6vb5NSS",
         priceTotal: 42000,
         priceEntry: 4000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1400%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -887,6 +940,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1PE_87E40k4Dx0zo3q696jkYsczSGD6mE",
         priceTotal: 35000,
         priceEntry: 5000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1300%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -906,6 +961,8 @@
         driveUrl: "https://photos.app.goo.gl/KN6JZTf5djHG6vqG9",
         priceTotal: 2000,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -922,6 +979,8 @@
         driveUrl: "https://photos.app.goo.gl/yibet42v6NWK1443A",
         priceTotal: 4400,
         priceEntry: 700,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "2 champ"],
         vendida: false,
         dataVendida: "",
@@ -938,6 +997,8 @@
         driveUrl: "https://photos.app.goo.gl/EidS2EqBJ3CZCRco8",
         priceTotal: 550,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "Fillers"],
         vendida: false,
         dataVendida: "",
@@ -955,6 +1016,8 @@
         driveUrl: "https://photos.app.goo.gl/wcGfwxvik12NwfGD7",
         priceTotal: 2800,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -973,6 +1036,8 @@
         driveUrl: "https://photos.app.goo.gl/oWhG2ugh6b1rKk429",
         priceTotal: 1000,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -992,6 +1057,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1vNAFK1WGWeM_czoQEcoHwokZtPGSOufm",
         priceTotal: 38000,
         priceEntry: 8000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1400%", "full champ", "4 champ+", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1010,6 +1077,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1O6aAn5_01G9voOXLp5omQCPkzaKZ_l2X",
         priceTotal: 1500,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1027,6 +1096,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1WlZU_-aOIduf6Xr6o2o39U2hLdhFf3a7",
         priceTotal: 1800,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -1045,6 +1116,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1enlNOxskC-XtHlTQSTCeoUnq1ReXE4bb",
         priceTotal: 4200,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "restrita_1700_plus", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1063,6 +1136,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1Uk1zFsuP37umN0xtZYKUp35SWax0DKiW",
         priceTotal: 400,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%"],
         vendida: false,
         dataVendida: "",
@@ -1081,6 +1156,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1KxZMOk1SpLUQikhTJ6bd8BHdAagf2A42",
         priceTotal: 4500,
         priceEntry: 600,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "skin_lider", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -1100,11 +1177,13 @@
         driveUrl: "https://drive.google.com/file/d/1pwzjEMSlSkZ6ciquchi3Q25_qIo2Besk/view?usp=drivesdk",
         priceTotal: 400,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 RESTRITA K1287 ✈️️",
+          "🔥 RESTRITA K1287 ✈️",
           "🔳 IND 650/650/655 SOFURIA",
           "🔳 T5 LIBERADA ✳️",
           "🔳 2 TAÇAS 💛💜",
@@ -1118,6 +1197,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1sseyZhTteQUrKyvFVUiOYMZctYYyTQ6c",
         priceTotal: 350,
         priceEntry: 0,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -1134,6 +1215,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1OROPNPqjr-uFia4CmvyHXs_XzxMqC8vR",
         priceTotal: 3000,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%"],
         vendida: false,
         dataVendida: "",
@@ -1151,6 +1234,8 @@
         driveUrl: "https://photos.app.goo.gl/fmsxJ8C7xxN7oEkQ8",
         priceTotal: 3200,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["2 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1170,6 +1255,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1Qu4EGwAwZ8l2hrV4yNgL5UB2wCPykKOQ",
         priceTotal: 1500,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1189,6 +1276,8 @@
         driveUrl: "https://photos.app.goo.gl/hWoGbNMLoiwGENM2A",
         priceTotal: 650,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -1205,6 +1294,8 @@
         driveUrl: "https://drive.google.com/drive/folders/14dw9xEHeZMGL5QNFAAe9br1KC5EtMPwg",
         priceTotal: 1100,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1224,6 +1315,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1WrHPBn3biwRhEgjXjhMPf4A0uJ9Ix-1V",
         priceTotal: 1400,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "restrita_ate_1699", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1238,11 +1331,13 @@
       },
       {
         ref: "REF S 1071",
-        stats: "✈️️ Migra até 1635 | 600M de Poder em Tropas + Sereia 💛 ✈️",
+        stats: "✈️ Migra até 1635 | 600M de Poder em Tropas + Sereia 💛 ✈️",
         imgUrl: "REF S 1071.jpeg",
         driveUrl: "https://photos.app.goo.gl/9XJsJ4D68FsP2bjp9",
         priceTotal: 700,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%"],
         vendida: true,
         dataVendida: "2026-09-20",
@@ -1261,6 +1356,8 @@
         driveUrl: "https://photos.app.goo.gl/me61G6LidSdMV8TdA",
         priceTotal: 400,
         priceEntry: 150,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -1278,6 +1375,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1wb8uXPcfTcnjWzwO6w4tntysAjCgsHKn",
         priceTotal: 2200,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1296,6 +1395,8 @@
         driveUrl: "https://drive.google.com/drive/folders/13iEM0bhXyCU_sdL83DKN4ezFcmJTnDNy",
         priceTotal: 7000,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1314,6 +1415,8 @@
         driveUrl: "https://drive.google.com/drive/folders/191IW0rfk1xjfz38K7XdSIpabyUz5jGcQ",
         priceTotal: 1300,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1332,6 +1435,8 @@
         driveUrl: "https://photos.app.goo.gl/AvzUjCoNuLLV7FNe7",
         priceTotal: 1500,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "3 champ"],
         vendida: false,
         dataVendida: "",
@@ -1350,6 +1455,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1G-2VIJ4dNc86erglhokgG3VMeXv3YqMq",
         priceTotal: 5700,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "restrita_ate_1699", "3 champ"],
         vendida: false,
         dataVendida: "",
@@ -1369,6 +1476,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1PUvkqUF-JC4K5ROdJjfwTgFDOPrpSysZ",
         priceTotal: 900,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -1387,6 +1496,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1QElISO14ZjkMns6DojR5AkTG7tzYN8lW",
         priceTotal: 1300,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -1405,6 +1516,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1OlCzrDdOgfduXijDVk7QGt5j3i5iA4o9",
         priceTotal: 400,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1423,6 +1536,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1AnAToXTCeD-mW34h-3OsSUdY1c3OLiX-",
         priceTotal: 500,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1441,6 +1556,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1aTBgOQXgLBk0t1omP7NA85_U9es-gXWK",
         priceTotal: 450,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%"],
         vendida: false,
         dataVendida: "",
@@ -1460,6 +1577,8 @@
         driveUrl: "https://drive.google.com/file/d/1pwzjEMSlSkZ6ciquchi3Q25_qIo2Besk/view?usp=drivesdk",
         priceTotal: 400,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1478,6 +1597,8 @@
         driveUrl: "https://photos.app.goo.gl/uFXSmu1uuAAfi8ja8",
         priceTotal: 500,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers", "800%"],
         vendida: false,
         dataVendida: "",
@@ -1497,11 +1618,13 @@
         driveUrl: "https://drive.google.com/drive/folders/1_-_NX5Zt3dINvBtAvZGyeJOCk0v0_UFW",
         priceTotal: 14000,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 INF 🛡️ 1222% / ARC 🏹 1175% / CAV 🐴 1222%",
+          "🔥 INF 🛡️️ 1222% / ARC 🏹 1175% / CAV 🐴 1222%",
           "🔥 CHAMPS 03 🧡",
           "🔥 MANA 01 💜",
           "🔥 Taças 06 🧡💛",
@@ -1517,6 +1640,8 @@
         driveUrl: "https://photos.app.goo.gl/fWQkm9cKsqdVvwSo7",
         priceTotal: 2500,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1535,6 +1660,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1iqRtLcGpSQhFAUgC5vXZ_SWFFALngCIV?usp=drive_link",
         priceTotal: 46000,
         priceEntry: 5000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1555,6 +1682,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1rwclsTgoBX_LZTVVdBqEypKAQ-upB5g-",
         priceTotal: 900,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "1 champ", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1574,6 +1703,8 @@
         driveUrl: "https://i3d.me/Ref2515",
         priceTotal: 7500,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1594,6 +1725,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1wyYDOq0BguRh-d3CTj5TpwGPXijp1wGG",
         priceTotal: 5000,
         priceEntry: 700,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "2 champ", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1613,6 +1746,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1EsWx8eg3ymcN282gZALm--_Fmrh2tN1Z",
         priceTotal: 2300,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "1 champ", "trap"],
         vendida: false,
         dataVendida: "",
@@ -1631,6 +1766,8 @@
         driveUrl: "https://photos.app.goo.gl/iJcQeZVFFroHEeVA7",
         priceTotal: 1800,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%"],
         vendida: true,
         dataVendida: "2026-09-25",
@@ -1649,6 +1786,8 @@
         driveUrl: "https://photos.app.goo.gl/rmRKERorsNo5pSFB7",
         priceTotal: 900,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "restrita_ate_1699", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1667,6 +1806,8 @@
         driveUrl: "https://photos.app.goo.gl/PBLUB8tu4KGn4RmBA",
         priceTotal: 5000,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "2 champ", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -1684,6 +1825,8 @@
         driveUrl: "https://photos.app.goo.gl/VCzyZqgWR4SBWXF6A",
         priceTotal: 1800,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1703,6 +1846,8 @@
         driveUrl: "https://photos.app.goo.gl/feXCftbK6MSRjTe97",
         priceTotal: 450,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -1720,6 +1865,8 @@
         driveUrl: "https://photos.app.goo.gl/ka6A6rCT6MVquRGEA",
         priceTotal: 2000,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ", "skin_exercito"],
         vendida: true,
         dataVendida: "2026-09-24",
@@ -1737,6 +1884,8 @@
         driveUrl: "https://photos.app.goo.gl/6E8tNHBsJmN8f3en7",
         priceTotal: 10500,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "4 champ+", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1755,6 +1904,8 @@
         driveUrl: "https://photos.app.goo.gl/RTrRThPTCQBgEA8UA",
         priceTotal: 9900,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1773,6 +1924,8 @@
         driveUrl: "https://photos.app.goo.gl/hCWiA6JBYzexhA5r6",
         priceTotal: 1200,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -1790,6 +1943,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1hfHV2qZd0kMVQhf0eVA4LY3H4IAQa8cd",
         priceTotal: 23000,
         priceEntry: 2000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "full champ", "4 champ+", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1809,6 +1964,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1QC3H-r4ramHjuPvHZKfEwEGMWMikFll-",
         priceTotal: 80000,
         priceEntry: 12000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1828,6 +1985,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1_NwGO8MA3iWU5o1G9FAa1aTrCkS5w42Y",
         priceTotal: 39000,
         priceEntry: 3500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1400%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1847,6 +2006,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1LxaYE22-ry1I_Wh4WtATpwtfK7-HlIcR",
         priceTotal: 48000,
         priceEntry: 6000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1866,6 +2027,8 @@
         driveUrl: "https://photos.app.goo.gl/1Yykf6Fre5wan8E97",
         priceTotal: 4750,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "2 champ", "skin_exercito", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1887,6 +2050,8 @@
         driveUrl: "https://photos.app.goo.gl/egdP91ufREEbzVKH6",
         priceTotal: 22500,
         priceEntry: 3500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1400%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1905,6 +2070,8 @@
         driveUrl: "https://photos.app.goo.gl/J8yy6hn39yyXjPzv7",
         priceTotal: 6800,
         priceEntry: 850,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "3 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1922,6 +2089,8 @@
         driveUrl: "https://photos.app.goo.gl/oc69PN8uUNM4YZ9u7",
         priceTotal: 5000,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1942,6 +2111,8 @@
         driveUrl: "https://photos.app.goo.gl/BnRbooB9sAZfVkzD9",
         priceTotal: 9000,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1960,6 +2131,8 @@
         driveUrl: "https://photos.app.goo.gl/d7JnwhNKeLQVJ3HG7",
         priceTotal: 2000,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1978,6 +2151,8 @@
         driveUrl: "https://photos.app.goo.gl/bYyBdmZYHNkAuzuo6",
         priceTotal: 4500,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1995,6 +2170,8 @@
         driveUrl: "https://photos.app.goo.gl/M5cNsL3xszTM2PrE9",
         priceTotal: 5500,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "3 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2013,6 +2190,8 @@
         driveUrl: "https://photos.app.goo.gl/7TU7Dify9WLHyekx7",
         priceTotal: 21500,
         priceEntry: 3000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1300%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-09-16",
@@ -2033,6 +2212,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1PdWKUc-3HgKm13_6gyLidy4Dall8ExyN",
         priceTotal: 350,
         priceEntry: 200,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2050,6 +2231,8 @@
         driveUrl: "https://photos.app.goo.gl/bJKzkqny2q6oTWbK8",
         priceTotal: 2200,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["2 champ", "900%"],
         vendida: false,
         dataVendida: "",
@@ -2067,6 +2250,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1QWFns97R7yqWXVFUsFDY5PErzPX9Rwce",
         priceTotal: 1650,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -2084,6 +2269,8 @@
         driveUrl: "https://photos.app.goo.gl/RQgxFgRzcApoF9qx9",
         priceTotal: 1250,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["trap"],
         vendida: true,
         dataVendida: "2026-09-16",
@@ -2102,6 +2289,8 @@
         driveUrl: "https://photos.app.goo.gl/dNmCao1WFhJ8HkG89",
         priceTotal: 1200,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers", "900%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -2121,6 +2310,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1Fb6TxSw-z32eKnyGr7zwfwLfGJ-elYPX",
         priceTotal: 500,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2140,6 +2331,8 @@
         driveUrl: "https://drive.google.com/drive/folders/16d0iW44sVwDSaEUGAzz0kxi29jESvl8z",
         priceTotal: 450,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2159,6 +2352,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1-MpM2l544eZmhDg6GI3-n-VtVRvv52Tl",
         priceTotal: 1500,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -2177,6 +2372,8 @@
         driveUrl: "https://photos.app.goo.gl/FCa7Y1bqUYyq7Sob8",
         priceTotal: 1450,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -2195,6 +2392,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1ODXfeR2_VIS3UX98I7sA-fgzB69R3g4Q",
         priceTotal: 350,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -2213,6 +2412,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1IrqyCPGfubv91X3s45sV2zFf_aOkGbwz",
         priceTotal: 650,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2230,6 +2431,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1b6NwIv183ZGI0wCNiOZjoyWdTK5sfKxf",
         priceTotal: 500,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2248,6 +2451,8 @@
         driveUrl: "https://photos.app.goo.gl/J8zppXGKrYHLVPzu8",
         priceTotal: 8800,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "4 champ+", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2266,6 +2471,8 @@
         driveUrl: "https://photos.app.goo.gl/q76ogNhyGAMHfJnH9",
         priceTotal: 2800,
         priceEntry: 600,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -2284,6 +2491,8 @@
         driveUrl: "https://photos.app.goo.gl/4VNyE8eJ4LdgGjAt7",
         priceTotal: 10500,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+"],
         vendida: true,
         dataVendida: "2026-09-28",
@@ -2303,6 +2512,8 @@
         driveUrl: "https://photos.app.goo.gl/VrS4vjz2acFRcTAh8",
         priceTotal: 750,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-09-17",
@@ -2321,6 +2532,8 @@
         driveUrl: "https://photos.app.goo.gl/ifBuYVgnqRwTMvqx8",
         priceTotal: 10500,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -2340,6 +2553,8 @@
         driveUrl: "https://photos.app.goo.gl/oV5GS8QQbZmMrp7c8",
         priceTotal: 2500,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-09-16",
@@ -2359,6 +2574,8 @@
         driveUrl: "https://photos.app.goo.gl/6zXoUA5V7URxmmhd8",
         priceTotal: 3800,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "3 champ"],
         vendida: false,
         dataVendida: "",
@@ -2378,6 +2595,8 @@
         driveUrl: "https://photos.app.goo.gl/MdGkZBaiYWJ4xVkG7",
         priceTotal: 3000,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%"],
         vendida: false,
         dataVendida: "",
@@ -2397,6 +2616,8 @@
         driveUrl: "https://photos.app.goo.gl/T9D5NhySNo5Yvu7aA",
         priceTotal: 3500,
         priceEntry: 600,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "3 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2416,6 +2637,8 @@
         driveUrl: "https://photos.app.goo.gl/4KHnB51TWpLDQJY96",
         priceTotal: 1100,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -2434,6 +2657,8 @@
         driveUrl: "https://photos.app.goo.gl/DtozP468XDgWZT3z8",
         priceTotal: 34500,
         priceEntry: 3500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-09-20",
@@ -2453,6 +2678,8 @@
         driveUrl: "https://photos.app.goo.gl/vEV12H8snDDWhqyW8",
         priceTotal: 2500,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "3 champ"],
         vendida: false,
         dataVendida: "",
@@ -2472,6 +2699,8 @@
         driveUrl: "https://photos.app.goo.gl/nim4c1XhTYujZfxn7",
         priceTotal: 4000,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "2 champ"],
         vendida: false,
         dataVendida: "",
@@ -2491,6 +2720,8 @@
         driveUrl: "https://photos.app.goo.gl/ewBo5uRY9y71YjUy9",
         priceTotal: 6800,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "2 champ", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2510,6 +2741,8 @@
         driveUrl: "https://photos.app.goo.gl/kBRGcxkCk9yHUjWw8",
         priceTotal: 450,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -2529,6 +2762,8 @@
         driveUrl: "https://photos.app.goo.gl/hXDPcNdUBCfHxKQp8",
         priceTotal: 550,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["600%"],
         vendida: false,
         dataVendida: "",
@@ -2547,6 +2782,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1dPzJ7LH3ff7287y5_acgArezF3qylD_G",
         priceTotal: 55000,
         priceEntry: 7500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1300%", "4 champ+", "restrita_ate_1699", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2566,6 +2803,8 @@
         driveUrl: "https://drive.google.com/drive/folders/17UBatEzEDNA6fMP9Mac67NG3YOHioR37",
         priceTotal: 22000,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "full champ", "4 champ+", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2584,6 +2823,8 @@
         driveUrl: "https://photos.app.goo.gl/1sN5ZCZ2E79Z6BQL9",
         priceTotal: 500,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%"],
         vendida: false,
         dataVendida: "",
@@ -2604,6 +2845,8 @@
         driveUrl: "https://photos.app.goo.gl/HHLgVaULjnxgMja17",
         priceTotal: 10500,
         priceEntry: 1000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+"],
         vendida: false,
         dataVendida: "",
@@ -2624,6 +2867,8 @@
         driveUrl: "https://photos.app.goo.gl/FSLcXcvTbuHkUxYv5",
         priceTotal: 2200,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "2 champ"],
         vendida: false,
         dataVendida: "",
@@ -2642,6 +2887,8 @@
         driveUrl: "https://photos.app.goo.gl/MGVDpsL7TuQzkEfQ7",
         priceTotal: 3800,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "2 champ"],
         vendida: false,
         dataVendida: "",
@@ -2659,6 +2906,8 @@
         driveUrl: "https://photos.app.goo.gl/iTjxPT73mqR8DFUB9",
         priceTotal: 20000,
         priceEntry: 2000,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+", "restrita_ate_1699", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2679,6 +2928,8 @@
         driveUrl: "https://photos.app.goo.gl/NrKvzcxrVjcbf6ht8",
         priceTotal: 8500,
         priceEntry: 1000,
+        oldPrice: 12500,
+        dataPromo: "2026-09-30",
         types: ["1100%", "4 champ+", "restrita_1700_plus", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2702,6 +2953,8 @@
         driveUrl: "https://photos.app.goo.gl/6KEJmn4xqnkzEZK16",
         priceTotal: 5000,
         priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "3 champ"],
         vendida: false,
         dataVendida: "",
@@ -2720,6 +2973,8 @@
         driveUrl: "https://photos.app.goo.gl/zpJ3FeFkSuax1mEv6",
         priceTotal: 22500,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1300%", "full champ", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2738,6 +2993,8 @@
         driveUrl: "https://photos.app.goo.gl/gMepqiiaBh55UrH77",
         priceTotal: 2100,
         priceEntry: 350,
+        oldPrice: 2500,
+        dataPromo: "2026-09-16",
         types: ["tropa_magica_mana", "restrita_1700_plus"],
         vendida: true,
         dataVendida: "2026-09-16",
@@ -2756,6 +3013,8 @@
         driveUrl: "https://photos.app.goo.gl/NoSC4mScG72AMSyK6",
         priceTotal: 12800,
         priceEntry: 2500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "4 champ+"],
         vendida: false,
         dataVendida: "",
@@ -2773,6 +3032,8 @@
         driveUrl: "https://photos.app.goo.gl/ZxtFkF1d5YzdSdpR6",
         priceTotal: 1300,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -2791,6 +3052,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1Z-46UWpSqlDoT1LZeQ2DmnfKzqYwAF99",
         priceTotal: 2350,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -2808,6 +3071,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1JJTAgX2n6XIkDZa6jVY0kDoTohrVi2T4",
         priceTotal: 44500,
         priceEntry: 6500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1400%", "full champ", "4 champ+", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2826,6 +3091,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1Yxk6aND7fFizxwI5V9yY65BaLriUZTCb",
         priceTotal: 11500,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1200%", "low quest", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2844,6 +3111,8 @@
         driveUrl: "https://photos.app.goo.gl/UNr5Ewk2ywC5g1FT6",
         priceTotal: 4400,
         priceEntry: 600,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "2 champ", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -2862,6 +3131,8 @@
         driveUrl: "https://photos.app.goo.gl/1W1Kg45GC5o7QXNL8",
         priceTotal: 380,
         priceEntry: 150,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2879,6 +3150,8 @@
         driveUrl: "https://drive.google.com/drive/folders/1553o9X_Yt0ngCy6jEuMJGfpy9OHvDVlu",
         priceTotal: 2700,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "2 champ"],
         vendida: false,
         dataVendida: "",
@@ -2896,6 +3169,8 @@
         driveUrl: "https://photos.app.goo.gl/ia74UeqL6Sd3TZMeA",
         priceTotal: 6000,
         priceEntry: 1500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "4 champ+", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2914,6 +3189,8 @@
         driveUrl: "https://photos.app.goo.gl/GGoYagkgvNzrvfvg8",
         priceTotal: 1200,
         priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1100%", "1 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2933,6 +3210,8 @@
         driveUrl: "https://photos.app.goo.gl/WgkEk5jpQzmzcgx96",
         priceTotal: 1800,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "tropa_magica_mana", "skin_exercito", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2951,6 +3230,8 @@
         driveUrl: "https://photos.app.goo.gl/XaD2LmP5pWTr7cdH9",
         priceTotal: 1000,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["800%", "1 champ", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2969,6 +3250,8 @@
         driveUrl: "https://photos.app.goo.gl/ucmAxy1FKF3D1rMk9",
         priceTotal: 1800,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -2988,6 +3271,8 @@
         driveUrl: "https://photos.app.goo.gl/3Ze4QgkXMDcVJ6vn6",
         priceTotal: 650,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -3006,6 +3291,8 @@
         driveUrl: "https://photos.app.goo.gl/QDdS3f5Fd6fBCwDRA",
         priceTotal: 6200,
         priceEntry: 500,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["4 champ+", "tropa_magica_mana", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -3024,6 +3311,8 @@
         driveUrl: "https://photos.app.goo.gl/ne8i5qDVLVA79mEKA",
         priceTotal: 650,
         priceEntry: 250,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -3042,6 +3331,8 @@
         driveUrl: "https://photos.app.goo.gl/uCNku4FjHi2APRJe9",
         priceTotal: 2400,
         priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["900%", "2 champ", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -3060,6 +3351,8 @@
         driveUrl: "https://drive.google.com/drive/folders/16V-K1Ee76edmKxcclvFbKOMQ4hVtGP4K",
         priceTotal: 1300,
         priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -3090,6 +3383,10 @@
 
     function toggleFilterPanel() {
       document.getElementById('filter-card').classList.toggle('open');
+    }
+
+    function toggleSoldPanel() {
+      document.getElementById('sold-card').classList.toggle('open');
     }
 
     function renderFeatured() {
@@ -3203,7 +3500,7 @@
       const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
 
       let filtered = accounts.filter(acc => {
-        if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
+        if (acc.vendida) return false; // Não exibir vendidas no catálogo principal filtrável
 
         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
 
@@ -3242,9 +3539,16 @@
         : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
       const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      
+      const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo);
+      const promoBadgeHtml = isPromo ? '<div class="promo-badge">🔥 Oferta</div>' : '';
+      const priceDisplayHtml = isPromo 
+        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
+        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
 
       return `
         <div class="card ${soldClass}" id="${acc.ref.replace(/\s+/g, '-')}">
+          ${promoBadgeHtml}
           <div class="card-stark-header">🦁 STARK GAMES 🦁</div>
           <div class="card-header-badge">${acc.stats}</div>
           <div class="card-img-container">
@@ -3255,7 +3559,7 @@
             <div class="ref-title">${acc.ref}</div>
             <ul class="details-list">${detailsHtml}</ul>
             <div class="price-box">
-              <div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
+              ${priceDisplayHtml}
               <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
             </div>
             <div class="actions">
@@ -3277,7 +3581,7 @@
       const container = document.getElementById('catalog-container');
       container.innerHTML = '';
 
-      const activeAccounts = accounts.filter(acc => !acc.vendida || !isOlderThanTwoWeeks(acc.dataVendida));
+      const activeAccounts = accounts.filter(acc => !acc.vendida);
 
       const badge = document.getElementById('filter-count-badge');
       if (list.length === activeAccounts.length) {
@@ -3294,23 +3598,43 @@
         });
       }
 
+      renderPromoSection();
       renderSoldSection();
+    }
+
+    function renderPromoSection() {
+      const promoContainer = document.getElementById('promo-container');
+      const promoSection = document.getElementById('promo-section');
+      promoContainer.innerHTML = '';
+
+      const promoAccounts = accounts.filter(acc => acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo));
+
+      if (promoAccounts.length > 0) {
+        promoSection.style.display = 'block';
+        promoAccounts.forEach(acc => {
+          promoContainer.innerHTML += renderCardHTML(acc);
+        });
+      } else {
+        promoSection.style.display = 'none';
+      }
     }
 
     function renderSoldSection() {
       const soldContainer = document.getElementById('sold-container');
-      const soldSection = document.getElementById('sold-section');
+      const soldCard = document.getElementById('sold-card');
       soldContainer.innerHTML = '';
 
-      const oldSoldAccounts = accounts.filter(acc => acc.vendida && isOlderThanTwoWeeks(acc.dataVendida));
+      const soldAccounts = accounts.filter(acc => acc.vendida);
+      const soldCountBadge = document.getElementById('sold-count-badge');
 
-      if (oldSoldAccounts.length > 0) {
-        soldSection.style.display = 'block';
-        oldSoldAccounts.forEach(acc => {
+      if (soldAccounts.length > 0) {
+        soldCard.style.display = 'block';
+        soldCountBadge.innerText = `(${soldAccounts.length} conta${soldAccounts.length === 1 ? '' : 's'} vendida${soldAccounts.length === 1 ? '' : 's'})`;
+        soldAccounts.forEach(acc => {
           soldContainer.innerHTML += renderCardHTML(acc);
         });
       } else {
-        soldSection.style.display = 'none';
+        soldCard.style.display = 'none';
       }
     }
 
