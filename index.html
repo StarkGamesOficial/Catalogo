@@ -1030,7 +1030,7 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 RL Simples 1000% ⚔️",
+          "🔥 RL Simples 1000% ⚔️️",
           "🔥 Heróis Pagos 💛",
           "🔥 03 Taças 🧡",
           "🔥 06 Familiares PG Full 🐉",
@@ -1153,7 +1153,7 @@
           "🔥 - IND 634/678/698%",
           "🔥 - TARÇAS 💜💜",
           "🔥 - +10M de TROPAS 🔥",
-          "🔥- BONUS SÓ FÚRIA ⚔️️",
+          "🔥- BONUS SÓ FÚRIA ⚔️",
           "🔥- T5 LIBERADAS 😈"
         ]
       },
@@ -1254,6 +1254,27 @@
           "• 🔥> 2 Falanges 1100% / Tropas Mana Lv.01",
           "• 🔥> 38B de Rss / Muito Acc Na Bag",
           "• 🔥> 48M de Tropas/ 406M de Lunita"
+        ]
+      },
+      {
+        ref: "REF FE V.020",
+        stats: "🔥 Restrita K1715 | Ind 777% + 48M de Tropas 🔥",
+        imgUrl: "REF FE V.020.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Qu4EGwAwZ8l2hrV4yNgL5UB2wCPykKOQ",
+        priceTotal: 1500,
+        priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["800%", "restrita_1700_plus"],
+        vendida: true,
+        dataVendida: "2026-10-05",
+        details: [
+          "🔥 RESTRITA K1715 🫡",
+          "🔥 IND 777/778/778% F",
+          "🔥 1 TAÇAS 💛",
+          "🔥 +48M de TROPAS 🔥",
+          "🔥 EQUIPAMENTO DE CAÇA TOP",
+          "✅ À vista: R$ 1.300,00"
         ]
       },
       {
@@ -1538,7 +1559,7 @@
       },
       {
         ref: "REF FE V.006",
-        stats: "✨ Ind 713% | T5 + 11 Familiares Full ⚔️️ + Taças 💜 💛 ✨",
+        stats: "✨ Ind 713% | T5 + 11 Familiares Full ⚔️ + Taças 💜 💛 ✨",
         imgUrl: "REF FE V.006.jpeg",
         driveUrl: "https://drive.google.com/drive/folders/1aTBgOQXgLBk0t1omP7NA85_U9es-gXWK",
         priceTotal: 450,
@@ -1622,22 +1643,22 @@
       },
       {
         ref: "REF R 106",
-        stats: "⚡ IND (FF) 1048%/1059%/1048% | 1 Champ 💛 + Tropas Mágicas 80% ⚡",
-        imgUrl: "REF R 106.jpeg",
-        driveUrl: "https://photos.app.goo.gl/fWQkm9cKsqdVvwSo7",
-        priceTotal: 2500,
-        priceEntry: 500,
+        stats: "✨ Restrita K1970 | MIX 520%/437%/437% + 1 Champ 💛 + 2 💜 + Reyna 💛 ✨",
+        imgUrl: "REF UZx3enDiTSL6hYtbA.jpeg",
+        driveUrl: "https://photos.app.goo.gl/UZx3enDiTSL6hYtbA",
+        priceTotal: 550,
+        priceEntry: 250,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1000%", "1 champ", "tropa_magica_mana"],
+        types: ["800%", "restrita_1700_plus", "1 champ"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 IND (FF) 1048%/1059%/1048%",
-          "🔥 1 Champ 💛",
-          "🔥 10 Heróis 💛",
-          "🔥 5 Fam Pagos Full + 1 Niv 9 🐉",
-          "🔥 Tropas Mágicas 80% 💜"
+          "🔥 Restrita K 1970",
+          "🔥 MIX 520%/437%/437%",
+          "🔥 1 Champ 💛 + 2 💜",
+          "🔥 Reyna 💛",
+          "🔥 Criada no K2009"
         ]
       },
       {
@@ -2405,7 +2426,7 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 Ind 956% ⚔️️",
+          "🔥 Ind 956% ⚔️",
           "🔥 2 Taças 💛",
           "🔥 2 Fam Pagos",
           "🔥 5 Slots"
@@ -3164,7 +3185,7 @@
         details: [
           "🔥 4 Champs (3+1)",
           "🔥 Bônus 1145%",
-          "🔥 Lotado de Tropas 💂‍♀️️",
+          "🔥 Lotado de Tropas 💂‍♀️",
           "🔥 Tropa Mana Lv.1 💜",
           "🥳 Aceita conta de entrada"
         ]
@@ -3784,40 +3805,4 @@
     }
 
     function shareAccount(ref) {
-      const acc = accounts.find(a => a.ref === ref);
-      const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
-      
-      let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
-
-      const textoShare = 
-        `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
-        `━━━━━━━━━━━━━━━━━━━━━━\n` +
-        `👑 *${acc ? acc.ref : ref}*\n` +
-        `📊 *Status:* ${acc ? acc.stats : ''}\n\n` +
-        `📋 *DETALHES DA CONTA:*\n` +
-        detalhesLista + `\n\n` +
-        `💰 *Valor Total:* R$ ${acc ? acc.priceTotal.toLocaleString('pt-BR') : ''}\n` +
-        `💳 *Valor da Entrada:* R$ ${acc ? acc.priceEntry.toLocaleString('pt-BR') : ''}\n\n` +
-        `🔗 *Link Direto no Catálogo:*\n${shareUrl}\n` +
-        `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
-        `━━━━━━━━━━━━━━━━━━━━━━\n` +
-        `🚀 *Garanta já a sua conta com segurança na Stark Games!*`;
-
-      gtag('event', 'compartilhar_conta', { 'event_category': 'Conta', 'event_label': ref });
-
-      const whatsappShareUrl = `https://api.whatsapp.com/send?text=` + encodeURIComponent(textoShare);
-      window.open(whatsappShareUrl, '_blank');
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      updateFeaturedRefs();
-      updatePromoRefs();
-      applyFilters();
-      renderFeatured();
-      renderPromoCarrossel();
-      resetFeaturedTimer();
-      resetPromoTimer();
-    });
-  </script>
-</body>
-</html>
+      const acc = accounts.find(
