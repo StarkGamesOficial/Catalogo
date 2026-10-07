@@ -1030,7 +1030,7 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 RL Simples 1000% ⚔️️",
+          "🔥 RL Simples 1000% ⚔️",
           "🔥 Heróis Pagos 💛",
           "🔥 03 Taças 🧡",
           "🔥 06 Familiares PG Full 🐉",
@@ -2564,8 +2564,8 @@
         oldPrice: 0,
         dataPromo: "",
         types: ["900%", "tropa_magica_mana"],
-        vendida: true,
-        dataVendida: "2026-09-16",
+        vendida: false,
+        dataVendida: "",
         details: [
           "🔥 IND (FF) 977%/966%/901%",
           "🔥 2 Taças 🧡 + 1 💛 (quase upando)",
@@ -3805,4 +3805,40 @@
     }
 
     function shareAccount(ref) {
-      const acc = accounts.find(
+      const acc = accounts.find(a => a.ref === ref);
+      const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
+      
+      let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
+
+      const textoShare = 
+        `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `👑 *${acc ? acc.ref : ref}*\n` +
+        `📊 *Status:* ${acc ? acc.stats : ''}\n\n` +
+        `📋 *DETALHES DA CONTA:*\n` +
+        detalhesLista + `\n\n` +
+        `💰 *Valor Total:* R$ ${acc ? acc.priceTotal.toLocaleString('pt-BR') : ''}\n` +
+        `💳 *Valor da Entrada:* R$ ${acc ? acc.priceEntry.toLocaleString('pt-BR') : ''}\n\n` +
+        `🔗 *Link Direto no Catálogo:*\n${shareUrl}\n` +
+        `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `🚀 *Garanta já a sua conta com segurança na Stark Games!*`;
+
+      gtag('event', 'compartilhar_conta', { 'event_category': 'Conta', 'event_label': ref });
+
+      const whatsappShareUrl = `https://api.whatsapp.com/send?text=` + encodeURIComponent(textoShare);
+      window.open(whatsappShareUrl, '_blank');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateFeaturedRefs();
+      updatePromoRefs();
+      applyFilters();
+      renderFeatured();
+      renderPromoCarrossel();
+      resetFeaturedTimer();
+      resetPromoTimer();
+    });
+  </script>
+</body>
+</html>
