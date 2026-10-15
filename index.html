@@ -47,7 +47,6 @@
       image-rendering: crisp-edges;
     }
 
-    /* CARROSSEL DE DESTAQUES E OFERTAS (ESTILO IDÊNTICO) */
     .featured-container, .promo-container-box {
       max-width: 1200px;
       margin: 0 auto 30px auto;
@@ -159,7 +158,6 @@
       box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
     }
 
-    /* ABA LATERAL FLUTUANTE */
     .whatsapp-drawer-wrapper {
       position: fixed;
       right: 0;
@@ -239,7 +237,6 @@
     }
     .drawer-group-btn:hover { background: #25d366; color: #fff; border-color: #25d366; transform: translateX(-4px); }
 
-    /* PAINEL DE FILTROS E CARTÕES RETRÁTEIS */
     .filter-card, .sold-card { 
       background: rgba(11, 15, 25, 0.90); 
       border: 1px solid #334155; 
@@ -290,7 +287,6 @@
       border-top: 1px solid #334155;
     }
     .sold-card.open .sold-body, .filter-card.open .filter-body { display: block; }
-    .sold-card .sold-body { border-top-color: #7f1d1d; }
 
     .filter-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; margin-top: 15px; }
     .filter-section-header:first-child { margin-top: 0; }
@@ -314,7 +310,6 @@
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
-    /* ETIQUETA DE DESCONTO / PREÇO ANTIGO (COM DESTAQUE) */
     .promo-badge-tag {
       position: absolute;
       top: 12px;
@@ -339,7 +334,6 @@
       text-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
     }
 
-    /* CARDS */
     .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
     .card { 
       background: rgba(11, 15, 25, 0.94); 
@@ -354,7 +348,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(245, 158, 11, 0.15);
       position: relative;
     }
-    
     .card:hover { 
       transform: translateY(-8px) scale(1.01); 
       box-shadow: 0 0 35px rgba(245, 158, 11, 0.6), 0 20px 40px rgba(0, 0, 0, 0.9), inset 0 0 25px rgba(239, 68, 68, 0.3); 
@@ -426,15 +419,13 @@
     .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
     .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
     .btn-drive { background: #334155; color: #f8fafc; }
-    .btn-drive:hover { background: #475569; box-shadow: 0 0 12px rgba(51, 65, 85, 0.6); }
+    .btn-drive:hover { background: #475569; }
     .btn-whatsapp { background: #25d366; color: #fff; }
-    .btn-whatsapp:hover { background: #1da851; box-shadow: 0 0 15px rgba(37, 211, 102, 0.7); }
+    .btn-whatsapp:hover { background: #1da851; }
     .btn-share { background: #0284c7; color: #fff; }
-    .btn-share:hover { background: #0369a1; box-shadow: 0 0 12px rgba(2, 132, 199, 0.6); }
-    
+    .btn-share:hover { background: #0369a1; }
     .btn-sold { background: #334155; color: #94a3b8; cursor: not-allowed; }
 
-    /* MODAL DE VENDEDORES */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
     .modal-box { 
       background: #161e2e; 
@@ -449,30 +440,18 @@
       display: flex; 
       flex-direction: column; 
     }
-    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; }
     .modal-subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
-    
-    .vendor-list { 
-      display: grid; 
-      grid-template-columns: repeat(2, minmax(0, 1fr)); 
-      gap: 10px; 
-      overflow-y: auto; 
-      padding-right: 5px; 
-      max-height: 60vh;
-    }
-    @media(max-width: 600px) {
-      .vendor-list { grid-template-columns: 1fr; }
-    }
-    
+    .vendor-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; overflow-y: auto; padding-right: 5px; max-height: 60vh; }
+    @media(max-width: 600px) { .vendor-list { grid-template-columns: 1fr; } }
     .vendor-card { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #334155; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: #fff; transition: all 0.2s ease; text-align: left; }
-    .vendor-card:hover { border-color: #22c55e; background: #1e293b; transform: translateY(-2px); box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
+    .vendor-card:hover { border-color: #22c55e; background: #1e293b; }
     .vendor-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #22c55e; flex-shrink: 0; }
     .vendor-info { flex: 1; min-width: 0; }
     .vendor-name { font-weight: bold; font-size: 0.9rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .vendor-status { font-size: 0.75rem; color: #22c55e; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
     .vendor-status::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block; }
-    
-    .btn-close-modal { margin-top: 15px; background: transparent; border: 1px solid #334155; color: #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; flex-shrink: 0; }
+    .btn-close-modal { margin-top: 15px; background: transparent; border: 1px solid #334155; color: #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
     .btn-close-modal:hover { background: #334155; color: #fff; }
   </style>
 </head>
@@ -482,7 +461,6 @@
     <img src="banner-cabecalho.jpg (2).png" alt="STARK GAMES - Catálogo Oficial de Contas" class="header-banner">
   </header>
 
-  <!-- CARROSSEL DE CONTA EM DESTAQUE -->
   <section class="featured-container" id="featured-section">
     <div class="featured-header">
       <div class="featured-badge">🔥 Conta em Destaque 🔥</div>
@@ -491,12 +469,9 @@
         <button class="btn-nav" onclick="nextFeatured()">Próxima ❯</button>
       </div>
     </div>
-    <div class="featured-card" id="featured-card-content">
-      <!-- Preenchido via JavaScript -->
-    </div>
+    <div class="featured-card" id="featured-card-content"></div>
   </section>
 
-  <!-- CARROSSEL DE OFERTAS -->
   <section class="promo-container-box" id="promo-section" style="display: none;">
     <div class="promo-header">
       <div class="promo-badge-title">🔥 Ofertas 🔥</div>
@@ -505,9 +480,7 @@
         <button class="btn-nav" onclick="nextPromo()">Próxima ❯</button>
       </div>
     </div>
-    <div class="promo-card-content" id="promo-card-content">
-      <!-- Preenchido via JavaScript -->
-    </div>
+    <div class="promo-card-content" id="promo-card-content"></div>
   </section>
 
   <div class="whatsapp-drawer-wrapper" id="whatsapp-drawer">
@@ -528,7 +501,6 @@
     </div>
   </div>
 
-  <!-- PAINEL DE FILTROS -->
   <section class="filter-card" id="filter-card">
     <div class="filter-toggle-header" onclick="toggleFilterPanel()">
       <div class="filter-toggle-title">
@@ -536,7 +508,6 @@
       </div>
       <div class="filter-toggle-icon">▼</div>
     </div>
-
     <div class="filter-body">
       <div class="filter-section-header"><div class="filter-section-title">Tipo / Atributo da Conta (Múltipla Seleção)</div></div>
       <div class="type-tags-container" id="type-tags-box">
@@ -551,7 +522,6 @@
         <div class="type-tag" data-type="1400%" onclick="toggleTypeTag(this, '1400%')">1400%</div>
         <div class="type-tag" data-type="1500%+" onclick="toggleTypeTag(this, '1500%+')">1500%+</div>
       </div>
-
       <div class="filter-section-header"><div class="filter-section-title">Quantidade de Champs</div></div>
       <div class="checkbox-grid" id="champs-checkboxes">
         <label class="checkbox-item"><input type="checkbox" value="1 champ" onchange="applyFilters()"> 1 Champ</label>
@@ -560,7 +530,6 @@
         <label class="checkbox-item"><input type="checkbox" value="full champ" onchange="applyFilters()"> Full Champs</label>
         <label class="checkbox-item"><input type="checkbox" value="4 champ+" onchange="applyFilters()"> 4 Champs+</label>
       </div>
-
       <div class="filter-section-header"><div class="filter-section-title">Outras Características Específicas</div></div>
       <div class="checkbox-grid" id="features-checkboxes">
         <label class="checkbox-item"><input type="checkbox" value="tropa_magica_mana" onchange="applyFilters()"> Tropa Mágica / Mana</label>
@@ -571,17 +540,10 @@
         <label class="checkbox-item"><input type="checkbox" value="restrita_1700_plus" onchange="applyFilters()"> Restrita (K) 1700+</label>
         <label class="checkbox-item"><input type="checkbox" value="low quest" onchange="applyFilters()"> Low Quest</label>
       </div>
-
       <div class="filter-section-header"><div class="filter-section-title">Valores & Ordenação</div></div>
       <div class="price-sort-grid">
-        <div class="input-box">
-          <label>Valor Mínimo (R$)</label>
-          <input type="number" id="price-min" placeholder="R$ 0" oninput="applyFilters()">
-        </div>
-        <div class="input-box">
-          <label>Valor Máximo (R$)</label>
-          <input type="number" id="price-max" placeholder="R$ 50.000+" oninput="applyFilters()">
-        </div>
+        <div class="input-box"><label>Valor Mínimo (R$)</label><input type="number" id="price-min" placeholder="R$ 0" oninput="applyFilters()"></div>
+        <div class="input-box"><label>Valor Máximo (R$)</label><input type="number" id="price-max" placeholder="R$ 50.000+" oninput="applyFilters()"></div>
         <div class="input-box">
           <label>Ordenar Por Preço</label>
           <select id="sort-order" onchange="applyFilters()">
@@ -590,29 +552,20 @@
           </select>
         </div>
       </div>
-
-      <div class="filter-footer">
-        <button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button>
-      </div>
+      <div class="filter-footer"><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
     </div>
   </section>
 
   <div class="glow-divider"></div>
 
-  <!-- CATÁLOGO PRINCIPAL -->
   <main class="catalog" id="catalog-container"></main>
 
-  <!-- ABA DE CONTAS VENDIDAS -->
   <section class="sold-card" id="sold-card" style="display: none;">
     <div class="sold-toggle-header" onclick="toggleSoldPanel()">
-      <div class="sold-toggle-title">
-        🔒 HISTÓRICO DE CONTAS VENDIDAS <span id="sold-count-badge" style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(0)</span>
-      </div>
+      <div class="sold-toggle-title">🔒 HISTÓRICO DE CONTAS VENDIDAS <span id="sold-count-badge" style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(0)</span></div>
       <div class="sold-toggle-icon">▼</div>
     </div>
-    <div class="sold-body">
-      <div class="catalog" id="sold-container"></div>
-    </div>
+    <div class="sold-body"><div class="catalog" id="sold-container"></div></div>
   </section>
 
   <div class="modal-overlay" id="vendor-modal">
@@ -623,8 +576,7 @@
       <button class="btn-close-modal" onclick="closeVendorModal()">Cancelar</button>
     </div>
   </div>
-
-  <script>
+<script>
     const VENDEDORES = [
       { nome: "Ribas", numero: "5555981208377", foto: "Ribas.jpeg" },
       { nome: "Missinha", numero: "5551991204526", foto: "Missinha.jpeg" },
@@ -639,102 +591,69 @@
     ];
 
     const accounts = [
-      // ================= NOVAS CONTAS ADICIONADAS =================
+      // ================= CONTAS REVISADAS E ATUALIZADAS =================
       {
-        ref: "REF C 92",
-        stats: "💥 IND 1100%FF | 1 Champ Mítico 🧡 + 3 Taças Míticas 🧡 💥",
-        imgUrl: "REF C 92.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1sL74x662-7GfJ6W9aC0G-g5g55g55g55",
-        priceTotal: 4000,
-        priceEntry: 850,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["1100%", "1 champ"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 IND 1100%FF",
-          "🔥 1 Champ Mítico 🧡",
-          "🔥 3 Taças Míticas 🧡"
-        ]
-      },
-      {
-        ref: "REF C 98",
-        stats: "💥 IND 1150%FF | 7 Heróis 💛 + Famílias Full 🐉 💥",
-        imgUrl: "REF C 98.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1tM85y773-8HgK7X0bD1H-h6h66h66h66",
-        priceTotal: 4000,
-        priceEntry: 500,
+        ref: "REF C 77",
+        stats: "💥 IND 931/986/1118%FF | Champs 💛 + 25M Tropas + 2 FAM Full + 9/2 💥",
+        imgUrl: "REF C 77.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1ysfYG_E0Ar2oLTWM9FCc3EwXpPF7DvyQ",
+        priceTotal: 1000,
+        priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
         types: ["1100%"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 IND 1150%FF",
-          "🔥 7 Heróis 💛",
-          "🔥 Famílias Full 🐉"
+          "🔥 IND 931/986/1118%FF",
+          "🔥 Champs 💛",
+          "🔥 25M de Tropas",
+          "🔥 2 FAM FULL + 9/2 🐉"
         ]
       },
       {
-        ref: "REF C 66",
-        stats: "💥 IND 1375%FF | Wonder Heavy & Full Blast 💥",
-        imgUrl: "REF C 66.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1uN96z884-9IhL8Y1cE2I-i7i77i77i77",
-        priceTotal: 5800,
-        priceEntry: 800,
+        ref: "REF C 35",
+        stats: "✨ MIX 582/592/597%FF | 25M de Tropas (4M T4) ✨",
+        imgUrl: "REF C 35.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1sseyZhTteQUrKyvFVUiOYMZctYYyTQ6c",
+        priceTotal: 350,
+        priceEntry: 0,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1300%", "3 champ"],
+        types: ["trap"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 IND 1375%FF",
-          "🔥 Wonder Top Tier",
-          "🔥 3 Champ Míticos 🧡"
+          "🔳 - MIX 582/592/597%FF",
+          "🔳 - 14M Poder Missao Territorio",
+          "🔳 - 25M de Tropas (4M T4)"
         ]
       },
       {
-        ref: "REF C 77",
-        stats: "💥 IND 850%FF | Ótima opção Inicial / Filler 💥",
-        imgUrl: "REF C 77.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1vO07a995-0JiM9Z2dF3J-j8j88j88j88",
-        priceTotal: 1000,
-        priceEntry: 300,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["Fillers", "800%"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 IND 850%FF",
-          "🔥 2 Taças Míticas 🧡",
-          "🔥 Pesquisas OK"
-        ]
-      },
-      {
-        ref: "REF C 79",
-        stats: "💥 IND 920%FF | Set Mix Balanceado 💥",
-        imgUrl: "REF C 79.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1wP18b006-1KjN0a3eG4K-k9k99k99k99",
-        priceTotal: 1500,
-        priceEntry: 300,
+        ref: "REF C 63",
+        stats: "💥 IND 910/967/889%FF | MIX 777/797/636%FF + 2 Taças Míticas 🧡 + 40M Tropas 💥",
+        imgUrl: "REF C 63.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1WlZU_-aOIduf6Xr6o2o39U2hLdhFf3a7",
+        priceTotal: 1800,
+        priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 IND 920%FF",
-          "🔥 Famílias Pagas Nv 10",
-          "🔥 Tropas T4 em quantidade"
+          "🔳 - IND 910/967/889%FF",
+          "🔳 - MIX 777/797/636%FF",
+          "🔳 - 2 Taças Míticas 🧡",
+          "🔳 - Heróis 💛",
+          "🔳 - 40M de Tropas"
         ]
       },
       {
         ref: "REF KM 1325",
-        stats: "⚔️ Filler Linda Na Área | Sets Bem Upados + 2 Taças 💛 ⚔️",
+        stats: "👑 Filler de Luxo | 1 Taça 🧡 + Heróis Pagos 💛 + 2 Famíliares Pagos Full 👑",
         imgUrl: "REF KM 1325.jpeg",
-        driveUrl: "https://photos.app.goo.gl/EidS2EqBJ3CZCRco8",
+        driveUrl: "https://drive.google.com/drive/folders/1Ikx7YkBXr3XzBCEfcuwPqdv6ZIwlBN-E",
         priceTotal: 1800,
         priceEntry: 300,
         oldPrice: 0,
@@ -743,33 +662,37 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 SETS BEM UPADOS 💛🧡",
-          "🔥 02 TAÇAS 💛",
-          "🔥 FAMILIARES PAGOS"
+          "🔥 01 Taça 🧡",
+          "🔥 Herói Pago 💛",
+          "🔥 Vigilante 💛",
+          "🔥 02 Familiares Pagos Full 🐉",
+          "🔥 Lotada de Tropas",
+          "🔥 Bag Recheada"
         ]
       },
       {
         ref: "REF C 94",
-        stats: "💥 IND 980%FF | 5 Heróis WoW + T4 Prontas 💥",
+        stats: "💥 IND 1033/1023/1070%FF | Peitoral Champ 💛 + 2 Taças 🧡 + Tropas Mágicas Lvl 1 💜 💥",
         imgUrl: "REF C 94.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1xQ29c117-2LlO1b4fH5L-l0l00l00l00",
+        driveUrl: "https://drive.google.com/drive/folders/1M9ClVTg84ppygIxo60xzAbuMnvO2Twzl",
         priceTotal: 2000,
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
-        types: ["900%"],
+        types: ["1000%", "1 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 IND 980%FF",
-          "🔥 5 Heróis de WoW 💛",
-          "🔥 T4 Prontas"
+          "🔳 - IND 1033/1023/1070%FF",
+          "🔳 - PEITORAL CHAMP 💛",
+          "🔳 - 2 TAÇAS 🧡",
+          "🔳 - Tropas Mágicas Lvl 1 💜"
         ]
       },
       {
-        ref: "REF C 63",
-        stats: "💥 IND 945/934/929%FF | 7 Heróis 💛 (3 de WoW) + 50M Tropas 💥",
-        imgUrl: "REF C 63.jpeg",
+        ref: "REF C 62",
+        stats: "💥 IND 945/934/929%FF | 7 Heróis 💛 (3 de WoW) + FAM 10/7/3 + 50M Tropas 💥",
+        imgUrl: "REF C 62.jpeg",
         driveUrl: "https://drive.google.com/drive/folders/1Z-46UWpSqlDoT1LZeQ2DmnfKzqYwAF99",
         priceTotal: 2350,
         priceEntry: 500,
@@ -780,14 +703,14 @@
         dataVendida: "",
         details: [
           "🔳 - IND 945/934/929%FF",
+          "🔳 - 7 Heróis 💛 (3 de WoW 💛)",
           "🔳 - FAM 10/7/3 🐉",
-          "🔳 - Heróis 💛 (3 de Wow 💛)",
           "🔳 - 50M de Tropas"
         ]
       },
       {
         ref: "REF M 38",
-        stats: "💥 IND 1008/1007/933%FF | 1 Champ Mítico + 3 Taças Míticas 💥",
+        stats: "💥 IND 1008/1007/933%FF | 1 Champ Mítico 🧡 + 3 Taças Míticas 🧡 + 38M Tropas 💥",
         imgUrl: "REF M 38.jpeg",
         driveUrl: "https://drive.google.com/drive/folders/1y8eOpnXrqn8clSfosba7e8o8HFu8cE2o",
         priceTotal: 2500,
@@ -799,14 +722,15 @@
         dataVendida: "",
         details: [
           "🔳 - IND 1008/1007/933%FF",
-          "🔳 - 1 CHAMP Mitico🧡",
-          "🔳 - 3 TAÇAS Miticas 🧡",
-          "🔳 - 38M de Tropas (6.3M T4)"
+          "🔳 - 1 CHAMP Mítico 🧡",
+          "🔳 - 3 TAÇAS Míticas 🧡",
+          "🔳 - FAM 7/4/2 🐉",
+          "🔳 - 38M de Tropas (6.3M T4 😱)"
         ]
       },
       {
         ref: "REF C 64",
-        stats: "💥 IND 1056/1004/1036%FF | 3 Taças Míticas + 16 Heróis 💛 💥",
+        stats: "💥 IND 1056/1004/1036%FF | 3 Taças Míticas 🧡 + 4 Fam Full + 16 Heróis 💛 💥",
         imgUrl: "REF C 64.jpeg",
         driveUrl: "https://drive.google.com/drive/folders/1OROPNPqjr-uFia4CmvyHXs_XzxMqC8vR",
         priceTotal: 2600,
@@ -817,10 +741,48 @@
         vendida: false,
         dataVendida: "",
         details: [
-          "⚡ - IND 1056/1004/1036%FF",
-          "⚡ - 3 TAÇAS Miticas 🧡",
-          "⚡ - 4 FAM FULL + 1 Nvl 7 🐉",
-          "⚡ - 16 Heróis 💛(3 de WoW💛)"
+          "🔳 - IND 1056/1004/1036%FF",
+          "🔳 - 3 TAÇAS Míticas 🧡",
+          "🔳 - 4 FAM FULL + 1 Nvl 7 🐉",
+          "🔳 - 16 Heróis 💛 (3 de WoW 💛)"
+        ]
+      },
+      {
+        ref: "REF M 57",
+        stats: "🔥 IND 958/943/905%FF | Fam 10/10/9/5/4 🐉 + Tropas Mágica Lvl 1 💜 🔥",
+        imgUrl: "REF M 57.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1O6aAn5_01G9voOXLp5omQCPkzaKZ_l2X",
+        priceTotal: 1500,
+        priceEntry: 350,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["900%", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 - IND 958/943/905%FF",
+          "🔳 - FAM 10/10/9/5/4 🐉",
+          "🔳 - Heróis 💛 (3 de WoW 💛)",
+          "🔳 - Tropas Mágica Lvl 1 💜"
+        ]
+      },
+      {
+        ref: "REF C 79",
+        stats: "💥 IND 954/895/946%FF | 12 Heróis 💛 + 22M Tropas + FAM 3/3/1 💥",
+        imgUrl: "REF C 79.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1Rkx1k701S-rhoYx99jRyH0r9t5dHHxMN",
+        priceTotal: 1200,
+        priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["900%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔳 - IND 954/895/946%FF",
+          "🔳 - 12 Heróis 💛",
+          "🔳 - 22M de Tropas",
+          "🔳 - FAM 3/3/1 🐉"
         ]
       },
       {
@@ -856,14 +818,14 @@
         dataVendida: "",
         details: [
           "🔥 IND 1039/971/1031% FF",
-          "🔥 1 CHAMP Mitico🧡",
+          "🔥 1 CHAMP Mitico 🧡",
           "🔥 3 TAÇAS Miticas 🧡",
           "🔥 5 Fam Full + 9/8 🐉",
           "🔥 Heróis 💛 (3 de WoW 💛)"
         ]
       },
 
-      // ================= DEMAIS CONTAS DO CATÁLOGO ORIGINAL =================
+      // ================= DEMAIS CONTAS DO CATÁLOGO =================
       {
         ref: "REF C 91",
         stats: "🔥 IND 1163/1107/1241%FF | 3 Champs 🧡 + 7 Fam Full + Skin Líder/Exército + Tropas Mágicas Lv1 💜 🔥",
@@ -1265,25 +1227,6 @@
         ]
       },
       {
-        ref: "REF M 57",
-        stats: "🔥 IND 958/943/905%FF | Fam 10/10/9/5/4🐉 + Tropas Mágica Lvl 1 💜",
-        imgUrl: "REF M 57.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1O6aAn5_01G9voOXLp5omQCPkzaKZ_l2X",
-        priceTotal: 1500,
-        priceEntry: 350,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["900%", "tropa_magica_mana"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔳 - IND 958/943/905%FF",
-          "🔳 - FAM 10/10/9/5/4🐉",
-          "🔳 - Heróis 💛 ( 3 de WoW 💛)",
-          "🔳 - Tropas Mágica Lvl 1 💜"
-        ]
-      },
-      {
         ref: "REF C 55",
         stats: "🔥 RESTRITA K1870 | IND 802/780/848%FF + 1 CHAMP Miticos🧡",
         imgUrl: "REF C 55.jpeg",
@@ -1362,24 +1305,6 @@
           "🔳 T5 LIBERADA ✳️",
           "🔳 2 TAÇAS 💛💜",
           "🔳 +28M de tropas 😱"
-        ]
-      },
-      {
-        ref: "REF FC 01",
-        stats: "✨ MIX 582/592/597%FF | 25M de Tropas (4M T4)",
-        imgUrl: "REF FC 01.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1sseyZhTteQUrKyvFVUiOYMZctYYyTQ6c",
-        priceTotal: 350,
-        priceEntry: 0,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["trap"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔳 - MIX 582/592/597%FF",
-          "🔳 - 14M Poder Missao Territorio",
-          "🔳 - 25M de Tropas(4M T4)"
         ]
       },
       {
@@ -1910,7 +1835,7 @@
           "🔥 1 Champ 🧡 / 2 Taças 🧡",
           "🔥 3 Familiares Pagos Full / Heróis Pagos 💛",
           "🔥 Conta Bem Astrolitada",
-          "💸 R$ 2.300,00 (Desconto à vista)"
+          "💸 R\$ 2.300,00 (Desconto à vista)"
         ]
       },
       {
@@ -2087,7 +2012,7 @@
           "🔥 MIX 725/730/700%",
           "🔥 690M de poder em Tropas 💛",
           "🔥 53M de tropas",
-          "💸 De R$ 1.500,00 por APENAS R$ 1.200,00"
+          "💸 De R\$ 1.500,00 por APENAS R\$ 1.200,00"
         ]
       },
       {
@@ -2194,7 +2119,7 @@
           "🔥 Skin de Exército",
           "🔥 Elite On",
           "🔥 Restrita K1670",
-          "💸 De R$ 5.000,00 por APENAS R$ 4.750,00 (Aceita conta de entrada)"
+          "💸 De R\$ 5.000,00 por APENAS R\$ 4.750,00 (Aceita conta de entrada)"
         ]
       },
       {
@@ -2255,7 +2180,7 @@
           "🔥 Skins de Rota + Exército",
           "🔥 Tropas Mágicas Mana Lv1 💜",
           "🔥 8 Familiares ✅",
-          "💸 De R$ 9.000,00 por APENAS R$ 5.000,00 à vista (Entrada de R$ 1.500,00)"
+          "💸 De R\$ 9.000,00 por APENAS R\$ 5.000,00 à vista (Entrada de R\$ 1.500,00)"
         ]
       },
       {
@@ -3153,25 +3078,6 @@
         ]
       },
       {
-        ref: "REF C 62",
-        stats: "✨ IND 900%+ | 7 Heróis 💛 + 50M de Tropas ✨",
-        imgUrl: "REF C 62.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1Z-46UWpSqlDoT1LZeQ2DmnfKzqYwAF99",
-        priceTotal: 2350,
-        priceEntry: 500,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["900%"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 IND 945/934/929% FF",
-          "🔥 7 Heróis 💛 (3 de WoW 💛)",
-          "🔥 Famíliares 10/7/3 🐉",
-          "🔥 50M de Tropas 💂‍♀️"
-        ]
-      },
-      {
         ref: "REF C 50",
         stats: "⚡ FULL CHAMP 1400%+ FF | 13 Champs 🧡 + Tropas Mágicas Lvl 2 💜 ⚡",
         imgUrl: "REF C 50.jpeg",
@@ -3720,7 +3626,6 @@
 
       let filtered = accounts.filter(acc => {
         if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
-
         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
 
         if (!selectedTypes.includes('all')) {
@@ -3801,7 +3706,6 @@
       container.innerHTML = '';
 
       const activeAccounts = accounts.filter(acc => !acc.vendida || !isOlderThanTwoWeeks(acc.dataVendida));
-
       const badge = document.getElementById('filter-count-badge');
       if (list.length === activeAccounts.length) {
         badge.innerText = `(Exibindo todas as ${list.length} contas)`;
@@ -3882,7 +3786,6 @@
           `🚀 _A aguardar atendimento!_`;
         
         const url = `https://wa.me/${v.numero}?text=` + encodeURIComponent(textoMensagem);
-        
         const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
         
         vendorList.innerHTML += `
@@ -3906,7 +3809,6 @@
     function shareAccount(ref) {
       const acc = accounts.find(a => a.ref === ref);
       const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
-      
       let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
 
       const textoShare = 
