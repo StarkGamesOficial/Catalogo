@@ -326,12 +326,11 @@
       letter-spacing: 0.5px;
     }
     .old-price {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: #fca5a5;
       text-decoration: line-through;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       font-weight: 700;
-      text-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
     }
 
     .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
@@ -414,7 +413,7 @@
 
     .price-box { background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; box-shadow: inset 0 0 12px rgba(16, 185, 129, 0.15); }
     .main-price { font-size: 1.6rem; color: #10b981; font-weight: 900; text-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
-    .down-payment { font-size: 0.9rem; color: #f59e0b; margin-top: 4px; font-weight: 700; }
+    .down-payment { font-size: 0.85rem; color: #94a3b8; margin-top: 6px; font-weight: 600; }
 
     .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
     .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
@@ -592,6 +591,26 @@
 
     const accounts = [
       // ================= CONTAS REVISADAS E ATUALIZADAS =================
+      {
+        ref: "REF C 55",
+        stats: "🔥 RESTRITA K1870 | IND 802/780/848%FF + 1 CHAMP Miticos🧡",
+        imgUrl: "REF C 55.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1enlNOxskC-XtHlTQSTCeoUnq1ReXE4bb",
+        priceTotal: 4200,
+        priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["800%", "restrita_1700_plus", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "- RESTRITA K1870",
+          "🔳 - IND 802/780/848%FF",
+          "🔳 - MIX 638/594/665%FF",
+          "🔳 - 1 CHAMP Miticos🧡+ 1 💜 (5 Crinas Gold 💛)",
+          "🔳 - Peças faltando apenas Âmbar"
+        ]
+      },
       {
         ref: "REF C 77",
         stats: "💥 IND 931/986/1118%FF | Champs 💛 + 25M Tropas + 2 FAM Full + 9/2 💥",
@@ -844,8 +863,6 @@
           "🔥 Heróis 💛 (3 de WoW 💛)"
         ]
       },
-
-      // ================= DEMAIS CONTAS DO CATÁLOGO =================
       {
         ref: "REF C 91",
         stats: "🔥 IND 1163/1107/1241%FF | 3 Champs 🧡 + 7 Fam Full + Skin Líder/Exército + Tropas Mágicas Lv1 💜 🔥",
@@ -1247,26 +1264,6 @@
         ]
       },
       {
-        ref: "REF C 55",
-        stats: "🔥 RESTRITA K1870 | IND 802/780/848%FF + 1 CHAMP Miticos🧡",
-        imgUrl: "REF C 55.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1enlNOxskC-XtHlTQSTCeoUnq1ReXE4bb",
-        priceTotal: 4200,
-        priceEntry: 800,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["800%", "restrita_1700_plus", "1 champ"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "- RESTRITA K1870",
-          "🔳 - IND 802/780/848%FF",
-          "🔳 - MIX 638/594/665%FF",
-          "🔳 - 1 CHAMP Miticos🧡+ 1 💜 (5 Crinas Gold 💛)",
-          "🔳 - Peças faltando apenas Ambar"
-        ]
-      },
-      {
         ref: "REF FE V.003",
         stats: "🔥 IND 634/678/698% | T5 Liberada + Taças 💜💜",
         imgUrl: "REF FE V.003.jpeg",
@@ -1304,7 +1301,7 @@
           "🔥 - +31M de TROPAS 🔥",
           "🔥- 3 SKIN DE EXÉRCITO 😈 🧙‍♀️ 🦁",
           "🔥- SKIN DE LÍDER 🫡",
-          "✅ À vista: R$ 3.000,00"
+          "✅ À vista: R\$ 3.000,00"
         ]
       },
       {
@@ -1366,7 +1363,7 @@
           "🔥 1 TAÇAS 💛",
           "🔥 +48M de TROPAS 🔥",
           "🔥 EQUIPAMENTO DE CAÇA TOP",
-          "✅ À vista: R$ 1.300,00"
+          "✅ À vista: R\$ 1.300,00"
         ]
       },
       {
@@ -1709,7 +1706,7 @@
           "🔥 Taças 06 🧡💛",
           "🔥 2 Skins de Líder + 1 Rota / 2 Exército",
           "🔥 Heróis Lendários 💛 / Familiares Pagos Full 🐉",
-          "💳 Parcelamento: Entrada de R$ 1.000,00 + Mensais de R$ 500,00"
+          "💳 Parcelamento: Entrada de R\$ 1.000,00 + Mensais de R\$ 500,00"
         ]
       },
       {
@@ -1771,7 +1768,7 @@
           "🔥 Heróis Lendários 💛",
           "🔥 Familiares Pagos Full 🐉",
           "🔥 1 Skin de Rota / 3 Skins de Exército",
-          "💳 Parcelamento: Entrada de R$ 5.000,00 + Mensais de R$ 1.500,00"
+          "💳 Parcelamento: Entrada de R\$ 5.000,00 + Mensais de R\$ 1.500,00"
         ]
       },
       {
@@ -1813,8 +1810,8 @@
           "🔥 8 Familiares Pagos Full / Heróis Pagos 💛",
           "🔥 Mana NV1 💜 / Skin de Rota e Exército",
           "💳 Opções de Parcelamento:",
-          "  • Entrada R$ 800,00 + Parc. R$ 800,00",
-          "  • Entrada R$ 1.100,00 + Parc. R$ 500,00"
+          "  • Entrada R\$ 800,00 + Parc. R\$ 800,00",
+          "  • Entrada R\$ 1.100,00 + Parc. R\$ 500,00"
         ]
       },
       {
@@ -1835,7 +1832,7 @@
           "🔥 2 Champ 🧡 / 3 Taças 🧡",
           "🔥 6 Familiares Pagos Full",
           "🔥 Heróis Pagos 💛 / Skin De Rota / Mana 1 💜",
-          "💸 R$ 5.000,00 (Desconto à vista)"
+          "💸 R\$ 5.000,00 (Desconto à vista)"
         ]
       },
       {
@@ -2181,7 +2178,7 @@
           "🔥 8 Fams Lv 10 🐉"
         ]
       },
-    {
+      {
         ref: "REF RMIJ 1338",
         stats: "✨ Bônus 1100% | 4 Champs + Skins de Rota e Exército ✨",
         imgUrl: "REF RMIJ 1338.jpeg",
@@ -2200,7 +2197,7 @@
           "🔥 Skins de Rota + Exército",
           "🔥 Tropas Mágicas Mana Lv1 💜",
           "🔥 8 Familiares ✅",
-          "💸 De R$ 9.000,00 por APENAS R$ 5.000,00 à vista (Entrada de R$ 1.500,00)"
+          "💸 De R\$ 9.000,00 por APENAS R\$ 5.000,00 à vista (Entrada de R\$ 1.500,00)"
         ]
       },
       {
@@ -3553,7 +3550,7 @@
       `;
     }
 
-    function nextFeatured() {
+   function nextFeatured() {
       if (featuredRefs.length === 0) return;
       currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
       renderFeatured();
