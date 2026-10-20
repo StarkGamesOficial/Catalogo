@@ -3717,14 +3717,16 @@
       `;
     }
 
-    function renderPromoCarrossel() {
+   function renderPromoCarrossel() {
       const container = document.getElementById('promo-card-content');
       if (!container || promoRefs.length === 0) return;
 
       if (currentPromoIndex >= promoRefs.length) currentPromoIndex = 0;
       const ref = promoRefs[currentPromoIndex];
       const acc = accounts.find(a => a.ref === ref);
-      if (!acc) return;container.innerHTML = `
+      if (!acc) return;
+      
+      container.innerHTML = `
         <div class="featured-img-box" style="border-color: #ef4444;">
           <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/400x300?text=Stark+Games'">
           <div class="promo-badge-tag">OFERTA</div>
@@ -3745,7 +3747,6 @@
         </div>
       `;
     }
-
     function nextFeatured() {
       if (featuredRefs.length === 0) return;
       currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
