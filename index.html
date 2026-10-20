@@ -4054,6 +4054,7 @@ function renderSoldAccounts() {
       } else {
         soldCard.style.display = 'none';
       }
+    }
 
     function shareAccount(ref) {
       const acc = accounts.find(a => a.ref === ref);
@@ -4085,13 +4086,13 @@ function renderSoldAccounts() {
     }
 
     // INICIALIZADOR DA PÁGINA
-   window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', () => {
       updateFeaturedRefs();
       updatePromoRefs();
       applyFilters();
       renderFeatured();
       renderPromoCarrossel();
-      renderSoldAccounts(); // Garante que esta linha está aqui
+      renderSoldAccounts();
       resetFeaturedTimer();
       resetPromoTimer();
     });
