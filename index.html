@@ -3641,355 +3641,186 @@ let featuredRefs = [];
     let currentPromoIndex = 0;
     let featuredTimer = null;
     let promoTimer = null;
-    let selectedTypes = ["all"];
-    let currentRefForModal = "";
 
-    function toggleDrawer() { document.getElementById('whatsapp-drawer').classList.toggle('open'); }
-    function toggleFilterPanel() { document.getElementById('filter-card').classList.toggle('open'); }
-    function toggleSoldPanel() { document.getElementById('sold-card').classList.toggle('open'); }
-
-    // VERIFICA SE A DATA TEM MENOS DE X DIAS
-    function isWithinDays(dateString, maxDays) {
+    // FUNÇÃO AUXILIAR PARA VERIFICAR DIAS RECENTES
+    function isWithinDays(dateString, days) {
       if (!dateString) return false;
-      const targetDate = new Date(dateString);
-      const today = new Date();
-      const diffTime = today - targetDate;
-      const diffDays = diffTime / (1000 * 60 * 60 * 24);
-      return diffDays >= 0 && diffDays <= maxDays;
+      const date = new Date(dateString);
+      const now = new Date();
+      const diffTime = Math.abs(now - date);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays <= days;
     }
 
-    // ATUALIZA REFS DE DESTAQUE COM REGRA DE NOVIDADES (3 DIAS) + SORTEIO ALEATÓRIO (ROTATIVO A CADA 3H)
-    function updateFeaturedRefs() {
-      const activeAccs = accounts.filter(acc => !acc.vendida);
-      
-      // 1. Puxa contas com menos de 3 dias
-      let recentAccs = activeAccs.filter(acc => isWithinDays(acc.dataCadastro, 3));
-      
-      // 2. Se não houver 5 novidades recentes, completa com sorteio aleatório a cada 3h
-      if (recentAccs.length < 5) {
-        const now = new Date().getTime();
-        const storedTime = localStorage.getItem('stark_random_time');
-        let randomRefs = [];
-
-        // Se passaram 3 horas (10800000 ms) ou não existe cache, sorteia de novo
-        if (!storedTime || (now - parseInt(storedTime)) > 10800000) {
-          const remainingAccs = activeAccs.filter(acc => !recentAccs.includes(acc));
-          // Embaralha aleatoriamente
-          remainingAccs.sort(() => 0.5 - Math.random());
-          randomRefs = remainingAccs.slice(0, 5 - recentAccs.length).map(acc => acc.ref);
-          
-          localStorage.setItem('stark_random_refs', JSON.stringify(randomRefs));
-          localStorage.setItem('stark_random_time', now.toString());
-        } else {
-          randomRefs = JSON.parse(localStorage.getItem('stark_random_refs') || '[]');
-        }
-
-        const pickedRandomAccs = activeAccs.filter(acc => randomRefs.includes(acc.ref));
-        recentAccs = [...recentAccs, ...pickedRandomAccs];
-      }
-
-      // 3. Fallback: Se ainda sim for insuficiente, ordena por maior valor
-      if (recentAccs.length === 0) {
-        activeAccs.sort((a, b) => b.priceTotal - a.priceTotal);
-        recentAccs = activeAccs.slice(0, 5);
-      }
-
-      featuredRefs = recentAccs.map(acc => acc.ref);
-    }
-
-    function updatePromoRefs() {
-      const promoAccs = accounts.filter(acc => acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isWithinDays(acc.dataPromo, 14));
-      promoRefs = promoAccs.map(acc => acc.ref);
-    }
-
-    function renderFeatured() {
-      const container = document.getElementById('compact-featured-content');
-      if (featuredRefs.length === 0) {
-        container.innerHTML = '<p style="color: #94a3b8; font-size: 0.8rem;">Nenhuma novidade no momento.</p>';
-        return;
-      }
-
-      const ref = featuredRefs[currentFeaturedIndex];
-      const acc = accounts.find(a => a.ref === ref);
-      if (!acc) return;
-
-      container.innerHTML = `
-        <div class="compact-card">
-          <div class="compact-img-box">
-            <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/100x90?text=Stark'">
-          </div>
-          <div class="compact-info">
-            <div class="compact-ref">${acc.ref}</div>
-            <div class="compact-stats">${acc.stats}</div>
-            <div class="compact-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
-            <div class="compact-actions">
-              <button class="btn-compact btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>
-              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn-compact btn-drive">📁 Fotos</a>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderPromoCarrossel() {
-      const container = document.getElementById('compact-promo-content');
-      const box = document.getElementById('neon-promo-box');
-
-      if (promoRefs.length === 0) {
-        box.style.display = 'none';
-        return;
-      }
-
-      box.style.display = 'flex';
-      const ref = promoRefs[currentPromoIndex];
-      const acc = accounts.find(a => a.ref === ref);
-      if (!acc) return;
-
-      container.innerHTML = `
-        <div class="compact-card">
-          <div class="compact-img-box">
-            <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/100x90?text=Stark'">
-          </div>
-          <div class="compact-info">
-            <div class="compact-ref">${acc.ref}</div>
-            <div style="font-size: 0.75rem; color: #fca5a5; text-decoration: line-through;">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div>
-            <div class="compact-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
-            <div class="compact-actions">
-              <button class="btn-compact btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>
-              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn-compact btn-drive">📁 Fotos</a>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function nextFeatured() {
-      if (featuredRefs.length === 0) return;
-      currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
-      renderFeatured();
-      resetFeaturedTimer();
-    }
-
-    function prevFeatured() {
-      if (featuredRefs.length === 0) return;
-      currentFeaturedIndex = (currentFeaturedIndex - 1 + featuredRefs.length) % featuredRefs.length;
-      renderFeatured();
-      resetFeaturedTimer();
-    }
-
-    function nextPromo() {
-      if (promoRefs.length === 0) return;
-      currentPromoIndex = (currentPromoIndex + 1) % promoRefs.length;
-      renderPromoCarrossel();
-      resetPromoTimer();
-    }
-
-    function prevPromo() {
-      if (promoRefs.length === 0) return;
-      currentPromoIndex = (currentPromoIndex - 1 + promoRefs.length) % promoRefs.length;
-      renderPromoCarrossel();
-      resetPromoTimer();
-    }
-
-    function resetFeaturedTimer() {
-      if (featuredTimer) clearInterval(featuredTimer);
-      if (featuredRefs.length === 0) return;
-      featuredTimer = setInterval(() => {
-        currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
-        renderFeatured();
-      }, 5000);
-    }
-
-    function resetPromoTimer() {
-      if (promoTimer) clearInterval(promoTimer);
-      if (promoRefs.length === 0) return;
-      promoTimer = setInterval(() => {
-        currentPromoIndex = (currentPromoIndex + 1) % promoRefs.length;
-        renderPromoCarrossel();
-      }, 6000);
-    }
-
-    function toggleTypeTag(element, type) {
-      if (type.toLowerCase() === 'all') {
-        selectedTypes = ['all'];
-        document.querySelectorAll('.type-tag').forEach(tag => tag.classList.remove('active'));
-        element.classList.add('active');
-      } else {
-        const allTag = document.querySelector('.type-tag[data-type="all"]');
-        if (allTag) allTag.classList.remove('active');
-        
-        const index = selectedTypes.indexOf('all');
-        if (index > -1) selectedTypes.splice(index, 1);
-
-        element.classList.toggle('active');
-        if (element.classList.contains('active')) {
-          selectedTypes.push(type.toLowerCase());
-        } else {
-          const tIndex = selectedTypes.indexOf(type.toLowerCase());
-          if (tIndex > -1) selectedTypes.splice(tIndex, 1);
-        }
-
-        if (selectedTypes.length === 0) {
-          selectedTypes = ['all'];
-          if (allTag) allTag.classList.add('active');
-        }
-      }
-      applyFilters();
-    }
-
-    function getFilteredAccounts() {
-      const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
-      const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
-      const sortOrder = document.getElementById('sort-order').value;
-
-      const checkedChamps = Array.from(document.querySelectorAll('#champs-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
-      const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
-
-      let filtered = accounts.filter(acc => {
-        if (acc.vendida && isWithinDays(acc.dataVendida, 14)) return false;
-        if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
-
-        if (!selectedTypes.includes('all')) {
-          const hasType = selectedTypes.some(t => acc.types.some(accType => accType.toLowerCase() === t.toLowerCase()));
-          if (!hasType) return false;
-        }
-
-        if (checkedChamps.length > 0) {
-          const hasChamp = checkedChamps.some(c => acc.types.some(accType => accType.toLowerCase().includes(c)));
-          if (!hasChamp) return false;
-        }
-
-        if (checkedFeatures.length > 0) {
-          const hasFeature = checkedFeatures.some(f => acc.types.some(accType => accType.toLowerCase().includes(f)));
-          if (!hasFeature) return false;
-        }
-
-        return true;
-      });
-
-      if (sortOrder === 'asc') {
-        filtered.sort((a, b) => a.priceTotal - b.priceTotal);
-      } else {
-        filtered.sort((a, b) => b.priceTotal - a.priceTotal);
-      }
-
-      return filtered;
-    }
-
+    // RENDERIZADOR DA CAIXA DE PREÇO (SUPORTA O MODO ESCADA E O PADRÃO)
     function renderPriceBox(acc) {
-      if (acc.priceCash && acc.priceHalf) {
+      if (acc.priceCash && acc.priceCash > 0 && acc.priceHalf && acc.priceHalf > 0) {
         return `
           <div class="price-escalator-box">
             <div class="price-tier tier-cash">
-              <span class="tier-label">💵 À Vista</span>
+              <span class="tier-label">À Vista</span>
               <span class="tier-value">R$ ${acc.priceCash.toLocaleString('pt-BR')}</span>
             </div>
             <div class="price-tier tier-half">
-              <span class="tier-label">🪙 50% Entrada</span>
+              <span class="tier-label">50% Entrada</span>
               <span class="tier-value">R$ ${acc.priceHalf.toLocaleString('pt-BR')}</span>
             </div>
             <div class="price-tier tier-standard">
-              <span class="tier-label">💳 Parcelado</span>
+              <span class="tier-label">Parcelado</span>
               <span class="tier-value">R$ ${acc.priceTotal.toLocaleString('pt-BR')} <small>(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})</small></span>
             </div>
           </div>
         `;
       } else {
-        const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida;
-        const priceDisplayHtml = isPromo 
-          ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
-          : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
-
         return `
           <div class="price-box">
-            ${priceDisplayHtml}
+            ${acc.oldPrice && acc.oldPrice > acc.priceTotal ? `<div class="old-price">R\$ \${acc.oldPrice.toLocaleString('pt-BR')}</div>` : ''}
+            <div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
             <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
           </div>
         `;
       }
     }
 
-    function renderCardHTML(acc) {
-      const soldClass = acc.vendida ? 'sold' : '';
-      const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
-      const buyButtonHtml = acc.vendida 
-        ? `<button class="btn btn-sold" disabled>🚫 Vendida</button>` 
-        : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
+    let activeTypes = ['all'];
 
-      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+    function toggleTypeTag(element, type) {
+      const container = document.getElementById('type-tags-box');
+      const tags = container.querySelectorAll('.type-tag');
 
-      return `
-        <div class="card ${soldClass}" id="${acc.ref.replace(/\s+/g, '-')}">
-          <div class="card-stark-header">🦁 STARK GAMES 🦁</div>
-          <div class="card-header-badge">${acc.stats}</div>
-          <div class="card-img-container">
-            ${soldStampHtml}
-            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
-          </div>
-          <div class="card-body">
+      if (type === 'all') {
+        activeTypes = ['all'];
+        tags.forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+      } else {
+        if (activeTypes.includes('all')) {
+          activeTypes = [];
+          tags.forEach(t => {
+            if (t.dataset.type === 'all') t.classList.remove('active');
+          });
+        }
+
+        const index = activeTypes.indexOf(type);
+        if (index > -1) {
+          activeTypes.splice(index, 1);
+          element.classList.remove('active');
+        } else {
+          activeTypes.push(type);
+          element.classList.add('active');
+        }
+
+        if (activeTypes.length === 0) {
+          activeTypes = ['all'];
+          tags.forEach(t => {
+            if (t.dataset.type === 'all') t.classList.add('active');
+          });
+        }
+      }
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const searchMin = parseFloat(document.getElementById('price-min').value) || 0;
+      const searchMax = parseFloat(document.getElementById('price-max').value) || Infinity;
+      const sortOrder = document.getElementById('sort-order').value;
+
+      const champCheckboxes = document.querySelectorAll('#champs-checkboxes input:checked');
+      const selectedChamps = Array.from(champCheckboxes).map(cb => cb.value);
+
+      const featureCheckboxes = document.querySelectorAll('#features-checkboxes input:checked');
+      const selectedFeatures = Array.from(featureCheckboxes).map(cb => cb.value);
+
+      let filtered = accounts.filter(acc => {
+        if (acc.vendida) return false;
+
+        const price = acc.priceTotal;
+        if (price < searchMin || price > searchMax) return false;
+
+        if (!activeTypes.includes('all')) {
+          const matchType = activeTypes.some(t => acc.types.includes(t));
+          if (!matchType) return false;
+        }
+
+        if (selectedChamps.length > 0) {
+          const matchChamp = selectedChamps.some(c => acc.types.includes(c));
+          if (!matchChamp) return false;
+        }
+
+        if (selectedFeatures.length > 0) {
+          const matchFeature = selectedFeatures.every(f => acc.types.includes(f));
+          if (!matchFeature) return false;
+        }
+
+        return true;
+      });
+
+      filtered.sort((a, b) => {
+        return sortOrder === 'desc' ? b.priceTotal - a.priceTotal : a.priceTotal - b.priceTotal;
+      });
+
+      const container = document.getElementById('catalog-container');
+      container.innerHTML = '';
+
+      document.getElementById('filter-count-badge').innerText = `(Exibindo ${filtered.length} de ${accounts.filter(a => !a.vendida).length} contas)`;
+
+      filtered.forEach(acc => {
+        container.appendChild(createCardElement(acc));
+      });
+
+      renderSoldAccounts();
+    }
+
+    function createCardElement(acc) {
+      const card = document.createElement('div');
+      card.className = `card ${acc.vendida ? 'sold' : ''}`;
+      card.id = acc.ref.replace(/\s+/g, '-');
+
+      let detailsHtml = '';
+      acc.details.forEach(detail => {
+        detailsHtml += `<li>${detail}</li>`;
+      });
+
+      card.innerHTML = `
+        <div class="card-stark-header">STARK GAMES - OFICIAL</div>
+        <div class="card-header-badge">${acc.ref}</div>
+        <div class="card-img-container">
+          <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" onerror="this.src='https://via.placeholder.com/400x300?text=Stark+Games'">
+          ${acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : (acc.oldPrice && acc.oldPrice > acc.priceTotal ? '<div class="promo-badge-tag">OFERTA</div>' : '')}
+        </div>
+        <div class="card-body">
+          <div>
             <div class="ref-title">${acc.ref}</div>
             <ul class="details-list">${detailsHtml}</ul>
+          </div>
+          <div>
             ${renderPriceBox(acc)}
             <div class="actions">
-              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
-              ${buyButtonHtml}
-              <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+              <a href="${acc.driveUrl}" target="_blank" class="btn btn-drive">📁 Fotos</a>
+              ${acc.vendida ? '<button class="btn btn-sold" disabled>❌ Vendida</button>' : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('\${acc.ref}')">💬 Comprar</button>`}
+              <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">📤 Partilhar</button>
             </div>
           </div>
         </div>
       `;
+      return card;
     }
 
-    function trackAndOpenModal(ref) {
-      gtag('event', 'interesse_compra', { 'event_category': 'Conta', 'event_label': ref });
-      openVendorModal(ref);
-    }
-
-    function renderCatalog(list) {
-      const container = document.getElementById('catalog-container');
-      container.innerHTML = '';
-
-      const activeAccounts = accounts.filter(acc => !acc.vendida || !isWithinDays(acc.dataVendida, 14));
-      const badge = document.getElementById('filter-count-badge');
-      if (list.length === activeAccounts.length) {
-        badge.innerText = `(Exibindo todas as ${list.length} contas)`;
-      } else {
-        badge.innerText = `(${list.length} conta${list.length === 1 ? '' : 's'} encontrada${list.length === 1 ? '' : 's'})`;
-      }
-
-      if (list.length === 0) {
-        container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color: #94a3b8; padding: 30px;">Nenhuma conta cadastrada ou encontrada com os filtros selecionados.</p>';
-      } else {
-        list.forEach(acc => {
-          container.innerHTML += renderCardHTML(acc);
-        });
-      }
-
-      renderSoldSection();
-    }
-
-    function renderSoldSection() {
+    function renderSoldAccounts() {
       const soldContainer = document.getElementById('sold-container');
       const soldCard = document.getElementById('sold-card');
       soldContainer.innerHTML = '';
 
-      const soldAccounts = accounts.filter(acc => acc.vendida && isWithinDays(acc.dataVendida, 14));
-      const soldCountBadge = document.getElementById('sold-count-badge');
+      const soldAccounts = accounts.filter(acc => acc.vendida);
 
       if (soldAccounts.length > 0) {
         soldCard.style.display = 'block';
-        soldCountBadge.innerText = `(${soldAccounts.length} conta${soldAccounts.length === 1 ? '' : 's'} vendida${soldAccounts.length === 1 ? '' : 's'})`;
+        document.getElementById('sold-count-badge').innerText = `(${soldAccounts.length})`;
         soldAccounts.forEach(acc => {
-          soldContainer.innerHTML += renderCardHTML(acc);
+          soldContainer.appendChild(createCardElement(acc));
         });
       } else {
         soldCard.style.display = 'none';
       }
-    }
-
-    function applyFilters() {
-      const filtered = getFilteredAccounts();
-      renderCatalog(filtered);
     }
 
     function clearFilters() {
@@ -3997,47 +3828,49 @@ let featuredRefs = [];
       document.getElementById('price-max').value = '';
       document.getElementById('sort-order').value = 'desc';
       
-      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.checkbox-grid input').forEach(cb => cb.checked = false);
       
-      selectedTypes = ['all'];
-      document.querySelectorAll('.type-tag').forEach(tag => {
-        if (tag.getAttribute('data-type') === 'all') tag.classList.add('active');
-        else tag.classList.remove('active');
+      activeTypes = ['all'];
+      const container = document.getElementById('type-tags-box');
+      container.querySelectorAll('.type-tag').forEach(t => {
+        if (t.dataset.type === 'all') t.classList.add('active');
+        else t.classList.remove('active');
       });
 
       applyFilters();
     }
 
-    function openVendorModal(ref) {
-      currentRefForModal = ref;
+    function toggleFilterPanel() {
+      document.getElementById('filter-card').classList.toggle('open');
+    }
+
+    function toggleSoldPanel() {
+      document.getElementById('sold-card').classList.toggle('open');
+    }
+
+    function toggleDrawer() {
+      document.getElementById('whatsapp-drawer').classList.toggle('open');
+    }
+
+    let selectedAccountRef = null;
+
+    function trackAndOpenModal(ref) {
+      selectedAccountRef = ref;
+      gtag('event', 'clique_comprar', { 'event_category': 'Conversao', 'event_label': ref });
+      
       const vendorList = document.getElementById('vendor-list');
       vendorList.innerHTML = '';
 
-      const acc = accounts.find(a => a.ref === ref);
-      const directLink = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
-      
-      let detalhesConta = acc ? `👑 *${acc.ref}* - ${acc.stats}\n💰 *Valor Total:* R$ ${acc.priceTotal.toLocaleString('pt-BR')} *(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})*\n` : `👑 *${ref}*\n`;
-
       VENDEDORES.forEach(v => {
-        const textoMensagem = 
-          `🦁 *STARK GAMES - COMPRA DE CONTA* 🦁\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `👋 Olá *${v.nome}*! Tenho interesse em fechar negócio nesta conta:\n\n` +
-          detalhesConta + `\n` +
-          `🔗 *Link do Anúncio:* ${directLink}\n` +
-          `📁 *Link das Fotos:* ${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `🚀 _A aguardar atendimento!_`;
-        
-        const url = `https://wa.me/${v.numero}?text=` + encodeURIComponent(textoMensagem);
-        const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
+        const msg = encodeURIComponent(`Olá ${v.nome}! Tenho interesse na conta ${ref} anunciada no catálogo da Stark Games.`);
+        const link = `https://api.whatsapp.com/send?phone=${v.numero}&text=${msg}`;
         
         vendorList.innerHTML += `
-          <a href="${url}" target="_blank" class="vendor-card" onclick="gtag('event', 'escolha_vendedor', { 'event_category': 'Vendedor', 'event_label': '${v.nome} - ${ref}' });">
-            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='${fallbackAvatar}'">
+          <a href="${link}" target="_blank" class="vendor-card" onclick="closeVendorModal()">
+            <img src="${v.foto}" alt="${v.nome}" class="vendor-avatar" onerror="this.src='https://via.placeholder.com/40">
             <div class="vendor-info">
               <div class="vendor-name">${v.nome}</div>
-              <div class="vendor-status">Atendimento Online</div>
+              <div class="vendor-status">Online agora</div>
             </div>
           </a>
         `;
@@ -4052,8 +3885,12 @@ let featuredRefs = [];
 
     function shareAccount(ref) {
       const acc = accounts.find(a => a.ref === ref);
-      const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
-      let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
+      const shareUrl = window.location.href.split('#')[0] + '#' + ref.replace(/\s+/g, '-');
+      
+      let detalhesLista = '';
+      if (acc && acc.details) {
+        detalhesLista = acc.details.map(d => `• ${d}`).join('\n');
+      }
 
       const textoShare = 
         `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
@@ -4075,6 +3912,7 @@ let featuredRefs = [];
       window.open(whatsappShareUrl, '_blank');
     }
 
+    // INICIALIZADOR DA PÁGINA
     window.addEventListener('DOMContentLoaded', () => {
       updateFeaturedRefs();
       updatePromoRefs();
@@ -4084,7 +3922,6 @@ let featuredRefs = [];
       resetFeaturedTimer();
       resetPromoTimer();
     });
-  </script>
+</script>
 </body>
 </html>
-       
