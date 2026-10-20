@@ -4035,6 +4035,25 @@
     function closeVendorModal() {
       document.getElementById('vendor-modal').style.display = 'none';
     }
+function renderSoldAccounts() {
+      const soldContainer = document.getElementById('sold-container');
+      const soldCard = document.getElementById('sold-card');
+      if (!soldContainer || !soldCard) return;
+      
+      soldContainer.innerHTML = '';
+
+      const soldAccounts = accounts.filter(acc => acc.vendida);
+
+      if (soldAccounts.length > 0) {
+        soldCard.style.display = 'block';
+        const badge = document.getElementById('sold-count-badge');
+        if (badge) badge.innerText = `(${soldAccounts.length})`;
+        soldAccounts.forEach(acc => {
+          soldContainer.appendChild(createCardElement(acc));
+        });
+      } else {
+        soldCard.style.display = 'none';
+      }
 
     function shareAccount(ref) {
       const acc = accounts.find(a => a.ref === ref);
@@ -4066,12 +4085,13 @@
     }
 
     // INICIALIZADOR DA PÁGINA
-    window.addEventListener('DOMContentLoaded', () => {
+   window.addEventListener('DOMContentLoaded', () => {
       updateFeaturedRefs();
       updatePromoRefs();
       applyFilters();
       renderFeatured();
       renderPromoCarrossel();
+      renderSoldAccounts(); // Garante que esta linha está aqui
       resetFeaturedTimer();
       resetPromoTimer();
     });
