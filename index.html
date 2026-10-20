@@ -1,641 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STARK GAMES - Catálogo de Contas Lords Mobile</title>
-  
-  <!-- GOOGLE ANALYTICS (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3MDCXHENS8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-3MDCXHENS8');
-  </script>
-
-  <!-- ÍCONES DA STARK GAMES -->
-  <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="32x32">
-  <link rel="icon" type="image/jpeg" href="favicon.jpeg" sizes="192x192">
-  <link rel="apple-touch-icon" href="favicon.jpeg" sizes="180x180">
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    
-    body { 
-      background-image: url('fundo.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-color: #0b0f19;
-      color: #f8fafc; 
-      padding: 20px; 
-    }
-
-    .price-escalator-box {
-      background: #0f172a;
-      border: 1px solid #334155;
-      border-radius: 8px;
-      padding: 8px 12px;
-      margin: 12px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .price-tier {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px dashed #1e293b;
-      padding-bottom: 4px;
-    }
-
-    .price-tier:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .tier-cash {
-      font-size: 1.1rem;
-      font-weight: 800;
-    }
-    .tier-cash .tier-label { color: #4ade80; }
-    .tier-cash .tier-value { color: #4ade80; text-shadow: 0 0 10px rgba(74, 222, 128, 0.4); }
-
-    .tier-half {
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-    .tier-half .tier-label { color: #cbd5e1; }
-    .tier-half .tier-value { color: #f8fafc; }
-
-    .tier-standard {
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
-    .tier-standard .tier-label { color: #64748b; }
-    .tier-standard .tier-value { color: #94a3b8; }
-    .tier-standard small { font-size: 0.75rem; color: #64748b; }
-
-    header { text-align: center; margin-bottom: 20px; padding: 5px 0; width: 100%; }
-    
-    .header-banner {
-      width: 100%;
-      max-width: 1200px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 30px rgba(245, 158, 11, 0.5);
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-    }
-
-    /* SEÇÃO COMPACTA E NEON PARA DESTAQUES E OFERTAS */
-    .featured-container, .promo-container-box {
-      max-width: 1200px;
-      margin: 0 auto 15px auto;
-      background: rgba(11, 15, 25, 0.95);
-      border: 1.5px solid #f59e0b;
-      border-radius: 12px;
-      padding: 10px 15px;
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
-      position: relative;
-    }
-
-    .promo-container-box {
-      border-color: #ef4444;
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
-    }
-
-    .featured-header, .promo-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 6px;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* TÍTULOS COM EFEITO NEON */
-    .featured-badge {
-      color: #f59e0b;
-      font-weight: 900;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px rgba(245, 158, 11, 0.8), 0 0 18px rgba(245, 158, 11, 0.5);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .promo-badge-title {
-      color: #ef4444;
-      font-weight: 900;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 18px rgba(239, 68, 68, 0.5);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .featured-card, .promo-card-content {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex-wrap: nowrap;
-    }
-
-    .featured-img-box {
-      flex: 0 0 160px;
-      height: 110px;
-      overflow: hidden;
-      border-radius: 8px;
-      border: 1px solid #f59e0b;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #000;
-      position: relative;
-    }
-
-    .featured-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .featured-info {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .featured-title { font-size: 1.15rem; color: #f59e0b; font-weight: bold; }
-    
-    .featured-controls {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .btn-nav {
-      background: #1e293b;
-      color: #fff;
-      border: 1px solid #334155;
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 0.75rem;
-      transition: 0.2s;
-    }
-    .btn-nav:hover { background: #f59e0b; color: #000; }
-
-    @media (max-width: 768px) {
-      .featured-card, .promo-card-content { flex-direction: column; align-items: stretch; }
-      .featured-img-box { flex: none; width: 100%; height: 180px; }
-      .featured-header, .promo-header { justify-content: space-between; }
-    }
-
-    .glow-divider {
-      width: 85%;
-      height: 2px;
-      margin: 20px auto;
-      background: linear-gradient(90deg, transparent, #f59e0b, #ef4444, #f59e0b, transparent);
-      box-shadow: 0 0 15px rgba(245, 158, 11, 0.8);
-    }
-
-    .whatsapp-drawer-wrapper {
-      position: fixed;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .whatsapp-drawer-toggle {
-      background: #25d366;
-      color: #fff;
-      padding: 16px 12px;
-      border-radius: 12px 0 0 12px;
-      cursor: pointer;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: -4px 0 15px rgba(37, 211, 102, 0.4);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      user-select: none;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-right: none;
-    }
-    .whatsapp-drawer-toggle:hover { background: #1da851; }
-    .whatsapp-drawer-toggle span { transform: rotate(180deg); }
-
-    .whatsapp-drawer-content {
-      width: 0;
-      opacity: 0;
-      visibility: hidden;
-      background: rgba(11, 15, 25, 0.95);
-      border: 1px solid #1e293b;
-      border-right: none;
-      border-radius: 12px 0 0 12px;
-      padding: 0;
-      backdrop-filter: blur(12px);
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-      max-height: 85vh;
-    }
-
-    .whatsapp-drawer-wrapper.open .whatsapp-drawer-content,
-    .whatsapp-drawer-wrapper:hover .whatsapp-drawer-content {
-      width: 320px;
-      opacity: 1;
-      visibility: visible;
-      padding: 20px;
-    }
-
-    .drawer-header { border-bottom: 1px solid #334155; padding-bottom: 12px; margin-bottom: 15px; text-align: center; }
-    .drawer-title { font-size: 1.05rem; font-weight: bold; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.5px; }
-    .drawer-subtitle { font-size: 0.8rem; color: #94a3b8; margin-top: 4px; }
-
-    .drawer-groups-list { display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; padding-right: 4px; }
-    .drawer-group-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #f8fafc;
-      padding: 12px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.2s ease;
-    }
-    .drawer-group-btn:hover { background: #25d366; color: #fff; border-color: #25d366; transform: translateX(-4px); }
-
-    .filter-card, .sold-card { 
-      background: rgba(11, 15, 25, 0.90); 
-      border: 1px solid #334155; 
-      border-radius: 12px; 
-      margin-bottom: 20px; 
-      backdrop-filter: blur(8px);
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    }
-    .sold-card { border-color: #7f1d1d; margin-top: 40px; }
-
-    .filter-toggle-header, .sold-toggle-header {
-      padding: 18px 24px;
-      background: rgba(15, 23, 42, 0.85);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s;
-    }
-    .filter-toggle-header:hover { background: rgba(30, 41, 59, 0.9); }
-    .sold-toggle-header { background: rgba(127, 29, 29, 0.25); }
-    .sold-toggle-header:hover { background: rgba(127, 29, 29, 0.4); }
-
-    .filter-toggle-title {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #22c55e;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .sold-toggle-title { color: #ef4444; }
-
-    .filter-toggle-icon, .sold-toggle-icon {
-      font-size: 1.2rem;
-      transition: transform 0.3s ease;
-      color: #22c55e;
-    }
-    .sold-toggle-icon { color: #ef4444; }
-
-    .filter-card.open .filter-toggle-icon, .sold-card.open .sold-toggle-icon { transform: rotate(180deg); }
-
-    .filter-body, .sold-body {
-      display: none;
-      padding: 24px;
-      border-top: 1px solid #334155;
-    }
-    .sold-card.open .sold-body, .filter-card.open .filter-body { display: block; }
-
-    .filter-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; margin-top: 15px; }
-    .filter-section-header:first-child { margin-top: 0; }
-    .filter-section-title { font-size: 0.85rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; }
-
-    .type-tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
-    .type-tag { padding: 8px 16px; background: #0f172a; border: 1px solid #334155; color: #cbd5e1; font-weight: 600; border-radius: 20px; cursor: pointer; transition: 0.2s; font-size: 0.85rem; user-select: none; }
-    .type-tag:hover { border-color: #22c55e; color: #fff; }
-    .type-tag.active { background: #22c55e; color: #fff; border-color: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4); }
-
-    .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 15px; }
-    .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #e2e8f0; cursor: pointer; }
-    .checkbox-item input { accent-color: #22c55e; width: 16px; height: 16px; cursor: pointer; }
-
-    .price-sort-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px; }
-    .input-box label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: bold; }
-    .input-box input, .input-box select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
-    .input-box input:focus, .input-box select:focus { border-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
-
-    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #1e293b; padding-top: 15px; }
-    .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
-    .btn-clear:hover { color: #f87171; }
-
-    .promo-badge-tag {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      background: linear-gradient(135deg, #ef4444, #f59e0b);
-      color: #fff;
-      font-weight: 900;
-      font-size: 0.7rem;
-      padding: 3px 8px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
-      z-index: 4;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .old-price {
-      font-size: 0.9rem;
-      color: #fca5a5;
-      text-decoration: line-through;
-      margin-bottom: 2px;
-      font-weight: 700;
-    }
-
-    .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
-    .card { 
-      background: rgba(11, 15, 25, 0.94); 
-      border-radius: 16px; 
-      overflow: hidden; 
-      border: 2px solid #f59e0b; 
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-      display: flex; 
-      flex-direction: column; 
-      backdrop-filter: blur(10px); 
-      scroll-margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(245, 158, 11, 0.15);
-      position: relative;
-    }
-    .card:hover { 
-      transform: translateY(-8px) scale(1.01); 
-      box-shadow: 0 0 35px rgba(245, 158, 11, 0.6), 0 20px 40px rgba(0, 0, 0, 0.9), inset 0 0 25px rgba(239, 68, 68, 0.3); 
-      border-color: #ef4444; 
-    }
-    
-    .card-stark-header {
-      background: linear-gradient(135deg, #111827, #1f2937);
-      padding: 6px;
-      text-align: center;
-      border-bottom: 1px solid #f59e0b;
-      font-size: 0.75rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #f59e0b;
-      text-transform: uppercase;
-    }
-
-    .card-header-badge { 
-      background: linear-gradient(135deg, #f59e0b, #d97706); 
-      color: #000; 
-      font-weight: 900; 
-      padding: 8px 12px; 
-      font-size: 0.85rem; 
-      text-transform: uppercase; 
-      text-align: center;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 12px rgba(245, 158, 11, 0.4);
-    }
-    
-    .card-img-container { position: relative; width: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid #f59e0b; }
-    .card-img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
-    .card:hover .card-img { transform: scale(1.04); }
-    
-    .card.sold .card-img { filter: grayscale(100%) brightness(40%); }
-    .card.sold { border-color: #ef4444 !important; opacity: 0.75; box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
-    .card.sold .card-header-badge { background: #7f1d1d; color: #f8fafc; }
-    .card.sold .card-stark-header { color: #ef4444; border-color: #ef4444; }
-    
-    .sold-stamp {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-12deg);
-      background: rgba(220, 38, 38, 0.95);
-      color: #fff;
-      font-size: 2.2rem;
-      font-weight: 900;
-      padding: 10px 30px;
-      border: 4px dashed #fff;
-      border-radius: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      box-shadow: 0 0 25px rgba(0,0,0,0.9);
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .ref-title { color: #f59e0b; font-size: 1.4rem; font-weight: 900; margin-bottom: 12px; text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
-    
-    .details-list { list-style: none; margin-bottom: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; }
-    .details-list li { background: rgba(15, 23, 42, 0.9); padding: 9px 12px; border-radius: 6px; border-left: 3px solid #ef4444; color: #e2e8f0; font-size: 0.9rem; }
-
-    .price-box { background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; box-shadow: inset 0 0 12px rgba(16, 185, 129, 0.15); }
-    .main-price { font-size: 1.6rem; color: #10b981; font-weight: 900; text-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
-    .down-payment { font-size: 0.85rem; color: #94a3b8; margin-top: 6px; font-weight: 600; }
-
-    .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
-    .btn { padding: 8px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
-    .btn-drive { background: #334155; color: #f8fafc; }
-    .btn-drive:hover { background: #475569; }
-    .btn-whatsapp { background: #25d366; color: #fff; }
-    .btn-whatsapp:hover { background: #1da851; }
-    .btn-share { background: #0284c7; color: #fff; }
-    .btn-share:hover { background: #0369a1; }
-    .btn-sold { background: #334155; color: #94a3b8; cursor: not-allowed; }
-
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
-    .modal-box { 
-      background: #161e2e; 
-      border: 2px solid #f59e0b; 
-      border-radius: 16px; 
-      max-width: 650px; 
-      width: 100%; 
-      padding: 25px; 
-      text-align: center; 
-      box-shadow: 0 20px 50px rgba(245, 158, 11, 0.3); 
-      max-height: 90vh; 
-      display: flex; 
-      flex-direction: column; 
-    }
-    .modal-title { color: #f59e0b; font-size: 1.4rem; margin-bottom: 6px; font-weight: bold; }
-    .modal-subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
-    .vendor-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; overflow-y: auto; padding-right: 5px; max-height: 60vh; }
-    @media(max-width: 600px) { .vendor-list { grid-template-columns: 1fr; } }
-    .vendor-card { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #334155; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: #fff; transition: all 0.2s ease; text-align: left; }
-    .vendor-card:hover { border-color: #22c55e; background: #1e293b; }
-    .vendor-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #22c55e; flex-shrink: 0; }
-    .vendor-info { flex: 1; min-width: 0; }
-    .vendor-name { font-weight: bold; font-size: 0.9rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .vendor-status { font-size: 0.75rem; color: #22c55e; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
-    .vendor-status::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block; }
-    .btn-close-modal { margin-top: 15px; background: transparent; border: 1px solid #334155; color: #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
-    .btn-close-modal:hover { background: #334155; color: #fff; }
-  </style>
-</head>
-<body>
-
-  <header>
-    <img src="banner-cabecalho.jpg (2).png" alt="STARK GAMES - Catálogo Oficial de Contas" class="header-banner">
-  </header>
-
-  <!-- SEÇÃO DESTAQUE COMPACTA -->
-  <section class="featured-container" id="featured-section">
-    <div class="featured-header">
-      <div class="featured-badge">🔥 DESTAQUES 🔥</div>
-      <div class="featured-controls">
-        <button class="btn-nav" onclick="prevFeatured()">❮</button>
-        <button class="btn-nav" onclick="nextFeatured()">❯</button>
-      </div>
-    </div>
-    <div class="featured-card" id="featured-card-content"></div>
-  </section>
-
-  <!-- SEÇÃO OFERTAS COMPACTA -->
-  <section class="promo-container-box" id="promo-section" style="display: none;">
-    <div class="promo-header">
-      <div class="promo-badge-title">⚡ OFERTAS ESPECIAIS ⚡</div>
-      <div class="featured-controls">
-        <button class="btn-nav" onclick="prevPromo()">❮</button>
-        <button class="btn-nav" onclick="nextPromo()">❯</button>
-      </div>
-    </div>
-    <div class="promo-card-content" id="promo-card-content"></div>
-  </section>
-
-  <div class="whatsapp-drawer-wrapper" id="whatsapp-drawer">
-    <div class="whatsapp-drawer-toggle" onclick="toggleDrawer()">
-      <span>💬 Nossos Grupos</span>
-    </div>
-    <div class="whatsapp-drawer-content">
-      <div class="drawer-header">
-        <div class="drawer-title">💬 Grupos no WhatsApp</div>
-        <div class="drawer-subtitle">Acesse nossos canais oficiais</div>
-      </div>
-      <div class="drawer-groups-list">
-        <a href="https://chat.whatsapp.com/HJgyZ76Rm4zACjpRyyGSey" target="_blank" rel="noopener" class="drawer-group-btn"><span>🏆 STARK LORDS VIP 🏆</span></a>
-        <a href="https://chat.whatsapp.com/GbySR9Fq65SAe6a1JjVEHu" target="_blank" rel="noopener" class="drawer-group-btn"><span>Stark - Made In China Oficial</span></a>
-        <a href="https://chat.whatsapp.com/HUwYV26idV2HbwSSu713SS" target="_blank" rel="noopener" class="drawer-group-btn"><span>🔥 Stark Games - 10K+ 🔥</span></a>
-        <a href="https://chat.whatsapp.com/HmOvR7DX8zrKnwht9JUAL3" target="_blank" rel="noopener" class="drawer-group-btn"><span>🛑 STARK - RESTRITAS ⛓️</span></a>
-      </div>
-    </div>
-  </div>
-
-  <section class="filter-card" id="filter-card">
-    <div class="filter-toggle-header" onclick="toggleFilterPanel()">
-      <div class="filter-toggle-title">
-        🔍 FILTRAR CONTAS <span id="filter-count-badge" style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(Exibindo todas as contas)</span>
-      </div>
-      <div class="filter-toggle-icon">▼</div>
-    </div>
-    <div class="filter-body">
-      <div class="filter-section-header"><div class="filter-section-title">Tipo / Atributo da Conta (Múltipla Seleção)</div></div>
-      <div class="type-tags-container" id="type-tags-box">
-        <div class="type-tag active" data-type="all" onclick="toggleTypeTag(this, 'all')">Todas</div>
-        <div class="type-tag" data-type="Fillers" onclick="toggleTypeTag(this, 'Fillers')">Fillers</div>
-        <div class="type-tag" data-type="800%" onclick="toggleTypeTag(this, '800%')">800%</div>
-        <div class="type-tag" data-type="900%" onclick="toggleTypeTag(this, '900%')">900%</div>
-        <div class="type-tag" data-type="1000%" onclick="toggleTypeTag(this, '1000%')">1000%</div>
-        <div class="type-tag" data-type="1100%" onclick="toggleTypeTag(this, '1100%')">1100%</div>
-        <div class="type-tag" data-type="1200%" onclick="toggleTypeTag(this, '1200%')">1200%</div>
-        <div class="type-tag" data-type="1300%" onclick="toggleTypeTag(this, '1300%')">1300%</div>
-        <div class="type-tag" data-type="1400%" onclick="toggleTypeTag(this, '1400%')">1400%</div>
-        <div class="type-tag" data-type="1500%+" onclick="toggleTypeTag(this, '1500%+')">1500%+</div>
-      </div>
-      <div class="filter-section-header"><div class="filter-section-title">Quantidade de Champs</div></div>
-      <div class="checkbox-grid" id="champs-checkboxes">
-        <label class="checkbox-item"><input type="checkbox" value="1 champ" onchange="applyFilters()"> 1 Champ</label>
-        <label class="checkbox-item"><input type="checkbox" value="2 champ" onchange="applyFilters()"> 2 Champs</label>
-        <label class="checkbox-item"><input type="checkbox" value="3 champ" onchange="applyFilters()"> 3 Champs</label>
-        <label class="checkbox-item"><input type="checkbox" value="full champ" onchange="applyFilters()"> Full Champs</label>
-        <label class="checkbox-item"><input type="checkbox" value="4 champ+" onchange="applyFilters()"> 4 Champs+</label>
-      </div>
-      <div class="filter-section-header"><div class="filter-section-title">Outras Características Específicas</div></div>
-      <div class="checkbox-grid" id="features-checkboxes">
-        <label class="checkbox-item"><input type="checkbox" value="tropa_magica_mana" onchange="applyFilters()"> Tropa Mágica / Mana</label>
-        <label class="checkbox-item"><input type="checkbox" value="skin_lider" onchange="applyFilters()"> Skin de Líder</label>
-        <label class="checkbox-item"><input type="checkbox" value="skin_exercito" onchange="applyFilters()"> Skin de Exército</label>
-        <label class="checkbox-item"><input type="checkbox" value="trap" onchange="applyFilters()"> Traps</label>
-        <label class="checkbox-item"><input type="checkbox" value="restrita_ate_1699" onchange="applyFilters()"> Restrita (K) até 1699</label>
-        <label class="checkbox-item"><input type="checkbox" value="restrita_1700_plus" onchange="applyFilters()"> Restrita (K) 1700+</label>
-        <label class="checkbox-item"><input type="checkbox" value="low quest" onchange="applyFilters()"> Low Quest</label>
-      </div>
-      <div class="filter-section-header"><div class="filter-section-title">Valores & Ordenação</div></div>
-      <div class="price-sort-grid">
-        <div class="input-box"><label>Valor Mínimo (R\$)</label><input type="number" id="price-min" placeholder="R\$ 0" oninput="applyFilters()"></div>
-        <div class="input-box"><label>Valor Máximo (R\$)</label><input type="number" id="price-max" placeholder="R\$ 50.000+" oninput="applyFilters()"></div>
-        <div class="input-box">
-          <label>Ordenar Por Preço</label>
-          <select id="sort-order" onchange="applyFilters()">
-            <option value="desc" selected>Do Maior para o Menor Valor</option>
-            <option value="asc">Do Menor para o Maior Valor</option>
-          </select>
-        </div>
-      </div>
-      <div class="filter-footer"><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
-    </div>
-  </section>
-
-  <div class="glow-divider"></div>
-
-  <main class="catalog" id="catalog-container"></main>
-
-  <section class="sold-card" id="sold-card" style="display: none;">
-    <div class="sold-toggle-header" onclick="toggleSoldPanel()">
-      <div class="sold-toggle-title">🔒 HISTÓRICO DE CONTAS VENDIDAS <span id="sold-count-badge" style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(0)</span></div>
-      <div class="sold-toggle-icon">▼</div>
-    </div>
-    <div class="sold-body"><div class="catalog" id="sold-container"></div></div>
-  </section>
-
-  <div class="modal-overlay" id="vendor-modal">
-    <div class="modal-box">
-      <div class="modal-title">Escolha o Vendedor</div>
-      <div class="modal-subtitle">Com quem você deseja efetuar a compra?</div>
-      <div class="vendor-list" id="vendor-list"></div>
-      <button class="btn-close-modal" onclick="closeVendorModal()">Cancelar</button>
-    </div>
-  </div>
-
 <script>
     const VENDEDORES = [
       { nome: "Ribas", numero: "5555981208377", foto: "Ribas.jpeg" },
@@ -2691,7 +2053,7 @@
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
- types: ["restrita_1700_plus"],
+        types: ["restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -2985,7 +2347,7 @@
           "🔥 Skin de Líder, Exército e Rota",
           "🔥 30 Heróis 💛",
           "🔥 Tropas Mágicas Mana Lv2 💜",
-          "💳 Entrada de R$ 3.500,00 + Parcelas de R$ 1.200,00"
+          "💳 Entrada de R\$ 3.500,00 + Parcelas de R\$ 1.200,00"
         ]
       },
       {
@@ -3069,7 +2431,7 @@
           "🔥 1M de gemas",
           "🔥 Elite On",
           "🔥 23m Tropas",
-          "💳 Opção parcelada: 2x R$ 250,00"
+          "💳 Opção parcelada: 2x R\$ 250,00"
         ]
       },
       {
@@ -3252,8 +2614,8 @@
           "🔥 Mana 90% / Elite Ativado",
           "🔥 Herói 💛 / Fam Pago ✅",
           "🔥 Won II Full",
-          "💸 De R$ 2.500,00 por APENAS R$ 2.100,00",
-          "🪙 Entrada de R$ 350,00"
+          "💸 De R\$ 2.500,00 por APENAS R\$ 2.100,00",
+          "🪙 Entrada de R\$ 350,00"
         ]
       },
       {
@@ -3635,12 +2997,165 @@
         ]
       }
     ];
-let featuredRefs = [];
+
+    let featuredRefs = [];
     let promoRefs = [];
     let currentFeaturedIndex = 0;
     let currentPromoIndex = 0;
     let featuredTimer = null;
     let promoTimer = null;
+
+    // ATUALIZA REFS DE DESTAQUE COM REGRA DE NOVIDADES + SORTEIO A CADA 3H
+    function updateFeaturedRefs() {
+      const activeAccs = accounts.filter(acc => !acc.vendida);
+      let recentAccs = activeAccs.filter(acc => isWithinDays(acc.dataCadastro, 3));
+      
+      if (recentAccs.length < 5) {
+        const now = new Date().getTime();
+        const storedTime = localStorage.getItem('stark_random_time');
+        let randomRefs = [];
+
+        if (!storedTime || (now - parseInt(storedTime)) > 10800000) {
+          const remainingAccs = activeAccs.filter(acc => !recentAccs.includes(acc));
+          remainingAccs.sort(() => 0.5 - Math.random());
+          randomRefs = remainingAccs.slice(0, 5 - recentAccs.length).map(acc => acc.ref);
+          localStorage.setItem('stark_random_refs', JSON.stringify(randomRefs));
+          localStorage.setItem('stark_random_time', now.toString());
+        } else {
+          try {
+            randomRefs = JSON.parse(localStorage.getItem('stark_random_refs')) || [];
+          } catch(e) {
+            randomRefs = [];
+          }
+        }
+        
+        const randomAccObjects = activeAccs.filter(acc => randomRefs.includes(acc.ref));
+        featuredRefs = [...recentAccs, ...randomAccObjects].map(acc => acc.ref);
+      } else {
+        featuredRefs = recentAccs.map(acc => acc.ref);
+      }
+
+      if (featuredRefs.length === 0 && activeAccs.length > 0) {
+        featuredRefs = [activeAccs[0].ref];
+      }
+    }
+
+    function updatePromoRefs() {
+      const activeAccs = accounts.filter(acc => !acc.vendida);
+      const promoAccs = activeAccs.filter(acc => (acc.oldPrice && acc.oldPrice > acc.priceTotal) || acc.dataPromo);
+      promoRefs = promoAccs.map(acc => acc.ref);
+      
+      const promoSection = document.getElementById('promo-section');
+      if (promoRefs.length > 0) {
+        promoSection.style.display = 'block';
+      } else {
+        promoSection.style.display = 'none';
+      }
+    }
+
+    function renderFeatured() {
+      const container = document.getElementById('featured-card-content');
+      if (!container || featuredRefs.length === 0) return;
+
+      if (currentFeaturedIndex >= featuredRefs.length) currentFeaturedIndex = 0;
+      const ref = featuredRefs[currentFeaturedIndex];
+      const acc = accounts.find(a => a.ref === ref);
+      if (!acc) return;
+
+      container.innerHTML = `
+        <div class="featured-img-box">
+          <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/400x300?text=Stark+Games'">
+          ${acc.oldPrice && acc.oldPrice > acc.priceTotal ? '<div class="promo-badge-tag">OFERTA</div>' : ''}
+        </div>
+        <div class="featured-info">
+          <div class="featured-title">${acc.ref}</div>
+          <div style="font-size: 0.9rem; color: #cbd5e1;">${acc.stats}</div>
+          <div style="font-size: 1.1rem; color: #10b981; font-weight: bold; margin-top: 2px;">R$ ${acc.priceTotal.toLocaleString('pt-BR')} <span style="font-size: 0.75rem; color: #94a3b8;">(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})</span></div>
+          <div style="display: flex; gap: 8px; margin-top: 6px;">
+            <a href="${acc.driveUrl}" target="_blank" class="btn btn-drive" style="padding: 4px 10px; font-size: 0.75rem;">📁 Fotos</a>
+            <button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">💬 Comprar</button>
+            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">📤 Partilhar</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPromoCarrossel() {
+      const container = document.getElementById('promo-card-content');
+      if (!container || promoRefs.length === 0) return;
+
+      if (currentPromoIndex >= promoRefs.length) currentPromoIndex = 0;
+      const ref = promoRefs[currentPromoIndex];
+      const acc = accounts.find(a => a.ref === ref);
+      if (!acc) return;container.innerHTML = `
+        <div class="featured-img-box" style="border-color: #ef4444;">
+          <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/400x300?text=Stark+Games'">
+          <div class="promo-badge-tag">OFERTA</div>
+        </div>
+        <div class="featured-info">
+          <div class="featured-title" style="color: #ef4444;">${acc.ref}</div>
+          <div style="font-size: 0.9rem; color: #cbd5e1;">${acc.stats}</div>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 2px;">
+            ${acc.oldPrice && acc.oldPrice > acc.priceTotal ? `<span class="old-price" style="font-size: 0.85rem;">R\$ \${acc.oldPrice.toLocaleString('pt-BR')}</span>` : ''}
+            <span style="font-size: 1.1rem; color: #10b981; font-weight: bold;">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</span>
+            <span style="font-size: 0.75rem; color: #94a3b8;">(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})</span>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 6px;">
+            <a href="${acc.driveUrl}" target="_blank" class="btn btn-drive" style="padding: 4px 10px; font-size: 0.75rem;">📁 Fotos</a>
+            <button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">💬 Comprar</button>
+            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">📤 Partilhar</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function nextFeatured() {
+      if (featuredRefs.length === 0) return;
+      currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
+      renderFeatured();
+      resetFeaturedTimer();
+    }
+
+    function prevFeatured() {
+      if (featuredRefs.length === 0) return;
+      currentFeaturedIndex = (currentFeaturedIndex - 1 + featuredRefs.length) % featuredRefs.length;
+      renderFeatured();
+      resetFeaturedTimer();
+    }
+
+    function nextPromo() {
+      if (promoRefs.length === 0) return;
+      currentPromoIndex = (currentPromoIndex + 1) % promoRefs.length;
+      renderPromoCarrossel();
+      resetPromoTimer();
+    }
+
+    function prevPromo() {
+      if (promoRefs.length === 0) return;
+      currentPromoIndex = (currentPromoIndex - 1 + promoRefs.length) % promoRefs.length;
+      renderPromoCarrossel();
+      resetPromoTimer();
+    }
+
+    function resetFeaturedTimer() {
+      clearInterval(featuredTimer);
+      featuredTimer = setInterval(() => {
+        if (featuredRefs.length > 0) {
+          currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
+          renderFeatured();
+        }
+      }, 6000);
+    }
+
+    function resetPromoTimer() {
+      clearInterval(promoTimer);
+      promoTimer = setInterval(() => {
+        if (promoRefs.length > 0) {
+          currentPromoIndex = (currentPromoIndex + 1) % promoRefs.length;
+          renderPromoCarrossel();
+        }
+      }, 6000);
+    }
 
     // FUNÇÃO AUXILIAR PARA VERIFICAR DIAS RECENTES
     function isWithinDays(dateString, days) {
@@ -3652,7 +3167,7 @@ let featuredRefs = [];
       return diffDays <= days;
     }
 
-    // RENDERIZADOR DA CAIXA DE PREÇO (SUPORTA O MODO ESCADA E O PADRÃO)
+    // RENDERIZADOR DA CAIXA DE PREÇO
     function renderPriceBox(acc) {
       if (acc.priceCash && acc.priceCash > 0 && acc.priceHalf && acc.priceHalf > 0) {
         return `
@@ -3867,7 +3382,7 @@ let featuredRefs = [];
         
         vendorList.innerHTML += `
           <a href="${link}" target="_blank" class="vendor-card" onclick="closeVendorModal()">
-            <img src="${v.foto}" alt="${v.nome}" class="vendor-avatar" onerror="this.src='https://via.placeholder.com/40">
+            <img src="${v.foto}" alt="${v.nome}" class="vendor-avatar" onerror="this.src='https://via.placeholder.com/40'">
             <div class="vendor-info">
               <div class="vendor-name">${v.nome}</div>
               <div class="vendor-status">Online agora</div>
@@ -3923,5 +3438,3 @@ let featuredRefs = [];
       resetPromoTimer();
     });
 </script>
-</body>
-</html>
