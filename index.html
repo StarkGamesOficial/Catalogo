@@ -47,17 +47,46 @@
       image-rendering: crisp-edges;
     }
 
-    .featured-container, .promo-container-box {
-      max-width: 1200px;
-      margin: 0 auto 30px auto;
-      background: rgba(11, 15, 25, 0.92);
-      border: 3px solid;
-      border-image: linear-gradient(to bottom, #f59e0b, #ef4444) 1;
-      border-radius: 16px;
-      padding: 15px;
-      box-shadow: 0 0 35px rgba(245, 158, 11, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
-      position: relative;
-    }
+    /* --- AJUSTE DOS DESTAQUES E OFERTAS (ITENS 1 E 3) --- */
+.featured-container {
+  max-width: 1200px;
+  margin: 0 auto 15px auto;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.95));
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+  position: relative;
+}
+
+.promo-container-box {
+  max-width: 1200px;
+  margin: 0 auto 15px auto;
+  background: linear-gradient(135deg, rgba(20, 10, 10, 0.98), rgba(40, 15, 15, 0.95));
+  border: 2px solid #ef4444;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);
+  position: relative;
+}
+
+/* Limpeza do topo para evitar acumulação (Item 3) */
+header {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 0;
+  width: 100%;
+}
+
+.header-banner {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 15px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+}
 
     .featured-header, .promo-header {
       display: flex;
@@ -456,27 +485,29 @@
 </head>
 <body>
 
-  <header>
+ <header>
     <img src="banner-cabecalho.jpg (2).png" alt="STARK GAMES - Catálogo Oficial de Contas" class="header-banner">
   </header>
 
+  <!-- SEÇÃO DESTAQUE COM DESIGN PRÓPRIO -->
   <section class="featured-container" id="featured-section">
     <div class="featured-header">
-      <div class="featured-badge">🔥 Conta em Destaque 🔥</div>
+      <div class="featured-badge">🔥 DESTAQUES 🔥</div>
       <div class="featured-controls">
-        <button class="btn-nav" onclick="prevFeatured()">❮ Anterior</button>
-        <button class="btn-nav" onclick="nextFeatured()">Próxima ❯</button>
+        <button class="btn-nav" onclick="prevFeatured()">❮</button>
+        <button class="btn-nav" onclick="nextFeatured()">❯</button>
       </div>
     </div>
     <div class="featured-card" id="featured-card-content"></div>
   </section>
 
+  <!-- SEÇÃO OFERTAS ESPECIAIS COM DESIGN DIFERENTE -->
   <section class="promo-container-box" id="promo-section" style="display: none;">
     <div class="promo-header">
-      <div class="promo-badge-title">🔥 Ofertas 🔥</div>
+      <div class="promo-badge-title">⚡ OFERTAS ESPECIAIS ⚡</div>
       <div class="featured-controls">
-        <button class="btn-nav" onclick="prevPromo()">❮ Anterior</button>
-        <button class="btn-nav" onclick="nextPromo()">Próxima ❯</button>
+        <button class="btn-nav" onclick="prevPromo()">❮</button>
+        <button class="btn-nav" onclick="nextPromo()">❯</button>
       </div>
     </div>
     <div class="promo-card-content" id="promo-card-content"></div>
@@ -3477,11 +3508,41 @@
     let featuredRefs = [];
     let promoRefs = [];
 
-    function updateFeaturedRefs() {
-      const activeAccs = accounts.filter(acc => !acc.vendida);
-      activeAccs.sort((a, b) => b.priceTotal - a.priceTotal);
-      featuredRefs = activeAccs.slice(0, 5).map(acc => acc.ref);
+// --- LÓGICA DE DESTAQUES COM ROTAÇÃO DE 3 HORAS (ITEM 2) ---
+function updateFeaturedRefs() {
+  const activeAccs = accounts.filter(acc => !acc.vendida);
+  let recentAccs = activeAccs.filter(acc => isWithinDays(acc.dataCadastro, 3));
+  
+  if (recentAccs.length < 5) {
+    const now = new Date().getTime();
+    const storedTime = localStorage.getItem('stark_random_time');
+    let randomRefs = [];
+
+    // 10800000 ms = exatamente 3 horas
+    if (!storedTime || (now - parseInt(storedTime)) > 10800000) {
+      const remainingAccs = activeAccs.filter(acc => !recentAccs.includes(acc));
+      remainingAccs.sort(() => 0.5 - Math.random());
+      randomRefs = remainingAccs.slice(0, 5 - recentAccs.length).map(acc => acc.ref);
+      localStorage.setItem('stark_random_refs', JSON.stringify(randomRefs));
+      localStorage.setItem('stark_random_time', now.toString());
+    } else {
+      try {
+        randomRefs = JSON.parse(localStorage.getItem('stark_random_refs')) || [];
+      } catch(e) {
+        randomRefs = [];
+      }
     }
+    
+    const randomAccObjects = activeAccs.filter(acc => randomRefs.includes(acc.ref));
+    featuredRefs = [...recentAccs, ...randomAccObjects].map(acc => acc.ref);
+  } else {
+    featuredRefs = recentAccs.map(acc => acc.ref);
+  }
+
+  if (featuredRefs.length === 0 && activeAccs.length > 0) {
+    featuredRefs = [activeAccs[0].ref];
+  }
+}
 
     function updatePromoRefs() {
       const promoAccs = accounts.filter(acc => acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo));
