@@ -32,54 +32,8 @@
       color: #f8fafc; 
       padding: 20px; 
     }
-
-    .price-escalator-box {
-      background: #0f172a;
-      border: 1px solid #334155;
-      border-radius: 8px;
-      padding: 8px 12px;
-      margin: 12px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .price-tier {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px dashed #1e293b;
-      padding-bottom: 4px;
-    }
-
-    .price-tier:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .tier-cash {
-      font-size: 1.1rem;
-      font-weight: 800;
-    }
-    .tier-cash .tier-label { color: #4ade80; }
-    .tier-cash .tier-value { color: #4ade80; text-shadow: 0 0 10px rgba(74, 222, 128, 0.4); }
-
-    .tier-half {
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-    .tier-half .tier-label { color: #cbd5e1; }
-    .tier-half .tier-value { color: #f8fafc; }
-
-    .tier-standard {
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
-    .tier-standard .tier-label { color: #64748b; }
-    .tier-standard .tier-value { color: #94a3b8; }
-    .tier-standard small { font-size: 0.75rem; color: #64748b; }
-
-    header { text-align: center; margin-bottom: 20px; padding: 5px 0; width: 100%; }
+    
+    header { text-align: center; margin-bottom: 25px; padding: 10px 0; width: 100%; }
     
     .header-banner {
       width: 100%;
@@ -93,127 +47,115 @@
       image-rendering: crisp-edges;
     }
 
-    /* SEÇÃO COMPACTA E NEON PARA DESTAQUES E OFERTAS */
     .featured-container, .promo-container-box {
       max-width: 1200px;
-      margin: 0 auto 15px auto;
-      background: rgba(11, 15, 25, 0.95);
-      border: 1.5px solid #f59e0b;
-      border-radius: 12px;
-      padding: 10px 15px;
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+      margin: 0 auto 30px auto;
+      background: rgba(11, 15, 25, 0.92);
+      border: 3px solid;
+      border-image: linear-gradient(to bottom, #f59e0b, #ef4444) 1;
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
       position: relative;
-    }
-
-    .promo-container-box {
-      border-color: #ef4444;
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
     }
 
     .featured-header, .promo-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 6px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 10px;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    /* TÍTULOS COM EFEITO NEON */
-    .featured-badge {
-      color: #f59e0b;
+    .featured-badge, .promo-badge-title {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
       font-weight: 900;
-      font-size: 1.05rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px rgba(245, 158, 11, 0.8), 0 0 18px rgba(245, 158, 11, 0.5);
       display: inline-flex;
       align-items: center;
       gap: 6px;
-    }
-
-    .promo-badge-title {
-      color: #ef4444;
-      font-weight: 900;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 18px rgba(239, 68, 68, 0.5);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
     .featured-card, .promo-card-content {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       align-items: center;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
     }
 
     .featured-img-box {
-      flex: 0 0 160px;
-      height: 110px;
+      flex: 1.2;
+      min-width: 320px;
+      max-height: 400px;
       overflow: hidden;
-      border-radius: 8px;
-      border: 1px solid #f59e0b;
+      border-radius: 12px;
+      border: 2px solid #f59e0b;
       display: flex;
       justify-content: center;
       align-items: center;
       background: #000;
       position: relative;
+      box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.4);
     }
 
     .featured-img-box img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      max-height: 400px;
+      object-fit: contain;
       display: block;
     }
 
     .featured-info {
       flex: 1;
-      min-width: 0;
+      min-width: 300px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 12px;
     }
 
-    .featured-title { font-size: 1.15rem; color: #f59e0b; font-weight: bold; }
+    .featured-title { font-size: 1.7rem; color: #f59e0b; font-weight: bold; text-shadow: 0 0 12px rgba(245, 158, 11, 0.6); }
     
     .featured-controls {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       align-items: center;
     }
 
     .btn-nav {
-      background: #1e293b;
+      background: #334155;
       color: #fff;
-      border: 1px solid #334155;
-      padding: 4px 10px;
-      border-radius: 6px;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 0.75rem;
       transition: 0.2s;
     }
     .btn-nav:hover { background: #f59e0b; color: #000; }
 
     @media (max-width: 768px) {
-      .featured-card, .promo-card-content { flex-direction: column; align-items: stretch; }
-      .featured-img-box { flex: none; width: 100%; height: 180px; }
-      .featured-header, .promo-header { justify-content: space-between; }
+      .featured-header, .promo-header { justify-content: center; text-align: center; }
+      .featured-badge, .promo-badge-title { font-size: 0.78rem; padding: 5px 10px; }
+      .featured-controls { width: 100%; justify-content: center; gap: 6px; }
+      .btn-nav { padding: 6px 10px; font-size: 0.75rem; border-radius: 6px; }
     }
 
     .glow-divider {
       width: 85%;
-      height: 2px;
-      margin: 20px auto;
+      height: 3px;
+      margin: 40px auto;
       background: linear-gradient(90deg, transparent, #f59e0b, #ef4444, #f59e0b, transparent);
-      box-shadow: 0 0 15px rgba(245, 158, 11, 0.8);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
     }
 
     .whatsapp-drawer-wrapper {
@@ -370,21 +312,21 @@
 
     .promo-badge-tag {
       position: absolute;
-      top: 6px;
-      right: 6px;
+      top: 12px;
+      right: 12px;
       background: linear-gradient(135deg, #ef4444, #f59e0b);
       color: #fff;
       font-weight: 900;
-      font-size: 0.7rem;
-      padding: 3px 8px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
       z-index: 4;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .old-price {
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       color: #fca5a5;
       text-decoration: line-through;
       margin-bottom: 2px;
@@ -474,7 +416,7 @@
     .down-payment { font-size: 0.85rem; color: #94a3b8; margin-top: 6px; font-weight: 600; }
 
     .actions { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-top: auto; }
-    .btn { padding: 8px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
+    .btn { padding: 10px 6px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-decoration: none; text-align: center; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; }
     .btn-drive { background: #334155; color: #f8fafc; }
     .btn-drive:hover { background: #475569; }
     .btn-whatsapp { background: #25d366; color: #fff; }
@@ -518,25 +460,23 @@
     <img src="banner-cabecalho.jpg (2).png" alt="STARK GAMES - Catálogo Oficial de Contas" class="header-banner">
   </header>
 
-  <!-- SEÇÃO DESTAQUE COMPACTA -->
   <section class="featured-container" id="featured-section">
     <div class="featured-header">
-      <div class="featured-badge">🔥 DESTAQUES 🔥</div>
+      <div class="featured-badge">🔥 Conta em Destaque 🔥</div>
       <div class="featured-controls">
-        <button class="btn-nav" onclick="prevFeatured()">❮</button>
-        <button class="btn-nav" onclick="nextFeatured()">❯</button>
+        <button class="btn-nav" onclick="prevFeatured()">❮ Anterior</button>
+        <button class="btn-nav" onclick="nextFeatured()">Próxima ❯</button>
       </div>
     </div>
     <div class="featured-card" id="featured-card-content"></div>
   </section>
 
-  <!-- SEÇÃO OFERTAS COMPACTA -->
   <section class="promo-container-box" id="promo-section" style="display: none;">
     <div class="promo-header">
-      <div class="promo-badge-title">⚡ OFERTAS ESPECIAIS ⚡</div>
+      <div class="promo-badge-title">🔥 Ofertas 🔥</div>
       <div class="featured-controls">
-        <button class="btn-nav" onclick="prevPromo()">❮</button>
-        <button class="btn-nav" onclick="nextPromo()">❯</button>
+        <button class="btn-nav" onclick="prevPromo()">❮ Anterior</button>
+        <button class="btn-nav" onclick="nextPromo()">Próxima ❯</button>
       </div>
     </div>
     <div class="promo-card-content" id="promo-card-content"></div>
@@ -649,95 +589,8 @@
       { nome: "Felipe (CK)", numero: "5535996702006", foto: "felipe.jpeg" }
     ];
 
- const accounts = [
-      {
-        ref: "REF MI 603",
-        stats: "✨ 1150% Bônus | 7 Champs + Mana Lv1 ✨",
-        imgUrl: "REF MI 603.jpeg",
-        driveUrl: "https://photos.app.goo.gl/RTrRThPTCQBgEA8UA",
-        priceTotal: 9500,     
-        priceEntry: 800,      
-        priceCash: 5000,      
-        priceHalf: 6000,      
-        oldPrice: 0,
-        dataPromo: "",
-        dataCadastro: "2026-10-18",
-        types: ["1100%", "4 champ+", "tropa_magica_mana"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 7 Champs (6+1)",
-          "🔥 Bônus 1150%",
-          "🔥 Tropa Mana Lv1 💜",
-          "🔥 Lotada de Tropas",
-          "🥳 Aceita conta de entrada"
-        ]
-      },
-      {
-        ref: "REF AB 107",
-        stats: "✨ Forte & Fúria | Restrita K1399 + 68M de Tropas ✨",
-        imgUrl: "REF AB 107.jpeg",
-        driveUrl: "https://photos.app.goo.gl/fcmCW39ioPssTJQNA",
-        priceTotal: 750,
-        priceEntry: 300,
-        oldPrice: 0,
-        dataPromo: "",
-        dataCadastro: "2026-10-10",
-        types: ["800%", "restrita_ate_1699"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 1 Taça 💛 / 2 Champs 💜",
-          "🔥 Restrita K1399 / Mix 650%",
-          "🔥 300M De Lunita / 68M de Tropas",
-          "Mais informações PV 🫡"
-        ]
-      },
-   {
-    ref: "REF CG 106",
-    stats: "💥 IND 1107/1103/1026%FF | 3 CHAMPS 🧡 | 4 Taças Míticas 💥",
-    imgUrl: "REF CG 106.jpeg",
-    driveUrl: "https://drive.google.com/drive/folders/1hg8gZIEEeM8ipEAyI3p1gO0oQFymMICo",
-    priceTotal: 5000,
-    priceEntry: 800,
-    priceCash: 0,
-    priceHalf: 0,
-    oldPrice: 0,
-    dataPromo: "",
-    dataCadastro: "2026-10-20",
-    types: ["1100%", "2 champ", "skin_exercito"],
-    vendida: false,
-    dataVendida: "",
-    details: [
-      "🔳 IND 1107/1103/1026%FF",
-      "🔳 3 CHAMPS MÍTICOS 🧡",
-      "🔳 4 TAÇAS MÍTICAS 🧡",
-      "🔳 Skin de Exército"
-    ]
-  },
-      {
-        ref: "REF C 55",
-        stats: "✨ IND 802% | MIX 638% + 1 Champ Mítico 🧡 + Restrita K1870 ✨",
-        imgUrl: "REF C 55.jpeg",
-        driveUrl: "https://drive.google.com/drive/folders/1enlNOxskC-XtHlTQSTCeoUnq1ReXE4bb",
-        priceTotal: 4200,
-        priceEntry: 800,
-        oldPrice: 0,
-        dataPromo: "",
-        dataCadastro: "2026-10-15",
-        types: ["800%", "1 champ", "restrita_ate_1699"],
-        vendida: false,
-        dataVendida: "",
-        details: [
-          "🔥 IND 802/780/848% FF",
-          "🔥 MIX 638/594/665% FF",
-          "🔥 1 Champ Mítico 🧡 + 1 💜 (5 Crinas Gold 💛)",
-          "🔥 Peças faltando apenas Âmbar",
-          "🔥 Restrita K1870",
-          "🏦 POR 4.200,00",
-          "🔥 ENTRADA DE 800,00"
-        ]
-      },
+    const accounts = [
+      // ================= CONTAS REVISADAS E ATUALIZADAS =================
       {
         ref: "REF C 77",
         stats: "💥 IND 931/986/1118%FF | Champs 💛 + 25M Tropas + 2 FAM Full + 9/2 💥",
@@ -747,7 +600,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-01",
         types: ["1100%"],
         vendida: false,
         dataVendida: "",
@@ -767,7 +619,6 @@
         priceEntry: 0,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-28",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -786,7 +637,6 @@
         priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-05",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -807,7 +657,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-02",
         types: ["Fillers", "800%"],
         vendida: false,
         dataVendida: "",
@@ -829,7 +678,6 @@
         priceEntry: 1500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-19",
         types: ["1200%", "full champ", "4 champ+", "tropa_magica_mana", "skin_lider"],
         vendida: false,
         dataVendida: "",
@@ -850,7 +698,6 @@
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-29",
         types: ["1000%", "1 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -870,7 +717,6 @@
         priceEntry: 500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-25",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -890,7 +736,6 @@
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-11",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -911,7 +756,6 @@
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-08",
         types: ["1000%"],
         vendida: false,
         dataVendida: "",
@@ -931,7 +775,6 @@
         priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-06",
         types: ["900%", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -951,7 +794,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-04",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -971,7 +813,6 @@
         priceEntry: 500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-14",
         types: ["1100%"],
         vendida: false,
         dataVendida: "",
@@ -991,7 +832,6 @@
         priceEntry: 500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-09",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1012,7 +852,6 @@
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-18",
         types: ["1100%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1033,7 +872,6 @@
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-13",
         types: ["1000%", "1 champ", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1054,7 +892,6 @@
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-07",
         types: ["900%", "2 champ", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1075,7 +912,6 @@
         priceEntry: 700,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-16",
         types: ["1000%", "2 champ", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1096,7 +932,6 @@
         priceEntry: 700,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-20",
         types: ["1100%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-09-30",
@@ -1117,7 +952,6 @@
         priceEntry: 1500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-18",
         types: ["1200%", "4 champ+"],
         vendida: false,
         dataVendida: "",
@@ -1137,10 +971,9 @@
         priceEntry: 800,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-15",
         types: ["1100%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
-        vendida: true,
-        dataVendida: "2026-10-20",
+        vendida: false,
+        dataVendida: "",
         details: [
           "🔥 IND 1193/1129/1159% FF",
           "🔥 16 Heróis 💛 (3 de WoW 💛)",
@@ -1149,27 +982,6 @@
           "🔥 Skin Líder + Skin Exército"
         ]
       },
-{
-    ref: "REF AB 104",
-    stats: "⚡ IND 1060% | Tecelã 💛 | 6 Fams Pagos ⚡",
-    imgUrl: "REF AB 104.jpeg",
-    driveUrl: "https://photos.app.goo.gl/855ENHuK7kyobQg89",
-    priceTotal: 2200,
-    priceEntry: 300,
-    priceCash: 1200,
-    priceHalf: 1600,
-    oldPrice: 0,
-    dataPromo: "",
-    dataCadastro: "2026-10-20",
-    types: ["1000%"],
-    vendida: false,
-    dataVendida: "",
-    details: [
-      "⚡ Individual 1060%",
-      "⚡ Tecelã 💛",
-      "⚡ 6 Fams Pagos"
-    ]
-  },
       {
         ref: "REF MMI 2509",
         stats: "⚔️ Restrita K 1583 | 3 Champs 🧡💛 + Bônus 1065% + Mana 01 💜",
@@ -1179,7 +991,6 @@
         priceEntry: 1500,
         oldPrice: 10500,
         dataPromo: "2026-10-17",
-        dataCadastro: "2026-10-17",
         types: ["1000%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1201,7 +1012,6 @@
         priceEntry: 2500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-19",
         types: ["1300%", "4 champ+", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1222,7 +1032,6 @@
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-02",
         types: ["800%", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1246,7 +1055,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-21",
         types: ["700%"],
         vendida: false,
         dataVendida: "",
@@ -1266,7 +1074,6 @@
         priceEntry: 1500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-11",
         types: ["1000%", "4 champ+", "skin_lider", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1288,7 +1095,6 @@
         priceEntry: 4000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-19",
         types: ["1400%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1309,10 +1115,9 @@
         priceEntry: 5000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-10",
         types: ["1300%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana"],
-        vendida: true,
-        dataVendida: "2026-10-17",
+        vendida: false,
+        dataVendida: "",
         details: [
           "🔥 IND 1398/1300/1369% FF",
           "🔥 FULL CHAMP (12 Champs 🧡 + 1 💛)",
@@ -1331,7 +1136,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-08",
         types: ["1000%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1350,7 +1154,6 @@
         priceEntry: 700,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-09",
         types: ["1000%", "2 champ"],
         vendida: false,
         dataVendida: "",
@@ -1369,7 +1172,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-23",
         types: ["800%", "Fillers"],
         vendida: false,
         dataVendida: "",
@@ -1389,7 +1191,6 @@
         priceEntry: 800,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-04",
         types: ["1000%", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -1410,7 +1211,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-30",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -1432,7 +1232,6 @@
         priceEntry: 8000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-18",
         types: ["1400%", "full champ", "4 champ+", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1445,6 +1244,26 @@
         ]
       },
       {
+        ref: "REF C 55",
+        stats: "🔥 RESTRITA K1870 | IND 802/780/848%FF + 1 CHAMP Miticos🧡",
+        imgUrl: "REF C 55.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1enlNOxskC-XtHlTQSTCeoUnq1ReXE4bb",
+        priceTotal: 4200,
+        priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["800%", "restrita_1700_plus", "1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "- RESTRITA K1870",
+          "🔳 - IND 802/780/848%FF",
+          "🔳 - MIX 638/594/665%FF",
+          "🔳 - 1 CHAMP Miticos🧡+ 1 💜 (5 Crinas Gold 💛)",
+          "🔳 - Peças faltando apenas Ambar"
+        ]
+      },
+      {
         ref: "REF FE V.003",
         stats: "🔥 IND 634/678/698% | T5 Liberada + Taças 💜💜",
         imgUrl: "REF FE V.003.jpeg",
@@ -1453,7 +1272,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-20",
         types: ["800%"],
         vendida: false,
         dataVendida: "",
@@ -1474,7 +1292,6 @@
         priceEntry: 600,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-12",
         types: ["1000%", "skin_lider", "skin_exercito"],
         vendida: false,
         dataVendida: "",
@@ -1496,7 +1313,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-22",
         types: ["restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1517,7 +1333,6 @@
         priceEntry: 400,
         oldPrice: 3200,
         dataPromo: "2026-10-05",
-        dataCadastro: "2026-10-05",
         types: ["2 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1539,7 +1354,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-26",
         types: ["800%", "restrita_1700_plus"],
         vendida: true,
         dataVendida: "2026-10-05",
@@ -1561,7 +1375,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-18",
         types: ["Fillers"],
         vendida: true,
         dataVendida: "2026-09-30",
@@ -1580,7 +1393,6 @@
         priceEntry: 250,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-28",
         types: ["800%", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1602,7 +1414,6 @@
         priceEntry: 250,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-01",
         types: ["900%", "restrita_ate_1699", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1624,7 +1435,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-12",
         types: ["800%"],
         vendida: true,
         dataVendida: "2026-09-20",
@@ -1645,7 +1455,6 @@
         priceEntry: 150,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-29",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -1665,7 +1474,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-06",
         types: ["800%", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1686,7 +1494,6 @@
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-14",
         types: ["1000%", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1707,7 +1514,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-27",
         types: ["800%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1728,7 +1534,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-03",
         types: ["1000%", "3 champ"],
         vendida: false,
         dataVendida: "",
@@ -1749,7 +1554,6 @@
         priceEntry: 250,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-30",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -1770,7 +1574,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-02",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -1791,7 +1594,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-15",
         types: ["restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1812,7 +1614,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-20",
         types: ["1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1833,7 +1634,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-22",
         types: ["800%"],
         vendida: false,
         dataVendida: "",
@@ -1855,7 +1655,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-24",
         types: ["restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -1876,7 +1675,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-18",
         types: ["Fillers", "800%"],
         vendida: false,
         dataVendida: "",
@@ -1898,7 +1696,6 @@
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-16",
         types: ["1200%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1921,7 +1718,6 @@
         priceEntry: 500,
         oldPrice: 2500,
         dataPromo: "2026-10-05",
-        dataCadastro: "2026-10-05",
         types: ["1000%", "1 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -1942,7 +1738,6 @@
         priceEntry: 250,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-25",
         types: ["800%", "restrita_1700_plus", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -1963,7 +1758,6 @@
         priceEntry: 5000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-18",
         types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -1986,7 +1780,6 @@
         priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-01",
         types: ["800%", "1 champ", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2008,7 +1801,6 @@
         priceEntry: 800,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-12",
         types: ["1200%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2031,7 +1823,6 @@
         priceEntry: 700,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-15",
         types: ["1000%", "2 champ", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2053,7 +1844,6 @@
         priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-02",
         types: ["900%", "1 champ", "trap"],
         vendida: false,
         dataVendida: "",
@@ -2074,7 +1864,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-15",
         types: ["1000%"],
         vendida: true,
         dataVendida: "2026-09-25",
@@ -2095,7 +1884,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-29",
         types: ["800%", "restrita_ate_1699", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2107,27 +1895,25 @@
           "🔥 Tropas Mágicas 1 💜"
         ]
       },
-     {
-    ref: "REF AB 097",
-    stats: "⚡ IND 1200% | 10 Heróis Pagos 💛 | 6 Fams Pagos Full 10 ⚡",
-    imgUrl: "REF AB 097.jpeg",
-    driveUrl: "https://photos.app.goo.gl/PBLUB8tu4KGn4RmBA",
-    priceTotal: 5800,
-    priceEntry: 600,
-    priceCash: 4000,
-    priceHalf: 4500,
-    oldPrice: 0,
-    dataPromo: "",
-    dataCadastro: "2026-10-20",
-    types: ["1200%", "4 champ+"],
-    vendida: false,
-    dataVendida: "",
-    details: [
-      "⚡ Individual 1200%",
-      "⚡ 10 Heróis Pagos 💛",
-      "⚡ 6 Fams Pagos Full 10"
-    ]
-  },
+      {
+        ref: "REF AB 097",
+        stats: "✨ Ind 1200% | 2 Champs 🧡 + 3 Taças 🧡 + Wonder III ✨",
+        imgUrl: "REF AB 097.jpeg",
+        driveUrl: "https://photos.app.goo.gl/PBLUB8tu4KGn4RmBA",
+        priceTotal: 5000,
+        priceEntry: 400,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["1200%", "2 champ", "skin_exercito"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 3 Taças 🧡 + 1 💛 / 2 Champs 🧡",
+          "🔥 10 Heróis Pagos 💛 / 6 Fams Pagos Full Lv.10",
+          "🔥 Full Pesquisas Pagas / Wonder 3 {80% Concluído}",
+          "🔥 Individual 1200% / 3 Skins de CT Exclusivas"
+        ]
+      },
       {
         ref: "REF AB 098",
         stats: "✨ Mix Full Mítico 🧡 | Ind 1000% + Wonder II Full ✨",
@@ -2137,7 +1923,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-08",
         types: ["1000%", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2159,7 +1944,6 @@
         priceEntry: 200,
         oldPrice: 450,
         dataPromo: "2026-10-05",
-        dataCadastro: "2026-10-05",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -2179,7 +1963,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-10",
         types: ["1000%", "1 champ", "skin_exercito"],
         vendida: true,
         dataVendida: "2026-09-24",
@@ -2199,7 +1982,6 @@
         priceEntry: 1500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-14",
         types: ["1200%", "4 champ+", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2212,6 +1994,26 @@
         ]
       },
       {
+        ref: "REF MI 603",
+        stats: "⚡ 1150% Bônus | 7 Champs + Mana Lv1 ⚡",
+        imgUrl: "REF MI 603.jpeg",
+        driveUrl: "https://photos.app.goo.gl/RTrRThPTCQBgEA8UA",
+        priceTotal: 5000,
+        priceEntry: 800,
+        oldPrice: 9900,
+        dataPromo: "2026-10-17",
+        types: ["1100%", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 Bônus 1150% 🔥",
+          "🔥 7 Champs (6 + 1)",
+          "🔥 Lotada de Tropas",
+          "🔥 Tropa Mana Lv1 💜",
+          "🛑 Aceita conta de entrada"
+        ]
+      },
+      {
         ref: "REF MI1711",
         stats: "✨ Mix 700%+ | 53M de Tropas (Trap) ✨",
         imgUrl: "REF MI1711.jpeg",
@@ -2220,7 +2022,6 @@
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-27",
         types: ["trap"],
         vendida: false,
         dataVendida: "",
@@ -2240,7 +2041,6 @@
         priceEntry: 2000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-17",
         types: ["1200%", "full champ", "4 champ+", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2254,6 +2054,7 @@
         ]
       },
       {
+        
         ref: "REF MIC 74",
         stats: "⚡ FULL CHAMP 1500%+ FF | 22 Champs 🧡 + Skin de Líder e Exército ⚡",
         imgUrl: "REF MIC 74.jpeg",
@@ -2262,7 +2063,6 @@
         priceEntry: 12000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-25",
         types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-10-10",
@@ -2284,7 +2084,6 @@
         priceEntry: 3500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-18",
         types: ["1400%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2306,7 +2105,6 @@
         priceEntry: 6000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-19",
         types: ["1500%+", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2328,7 +2126,6 @@
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-05",
         types: ["900%", "2 champ", "skin_exercito", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
@@ -2352,7 +2149,6 @@
         priceEntry: 3500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-15",
         types: ["1400%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2369,11 +2165,10 @@
         stats: "✨ Bônus 1200% | 3 Champs 🧡 + Tropas Mágicas Lv 1 ✨",
         imgUrl: "REF M 401.jpeg",
         driveUrl: "https://photos.app.goo.gl/J8yy6hn39yyXjPzv7",
-        priceTotal: 6800,
-        priceEntry: 850,
-        oldPrice: 0,
-        dataPromo: "",
-        dataCadastro: "2026-10-11",
+        priceTotal: 6000,
+        priceEntry: 600,
+        oldPrice: 6800,
+        dataPromo: "2026-10-17",
         types: ["1200%", "3 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2393,7 +2188,6 @@
         priceEntry: 1500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-01",
         types: ["1100%", "4 champ+", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: true,
         dataVendida: "2026-10-15",
@@ -2416,7 +2210,6 @@
         priceEntry: 800,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-10",
         types: ["1200%", "1 champ"],
         vendida: true,
         dataVendida: "2026-10-17",
@@ -2437,7 +2230,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-09",
         types: ["900%", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
@@ -2456,9 +2248,8 @@
         driveUrl: "https://photos.app.goo.gl/bYyBdmZYHNkAuzuo6",
         priceTotal: 4500,
         priceEntry: 800,
-        oldPrice: 4500,
+        oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-07",
         types: ["1000%", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: true,
         dataVendida: "2026-10-17",
@@ -2470,6 +2261,26 @@
         ]
       },
       {
+        ref: "REF MC 97",
+        stats: "✨ Low Quest | IND 1372/1318/1395%FF + 5 Champs 🧡 + Tropas Mágicas Lvl 2 ✨",
+        imgUrl: "REF MC 97.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1DGbSJG8zu5H2stheYJ3SlV-aZfQJEaNA",
+        priceTotal: 25000,
+        priceEntry: 3500,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["1300%", "low quest", "4 champ+", "tropa_magica_mana", "restrita_ate_1699"],
+        vendida: true,
+        dataVendida: "2026-10-17",
+        details: [
+          "🔳 - IND 1372/1318/1395%FF",
+          "🔳 - 5 CHAMPS 🧡(2 ACC)",
+          "🔳 - Tropas Mágica Lvl 2 💜(90%)",
+          "🔳 - Skin Rota + Skin Exército",
+          "🔳 - RESTRITA K1529"
+        ]
+      },
+      {
         ref: "REF M 604",
         stats: "✨ Bônus 1105% | 3 Champs + Lotada de Tropas ✨",
         imgUrl: "REF M 604.jpeg",
@@ -2478,7 +2289,6 @@
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-13",
         types: ["1100%", "3 champ", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
@@ -2499,7 +2309,6 @@
         priceEntry: 3000,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-10",
         types: ["1300%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-09-16",
@@ -2522,7 +2331,6 @@
         priceEntry: 200,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-24",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2542,7 +2350,6 @@
         priceEntry: 400,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-06",
         types: ["2 champ", "900%"],
         vendida: false,
         dataVendida: "",
@@ -2562,7 +2369,6 @@
         priceEntry: 500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-02",
         types: ["900%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -2582,7 +2388,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-08",
         types: ["trap"],
         vendida: true,
         dataVendida: "2026-09-16",
@@ -2603,7 +2408,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-01",
         types: ["Fillers", "900%", "1 champ"],
         vendida: false,
         dataVendida: "",
@@ -2625,7 +2429,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-29",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2647,7 +2450,6 @@
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-09-22",
         types: ["Fillers"],
         vendida: false,
         dataVendida: "",
@@ -2669,7 +2471,6 @@
         priceEntry: 500,
         oldPrice: 0,
         dataPromo: "",
-        dataCadastro: "2026-10-03",
         types: ["900%"],
         vendida: false,
         dataVendida: "",
@@ -3216,6 +3017,26 @@
         ]
       },
       {
+        ref: "REF GC 0898",
+        stats: "✨RL Facilitada✨",
+        imgUrl: "REF GC 0898.jpeg",
+        driveUrl: "https://photos.app.goo.gl/6KEJmn4xqnkzEZK16",
+        priceTotal: 5000,
+        priceEntry: 800,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["1100%", "3 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "🔥 1100% inf",
+          "🔥 03 CHAMPS 🧡",
+          "🔥 04 TAÇAS 🧡",
+          "🔥 11 Heróis 💛",
+          "🔥 07 FAMS PAGOS FULL"
+        ]
+      },
+      {
         ref: "REF MGS 4060",
         stats: "FULL CHAMP 1.300%",
         imgUrl: "REF MGS 4060.jpeg",
@@ -3614,139 +3435,172 @@
         ]
       },
       {
-        ref: "REF AB 105",
-        stats: "✨ Forte & Fúria | 1 Champ 🧡 + 6 Peças 🧡 No Mix + Restrita K1780 ✨",
-        imgUrl: "REF AB 105.jpeg",
-        driveUrl: "https://photos.app.goo.gl/Q4fHubkdN6myMP266",
-        priceTotal: 1300,
-        priceEntry: 300,
+        ref: "REF CG 106",
+        stats: "✨ Low Quest | IND 1107/1103/1026%FF + 3 Champs Míticos 🧡 + 4 Taças Míticas 🧡 ✨",
+        imgUrl: "REF CG 106.jpeg",
+        driveUrl: "https://drive.google.com/drive/folders/1EIm2O0LeUDoKiU0Z7qPN9HOe_sFSvy9n",
+        priceTotal: 5000,
+        priceEntry: 800,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1 champ", "restrita_1700_plus", "tropa_magica_mana"],
+        types: ["1100%", "low quest", "3 champ", "skin_exercito"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 1 Champ 🧡 / 6 Peças 🧡 No Mix",
-          "🔥 Restrita K1780 / Individual 800%",
-          "🔥 45M de Tropas / Mix 600%",
-          "🔥 Selos Capacete/Calça/Armadura/Mão Secundária",
-          "🔥 4 Slots / T5 Full / Full Contra Ataque"
+          "🔳 - IND 1107/1103/1026%FF",
+          "🔳 - 3 CHAMPS MITICOS 🧡",
+          "🔳 - 4 TAÇAS MITICAS 🧡",
+          "🔳 - Skin de Exército"
+        ]
+      },
+      {
+        ref: "REF AB 107",
+        stats: "✨ Forte & Fúria | 1 Taça 💛 + 2 Champs 💜 + 300M Lunita ✨",
+        imgUrl: "REF AB 107.jpeg",
+        driveUrl: "https://photos.app.goo.gl/fcmCW39ioPssTJQNA",
+        priceTotal: 750,
+        priceEntry: 300,
+        oldPrice: 0,
+        dataPromo: "",
+        types: ["600%", "restrita_ate_1699"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "• 🔥> 1 Taça 💛 / 2 Champs 💜",
+          "• 🔥> Restrita K1399 / Mix 650%",
+          "• 🔥> 300M De Lunita / 68M de Tropas",
+          "Mais informações PV 🫡"
         ]
       }
     ];
 
     let featuredRefs = [];
     let promoRefs = [];
+
+    function updateFeaturedRefs() {
+      const activeAccs = accounts.filter(acc => !acc.vendida);
+      activeAccs.sort((a, b) => b.priceTotal - a.priceTotal);
+      featuredRefs = activeAccs.slice(0, 5).map(acc => acc.ref);
+    }
+
+    function updatePromoRefs() {
+      const promoAccs = accounts.filter(acc => acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo));
+      promoRefs = promoAccs.map(acc => acc.ref);
+    }
+
     let currentFeaturedIndex = 0;
     let currentPromoIndex = 0;
     let featuredTimer = null;
     let promoTimer = null;
 
-    // ATUALIZA REFS DE DESTAQUE COM REGRA DE NOVIDADES + SORTEIO A CADA 3H
-    function updateFeaturedRefs() {
-      const activeAccs = accounts.filter(acc => !acc.vendida);
-      let recentAccs = activeAccs.filter(acc => isWithinDays(acc.dataCadastro, 3));
-      
-      if (recentAccs.length < 5) {
-        const now = new Date().getTime();
-        const storedTime = localStorage.getItem('stark_random_time');
-        let randomRefs = [];
+    let selectedTypes = ["all"];
+    let currentRefForModal = "";
 
-        if (!storedTime || (now - parseInt(storedTime)) > 10800000) {
-          const remainingAccs = activeAccs.filter(acc => !recentAccs.includes(acc));
-          remainingAccs.sort(() => 0.5 - Math.random());
-          randomRefs = remainingAccs.slice(0, 5 - recentAccs.length).map(acc => acc.ref);
-          localStorage.setItem('stark_random_refs', JSON.stringify(randomRefs));
-          localStorage.setItem('stark_random_time', now.toString());
-        } else {
-          try {
-            randomRefs = JSON.parse(localStorage.getItem('stark_random_refs')) || [];
-          } catch(e) {
-            randomRefs = [];
-          }
-        }
-        
-        const randomAccObjects = activeAccs.filter(acc => randomRefs.includes(acc.ref));
-        featuredRefs = [...recentAccs, ...randomAccObjects].map(acc => acc.ref);
-      } else {
-        featuredRefs = recentAccs.map(acc => acc.ref);
-      }
+    function toggleDrawer() { document.getElementById('whatsapp-drawer').classList.toggle('open'); }
 
-      if (featuredRefs.length === 0 && activeAccs.length > 0) {
-        featuredRefs = [activeAccs[0].ref];
-      }
+    function toggleFilterPanel() {
+      document.getElementById('filter-card').classList.toggle('open');
     }
 
-    function updatePromoRefs() {
-      const activeAccs = accounts.filter(acc => !acc.vendida);
-      const promoAccs = activeAccs.filter(acc => (acc.oldPrice && acc.oldPrice > acc.priceTotal) || acc.dataPromo);
-      promoRefs = promoAccs.map(acc => acc.ref);
-      
-      const promoSection = document.getElementById('promo-section');
-      if (promoRefs.length > 0) {
-        promoSection.style.display = 'block';
-      } else {
-        promoSection.style.display = 'none';
-      }
+    function toggleSoldPanel() {
+      document.getElementById('sold-card').classList.toggle('open');
     }
 
     function renderFeatured() {
       const container = document.getElementById('featured-card-content');
-      if (!container || featuredRefs.length === 0) return;
+      
+      if (featuredRefs.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color: #94a3b8; width: 100%; padding: 20px;">Nenhuma conta em destaque no momento.</p>';
+        return;
+      }
 
-      if (currentFeaturedIndex >= featuredRefs.length) currentFeaturedIndex = 0;
       const ref = featuredRefs[currentFeaturedIndex];
       const acc = accounts.find(a => a.ref === ref);
+
       if (!acc) return;
 
+      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      const soldClass = acc.vendida ? 'sold' : '';
+      const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
+      const buyButtonHtml = acc.vendida 
+        ? `<button class="btn btn-sold">🚫 Vendida</button>` 
+        : `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+
+      const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo);
+      const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const priceDisplayHtml = isPromo 
+        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
+        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
+
       container.innerHTML = `
-        <div class="featured-img-box">
-          <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/400x300?text=Stark+Games'">
-          ${acc.oldPrice && acc.oldPrice > acc.priceTotal ? '<div class="promo-badge-tag">OFERTA</div>' : ''}
+        <div class="featured-img-box ${soldClass}">
+          ${promoBadgeHtml}
+          ${soldStampHtml}
+          <img src="${acc.imgUrl}" alt="${acc.ref}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
         </div>
         <div class="featured-info">
           <div class="featured-title">${acc.ref}</div>
-          <div style="font-size: 0.9rem; color: #cbd5e1;">${acc.stats}</div>
-          <div style="font-size: 1.1rem; color: #10b981; font-weight: bold; margin-top: 2px;">R$ ${acc.priceTotal.toLocaleString('pt-BR')} <span style="font-size: 0.75rem; color: #94a3b8;">(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})</span></div>
-          <div style="display: flex; gap: 8px; margin-top: 6px;">
-            <a href="${acc.driveUrl}" target="_blank" class="btn btn-drive" style="padding: 4px 10px; font-size: 0.75rem;">📁 Fotos</a>
-            <button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">💬 Comprar</button>
-            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">📤 Partilhar</button>
+          <div style="color: #cbd5e1; font-weight: bold;">${acc.stats}</div>
+          <ul class="details-list">${detailsHtml}</ul>
+          <div class="price-box">
+            ${priceDisplayHtml}
+            <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+          </div>
+          <div class="actions">
+            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+            ${buyButtonHtml}
+            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
           </div>
         </div>
       `;
     }
 
-   function renderPromoCarrossel() {
+    function renderPromoCarrossel() {
       const container = document.getElementById('promo-card-content');
-      if (!container || promoRefs.length === 0) return;
+      const section = document.getElementById('promo-section');
 
-      if (currentPromoIndex >= promoRefs.length) currentPromoIndex = 0;
+      if (promoRefs.length === 0) {
+        section.style.display = 'none';
+        return;
+      }
+
+      section.style.display = 'block';
       const ref = promoRefs[currentPromoIndex];
       const acc = accounts.find(a => a.ref === ref);
+
       if (!acc) return;
-      
+
+      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      const buyButtonHtml = `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+
+      const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo);
+      const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const priceDisplayHtml = isPromo 
+        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
+        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
+
       container.innerHTML = `
-        <div class="featured-img-box" style="border-color: #ef4444;">
-          <img src="${acc.imgUrl}" alt="${acc.ref}" onerror="this.src='https://via.placeholder.com/400x300?text=Stark+Games'">
-          <div class="promo-badge-tag">OFERTA</div>
+        <div class="featured-img-box">
+          ${promoBadgeHtml}
+          <img src="${acc.imgUrl}" alt="${acc.ref}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
         </div>
         <div class="featured-info">
-          <div class="featured-title" style="color: #ef4444;">${acc.ref}</div>
-          <div style="font-size: 0.9rem; color: #cbd5e1;">${acc.stats}</div>
-          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 2px;">
-            ${acc.oldPrice && acc.oldPrice > acc.priceTotal ? `<span class="old-price" style="font-size: 0.85rem;">R\$ \${acc.oldPrice.toLocaleString('pt-BR')}</span>` : ''}
-            <span style="font-size: 1.1rem; color: #10b981; font-weight: bold;">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</span>
-            <span style="font-size: 0.75rem; color: #94a3b8;">(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})</span>
+          <div class="featured-title">${acc.ref}</div>
+          <div style="color: #cbd5e1; font-weight: bold;">${acc.stats}</div>
+          <ul class="details-list">${detailsHtml}</ul>
+          <div class="price-box">
+            ${priceDisplayHtml}
+            <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
           </div>
-          <div style="display: flex; gap: 8px; margin-top: 6px;">
-            <a href="${acc.driveUrl}" target="_blank" class="btn btn-drive" style="padding: 4px 10px; font-size: 0.75rem;">📁 Fotos</a>
-            <button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">💬 Comprar</button>
-            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')" style="padding: 4px 10px; font-size: 0.75rem;">📤 Partilhar</button>
+          <div class="actions">
+            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+            ${buyButtonHtml}
+            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
           </div>
         </div>
       `;
     }
+
     function nextFeatured() {
       if (featuredRefs.length === 0) return;
       currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
@@ -3776,204 +3630,190 @@
     }
 
     function resetFeaturedTimer() {
-      clearInterval(featuredTimer);
+      if (featuredTimer) clearInterval(featuredTimer);
+      if (featuredRefs.length === 0) return;
       featuredTimer = setInterval(() => {
-        if (featuredRefs.length > 0) {
-          currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
-          renderFeatured();
-        }
-      }, 6000);
+        currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredRefs.length;
+        renderFeatured();
+      }, 5000);
     }
 
     function resetPromoTimer() {
-      clearInterval(promoTimer);
+      if (promoTimer) clearInterval(promoTimer);
+      if (promoRefs.length === 0) return;
       promoTimer = setInterval(() => {
-        if (promoRefs.length > 0) {
-          currentPromoIndex = (currentPromoIndex + 1) % promoRefs.length;
-          renderPromoCarrossel();
-        }
+        currentPromoIndex = (currentPromoIndex + 1) % promoRefs.length;
+        renderPromoCarrossel();
       }, 6000);
     }
 
-    // FUNÇÃO AUXILIAR PARA VERIFICAR DIAS RECENTES
-    function isWithinDays(dateString, days) {
-      if (!dateString) return false;
-      const date = new Date(dateString);
-      const now = new Date();
-      const diffTime = Math.abs(now - date);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      return diffDays <= days;
-    }
-
-    // RENDERIZADOR DA CAIXA DE PREÇO
-    function renderPriceBox(acc) {
-      if (acc.priceCash && acc.priceCash > 0 && acc.priceHalf && acc.priceHalf > 0) {
-        return `
-          <div class="price-escalator-box">
-            <div class="price-tier tier-cash">
-              <span class="tier-label">À Vista</span>
-              <span class="tier-value">R$ ${acc.priceCash.toLocaleString('pt-BR')}</span>
-            </div>
-            <div class="price-tier tier-half">
-              <span class="tier-label">50% Entrada</span>
-              <span class="tier-value">R$ ${acc.priceHalf.toLocaleString('pt-BR')}</span>
-            </div>
-            <div class="price-tier tier-standard">
-              <span class="tier-label">Parcelado</span>
-              <span class="tier-value">R$ ${acc.priceTotal.toLocaleString('pt-BR')} <small>(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})</small></span>
-            </div>
-          </div>
-        `;
-      } else {
-        return `
-          <div class="price-box">
-            ${acc.oldPrice && acc.oldPrice > acc.priceTotal ? `<div class="old-price">R\$ \${acc.oldPrice.toLocaleString('pt-BR')}</div>` : ''}
-            <div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>
-            <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
-          </div>
-        `;
-      }
-    }
-
-    let activeTypes = ['all'];
-
     function toggleTypeTag(element, type) {
-      const container = document.getElementById('type-tags-box');
-      const tags = container.querySelectorAll('.type-tag');
-
-      if (type === 'all') {
-        activeTypes = ['all'];
-        tags.forEach(t => t.classList.remove('active'));
+      if (type.toLowerCase() === 'all') {
+        selectedTypes = ['all'];
+        document.querySelectorAll('.type-tag').forEach(tag => tag.classList.remove('active'));
         element.classList.add('active');
       } else {
-        if (activeTypes.includes('all')) {
-          activeTypes = [];
-          tags.forEach(t => {
-            if (t.dataset.type === 'all') t.classList.remove('active');
-          });
-        }
+        const allTag = document.querySelector('.type-tag[data-type="all"]');
+        if (allTag) allTag.classList.remove('active');
+        
+        const index = selectedTypes.indexOf('all');
+        if (index > -1) selectedTypes.splice(index, 1);
 
-        const index = activeTypes.indexOf(type);
-        if (index > -1) {
-          activeTypes.splice(index, 1);
-          element.classList.remove('active');
+        element.classList.toggle('active');
+        if (element.classList.contains('active')) {
+          selectedTypes.push(type.toLowerCase());
         } else {
-          activeTypes.push(type);
-          element.classList.add('active');
+          const tIndex = selectedTypes.indexOf(type.toLowerCase());
+          if (tIndex > -1) selectedTypes.splice(tIndex, 1);
         }
 
-        if (activeTypes.length === 0) {
-          activeTypes = ['all'];
-          tags.forEach(t => {
-            if (t.dataset.type === 'all') t.classList.add('active');
-          });
+        if (selectedTypes.length === 0) {
+          selectedTypes = ['all'];
+          if (allTag) allTag.classList.add('active');
         }
       }
       applyFilters();
     }
 
-    function applyFilters() {
-      const searchMin = parseFloat(document.getElementById('price-min').value) || 0;
-      const searchMax = parseFloat(document.getElementById('price-max').value) || Infinity;
+    function isOlderThanTwoWeeks(dateString) {
+      if (!dateString) return false;
+      const soldDate = new Date(dateString);
+      const today = new Date();
+      const diffTime = today - soldDate;
+      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      return diffDays > 14;
+    }
+
+    function getFilteredAccounts() {
+      const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
+      const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
       const sortOrder = document.getElementById('sort-order').value;
 
-      const champCheckboxes = document.querySelectorAll('#champs-checkboxes input:checked');
-      const selectedChamps = Array.from(champCheckboxes).map(cb => cb.value);
-
-      const featureCheckboxes = document.querySelectorAll('#features-checkboxes input:checked');
-      const selectedFeatures = Array.from(featureCheckboxes).map(cb => cb.value);
+      const checkedChamps = Array.from(document.querySelectorAll('#champs-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
+      const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
 
       let filtered = accounts.filter(acc => {
-        if (acc.vendida) return false;
+        if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
+        if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
 
-        const price = acc.priceTotal;
-        if (price < searchMin || price > searchMax) return false;
-
-        if (!activeTypes.includes('all')) {
-          const matchType = activeTypes.some(t => acc.types.includes(t));
-          if (!matchType) return false;
+        if (!selectedTypes.includes('all')) {
+          const hasType = selectedTypes.some(t => acc.types.some(accType => accType.toLowerCase() === t.toLowerCase()));
+          if (!hasType) return false;
         }
 
-        if (selectedChamps.length > 0) {
-          const matchChamp = selectedChamps.some(c => acc.types.includes(c));
-          if (!matchChamp) return false;
+        if (checkedChamps.length > 0) {
+          const hasChamp = checkedChamps.some(c => acc.types.some(accType => accType.toLowerCase().includes(c)));
+          if (!hasChamp) return false;
         }
 
-        if (selectedFeatures.length > 0) {
-          const matchFeature = selectedFeatures.every(f => acc.types.includes(f));
-          if (!matchFeature) return false;
+        if (checkedFeatures.length > 0) {
+          const hasFeature = checkedFeatures.some(f => acc.types.some(accType => accType.toLowerCase().includes(f)));
+          if (!hasFeature) return false;
         }
 
         return true;
       });
 
-      filtered.sort((a, b) => {
-        return sortOrder === 'desc' ? b.priceTotal - a.priceTotal : a.priceTotal - b.priceTotal;
-      });
+      if (sortOrder === 'asc') {
+        filtered.sort((a, b) => a.priceTotal - b.priceTotal);
+      } else {
+        filtered.sort((a, b) => b.priceTotal - a.priceTotal);
+      }
 
-      const container = document.getElementById('catalog-container');
-      container.innerHTML = '';
-
-      document.getElementById('filter-count-badge').innerText = `(Exibindo ${filtered.length} de ${accounts.filter(a => !a.vendida).length} contas)`;
-
-      filtered.forEach(acc => {
-        container.appendChild(createCardElement(acc));
-      });
-
-      renderSoldAccounts();
+      return filtered;
     }
 
-    function createCardElement(acc) {
-      const card = document.createElement('div');
-      card.className = `card ${acc.vendida ? 'sold' : ''}`;
-      card.id = acc.ref.replace(/\s+/g, '-');
+    function renderCardHTML(acc) {
+      const soldClass = acc.vendida ? 'sold' : '';
+      const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
+      const buyButtonHtml = acc.vendida 
+        ? `<button class="btn btn-sold" disabled>🚫 Vendida</button>` 
+        : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
-      let detailsHtml = '';
-      acc.details.forEach(detail => {
-        detailsHtml += `<li>${detail}</li>`;
-      });
+      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      
+      const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo);
+      const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const priceDisplayHtml = isPromo 
+        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
+        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
 
-      card.innerHTML = `
-        <div class="card-stark-header">STARK GAMES - OFICIAL</div>
-        <div class="card-header-badge">${acc.ref}</div>
-        <div class="card-img-container">
-          <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" onerror="this.src='https://via.placeholder.com/400x300?text=Stark+Games'">
-          ${acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : (acc.oldPrice && acc.oldPrice > acc.priceTotal ? '<div class="promo-badge-tag">OFERTA</div>' : '')}
-        </div>
-        <div class="card-body">
-          <div>
+      return `
+        <div class="card ${soldClass}" id="${acc.ref.replace(/\s+/g, '-')}">
+          ${promoBadgeHtml}
+          <div class="card-stark-header">🦁 STARK GAMES 🦁</div>
+          <div class="card-header-badge">${acc.stats}</div>
+          <div class="card-img-container">
+            ${soldStampHtml}
+            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+          </div>
+          <div class="card-body">
             <div class="ref-title">${acc.ref}</div>
             <ul class="details-list">${detailsHtml}</ul>
-          </div>
-          <div>
-            ${renderPriceBox(acc)}
+            <div class="price-box">
+              ${priceDisplayHtml}
+              <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+            </div>
             <div class="actions">
-              <a href="${acc.driveUrl}" target="_blank" class="btn btn-drive">📁 Fotos</a>
-              ${acc.vendida ? '<button class="btn btn-sold" disabled>❌ Vendida</button>' : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('\${acc.ref}')">💬 Comprar</button>`}
-              <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">📤 Partilhar</button>
+              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+              ${buyButtonHtml}
+              <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
             </div>
           </div>
         </div>
       `;
-      return card;
     }
 
-    function renderSoldAccounts() {
+    function trackAndOpenModal(ref) {
+      gtag('event', 'interesse_compra', { 'event_category': 'Conta', 'event_label': ref });
+      openVendorModal(ref);
+    }
+
+    function renderCatalog(list) {
+      const container = document.getElementById('catalog-container');
+      container.innerHTML = '';
+
+      const activeAccounts = accounts.filter(acc => !acc.vendida || !isOlderThanTwoWeeks(acc.dataVendida));
+      const badge = document.getElementById('filter-count-badge');
+      if (list.length === activeAccounts.length) {
+        badge.innerText = `(Exibindo todas as ${list.length} contas)`;
+      } else {
+        badge.innerText = `(${list.length} conta${list.length === 1 ? '' : 's'} encontrada${list.length === 1 ? '' : 's'})`;
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color: #94a3b8; padding: 30px;">Nenhuma conta cadastrada ou encontrada com os filtros selecionados.</p>';
+      } else {
+        list.forEach(acc => {
+          container.innerHTML += renderCardHTML(acc);
+        });
+      }
+
+      renderSoldSection();
+    }
+
+    function renderSoldSection() {
       const soldContainer = document.getElementById('sold-container');
       const soldCard = document.getElementById('sold-card');
       soldContainer.innerHTML = '';
 
-      const soldAccounts = accounts.filter(acc => acc.vendida);
+      const soldAccounts = accounts.filter(acc => acc.vendida && isOlderThanTwoWeeks(acc.dataVendida));
+      const soldCountBadge = document.getElementById('sold-count-badge');
 
       if (soldAccounts.length > 0) {
         soldCard.style.display = 'block';
-        document.getElementById('sold-count-badge').innerText = `(${soldAccounts.length})`;
+        soldCountBadge.innerText = `(${soldAccounts.length} conta${soldAccounts.length === 1 ? '' : 's'} vendida${soldAccounts.length === 1 ? '' : 's'})`;
         soldAccounts.forEach(acc => {
-          soldContainer.appendChild(createCardElement(acc));
+          soldContainer.innerHTML += renderCardHTML(acc);
         });
       } else {
         soldCard.style.display = 'none';
       }
+    }
+
+    function applyFilters() {
+      const filtered = getFilteredAccounts();
+      renderCatalog(filtered);
     }
 
     function clearFilters() {
@@ -3981,49 +3821,47 @@
       document.getElementById('price-max').value = '';
       document.getElementById('sort-order').value = 'desc';
       
-      document.querySelectorAll('.checkbox-grid input').forEach(cb => cb.checked = false);
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
       
-      activeTypes = ['all'];
-      const container = document.getElementById('type-tags-box');
-      container.querySelectorAll('.type-tag').forEach(t => {
-        if (t.dataset.type === 'all') t.classList.add('active');
-        else t.classList.remove('active');
+      selectedTypes = ['all'];
+      document.querySelectorAll('.type-tag').forEach(tag => {
+        if (tag.getAttribute('data-type') === 'all') tag.classList.add('active');
+        else tag.classList.remove('active');
       });
 
       applyFilters();
     }
 
-    function toggleFilterPanel() {
-      document.getElementById('filter-card').classList.toggle('open');
-    }
-
-    function toggleSoldPanel() {
-      document.getElementById('sold-card').classList.toggle('open');
-    }
-
-    function toggleDrawer() {
-      document.getElementById('whatsapp-drawer').classList.toggle('open');
-    }
-
-    let selectedAccountRef = null;
-
-    function trackAndOpenModal(ref) {
-      selectedAccountRef = ref;
-      gtag('event', 'clique_comprar', { 'event_category': 'Conversao', 'event_label': ref });
-      
+    function openVendorModal(ref) {
+      currentRefForModal = ref;
       const vendorList = document.getElementById('vendor-list');
       vendorList.innerHTML = '';
 
+      const acc = accounts.find(a => a.ref === ref);
+      const directLink = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
+      
+      let detalhesConta = acc ? `👑 *${acc.ref}* - ${acc.stats}\n💰 *Valor Total:* R$ ${acc.priceTotal.toLocaleString('pt-BR')} *(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})*\n` : `👑 *${ref}*\n`;
+
       VENDEDORES.forEach(v => {
-        const msg = encodeURIComponent(`Olá ${v.nome}! Tenho interesse na conta ${ref} anunciada no catálogo da Stark Games.`);
-        const link = `https://api.whatsapp.com/send?phone=${v.numero}&text=${msg}`;
+        const textoMensagem = 
+          `🦁 *STARK GAMES - COMPRA DE CONTA* 🦁\n` +
+          `━━━━━━━━━━━━━━━━━━━━━━\n` +
+          `👋 Olá *${v.nome}*! Tenho interesse em fechar negócio nesta conta:\n\n` +
+          detalhesConta + `\n` +
+          `🔗 *Link do Anúncio:* ${directLink}\n` +
+          `📁 *Link das Fotos:* ${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
+          `━━━━━━━━━━━━━━━━━━━━━━\n` +
+          `🚀 _A aguardar atendimento!_`;
+        
+        const url = `https://wa.me/${v.numero}?text=` + encodeURIComponent(textoMensagem);
+        const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
         
         vendorList.innerHTML += `
-          <a href="${link}" target="_blank" class="vendor-card" onclick="closeVendorModal()">
-            <img src="${v.foto}" alt="${v.nome}" class="vendor-avatar" onerror="this.src='https://via.placeholder.com/40'">
+          <a href="${url}" target="_blank" class="vendor-card" onclick="gtag('event', 'escolha_vendedor', { 'event_category': 'Vendedor', 'event_label': '${v.nome} - ${ref}' });">
+            <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='${fallbackAvatar}'">
             <div class="vendor-info">
               <div class="vendor-name">${v.nome}</div>
-              <div class="vendor-status">Online agora</div>
+              <div class="vendor-status">Atendimento Online</div>
             </div>
           </a>
         `;
@@ -4035,35 +3873,11 @@
     function closeVendorModal() {
       document.getElementById('vendor-modal').style.display = 'none';
     }
-function renderSoldAccounts() {
-      const soldContainer = document.getElementById('sold-container');
-      const soldCard = document.getElementById('sold-card');
-      if (!soldContainer || !soldCard) return;
-      
-      soldContainer.innerHTML = '';
-
-      const soldAccounts = accounts.filter(acc => acc.vendida);
-
-      if (soldAccounts.length > 0) {
-        soldCard.style.display = 'block';
-        const badge = document.getElementById('sold-count-badge');
-        if (badge) badge.innerText = `(${soldAccounts.length})`;
-        soldAccounts.forEach(acc => {
-          soldContainer.appendChild(createCardElement(acc));
-        });
-      } else {
-        soldCard.style.display = 'none';
-      }
-    }
 
     function shareAccount(ref) {
       const acc = accounts.find(a => a.ref === ref);
-      const shareUrl = window.location.href.split('#')[0] + '#' + ref.replace(/\s+/g, '-');
-      
-      let detalhesLista = '';
-      if (acc && acc.details) {
-        detalhesLista = acc.details.map(d => `• ${d}`).join('\n');
-      }
+      const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
+      let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
 
       const textoShare = 
         `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
@@ -4085,17 +3899,15 @@ function renderSoldAccounts() {
       window.open(whatsappShareUrl, '_blank');
     }
 
-    // INICIALIZADOR DA PÁGINA
     window.addEventListener('DOMContentLoaded', () => {
       updateFeaturedRefs();
       updatePromoRefs();
       applyFilters();
       renderFeatured();
       renderPromoCarrossel();
-      renderSoldAccounts();
       resetFeaturedTimer();
       resetPromoTimer();
     });
-</script>
+  </script>
 </body>
 </html>
