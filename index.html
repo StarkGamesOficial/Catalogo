@@ -3745,7 +3745,7 @@ function updateFeaturedRefs() {
       return diffDays > 14;
     }
 
-    function getFilteredAccounts() {
+   function getFilteredAccounts() {
       const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
       const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
       const sortOrder = document.getElementById('sort-order').value;
@@ -3754,7 +3754,9 @@ function updateFeaturedRefs() {
       const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
 
       let filtered = accounts.filter(acc => {
+        // Se estiver vendida MAS já passou de 15 dias, esconde do catálogo principal (vai para o histórico)
         if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
+
         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
 
         if (!selectedTypes.includes('all')) {
@@ -3783,7 +3785,6 @@ function updateFeaturedRefs() {
 
       return filtered;
     }
-
     function renderCardHTML(acc) {
       const soldClass = acc.vendida ? 'sold' : '';
       const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
