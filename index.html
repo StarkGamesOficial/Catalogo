@@ -512,6 +512,15 @@ header {
 .stark-image-close{position:absolute;right:20px;top:15px;background:#1e293b;color:white;border:1px solid #64748b;border-radius:8px;padding:9px 15px;font-size:22px;cursor:pointer}
 .preview-open{overflow:hidden}
 @media(max-width:600px){.catalog{grid-template-columns:minmax(0,1fr);gap:20px}.catalog-toolbar{padding:12px}.catalog-toolbar input{flex-basis:100%}.card-body{padding:14px}.details-list li{font-size:.85rem}.actions .btn{font-size:.73rem;padding:10px 3px}}
+
+/* Comparador Stark Games */
+.compare-add{margin-top:10px;width:100%;background:#172338;color:#fbbf24;border:1px solid #b88624;border-radius:8px;padding:11px;cursor:pointer;font-weight:700}
+.compare-add[aria-pressed="true"]{background:#14532d;color:white;border-color:#22c55e}
+.compare-bar{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:9000;background:#111827;border:1px solid #f59e0b;border-radius:12px;padding:12px;display:none;align-items:center;gap:12px;box-shadow:0 8px 30px #000b;max-width:calc(100vw - 24px);flex-wrap:wrap;justify-content:center}
+.compare-bar.visible{display:flex}.compare-bar button,.compare-dialog button{border:1px solid #f59e0b;background:#263244;color:white;padding:9px 12px;border-radius:8px;cursor:pointer}.compare-bar button.primary{background:#d97706;color:#111827;font-weight:800}.compare-bar button:disabled{opacity:.45;cursor:not-allowed}
+.compare-overlay{display:none;position:fixed;inset:0;z-index:11000;background:#000c;align-items:center;justify-content:center;padding:14px}.compare-overlay.visible{display:flex}
+.compare-dialog{position:relative;background:#111827;color:#f8fafc;border:2px solid #f59e0b;border-radius:14px;padding:20px;width:min(1050px,100%);max-height:92vh;overflow:auto}.compare-dialog h2{color:#fbbf24;margin-bottom:14px}.compare-table-wrap{overflow-x:auto}.compare-table{width:100%;border-collapse:collapse;min-width:570px}.compare-table th,.compare-table td{padding:10px;border:1px solid #334155;text-align:left;vertical-align:top;min-width:140px}.compare-table th:first-child{min-width:110px}.compare-table img{width:110px;max-height:115px;object-fit:contain}.compare-table a{color:#fbbf24}.compare-close{float:right}.compare-dialog .compare-buy{background:#16a34a;border:0;margin-top:6px}.compare-dialog .compare-remove{background:#7f1d1d;border:0;margin-top:6px}
+@media(max-width:600px){.compare-dialog{padding:12px}.compare-bar{bottom:6px;font-size:.85rem}}
 </style>
 </head>
 <body>
@@ -3883,6 +3892,7 @@ function getFilteredAccounts() {
               ${buyButtonHtml}
               <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
             </div>
+            ${acc.vendida ? '' : `<button type="button" class="compare-add" data-compare-ref="${acc.ref}" aria-pressed="false" onclick="toggleCompare(this.dataset.compareRef)">⚖️ Comparar conta</button>`}
           </div>
         </div>
       `;
@@ -3913,6 +3923,7 @@ function getFilteredAccounts() {
       }
 
       renderSoldSection();
+      syncCompareButtons();
     }
 
     function renderSoldSection() {
@@ -4068,6 +4079,59 @@ function getFilteredAccounts() {
       document.body.classList.remove('preview-open');
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeImagePreview(); });
+  </script>
+
+  <div id="compare-bar" class="compare-bar" aria-live="polite"><strong id="compare-count">0 de 3 contas</strong><button type="button" class="primary" id="compare-open" onclick="openCompare()">⚖️ Comparar</button><button type="button" onclick="clearCompare()">Limpar</button></div>
+  <div id="compare-overlay" class="compare-overlay" role="dialog" aria-modal="true" aria-labelledby="compare-heading" onclick="if(event.target===this)closeCompare()">
+    <div class="compare-dialog"><button type="button" class="compare-close" onclick="closeCompare()" aria-label="Fechar comparação">✕ Fechar</button><h2 id="compare-heading">⚖️ Comparar contas</h2><div class="compare-table-wrap" id="compare-content"></div></div>
+  </div>
+  <script>
+    const comparedRefs = [];
+    function toggleCompare(ref) {
+      const acc = accounts.find(a => a.ref === ref && !a.vendida);
+      if (!acc) return;
+      const i = comparedRefs.indexOf(ref);
+      if (i !== -1) comparedRefs.splice(i, 1);
+      else if (comparedRefs.length < 3) comparedRefs.push(ref);
+      else { alert('Você pode comparar no máximo 3 contas.'); return; }
+      syncCompareButtons();
+      if (document.getElementById('compare-overlay').classList.contains('visible')) renderCompare();
+    }
+    function syncCompareButtons() {
+      document.querySelectorAll('[data-compare-ref]').forEach(btn => {
+        const on = comparedRefs.includes(btn.dataset.compareRef);
+        btn.setAttribute('aria-pressed', String(on));
+        btn.textContent = on ? '✓ Selecionada para comparação' : '⚖️ Comparar conta';
+      });
+      document.getElementById('compare-count').textContent = `${comparedRefs.length} de 3 contas`;
+      document.getElementById('compare-open').disabled = comparedRefs.length < 2;
+      document.getElementById('compare-bar').classList.toggle('visible', comparedRefs.length > 0);
+    }
+    function clearCompare() { comparedRefs.length = 0; syncCompareButtons(); closeCompare(); }
+    function openCompare() { if (comparedRefs.length < 2) return; renderCompare(); document.getElementById('compare-overlay').classList.add('visible'); }
+    function closeCompare() { document.getElementById('compare-overlay').classList.remove('visible'); }
+    function compareSafe(value) { return String(value ?? 'Não informado').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function renderCompare() {
+      const selected = comparedRefs.map(ref => accounts.find(a => a.ref === ref && !a.vendida)).filter(Boolean);
+      if (selected.length < 2) { closeCompare(); return; }
+      const money = n => 'R$ ' + Number(n).toLocaleString('pt-BR');
+      const row = (title, fn) => `<tr><th scope="row">${title}</th>${selected.map(a=>`<td>${fn(a)}</td>`).join('')}</tr>`;
+      const minPrice = Math.min(...selected.map(a => a.priceTotal));
+      const html = `<table class="compare-table"><thead><tr><th scope="col">Informação</th>${selected.map(a=>`<th scope="col">${compareSafe(a.ref)}</th>`).join('')}</tr></thead><tbody>`+
+        row('Imagem', a => `<img src="${compareSafe(a.imgUrl)}" alt="${compareSafe(a.ref)}" loading="lazy">`)+
+        row('Preço', a => `<strong>${money(a.priceTotal)}</strong>${a.priceTotal===minPrice?' 🏷️ Menor preço':''}`)+
+        row('Diferença', a => a.priceTotal===minPrice?'Menor preço':'+'+money(a.priceTotal-minPrice))+
+        row('Entrada', a => money(a.priceEntry))+
+        row('Atributos', a => compareSafe(a.stats))+
+        row('Detalhes', a => `<ul style="padding-left:16px">${(a.details||[]).map(d=>`<li>${compareSafe(d)}</li>`).join('')}</ul>`)+
+        row('Fotos', a => `<a href="${compareSafe(a.driveUrl || '#')}" target="_blank" rel="noopener noreferrer">Ver fotos</a>`)+
+        row('Ações', a => `<button class="compare-buy" type="button" data-buy-ref="${compareSafe(a.ref)}">💬 Comprar</button> <button class="compare-remove" type="button" data-remove-ref="${compareSafe(a.ref)}">Remover</button>`)+
+        '</tbody></table>';
+      const root = document.getElementById('compare-content'); root.innerHTML = html;
+      root.querySelectorAll('[data-buy-ref]').forEach(b => b.addEventListener('click',()=>{closeCompare();trackAndOpenModal(b.dataset.buyRef)}));
+      root.querySelectorAll('[data-remove-ref]').forEach(b => b.addEventListener('click',()=>toggleCompare(b.dataset.removeRef)));
+    }
+    document.addEventListener('keydown', e => {if(e.key==='Escape')closeCompare();});
   </script>
 </body>
 </html>
