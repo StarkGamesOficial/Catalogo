@@ -339,6 +339,14 @@ header {
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
+    /* Novidades: identificação discreta, sem alterar a aparência original dos cards. */
+    .new-arrival-tag {
+      position: absolute; top: 12px; left: 12px; z-index: 5;
+      border: 1px solid #a7f3d0; border-radius: 18px;
+      background: linear-gradient(135deg, #047857, #059669);
+      color: #fff; font-weight: 900; font-size: .78rem;
+      padding: 5px 11px; box-shadow: 0 0 12px rgba(16,185,129,.5);
+    }
     .promo-badge-tag {
       position: absolute;
       top: 12px;
@@ -561,6 +569,13 @@ header {
 .cmp-advanced a {color:#fbbf24;font-weight:700;}
 .cmp-empty {background:#273449;padding:10px;border-radius:8px;margin-top:10px;color:#fde68a;font-size:12px;}
 @media(max-width:600px) {.compare-dialog {max-height:94dvh;padding:12px 9px;} .compare-dialog h2{font-size:19px;} .cmp-summary-grid {grid-template-columns:repeat(auto-fit,minmax(140px,1fr));} .cmp-advanced th:first-child{min-width:125px;max-width:135px;font-size:12px;} .cmp-advanced td{min-width:135px;font-size:12px;} .cmp-advanced td strong{font-size:12px;} .cmp-intro{padding:10px;} }
+
+/* Três condições comerciais de uma mesma conta, sem confundir à vista e entrada. */
+.stark-payment-plans{display:grid;gap:6px;margin:9px 0 2px;padding:10px 12px;border:1px solid #9d752d;border-radius:8px;background:#141c2b;font-size:.83rem;color:#e2e8f0;text-align:left}
+.stark-payment-plans .payment-plan{display:flex;flex-wrap:wrap;gap:3px 8px;justify-content:space-between;align-items:baseline}
+.stark-payment-plans .payment-plan strong{color:#fde68a}
+.stark-payment-plans .payment-plan small{color:#a9b9ce;flex-basis:100%}
+.stark-payment-plans .payment-plan + .payment-plan{padding-top:6px;border-top:1px solid #334155}
 </style>
 </head>
 <body>
@@ -716,6 +731,32 @@ header {
 
     const accounts = [
       // ================= CONTAS REVISADAS E ATUALIZADAS =================
+      // NOVO CARD — REF AB 104 (Forte & Fúria). Preços variam conforme a forma de pagamento.
+      {
+        ref: "REF AB 104",
+        stats: "⚡ Forte & Fúria | Individual 1060% | Tecelã 💛 | 6 Fams Pagos ⚡",
+        imgUrl: "REF AB 104.jpeg",
+        driveUrl: "https://photos.app.goo.gl/855ENHuK7kyobQg89",
+        priceTotal: 1200, // preço à vista, usado para ordenar e comparar
+        priceEntry: 300, // menor entrada disponível; plano próprio de R$ 2.200
+        paymentOptions: [
+          { label: "À vista", total: 1200, entry: null },
+          { label: "50% de entrada", total: 1600, entry: 800 },
+          { label: "Entrada de R$ 300", total: 2200, entry: 300 }
+        ],
+        oldPrice: 0,
+        dataPromo: "",
+        dataCadastro: "2026-10-21",
+        types: ["1000%"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "⚡ Individual 1060% (bônus bruto)",
+          "💛 Tecelã",
+          "🐉 6 Fams Pagos",
+          "🔥 Forte & Fúria"
+        ]
+      },
       {
         ref: "REF C 77",
         stats: "💥 IND 931/986/1118%FF | Champs 💛 + 25M Tropas + 2 FAM Full + 9/2 💥",
@@ -1097,8 +1138,8 @@ header {
         oldPrice: 0,
         dataPromo: "",
         types: ["1100%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
-        vendida: false,
-        dataVendida: "",
+        vendida: true,
+        dataVendida: "2026-10-21",
         details: [
           "🔥 IND 1193/1129/1159% FF",
           "🔥 16 Heróis 💛 (3 de WoW 💛)",
@@ -2020,23 +2061,30 @@ header {
           "🔥 Tropas Mágicas 1 💜"
         ]
       },
+      // ATUALIZAÇÃO DE PREÇO — REF AB 097 (Forte & Fúria).
+      // Redução real de R$ 5.000 para R$ 4.000 à vista: Ofertas por 14 dias.
       {
         ref: "REF AB 097",
-        stats: "✨ Ind 1200% | 2 Champs 🧡 + 3 Taças 🧡 + Wonder III ✨",
+        stats: "⚡ Forte & Fúria | Individual 1200% | 10 Heróis Pagos 💛 | 6 Fams Pagos Full Lv.10 ⚡",
         imgUrl: "REF AB 097.jpeg",
         driveUrl: "https://photos.app.goo.gl/PBLUB8tu4KGn4RmBA",
-        priceTotal: 5000,
-        priceEntry: 400,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["1200%", "2 champ", "skin_exercito"],
+        priceTotal: 4000, // preço à vista (para ordenação e comparação)
+        priceEntry: 600, // menor entrada disponível; plano no valor total de R$ 5.800
+        paymentOptions: [
+          { label: "À vista", total: 4000, entry: null },
+          { label: "50% de entrada", total: 4500, entry: 2250 },
+          { label: "Entrada de R$ 600", total: 5800, entry: 600 }
+        ],
+        oldPrice: 5000, // valor à vista anterior, já cadastrado no catálogo
+        dataPromo: "2026-10-21",
+        types: ["1200%"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 3 Taças 🧡 + 1 💛 / 2 Champs 🧡",
-          "🔥 10 Heróis Pagos 💛 / 6 Fams Pagos Full Lv.10",
-          "🔥 Full Pesquisas Pagas / Wonder 3 {80% Concluído}",
-          "🔥 Individual 1200% / 3 Skins de CT Exclusivas"
+          "⚡ Individual 1200% (Bônus Bruto)",
+          "💛 10 Heróis Pagos",
+          "🐉 6 Fams Pagos Full Lv.10",
+          "🔥 Forte & Fúria"
         ]
       },
       {
@@ -3602,55 +3650,99 @@ header {
     let featuredRefs = [];
     let promoRefs = [];
 
-// Verifica datas recentes sem interromper a inicialização do catálogo.
+// STARK GAMES — organização automática de Destaques e Ofertas.
+// CADASTRO NOVO: preencher dataCadastro: "AAAA-MM-DD" (3 dias em destaque).
+// REDUÇÃO DE PREÇO: atualizar priceTotal, registrar o preço anterior em oldPrice
+// e a data da redução em dataPromo: "AAAA-MM-DD" (14 dias em Ofertas).
+// Aumento ou preço mantido NÃO é oferta. Contas vendidas nunca aparecem aqui.
+const STARK_NEW_DAYS = 3;
+const STARK_OFFER_DAYS = 14;
+const STARK_FEATURED_LIMIT = 5;
+const STARK_FEATURED_ROTATION_MS = 3 * 60 * 60 * 1000;
+
+// Datas em dias corridos locais, para que uma oferta não expire no meio do dia.
+function starkDaysSince(dateString) {
+  if (typeof dateString !== 'string') return null;
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString.trim());
+  if (!match) return null;
+  const [year, month, day] = match.slice(1).map(Number);
+  const calendarDate = new Date(Date.UTC(year, month - 1, day));
+  if (calendarDate.getUTCFullYear() !== year || calendarDate.getUTCMonth() !== month - 1 || calendarDate.getUTCDate() !== day) return null;
+  const today = new Date();
+  const todayUTC = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+  return Math.round((todayUTC - calendarDate.getTime()) / 86400000);
+}
+
 function isWithinDays(dateString, days) {
-  if (!dateString) return false;
-  const date = new Date(dateString);
-  if (Number.isNaN(date.getTime())) return false;
-  const diff = Date.now() - date.getTime();
-  return diff >= 0 && diff <= days * 24 * 60 * 60 * 1000;
+  const elapsed = starkDaysSince(dateString);
+  return elapsed !== null && elapsed >= 0 && elapsed < days;
 }
 
-// --- LÓGICA DE DESTAQUES COM ROTAÇÃO DE 3 HORAS (ITEM 2) ---
+// Compatibilidade com o prazo de exibição das contas vendidas no histórico.
+function isOlderThanTwoWeeks(dateString) {
+  const elapsed = starkDaysSince(dateString);
+  return elapsed !== null && elapsed > 14;
+}
+
+function isActiveOffer(acc) {
+  return Boolean(acc && !acc.vendida &&
+    Number(acc.priceTotal) > 0 &&
+    Number(acc.oldPrice) > Number(acc.priceTotal) &&
+    isWithinDays(acc.dataPromo, STARK_OFFER_DAYS));
+}
+
+function isNewArrival(acc) {
+  return Boolean(acc && !acc.vendida && !isActiveOffer(acc) &&
+    isWithinDays(acc.dataCadastro, STARK_NEW_DAYS));
+}
+
 function updateFeaturedRefs() {
-  const activeAccs = accounts.filter(acc => !acc.vendida);
-  let recentAccs = activeAccs.filter(acc => isWithinDays(acc.dataCadastro, 3));
-  
-  if (recentAccs.length < 5) {
-    const now = new Date().getTime();
-    const storedTime = localStorage.getItem('stark_random_time');
-    let randomRefs = [];
-
-    // 10800000 ms = exatamente 3 horas
-    if (!storedTime || (now - parseInt(storedTime)) > 10800000) {
-      const remainingAccs = activeAccs.filter(acc => !recentAccs.includes(acc));
-      remainingAccs.sort(() => 0.5 - Math.random());
-      randomRefs = remainingAccs.slice(0, 5 - recentAccs.length).map(acc => acc.ref);
-      localStorage.setItem('stark_random_refs', JSON.stringify(randomRefs));
-      localStorage.setItem('stark_random_time', now.toString());
-    } else {
-      try {
-        randomRefs = JSON.parse(localStorage.getItem('stark_random_refs')) || [];
-      } catch(e) {
-        randomRefs = [];
-      }
+  // Uma conta em oferta pertence à aba Ofertas; não ocupa um espaço dos Destaques.
+  const eligible = accounts.filter(acc => !acc.vendida && !isActiveOffer(acc));
+  const newAccounts = eligible
+    .filter(isNewArrival)
+    .sort((a,b) => b.dataCadastro.localeCompare(a.dataCadastro));
+  const priority = newAccounts.slice(0, STARK_FEATURED_LIMIT);
+  const slotsLeft = STARK_FEATURED_LIMIT - priority.length;
+  const others = eligible.filter(acc => !priority.some(recent => recent.ref === acc.ref));
+  let chosenRefs = [];
+  const now = Date.now();
+  if (slotsLeft > 0) {
+    // Guarda a rotação por 3 horas e valida a lista se novas contas forem incluídas.
+    let storedRefs = [], storedAt = 0;
+    try {
+      storedRefs = JSON.parse(localStorage.getItem('stark_random_refs') || '[]');
+      storedAt = Number(localStorage.getItem('stark_random_time') || 0);
+    } catch (err) { storedRefs = []; }
+    const stillValid = Array.isArray(storedRefs) && storedAt > 0 &&
+      now - storedAt >= 0 && now - storedAt < STARK_FEATURED_ROTATION_MS;
+    const allowed = new Set(others.map(a => a.ref));
+    const existing = stillValid ? [...new Set(storedRefs.filter(ref => allowed.has(ref)))] : [];
+    const missing = slotsLeft - existing.length;
+    const remaining = others.filter(acc => !existing.includes(acc.ref));
+    // Fisher-Yates: seleção aleatória sem viés de sort(() => Math.random()).
+    for (let i = remaining.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
     }
-    
-    const randomAccObjects = activeAccs.filter(acc => randomRefs.includes(acc.ref));
-    featuredRefs = [...recentAccs, ...randomAccObjects].map(acc => acc.ref);
-  } else {
-    featuredRefs = recentAccs.map(acc => acc.ref);
+    chosenRefs = [...existing.slice(0, slotsLeft), ...remaining.slice(0, Math.max(0, missing)).map(a => a.ref)];
+    if (!stillValid || existing.length < slotsLeft) {
+      try {
+        localStorage.setItem('stark_random_refs', JSON.stringify(chosenRefs));
+        localStorage.setItem('stark_random_time', String(now));
+      } catch (err) { /* Página local ou armazenamento bloqueado: usa seleção da sessão. */ }
+    }
   }
-
-  if (featuredRefs.length === 0 && activeAccs.length > 0) {
-    featuredRefs = [activeAccs[0].ref];
-  }
+  featuredRefs = [...priority.map(a => a.ref), ...chosenRefs].slice(0, STARK_FEATURED_LIMIT);
+  currentFeaturedIndex = 0;
 }
 
-    function updatePromoRefs() {
-      const promoAccs = accounts.filter(acc => acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo));
-      promoRefs = promoAccs.map(acc => acc.ref);
-    }
+function updatePromoRefs() {
+  promoRefs = accounts.filter(isActiveOffer)
+    .sort((a,b) => b.dataPromo.localeCompare(a.dataPromo))
+    .map(acc => acc.ref);
+  currentPromoIndex = 0;
+}
 
     let currentFeaturedIndex = 0;
     let currentPromoIndex = 0;
@@ -3668,6 +3760,29 @@ function updateFeaturedRefs() {
 
     function toggleSoldPanel() {
       document.getElementById('sold-card').classList.toggle('open');
+    }
+
+    function renderPaymentPlanDetails(acc) {
+      if (!Array.isArray(acc.paymentOptions) || !acc.paymentOptions.length) {
+        return `<div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>`;
+      }
+      const fmt = value => Number(value).toLocaleString('pt-BR');
+      return `<div class="stark-payment-plans" aria-label="Condições de pagamento">` +
+        acc.paymentOptions.map(plan => {
+          const entrada = plan.entry == null ? 'Pagamento à vista' : `Entrada de R$ ${fmt(plan.entry)}`;
+          return `<div class="payment-plan"><strong>${plan.label}</strong><span>R$ ${fmt(plan.total)}</span><small>${entrada}</small></div>`;
+        }).join('') + `</div>`;
+    }
+
+    function paymentMessageText(acc) {
+      if (!acc) return '';
+      if (!Array.isArray(acc.paymentOptions) || !acc.paymentOptions.length) {
+        return `💰 *Valor Total:* R$ ${acc.priceTotal.toLocaleString('pt-BR')} *(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})*`;
+      }
+      return '💰 *CONDIÇÕES DE PAGAMENTO:*\n' + acc.paymentOptions.map(plan =>
+        `• ${plan.label}: R$ ${plan.total.toLocaleString('pt-BR')}` +
+        (plan.entry == null ? '' : ` (Entrada: R$ ${plan.entry.toLocaleString('pt-BR')})`)
+      ).join('\n');
     }
 
     function renderFeatured() {
@@ -3690,15 +3805,17 @@ function updateFeaturedRefs() {
         ? `<button class="btn btn-sold">🚫 Vendida</button>` 
         : `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
 
-      const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo);
+      const isPromo = isActiveOffer(acc);
       const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const newBadgeHtml = isNewArrival(acc) ? '<div class="new-arrival-tag">🆕 Nova conta</div>' : '';
       const priceDisplayHtml = isPromo 
-        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
-        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
+        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${acc.paymentOptions ? ' <small style="font-size:.5em;color:#fde68a">à vista</small>' : ''}</div>`
+        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${acc.paymentOptions ? ' <small style="font-size:.5em;color:#fde68a">à vista</small>' : ''}</div>`;
 
       container.innerHTML = `
         <div class="featured-img-box ${soldClass}">
           ${promoBadgeHtml}
+          ${newBadgeHtml}
           ${soldStampHtml}
           <img src="${acc.imgUrl}" alt="${acc.ref}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
         </div>
@@ -3708,7 +3825,7 @@ function updateFeaturedRefs() {
           <ul class="details-list">${detailsHtml}</ul>
           <div class="price-box">
             ${priceDisplayHtml}
-            <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+            ${renderPaymentPlanDetails(acc)}
           </div>
           <div class="actions">
             <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
@@ -3737,11 +3854,11 @@ function updateFeaturedRefs() {
       const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
       const buyButtonHtml = `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
 
-      const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo);
+      const isPromo = isActiveOffer(acc);
       const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
       const priceDisplayHtml = isPromo 
-        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
-        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
+        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${acc.paymentOptions ? ' <small style="font-size:.5em;color:#fde68a">à vista</small>' : ''}</div>`
+        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${acc.paymentOptions ? ' <small style="font-size:.5em;color:#fde68a">à vista</small>' : ''}</div>`;
 
       container.innerHTML = `
         <div class="featured-img-box">
@@ -3754,7 +3871,7 @@ function updateFeaturedRefs() {
           <ul class="details-list">${detailsHtml}</ul>
           <div class="price-box">
             ${priceDisplayHtml}
-            <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+            ${renderPaymentPlanDetails(acc)}
           </div>
           <div class="actions">
             <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
@@ -3839,14 +3956,7 @@ function updateFeaturedRefs() {
       applyFilters();
     }
 
-    function isOlderThanTwoWeeks(dateString) {
-      if (!dateString) return false;
-      const soldDate = new Date(dateString);
-      const today = new Date();
-      const diffTime = today - soldDate;
-      const diffDays = diffTime / (1000 * 60 * 60 * 24);
-      return diffDays > 14;
-    }
+
 function syncCatalogSearch(value) {
       document.getElementById('search-ref').value = value;
       applyFilters();
@@ -3905,15 +4015,17 @@ function getFilteredAccounts() {
 
       const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
       
-      const isPromo = acc.oldPrice && acc.oldPrice > acc.priceTotal && !acc.vendida && !isOlderThanTwoWeeks(acc.dataPromo);
+      const isPromo = isActiveOffer(acc);
       const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const newBadgeHtml = isNewArrival(acc) ? '<div class="new-arrival-tag">🆕 Nova conta</div>' : '';
       const priceDisplayHtml = isPromo 
-        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`
-        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}</div>`;
+        ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${acc.paymentOptions ? ' <small style="font-size:.5em;color:#fde68a">à vista</small>' : ''}</div>`
+        : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${acc.paymentOptions ? ' <small style="font-size:.5em;color:#fde68a">à vista</small>' : ''}</div>`;
 
       return `
         <div class="card ${soldClass}" id="${acc.ref.replace(/\s+/g, '-')}">
           ${promoBadgeHtml}
+          ${newBadgeHtml}
           <div class="card-stark-header">🦁 STARK GAMES 🦁</div>
           <div class="card-header-badge">${acc.stats}</div>
           <div class="card-img-container">
@@ -3925,7 +4037,7 @@ function getFilteredAccounts() {
             <ul class="details-list">${detailsHtml}</ul>
             <div class="price-box">
               ${priceDisplayHtml}
-              <div class="down-payment">Entrada de R$ ${acc.priceEntry.toLocaleString('pt-BR')}</div>
+              ${renderPaymentPlanDetails(acc)}
             </div>
             <div class="actions">
               <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
@@ -4018,7 +4130,7 @@ function getFilteredAccounts() {
       const acc = accounts.find(a => a.ref === ref);
       const directLink = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
       
-      let detalhesConta = acc ? `👑 *${acc.ref}* - ${acc.stats}\n💰 *Valor Total:* R$ ${acc.priceTotal.toLocaleString('pt-BR')} *(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})*\n` : `👑 *${ref}*\n`;
+      let detalhesConta = acc ? `👑 *${acc.ref}* - ${acc.stats}\n${paymentMessageText(acc)}\n` : `👑 *${ref}*\n`;
 
       VENDEDORES.forEach(v => {
         const textoMensagem = 
@@ -4064,8 +4176,7 @@ function getFilteredAccounts() {
         `📊 *Status:* ${acc ? acc.stats : ''}\n\n` +
         `📋 *DETALHES DA CONTA:*\n` +
         detalhesLista + `\n\n` +
-        `💰 *Valor Total:* R$ ${acc ? acc.priceTotal.toLocaleString('pt-BR') : ''}\n` +
-        `💳 *Valor da Entrada:* R$ ${acc ? acc.priceEntry.toLocaleString('pt-BR') : ''}\n\n` +
+        (acc ? paymentMessageText(acc) : '') + `\n\n` +
         `🔗 *Link Direto no Catálogo:*\n${shareUrl}\n` +
         `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
         `━━━━━━━━━━━━━━━━━━━━━━\n` +
@@ -4325,7 +4436,13 @@ function getFilteredAccounts() {
       let body = '';
       body += section('💰 Valores e economia');
       body += numberRow('Valor Total',m=>compareNumeric(m.acc.priceTotal),'money',true);
-      body += numberRow('Entrada',m=>compareNumeric(m.acc.priceEntry),'money',true);
+      body += numberRow('Menor entrada',m=>compareNumeric(m.acc.priceEntry),'money',true);
+      if (models.some(m=>Array.isArray(m.acc.paymentOptions))) {
+        body += `<tr><th scope="row">Planos de pagamento</th>${models.map(m=>{
+          if (!Array.isArray(m.acc.paymentOptions)) return `<td class="cmp-unknown">Condição padrão do anúncio</td>`;
+          return `<td class="cmp-description">${m.acc.paymentOptions.map(plan=>`${escape(plan.label)}: ${escape(safeMoney(plan.total))}` + (plan.entry == null ? '' : ` (entrada ${escape(safeMoney(plan.entry))})`)).join('<br>')}</td>`;
+        }).join('')}</tr>`;
+      }
       body += section('⚔️ Bônus e atributos');
       body += numberRow('Ataque (ATK)',m=>m.atk,'pp');
       body += singleBonusRow('Bônus Bruto',m=>m.bruto);
@@ -4384,7 +4501,7 @@ function getFilteredAccounts() {
       const html = `
         <div class="cmp-intro"><p>Veja as diferenças reais entre 2 ou 3 contas. <strong class="cmp-green-text">Verde</strong> = melhor valor/recurso informado; <strong class="cmp-red-text">vermelho</strong> = menor valor ou ausência confirmada; cinza = empate ou não informado.</p><label class="cmp-toggle"><input type="checkbox" id="cmp-only-diffs" ${compareOnlyDifferences?'checked':''} onchange="setCompareDifferences(this.checked)"> Mostrar apenas diferenças</label></div>
         <div class="cmp-summary"><h3>🏆 Diferenciais de cada conta</h3><div class="cmp-summary-grid">${summaries}</div></div>
-        <p class="cmp-explain">Diferenças de bônus expressas em pontos percentuais (p.p.) e em percentual relativo; tropas em milhões (M). Um único valor IND ou de falange aparece como Bônus Bruto, pois não indica qual falange foi usada. O símbolo ≥ indica valor mínimo, sem comparação de vantagem. Os números só recebem classificação quando todas as contas têm o dado correspondente. Ausência de menção a uma skin <strong>não significa</strong> que ela não exista.</p>
+        <p class="cmp-explain">Diferenças de bônus expressas em pontos percentuais (p.p.) e em percentual relativo; tropas em milhões (M). Um único valor IND ou de falange aparece como Bônus Bruto, pois não indica qual falange foi usada. O símbolo ≥ indica valor mínimo, sem comparação de vantagem. Para contas com diferentes planos, Valor Total considera o preço à vista, enquanto Menor entrada pode pertencer a outro plano de valor total diferente. Os números só recebem classificação quando todas as contas têm o dado correspondente. Ausência de menção a uma skin <strong>não significa</strong> que ela não exista.</p>
         <div class="cmp-table-scroll"><table class="compare-table cmp-advanced"><thead><tr><th scope="col">Indicador</th>${models.map(m=>`<th scope="col"><img class="cmp-account-photo" src="${escape(m.acc.imgUrl)}" alt="Imagem da ${escape(m.acc.ref)}" loading="lazy" onclick="openImagePreview(this)" title="Ampliar imagem"><span>${escape(m.acc.ref)}</span></th>`).join('')}</tr></thead><tbody>${body}${bottomRows}</tbody></table></div>
         ${compareOnlyDifferences && !rendered?'<p class="cmp-empty">Não há diferenças numéricas ou de recursos confirmadas entre essas contas nos campos identificáveis.</p>':''}`;
       const root = document.getElementById('compare-content');
