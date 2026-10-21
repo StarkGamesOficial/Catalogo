@@ -4173,8 +4173,21 @@ function getFilteredAccounts() {
       return [acc.stats || '', ...(Array.isArray(acc.details) ? acc.details : [])].join(' | ');
     }
     function compareParseTriplet(text, label) {
-      const match = text.match(new RegExp('\\b' + label + '\\s*[:=-]?\\s*(\\d{3,4})\\s*[/|]\\s*(\\d{3,4})\\s*[/|]\\s*(\\d{3,4})(?=\\s*%|\\s*FF|\\s*F\\b|\\b)', 'i'));
+      // A ordem do anúncio é sempre Infantaria / Arqueiros / Cavalaria.
+      // Aceita tanto IND 1200/1100/1150% quanto IND 1200% / 1100% / 1150%.
+      const match = text.match(new RegExp('\\b' + label + '\\s*[:=-]?\\s*(\\d{3,4})\\s*%?\\s*[/|]\\s*(\\d{3,4})\\s*%?\\s*[/|]\\s*(\\d{3,4})(?=\\s*%|\\s*FF|\\s*F\\b|\\b)', 'i'));
       return match ? [Number(match[1]), Number(match[2]), Number(match[3])] : null;
+    }
+    function compareParseSingleBonus(text, label, triplet) {
+      // Um único valor IND/Falange NÃO identifica a falange; é Bônus Bruto.
+      // Se houver trio IND ou MIX, os três valores são analisados separadamente.
+      if (triplet) return null;
+      const prefix = label === 'ind'
+        ? '(?:IND(?:IVIDUAL)?|(?:1\\s+)?FALANGES?|B[OÔ]NUS(?:\\s+(?:BRUTO|GERAL|M[ÁA]XIMO))?)'
+        : 'MIX';
+      const rx = new RegExp('\\b' + prefix + '\\s*[:=-]?\\s*(\\d{3,4})\\s*%(\\s*\\+)?', 'i');
+      const match = text.match(rx);
+      return match ? {value:Number(match[1]), minimum:!!match[2]} : null;
     }
     function compareParseCount(text, word) {
       // Exemplos: 25M de Tropas, 6.3M T4, 5M T5. Não inferir "T5 desbloqueada" como 5M.
@@ -4215,8 +4228,9 @@ function getFilteredAccounts() {
       const text = compareDescription(acc);
       const ind = compareParseTriplet(text, 'IND');
       const mix = compareParseTriplet(text, 'MIX');
+      const bruto = compareParseSingleBonus(text, 'ind', ind);
+      const mixUnico = compareParseSingleBonus(text, 'mix', mix);
       const atk = text.match(/\b(?:atk|ataque)\s*(?:geral\s*)?[:=-]?\s*(\d{3,4})\s*%/i);
-      const bonus = text.match(/\bb[oô]nus\s*(?:max(?:imo)?|m[aá]x(?:imo)?|geral)?\s*[:=-]?\s*(\d{3,4})\s*%/i);
       const inf = text.match(/\b(?:b[oô]nus\s*)?inf(?:antaria)?\s*[:=-]?\s*(\d{3,4})\s*%/i);
       const cav = text.match(/\b(?:b[oô]nus\s*)?cav(?:alaria)?\s*[:=-]?\s*(\d{3,4})\s*%/i);
       const arq = text.match(/\b(?:b[oô]nus\s*)?arq(?:ueiros)?\s*[:=-]?\s*(\d{3,4})\s*%/i);
@@ -4225,8 +4239,7 @@ function getFilteredAccounts() {
       const unlockedT5 = /\bT5\s*(?:desbloquead[ao]s?|liberad[ao]s?)\b/i.test(text);
       const types = Array.isArray(acc.types) ? acc.types : [];
       return {
-        acc, ind, mix, atk:atk ? Number(atk[1]) : null,
-        bonus:bonus ? Number(bonus[1]) : null,
+        acc, ind, mix, bruto, mixUnico, atk:atk ? Number(atk[1]) : null,
         inf:inf ? Number(inf[1]) : null, cav:cav ? Number(cav[1]) : null, arq:arq ? Number(arq[1]) : null,
         troops:compareParseCount(text,'total'), t4:compareParseCount(text,'T4'),t5:compareParseCount(text,'T5'),
         champs, unlockedT5,
@@ -4278,6 +4291,25 @@ function getFilteredAccounts() {
         rendered++;
         return `<tr><th scope="row">${escape(title)}</th>${cells}</tr>`;
       }
+      function singleBonusRow(title, getter) {
+        const states = models.map(getter);
+        if (!states.some(Boolean)) return '';
+        const signatures = states.map(x=>x ? `${x.value}${x.minimum?'+':''}` : 'Não informado');
+        if (compareOnlyDifferences && new Set(signatures).size <= 1) return '';
+        // Valores com "+" são limites mínimos, não valores exatos.
+        const comparable = states.every(x=>x && !x.minimum);
+        const nums = comparable ? states.map(x=>x.value) : [];
+        const cells = states.map(st=>{
+          const value = st?.value;
+          const state = comparable ? compareSign(value,nums,false) : 'unknown';
+          const shown = !st ? 'Não informado' : `${st.minimum?'≥ ':''}${cmpFormatter.format(value)}%`;
+          const hint = comparable && new Set(nums).size > 1 ? compareDiffText(value,nums,false,'pp') : '';
+          const icon = state==='best'?'▲ ':state==='worst'?'▼ ':'';
+          return `<td class="cmp-${state}"><strong>${icon}${escape(shown)}</strong>${hint}</td>`;
+        }).join('');
+        rendered++;
+        return `<tr><th scope="row">${escape(title)}</th>${cells}</tr>`;
+      }
       function statusRow(title, getter) {
         const states = models.map(m=>getter(m));
         const unique = new Set(states.map(x=>x.status));
@@ -4292,16 +4324,19 @@ function getFilteredAccounts() {
       }
       let body = '';
       body += section('💰 Valores e economia');
-      body += numberRow('Preço à vista',m=>compareNumeric(m.acc.priceTotal),'money',true);
+      body += numberRow('Valor Total',m=>compareNumeric(m.acc.priceTotal),'money',true);
       body += numberRow('Entrada',m=>compareNumeric(m.acc.priceEntry),'money',true);
       body += section('⚔️ Bônus e atributos');
       body += numberRow('Ataque (ATK)',m=>m.atk,'pp');
-      body += numberRow('Bônus informado',m=>m.bonus,'pp');
+      body += singleBonusRow('Bônus Bruto',m=>m.bruto);
+      body += singleBonusRow('Bônus MIX (valor único)',m=>m.mixUnico);
       body += numberRow('Bônus Infantaria',m=>m.inf,'pp');
-      body += numberRow('Bônus Cavalaria',m=>m.cav,'pp');
       body += numberRow('Bônus Arqueiros',m=>m.arq,'pp');
-      for (let i=0;i<3;i++) body += numberRow('IND ' + (i+1) + 'º bônus', m=>m.ind?.[i] ?? null,'pp');
-      for (let i=0;i<3;i++) body += numberRow('MIX ' + (i+1) + 'º bônus', m=>m.mix?.[i] ?? null,'pp');
+      body += numberRow('Bônus Cavalaria',m=>m.cav,'pp');
+      const indLabels = ['IND Infantaria', 'IND Arqueiros', 'IND Cavalaria'];
+      for (let i=0;i<3;i++) body += numberRow(indLabels[i], m=>m.ind?.[i] ?? null,'pp');
+      const mixLabels = ['MIX Infantaria', 'MIX Arqueiros', 'MIX Cavalaria'];
+      for (let i=0;i<3;i++) body += numberRow(mixLabels[i], m=>m.mix?.[i] ?? null,'pp');
       body += section('🛡️ Tropas e Champs');
       body += numberRow('Total de tropas',m=>m.troops,'million');
       body += numberRow('Tropas T4',m=>m.t4,'million');
@@ -4318,10 +4353,7 @@ function getFilteredAccounts() {
       body += section('✨ Skins e recursos');
       body += statusRow('Skin de Líder',m=>m.skins.lider);
       body += statusRow('Skin de Exército',m=>m.skins.exercito);
-      body += statusRow('Skin de Castelo',m=>m.skins.castelo);
-      body += statusRow('T5 desbloqueada',m=>({status:m.unlockedT5?'yes':'unknown',label:m.unlockedT5?'Confirmado':'Não informado'}));
       body += statusRow('Tropas mágicas / Mana',m=>({status:m.mana?'yes':'unknown',label:m.mana?'Mencionado':'Não informado'}));
-      body += statusRow('Familiares pagos ou full',m=>({status:m.familias?'yes':'unknown',label:m.familias?'Mencionado':'Não informado'}));
       // Resumo só faz afirmações respaldadas pelas informações dos anúncios.
       const summaries = models.map((m,i)=>{
         const points=[];
@@ -4334,11 +4366,12 @@ function getFilteredAccounts() {
         };
         getBest('Menor preço', x=>Number(x.acc.priceTotal),true);
         getBest('Maior ATK',x=>x.atk);
+        if (models.every(x=>x.bruto && !x.bruto.minimum)) getBest('Maior Bônus Bruto',x=>x.bruto.value);
         getBest('Mais tropas',x=>x.troops);
         getBest('Mais tropas T4',x=>x.t4);
         getBest('Mais tropas T5',x=>x.t5);
         if (exactChamps) getBest('Mais Champs',x=>x.champs.value);
-        for (const [key,name] of [['lider','Skin de Líder'],['exercito','Skin de Exército'],['castelo','Skin de Castelo']]) {
+        for (const [key,name] of [['lider','Skin de Líder'],['exercito','Skin de Exército']]) {
           if (m.skins[key].status === 'yes' && models.some((x,j)=>j!==i && x.skins[key].status!=='yes'))
             points.push(name + ' confirmada');
         }
@@ -4351,7 +4384,7 @@ function getFilteredAccounts() {
       const html = `
         <div class="cmp-intro"><p>Veja as diferenças reais entre 2 ou 3 contas. <strong class="cmp-green-text">Verde</strong> = melhor valor/recurso informado; <strong class="cmp-red-text">vermelho</strong> = menor valor ou ausência confirmada; cinza = empate ou não informado.</p><label class="cmp-toggle"><input type="checkbox" id="cmp-only-diffs" ${compareOnlyDifferences?'checked':''} onchange="setCompareDifferences(this.checked)"> Mostrar apenas diferenças</label></div>
         <div class="cmp-summary"><h3>🏆 Diferenciais de cada conta</h3><div class="cmp-summary-grid">${summaries}</div></div>
-        <p class="cmp-explain">Diferenças de bônus expressas em pontos percentuais (p.p.) e em percentual relativo; tropas em milhões (M). Os números só recebem classificação quando todas as contas têm o dado correspondente. Ausência de menção a uma skin <strong>não significa</strong> que ela não exista.</p>
+        <p class="cmp-explain">Diferenças de bônus expressas em pontos percentuais (p.p.) e em percentual relativo; tropas em milhões (M). Um único valor IND ou de falange aparece como Bônus Bruto, pois não indica qual falange foi usada. O símbolo ≥ indica valor mínimo, sem comparação de vantagem. Os números só recebem classificação quando todas as contas têm o dado correspondente. Ausência de menção a uma skin <strong>não significa</strong> que ela não exista.</p>
         <div class="cmp-table-scroll"><table class="compare-table cmp-advanced"><thead><tr><th scope="col">Indicador</th>${models.map(m=>`<th scope="col"><img class="cmp-account-photo" src="${escape(m.acc.imgUrl)}" alt="Imagem da ${escape(m.acc.ref)}" loading="lazy" onclick="openImagePreview(this)" title="Ampliar imagem"><span>${escape(m.acc.ref)}</span></th>`).join('')}</tr></thead><tbody>${body}${bottomRows}</tbody></table></div>
         ${compareOnlyDifferences && !rendered?'<p class="cmp-empty">Não há diferenças numéricas ou de recursos confirmadas entre essas contas nos campos identificáveis.</p>':''}`;
       const root = document.getElementById('compare-content');
