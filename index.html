@@ -3508,12 +3508,19 @@ header {
     let featuredRefs = [];
     let promoRefs = [];
 
+// Verifica datas recentes sem interromper a inicialização do catálogo.
+function isWithinDays(dateString, days) {
+  if (!dateString) return false;
+  const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return false;
+  const diff = Date.now() - date.getTime();
+  return diff >= 0 && diff <= days * 24 * 60 * 60 * 1000;
+}
+
 // --- LÓGICA DE DESTAQUES COM ROTAÇÃO DE 3 HORAS (ITEM 2) ---
 function updateFeaturedRefs() {
   const activeAccs = accounts.filter(acc => !acc.vendida);
-  
-  // Seleciona contas recentes (com data de promoção recente ou cadastradas recentemente, se houver)
-  let recentAccs = activeAccs.filter(acc => acc.dataPromo && !isOlderThanTwoWeeks(acc.dataPromo));
+  let recentAccs = activeAccs.filter(acc => isWithinDays(acc.dataCadastro, 3));
   
   if (recentAccs.length < 5) {
     const now = new Date().getTime();
