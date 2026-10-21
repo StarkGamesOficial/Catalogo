@@ -3511,7 +3511,9 @@ header {
 // --- LÓGICA DE DESTAQUES COM ROTAÇÃO DE 3 HORAS (ITEM 2) ---
 function updateFeaturedRefs() {
   const activeAccs = accounts.filter(acc => !acc.vendida);
-  let recentAccs = activeAccs.filter(acc => isWithinDays(acc.dataCadastro, 3));
+  
+  // Seleciona contas recentes (com data de promoção recente ou cadastradas recentemente, se houver)
+  let recentAccs = activeAccs.filter(acc => acc.dataPromo && !isOlderThanTwoWeeks(acc.dataPromo));
   
   if (recentAccs.length < 5) {
     const now = new Date().getTime();
