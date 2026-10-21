@@ -481,7 +481,38 @@ header {
     .vendor-status::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block; }
     .btn-close-modal { margin-top: 15px; background: transparent; border: 1px solid #334155; color: #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
     .btn-close-modal:hover { background: #334155; color: #fff; }
-  </style>
+
+/* STARK GAMES — Modelo 2: abas para Destaques e Ofertas */
+.stark-tabs-wrap { max-width:1200px; margin:0 auto 22px; }
+.stark-tabs { display:flex; gap:10px; margin:0 0 12px; padding:7px; background:rgba(11,15,25,.94); border:1px solid #475569; border-radius:14px; }
+.stark-tab { flex:1; border:1px solid transparent; border-radius:10px; padding:13px 16px; background:transparent; color:#cbd5e1; font-weight:800; font-size:1rem; cursor:pointer; transition:.2s; }
+.stark-tab:hover { background:#1e293b; color:#fff; }
+.stark-tab[aria-selected="true"] { background:linear-gradient(135deg,#f59e0b,#b45309); color:#111827; box-shadow:0 0 15px rgba(245,158,11,.25); }
+.stark-tab[data-tab="promos"][aria-selected="true"] { background:linear-gradient(135deg,#ef4444,#991b1b); color:#fff; }
+.stark-tab-panel[hidden] { display:none !important; }
+.stark-tabs-wrap .featured-container,.stark-tabs-wrap .promo-container-box { margin-bottom:0; }
+@media(max-width:600px) { .stark-tab { font-size:.84rem; padding:12px 7px; } .stark-tabs { gap:5px; padding:5px; } }
+  
+/* STARK GAMES: melhorias de navegação e leitura */
+.catalog-toolbar{max-width:1200px;margin:0 auto 22px;padding:14px 18px;background:rgba(11,15,25,.93);border:1px solid #f59e0b;border-radius:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.catalog-toolbar label{font-weight:800;color:#fbbf24}
+.catalog-toolbar input{flex:1;min-width:180px;padding:12px 14px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:white;font-size:1rem}
+.catalog-toolbar input:focus{outline:2px solid #f59e0b}
+#catalog-results{color:#cbd5e1;font-size:.85rem}
+.stark-search{margin-bottom:18px}
+.catalog .card{height:100%}
+.card-body .ref-title{overflow-wrap:anywhere}
+.card-img{cursor:zoom-in}
+.card-img:focus-visible{outline:3px solid #f59e0b;outline-offset:-3px}
+.actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+.actions .btn{min-width:0;overflow-wrap:anywhere}
+.stark-image-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:20000;align-items:center;justify-content:center;padding:60px 20px 24px}
+.stark-image-overlay.visible{display:flex}
+.stark-image-overlay img{max-width:95vw;max-height:85vh;object-fit:contain;border-radius:8px}
+.stark-image-close{position:absolute;right:20px;top:15px;background:#1e293b;color:white;border:1px solid #64748b;border-radius:8px;padding:9px 15px;font-size:22px;cursor:pointer}
+.preview-open{overflow:hidden}
+@media(max-width:600px){.catalog{grid-template-columns:minmax(0,1fr);gap:20px}.catalog-toolbar{padding:12px}.catalog-toolbar input{flex-basis:100%}.card-body{padding:14px}.details-list li{font-size:.85rem}.actions .btn{font-size:.73rem;padding:10px 3px}}
+</style>
 </head>
 <body>
 
@@ -489,6 +520,13 @@ header {
     <img src="banner-cabecalho.jpg (2).png" alt="STARK GAMES - Catálogo Oficial de Contas" class="header-banner">
   </header>
 
+  <!-- Abas: apenas uma seção visível por vez -->
+  <div class="stark-tabs-wrap">
+    <div class="stark-tabs" role="tablist" aria-label="Destaques e ofertas especiais">
+      <button type="button" class="stark-tab" id="stark-tab-featured" data-tab="featured" role="tab" aria-controls="stark-panel-featured" aria-selected="true" onclick="switchStarkTab('featured')">⭐ Destaques</button>
+      <button type="button" class="stark-tab" id="stark-tab-promos" data-tab="promos" role="tab" aria-controls="stark-panel-promos" aria-selected="false" onclick="switchStarkTab('promos')">⚡ Ofertas Especiais</button>
+    </div>
+    <div id="stark-panel-featured" class="stark-tab-panel" role="tabpanel" aria-labelledby="stark-tab-featured">
   <!-- SEÇÃO DESTAQUE COM DESIGN PRÓPRIO -->
   <section class="featured-container" id="featured-section">
     <div class="featured-header">
@@ -501,6 +539,8 @@ header {
     <div class="featured-card" id="featured-card-content"></div>
   </section>
 
+    </div>
+    <div id="stark-panel-promos" class="stark-tab-panel" role="tabpanel" aria-labelledby="stark-tab-promos" hidden>
   <!-- SEÇÃO OFERTAS ESPECIAIS COM DESIGN DIFERENTE -->
   <section class="promo-container-box" id="promo-section" style="display: none;">
     <div class="promo-header">
@@ -512,6 +552,9 @@ header {
     </div>
     <div class="promo-card-content" id="promo-card-content"></div>
   </section>
+
+    </div>
+  </div>
 
   <div class="whatsapp-drawer-wrapper" id="whatsapp-drawer">
     <div class="whatsapp-drawer-toggle" onclick="toggleDrawer()">
@@ -539,6 +582,7 @@ header {
       <div class="filter-toggle-icon">▼</div>
     </div>
     <div class="filter-body">
+      <div class="input-box stark-search"><label for="search-ref">Buscar por referência ou característica</label><input type="search" id="search-ref" placeholder="Ex.: REF M 800, Champs, Mana..." oninput="applyFilters()" autocomplete="off"></div>
       <div class="filter-section-header"><div class="filter-section-title">Tipo / Atributo da Conta (Múltipla Seleção)</div></div>
       <div class="type-tags-container" id="type-tags-box">
         <div class="type-tag active" data-type="all" onclick="toggleTypeTag(this, 'all')">Todas</div>
@@ -588,6 +632,7 @@ header {
 
   <div class="glow-divider"></div>
 
+  <div class="catalog-toolbar"><label for="quick-search">🔎 Encontrar conta</label><input id="quick-search" type="search" placeholder="Digite uma REF ou característica..." oninput="syncCatalogSearch(this.value)" autocomplete="off"><span id="catalog-results" aria-live="polite"></span></div>
   <main class="catalog" id="catalog-container"></main>
 
   <section class="sold-card" id="sold-card" style="display: none;">
@@ -3753,10 +3798,18 @@ function updateFeaturedRefs() {
       const diffDays = diffTime / (1000 * 60 * 60 * 24);
       return diffDays > 14;
     }
+function syncCatalogSearch(value) {
+      document.getElementById('search-ref').value = value;
+      applyFilters();
+    }
+    function normalizeSearch(value) {
+      return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    }
 function getFilteredAccounts() {
       const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
       const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
       const sortOrder = document.getElementById('sort-order').value;
+      const searchTerm = normalizeSearch(document.getElementById('quick-search').value || document.getElementById('search-ref').value);
 
       const checkedChamps = Array.from(document.querySelectorAll('#champs-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
       const checkedFeatures = Array.from(document.querySelectorAll('#features-checkboxes input:checked')).map(cb => cb.value.toLowerCase());
@@ -3766,6 +3819,7 @@ function getFilteredAccounts() {
         if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
 
         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
+        if (searchTerm && !normalizeSearch([acc.ref, acc.stats, ...(acc.details || []), ...(acc.types || [])].join(' ')).includes(searchTerm)) return false;
 
         if (!selectedTypes.includes('all')) {
           const hasType = selectedTypes.some(t => acc.types.some(accType => accType.toLowerCase() === t.toLowerCase()));
@@ -3815,7 +3869,7 @@ function getFilteredAccounts() {
           <div class="card-header-badge">${acc.stats}</div>
           <div class="card-img-container">
             ${soldStampHtml}
-            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+            <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" decoding="async" tabindex="0" role="button" title="Ampliar imagem" onclick="openImagePreview(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openImagePreview(this)}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
           </div>
           <div class="card-body">
             <div class="ref-title">${acc.ref}</div>
@@ -3842,6 +3896,7 @@ function getFilteredAccounts() {
     function renderCatalog(list) {
       const container = document.getElementById('catalog-container');
       container.innerHTML = '';
+      document.getElementById('catalog-results').textContent = `${list.length} resultado${list.length === 1 ? '' : 's'}`;
 
       const activeAccounts = accounts.filter(acc => !acc.vendida || !isOlderThanTwoWeeks(acc.dataVendida));
       const badge = document.getElementById('filter-count-badge');
@@ -3854,9 +3909,7 @@ function getFilteredAccounts() {
       if (list.length === 0) {
         container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color: #94a3b8; padding: 30px;">Nenhuma conta cadastrada ou encontrada com os filtros selecionados.</p>';
       } else {
-        list.forEach(acc => {
-          container.innerHTML += renderCardHTML(acc);
-        });
+        container.innerHTML = list.map(renderCardHTML).join('');
       }
 
       renderSoldSection();
@@ -3873,20 +3926,24 @@ function getFilteredAccounts() {
       if (soldAccounts.length > 0) {
         soldCard.style.display = 'block';
         soldCountBadge.innerText = `(${soldAccounts.length} conta${soldAccounts.length === 1 ? '' : 's'} vendida${soldAccounts.length === 1 ? '' : 's'})`;
-        soldAccounts.forEach(acc => {
-          soldContainer.innerHTML += renderCardHTML(acc);
-        });
+        soldContainer.innerHTML = soldAccounts.map(renderCardHTML).join('');
       } else {
         soldCard.style.display = 'none';
       }
     }
 
     function applyFilters() {
+      const quick = document.getElementById('quick-search');
+      const inside = document.getElementById('search-ref');
+      if (document.activeElement === inside) quick.value = inside.value;
+      else if (document.activeElement === quick) inside.value = quick.value;
       const filtered = getFilteredAccounts();
       renderCatalog(filtered);
     }
 
     function clearFilters() {
+      document.getElementById('quick-search').value = '';
+      document.getElementById('search-ref').value = '';
       document.getElementById('price-min').value = '';
       document.getElementById('price-max').value = '';
       document.getElementById('sort-order').value = 'desc';
@@ -3969,15 +4026,48 @@ function getFilteredAccounts() {
       window.open(whatsappShareUrl, '_blank');
     }
 
+
+    function switchStarkTab(tab) {
+      const featured = tab === 'featured';
+      document.getElementById('stark-panel-featured').hidden = !featured;
+      document.getElementById('stark-panel-promos').hidden = featured;
+      document.getElementById('stark-tab-featured').setAttribute('aria-selected', String(featured));
+      document.getElementById('stark-tab-promos').setAttribute('aria-selected', String(!featured));
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       updateFeaturedRefs();
       updatePromoRefs();
       applyFilters();
       renderFeatured();
       renderPromoCarrossel();
+      if (promoRefs.length === 0) {
+        document.getElementById('stark-tab-promos').hidden = true;
+        switchStarkTab('featured');
+      }
       resetFeaturedTimer();
       resetPromoTimer();
     });
+  </script>
+
+  <div class="stark-image-overlay" id="stark-image-overlay" role="dialog" aria-modal="true" aria-label="Visualização da imagem" onclick="if(event.target===this)closeImagePreview()">
+    <button type="button" class="stark-image-close" onclick="closeImagePreview()" aria-label="Fechar imagem">✕</button>
+    <img id="stark-image-large" alt="Imagem ampliada da conta">
+  </div>
+  <script>
+    function openImagePreview(img) {
+      const overlay = document.getElementById('stark-image-overlay');
+      const large = document.getElementById('stark-image-large');
+      large.src = img.currentSrc || img.src;
+      large.alt = img.alt;
+      overlay.classList.add('visible');
+      document.body.classList.add('preview-open');
+    }
+    function closeImagePreview() {
+      document.getElementById('stark-image-overlay').classList.remove('visible');
+      document.body.classList.remove('preview-open');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeImagePreview(); });
   </script>
 </body>
 </html>
