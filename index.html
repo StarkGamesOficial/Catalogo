@@ -522,10 +522,38 @@ header {
 @media(max-width:600px){.catalog{grid-template-columns:minmax(0,1fr);gap:20px}.catalog-toolbar{padding:12px}.catalog-toolbar input{flex-basis:100%}.card-body{padding:14px}.details-list li{font-size:.85rem}.actions .btn{font-size:.73rem;padding:10px 3px}}
 
 /* Comparador Stark Games */
-.compare-add{margin-top:10px;width:100%;background:#172338;color:#fbbf24;border:1px solid #b88624;border-radius:8px;padding:11px;cursor:pointer;font-weight:700}
-.compare-add[aria-pressed="true"]{background:#14532d;color:white;border-color:#22c55e}
-.compare-bar{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:9000;background:#111827;border:1px solid #f59e0b;border-radius:12px;padding:12px;display:none;align-items:center;gap:12px;box-shadow:0 8px 30px #000b;max-width:calc(100vw - 24px);flex-wrap:wrap;justify-content:center}
-.compare-bar.visible{display:flex}.compare-bar button,.compare-dialog button{border:1px solid #f59e0b;background:#263244;color:white;padding:9px 12px;border-radius:8px;cursor:pointer}.compare-bar button.primary{background:#d97706;color:#111827;font-weight:800}.compare-bar button:disabled{opacity:.45;cursor:not-allowed}
+/* Chamada principal do comparador: visível, mas integrada aos cards Stark. */
+.compare-add{
+  display:block;width:100%;min-height:48px;margin-top:12px;padding:11px 12px;
+  background:linear-gradient(120deg,#fde68a 0%,#fbbf24 48%,#e99a12 100%);
+  color:#251704;border:2px solid #ffedb2;border-radius:10px;
+  box-shadow:0 3px 0 #92400e,0 7px 16px rgba(245,158,11,.26);
+  font-size:.92rem;font-weight:900;letter-spacing:.35px;line-height:1.2;
+  text-align:center;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.compare-add:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 5px 0 #92400e,0 10px 22px rgba(245,158,11,.4)}
+.compare-add:active{transform:translateY(1px);box-shadow:0 1px 0 #92400e,0 3px 10px rgba(245,158,11,.22)}
+.compare-add:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.compare-add[aria-pressed="true"]{
+  background:linear-gradient(120deg,#166534,#15803d);color:#fff;
+  border-color:#86efac;box-shadow:0 3px 0 #064e3b,0 7px 16px rgba(34,197,94,.23);
+}
+.compare-add[aria-pressed="true"]:hover{box-shadow:0 5px 0 #064e3b,0 10px 22px rgba(34,197,94,.35)}
+.compare-bar{
+  position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:9000;
+  background:linear-gradient(125deg,#152238,#101827);border:2px solid #fbbf24;
+  border-radius:14px;padding:12px 16px;display:none;align-items:center;gap:12px;
+  box-shadow:0 0 0 3px rgba(245,158,11,.12),0 10px 32px #000b;
+  max-width:calc(100vw - 24px);flex-wrap:wrap;justify-content:center;
+}
+.compare-bar #compare-count{color:#fde68a;font-size:.9rem;text-align:center}
+.compare-bar.visible{display:flex}
+.compare-bar button,.compare-dialog button{border:1px solid #f59e0b;background:#263244;color:white;padding:9px 12px;border-radius:8px;cursor:pointer}
+.compare-bar button.primary{background:linear-gradient(120deg,#fde68a,#f59e0b);border-color:#fde68a;color:#1f1708;font-weight:900;padding:11px 17px;box-shadow:0 3px 10px rgba(245,158,11,.2)}
+.compare-bar button.primary:not(:disabled):hover{filter:brightness(1.08)}
+.compare-bar button:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+@media(max-width:600px){.compare-add{font-size:.86rem;min-height:48px}.compare-bar{padding:10px 11px;gap:8px}.compare-bar #compare-count{font-size:.78rem}}
+@media(prefers-reduced-motion:reduce){.compare-add{transition:none}.compare-add:hover,.compare-add:active{transform:none}}
 .compare-overlay{display:none;position:fixed;inset:0;z-index:11000;background:#000c;align-items:center;justify-content:center;padding:14px}.compare-overlay.visible{display:flex}
 .compare-dialog{position:relative;background:#111827;color:#f8fafc;border:2px solid #f59e0b;border-radius:14px;padding:20px;width:min(1050px,100%);max-height:92vh;overflow:auto}.compare-dialog h2{color:#fbbf24;margin-bottom:14px}.compare-table-wrap{overflow-x:auto}.compare-table{width:100%;border-collapse:collapse;min-width:570px}.compare-table th,.compare-table td{padding:10px;border:1px solid #334155;text-align:left;vertical-align:top;min-width:140px}.compare-table th:first-child{min-width:110px}.compare-table img{width:110px;max-height:115px;object-fit:contain}.compare-table a{color:#fbbf24}.compare-close{float:right}.compare-dialog .compare-buy{background:#16a34a;border:0;margin-top:6px}.compare-dialog .compare-remove{background:#7f1d1d;border:0;margin-top:6px}
 @media(max-width:600px){.compare-dialog{padding:12px}.compare-bar{bottom:6px;font-size:.85rem}}
@@ -1062,8 +1090,8 @@ header {
         oldPrice: 0,
         dataPromo: "",
         types: ["1100%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana"],
-        vendida: true,
-        dataVendida: "2026-10-21",
+        vendida: false,
+        dataVendida: "",
         details: [
           "🔥 IND 1163/1107/1241% FF",
           "🔥 3 Champs 🧡",
@@ -1325,8 +1353,8 @@ header {
         oldPrice: 0,
         dataPromo: "",
         types: ["1300%", "full champ", "4 champ+", "skin_lider", "tropa_magica_mana"],
-        vendida: true,
-        dataVendida: "2026-10-21",
+        vendida: false,
+        dataVendida: "",
         details: [
           "🔥 IND 1398/1300/1369% FF",
           "🔥 FULL CHAMP (12 Champs 🧡 + 1 💛)",
@@ -4087,7 +4115,7 @@ function getFilteredAccounts() {
               ${buyButtonHtml}
               <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
             </div>
-            ${acc.vendida ? '' : `<button type="button" class="compare-add" data-compare-ref="${acc.ref}" aria-pressed="false" onclick="toggleCompare(this.dataset.compareRef)">⚖️ Comparar conta</button>`}
+            ${acc.vendida ? '' : `<button type="button" class="compare-add" data-compare-ref="${acc.ref}" aria-pressed="false" onclick="toggleCompare(this.dataset.compareRef)">⚖️ ADICIONAR À COMPARAÇÃO</button>`}
           </div>
         </div>
       `;
@@ -4300,9 +4328,9 @@ function getFilteredAccounts() {
       document.querySelectorAll('[data-compare-ref]').forEach(btn => {
         const on = comparedRefs.includes(btn.dataset.compareRef);
         btn.setAttribute('aria-pressed', String(on));
-        btn.textContent = on ? '✓ Selecionada para comparação' : '⚖️ Comparar conta';
+        btn.textContent = on ? '✓ CONTA SELECIONADA' : '⚖️ ADICIONAR À COMPARAÇÃO';
       });
-      document.getElementById('compare-count').textContent = `${comparedRefs.length} de 3 contas`;
+      document.getElementById('compare-count').textContent = `${comparedRefs.length} de 3 contas${comparedRefs.length === 1 ? ' • escolha mais uma' : ' • prontas para comparar'}`;
       document.getElementById('compare-open').disabled = comparedRefs.length < 2;
       document.getElementById('compare-bar').classList.toggle('visible', comparedRefs.length > 0);
     }
