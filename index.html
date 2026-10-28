@@ -758,6 +758,87 @@ header {
     ];
 
     const accounts = [
+      // NOVA CONTA — REF AB 109 (Forte & Fúria), cadastrada em 28/10/2026.
+      // Apenas um bônus informado: bônus bruto, sem atribuir a uma falange específica.
+      {
+        ref: "REF AB 109",
+        stats: "⚡ Forte & Fúria | Individual 1200% | Tropas Mana Lv. 2 💜 | 6 Champs 🧡 ⚡",
+        imgUrl: "REF AB 109.jpeg",
+        driveUrl: "https://photos.app.goo.gl/fUQrt8aghkSXPMJt6",
+        priceTotal: 9500, // valor à vista; usado na ordenação e no comparador
+        priceEntry: 1000, // menor entrada disponível, correspondente ao plano de R$ 13.000
+        paymentOptions: [
+          { label: "À vista", total: 9500, entry: null },
+          { label: "50% de entrada", total: 11000, entry: 5500 },
+          { label: "Entrada de R$ 1.000", total: 13000, entry: 1000 }
+        ],
+        oldPrice: 0,
+        dataPromo: "",
+        dataCadastro: "2026-10-28",
+        types: ["1200%", "4 champ+", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "⚡ Individual 1200% (Bônus Bruto)",
+          "💜 Tropas Mana Lv. 2",
+          "🧡 6 Champs",
+          "🔥 Forte & Fúria"
+        ]
+      },
+      // NOVO CARD — REF 001 GM (Forte & Fúria), 28/10/2026.
+      // Bônus individual único: bônus bruto, falange não informada.
+      {
+        ref: "REF 001 GM",
+        stats: "⚡ Forte & Fúria | Individual 1100% | Tropas Mana Lv. 1 💜 | 3 Champs 🧡 ⚡",
+        imgUrl: "REF 001 GM.jpeg",
+        driveUrl: "https://photos.app.goo.gl/bMvdawx8e4Ye5gYFA",
+        priceTotal: 3300, // à vista, valor usado no comparador
+        priceEntry: 700, // entrada menor, vinculada ao plano de R$ 5.800
+        paymentOptions: [
+          { label: "À vista", total: 3300, entry: null },
+          { label: "50% de entrada", total: 4500, entry: 2250 },
+          { label: "Entrada de R$ 700", total: 5800, entry: 700 }
+        ],
+        oldPrice: 0,
+        dataPromo: "",
+        dataCadastro: "2026-10-28",
+        types: ["1100%", "3 champ", "tropa_magica_mana"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "⚡ Individual 1100% (Bônus Bruto)",
+          "💜 Tropas Mana Lv. 1",
+          "🧡 3 Champs",
+          "🔥 Forte & Fúria"
+        ]
+      },
+      // NOVO CARD — REF AB 108 (Forte & Fúria), 28/10/2026.
+      {
+        ref: "REF AB 108",
+        stats: "⚡ Forte & Fúria | 2 Taças 💛 + 1 Champ 💛 | Bon Apettit Lv. 10 | 3 Peças Astro Lv. 15 | 47M Tropas (15M T4) ⚡",
+        imgUrl: "REF AB 108.jpeg",
+        driveUrl: "https://photos.app.goo.gl/cPi7y487m5r6bY3m7",
+        priceTotal: 800, // à vista, valor usado no comparador
+        priceEntry: 200, // entrada menor, vinculada ao plano de R$ 1.300
+        paymentOptions: [
+          { label: "À vista", total: 800, entry: null },
+          { label: "50% de entrada", total: 1000, entry: 500 },
+          { label: "Entrada de R$ 200", total: 1300, entry: 200 }
+        ],
+        oldPrice: 0,
+        dataPromo: "",
+        dataCadastro: "2026-10-28",
+        types: ["1 champ"],
+        vendida: false,
+        dataVendida: "",
+        details: [
+          "💛 2 Taças + 1 Champ 💛",
+          "🍽️ Bon Apettit Lv. 10",
+          "🌟 3 Peças Astro Lv. 15",
+          "🛡️ 47M de Tropas (15M T4)",
+          "🔥 Forte & Fúria"
+        ]
+      },
       // NOVO CARD — REF MiR 88. IND na ordem Infantaria / Arqueiros / Cavalaria.
       {
         ref: "REF MiR 88",
@@ -965,7 +1046,8 @@ header {
         priceEntry: 1500,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1200%", "full champ", "4 champ+", "tropa_magica_mana", "skin_lider"],
+        types: ["1200%", "full champ", "4 champ+", "tropa_magica_mana"],
+        skinLider: false, // Ausência confirmada pelo proprietário do catálogo.
         vendida: false,
         dataVendida: "",
         details: [
@@ -1278,7 +1360,7 @@ header {
         priceEntry: 1500,
         oldPrice: 10500,
         dataPromo: "2026-10-17",
-        types: ["1000%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
+        types: ["1000%", "3 champ", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -1299,7 +1381,7 @@ header {
         priceEntry: 2500,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1300%", "4 champ+", "skin_lider", "tropa_magica_mana"],
+        types: ["1300%", "4 champ+", "skin_lider", "tropa_magica_mana", "skin_exercito"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -1319,7 +1401,7 @@ header {
         priceEntry: 1000,
         oldPrice: 0,
         dataPromo: "",
-        types: ["800%", "tropa_magica_mana"],
+        types: ["800%", "tropa_magica_mana", "low quest"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -1620,7 +1702,7 @@ header {
         priceEntry: 400,
         oldPrice: 3200,
         dataPromo: "2026-10-05",
-        types: ["2 champ", "tropa_magica_mana"],
+        types: ["2 champ", "tropa_magica_mana", "low quest"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -1742,7 +1824,7 @@ header {
         priceEntry: 150,
         oldPrice: 0,
         dataPromo: "",
-        types: ["trap"],
+        types: ["trap", "low quest"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -1772,24 +1854,26 @@ header {
           "🔳 Elite é loja +27m de tropas 🏬"
         ]
       },
+      // ATUALIZAÇÃO DE PREÇO — REF FE V.025 (anunciada como FÉ V.0025).
+      // Mesmo reino K1721 e mesmo álbum Drive: conta existente, sem duplicar.
       {
         ref: "REF FE V.025",
-        stats: "🔥 Restrita K1721 | Ind 1003%+ + Mix 812% + Elite em Loja 🔥",
+        stats: "🔥 Restrita K1721 | IND 1003/877/1024% FF | 1 Champ 🧡 | 27M+ Tropas | Elite e Loja 🔥",
         imgUrl: "REF FE V.025.jpeg",
         driveUrl: "https://drive.google.com/drive/folders/13iEM0bhXyCU_sdL83DKN4ezFcmJTnDNy",
-        priceTotal: 7000,
-        priceEntry: 1000,
-        oldPrice: 0,
-        dataPromo: "",
-        types: ["1000%", "restrita_1700_plus"],
+        priceTotal: 6700,
+        priceEntry: 600,
+        oldPrice: 7000, // preço anterior da mesma conta
+        dataPromo: "2026-10-28", // oferta real por 14 dias
+        types: ["1000%", "1 champ", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
         details: [
-          "🔥 RESTRITA K1721 🫡",
-          "🔳 IND 1003/877/1024% FF",
-          "🔳 MIX 812/30/720% FF",
-          "🔳 2 Taças Míticas 🧡💜",
-          "🔳 Elite é loja +27m de tropas 🏬"
+          "⛓️ Restrita K1721",
+          "⚔️ IND (FF) 1003/877/1024% (Infantaria / Arqueiros / Cavalaria)",
+          "🧡 1 Champ",
+          "🛡️ 27M+ de Tropas",
+          "🏆 Elite e Loja"
         ]
       },
       {
@@ -1821,7 +1905,7 @@ header {
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1000%", "3 champ"],
+        types: ["1000%"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -2045,7 +2129,7 @@ header {
         priceEntry: 5000,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
+        types: ["1300%", "skin_exercito", "tropa_magica_mana", "restrita_1700_plus"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -2067,7 +2151,7 @@ header {
         priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
-        types: ["800%", "1 champ", "restrita_ate_1699"],
+        types: ["800%", "1 champ", "restrita_ate_1699", "Fillers"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -2110,7 +2194,7 @@ header {
         priceEntry: 700,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1000%", "2 champ", "skin_exercito", "tropa_magica_mana", "restrita_ate_1699"],
+        types: ["1000%", "2 champ", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -2257,7 +2341,7 @@ header {
         priceEntry: 300,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1000%", "1 champ", "skin_exercito"],
+        types: ["1000%", "1 champ"],
         vendida: true,
         dataVendida: "2026-09-24",
         details: [
@@ -2448,7 +2532,7 @@ header {
         priceEntry: 3500,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1400%", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        types: ["1400%", "skin_lider", "tropa_magica_mana"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -2568,7 +2652,7 @@ header {
         priceEntry: 3500,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1300%", "low quest", "4 champ+", "tropa_magica_mana", "restrita_ate_1699"],
+        types: ["1300%", "low quest", "4 champ+", "tropa_magica_mana", "restrita_ate_1699", "skin_exercito"],
         vendida: true,
         dataVendida: "2026-10-17",
         details: [
@@ -3075,7 +3159,7 @@ header {
         priceEntry: 3500,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1300%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        types: ["full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana", "1400%"],
         vendida: true,
         dataVendida: "2026-09-20",
         details: [
@@ -3200,7 +3284,7 @@ header {
         priceEntry: 7500,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1300%", "4 champ+", "restrita_ate_1699", "skin_lider", "tropa_magica_mana"],
+        types: ["4 champ+", "restrita_ate_1699", "skin_lider", "tropa_magica_mana", "1500%+"],
         vendida: true,
         dataVendida: "2026-10-10",
         details: [
@@ -3241,7 +3325,7 @@ header {
         priceEntry: 250,
         oldPrice: 0,
         dataPromo: "",
-        types: ["800%"],
+        types: ["800%", "Fillers"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -3364,7 +3448,7 @@ header {
         priceEntry: 350,
         oldPrice: 2500,
         dataPromo: "2026-09-16",
-        types: ["tropa_magica_mana", "restrita_1700_plus"],
+        types: ["tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-09-16",
         details: [
@@ -3463,7 +3547,7 @@ header {
         priceEntry: 600,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1100%", "2 champ", "skin_exercito"],
+        types: ["1100%", "2 champ"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -3562,7 +3646,7 @@ header {
         priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
-        types: ["900%", "tropa_magica_mana", "skin_exercito", "restrita_ate_1699"],
+        types: ["900%", "tropa_magica_mana", "restrita_ate_1699"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -3623,7 +3707,7 @@ header {
         priceEntry: 250,
         oldPrice: 0,
         dataPromo: "",
-        types: ["900%"],
+        types: ["700%"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -3703,7 +3787,7 @@ header {
         priceEntry: 350,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1000%", "1 champ"],
+        types: ["1000%", "1 champ", "Fillers"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -3722,7 +3806,7 @@ header {
         priceEntry: 1500,
         oldPrice: 0,
         dataPromo: "",
-        types: ["1200%", "full champ", "4 champ+", "skin_lider", "skin_exercito", "tropa_magica_mana"],
+        types: ["1200%", "full champ", "4 champ+"],
         vendida: true,
         dataVendida: "2026-10-05",
         details: [
@@ -4291,6 +4375,21 @@ function getFilteredAccounts() {
     }
 
     function shareAccount(ref) {
+      // TESTE PILOTO: somente REF AB 104 usa uma página com metadados de imagem.
+      // O catálogo e o compartilhamento das outras contas permanecem iguais.
+      if (ref === 'REF AB 104') {
+        const urlComCapa = 'https://starkgamesoficial.github.io/Catalogo/contas/ref-ab-104/';
+        const textoComCapa =
+          `🦁 *STARK GAMES* 🦁\n` +
+          `👑 *REF AB 104 — Forte & Fúria*\n` +
+          `⚡ Individual 1060% • Tecelã • 6 Fams Pagos\n` +
+          `💰 *R$ 1.200 à vista*\n` +
+          `👇 *Veja a conta e as fotos no catálogo:*\n` +
+          urlComCapa;
+        gtag('event', 'compartilhar_conta', { 'event_category': 'Conta', 'event_label': ref });
+        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(textoComCapa), '_blank');
+        return;
+      }
       const acc = accounts.find(a => a.ref === ref);
       const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
       let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
@@ -4442,6 +4541,8 @@ function getFilteredAccounts() {
       return {value:Number(m[1]), minimum:!!m[2], text:m[1] + (m[2] ? '+' : '')};
     }
     function compareSkinState(acc, key) {
+      // Confirmações explícitas têm prioridade sobre descrições incompletas.
+      if (key === 'lider' && acc.skinLider === false) return {status:'no', label:'Não possui'};
       const desc = compareDescription(acc);
       const types = Array.isArray(acc.types) ? acc.types : [];
       const patterns = {
