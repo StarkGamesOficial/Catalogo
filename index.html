@@ -604,6 +604,29 @@ header {
 .stark-payment-plans .payment-plan strong{color:#fde68a}
 .stark-payment-plans .payment-plan small{color:#a9b9ce;flex-basis:100%}
 .stark-payment-plans .payment-plan + .payment-plan{padding-top:6px;border-top:1px solid #334155}
+
+    /* Compartilhamento de fotos das contas via Web Share API (prioridade: celular). */
+    .stark-share-pilot-overlay {
+      position: fixed; inset: 0; z-index: 10020; display: none;
+      align-items: center; justify-content: center; padding: 16px;
+      background: rgba(2, 6, 23, .84);
+    }
+    .stark-share-pilot-box {
+      width: min(100%, 410px); max-height: calc(100dvh - 32px); overflow-y: auto;
+      border: 2px solid #d4a527; border-radius: 16px;
+      background: #101827; color: #f8fafc; padding: 20px;
+      box-shadow: 0 12px 50px rgba(0,0,0,.65);
+    }
+    .stark-share-pilot-box h2 { color: #fcd34d; font-size: 1.15rem; margin-bottom: 8px; }
+    .stark-share-pilot-box p { line-height: 1.5; font-size: .94rem; margin: 0 0 13px; }
+    .stark-share-pilot-box img { display:block; max-height: 185px; max-width: 100%; object-fit: contain; margin: 0 auto 14px; border-radius: 8px; }
+    .stark-share-pilot-btn { width:100%; display:block; padding:12px; border:0; border-radius:9px; margin-top:10px; font-weight:700; font-size:.94rem; cursor:pointer; }
+    .stark-share-pilot-btn:disabled { opacity:.5; cursor:wait; }
+    .stark-share-pilot-primary { background:linear-gradient(120deg,#f6ca55,#d69d14); color:#171006; }
+    .stark-share-pilot-secondary { background:#24354c; color:#f8fafc; }
+    .stark-share-pilot-close { background:transparent; border:1px solid #526071; color:#eee; }
+    .stark-share-pilot-small { color:#cbd5e1; font-size:.8rem !important; margin-top:10px !important; }
+
 </style>
 </head>
 <body>
@@ -743,6 +766,20 @@ header {
       <button class="btn-close-modal" onclick="closeVendorModal()">Cancelar</button>
     </div>
   </div>
+
+  <!-- Compartilhamento nativo: capa e informações da conta selecionada. -->
+  <div id="stark-share-pilot" class="stark-share-pilot-overlay" role="dialog" aria-modal="true" aria-labelledby="stark-share-pilot-title" onclick="if(event.target===this)closeStarkSharePilot()">
+    <div class="stark-share-pilot-box">
+      <h2 id="stark-share-pilot-title">🦁 STARK GAMES</h2>
+      <img id="stark-share-pilot-image" src="" alt="Capa da conta selecionada" loading="lazy">
+      <p id="stark-share-pilot-status" aria-live="polite">Preparando a capa para compartilhar...</p>
+      <button id="stark-share-pilot-send" class="stark-share-pilot-btn stark-share-pilot-primary" type="button" onclick="shareStarkPhotoNow()" disabled>Compartilhar foto</button>
+      <button class="stark-share-pilot-btn stark-share-pilot-secondary" type="button" onclick="shareStarkTextOnly()">Compartilhar apenas o link</button>
+      <button class="stark-share-pilot-btn stark-share-pilot-close" type="button" onclick="closeStarkSharePilot()">Fechar</button>
+      <p class="stark-share-pilot-small">Quando abrir a lista de aplicativos, escolha WhatsApp. Em aparelhos compatíveis, a foto e o texto serão enviados juntos; a legenda pode variar conforme o navegador.</p>
+    </div>
+  </div>
+
 <script>
     const VENDEDORES = [
       { nome: "Ribas", numero: "5555981208377", foto: "Ribas.jpeg" },
@@ -774,7 +811,7 @@ header {
         vendida: false,
         dataVendida: "",
         details: [
-          "⚡ FULL CHAMP — bônus 1745%+ (falange não especificada)",
+          "⚡ FULL CHAMP — bônus 1745%+",
           "🏆 3×11K",
           "🧡 21 Champs",
           "👑 4 Skins de Líder",
@@ -4064,7 +4101,7 @@ function updatePromoRefs() {
           <div class="actions">
             <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
             ${buyButtonHtml}
-            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+            <button class="btn btn-share" title="Compartilhar conta STARK GAMES" data-stark-share-ref="${acc.ref}" onclick="shareAccount('${acc.ref}')">Compartilhar</button>
           </div>
         </div>
       `;
@@ -4110,7 +4147,7 @@ function updatePromoRefs() {
           <div class="actions">
             <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
             ${buyButtonHtml}
-            <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+            <button class="btn btn-share" title="Compartilhar conta STARK GAMES" data-stark-share-ref="${acc.ref}" onclick="shareAccount('${acc.ref}')">Compartilhar</button>
           </div>
         </div>
       `;
@@ -4276,7 +4313,7 @@ function getFilteredAccounts() {
             <div class="actions">
               <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
               ${buyButtonHtml}
-              <button class="btn btn-share" onclick="shareAccount('${acc.ref}')">🔗 Compartilhar</button>
+              <button class="btn btn-share" title="Compartilhar conta STARK GAMES" data-stark-share-ref="${acc.ref}" onclick="shareAccount('${acc.ref}')">Compartilhar</button>
             </div>
             ${acc.vendida ? '' : `<button type="button" class="compare-add" data-compare-ref="${acc.ref}" aria-pressed="false" onclick="toggleCompare(this.dataset.compareRef)">⚖️ ADICIONAR À COMPARAÇÃO</button>`}
           </div>
@@ -4398,45 +4435,220 @@ function getFilteredAccounts() {
       document.getElementById('vendor-modal').style.display = 'none';
     }
 
-    function shareAccount(ref) {
-      // TESTE PILOTO: somente REF AB 104 usa uma página com metadados de imagem.
-      // O catálogo e o compartilhamento das outras contas permanecem iguais.
-      if (ref === 'REF AB 104') {
-        const urlComCapa = 'https://starkgamesoficial.github.io/Catalogo/contas/ref-ab-104/';
-        const textoComCapa =
-          `🦁 *STARK GAMES* 🦁\n` +
-          `👑 *REF AB 104 — Forte & Fúria*\n` +
-          `⚡ Individual 1060% • Tecelã • 6 Fams Pagos\n` +
-          `💰 *R$ 1.200 à vista*\n` +
-          `👇 *Veja a conta e as fotos no catálogo:*\n` +
-          urlComCapa;
-        gtag('event', 'compartilhar_conta', { 'event_category': 'Conta', 'event_label': ref });
-        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(textoComCapa), '_blank');
-        return;
-      }
-      const acc = accounts.find(a => a.ref === ref);
-      const shareUrl = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
-      let detalhesLista = acc && acc.details ? acc.details.map(d => `  • ${d}`).join('\n') : '';
+    // Compartilhamento com capa: aproveita a mesma tecnologia validada no celular para qualquer conta.
+    // O arquivo de imagem sempre vem da capa já cadastrada na própria conta.
+    const STARK_SHARE_ROOT_URL = 'https://starkgamesoficial.github.io/Catalogo/';
+    const starkShareFiles = new Map();
+    const starkSharePending = new Map();
+    const STARK_SHARE_CACHE_LIMIT = 8;
+    let starkShareSelectedAccount = null;
+    const starkShareMoney = amount => 'R$ ' + Number(amount).toLocaleString('pt-BR');
 
-      const textoShare = 
-        `🔥 *OPORTUNIDADE STARK GAMES* 🔥\n` +
-        `━━━━━━━━━━━━━━━━━━━━━━\n` +
-        `👑 *${acc ? acc.ref : ref}*\n` +
-        `📊 *Status:* ${acc ? acc.stats : ''}\n\n` +
-        `📋 *DETALHES DA CONTA:*\n` +
-        detalhesLista + `\n\n` +
-        (acc ? paymentMessageText(acc) : '') + `\n\n` +
-        `🔗 *Link Direto no Catálogo:*\n${shareUrl}\n` +
-        `📁 *Link das Fotos / Drive:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
-        `━━━━━━━━━━━━━━━━━━━━━━\n` +
-        `🚀 *Garanta já a sua conta com segurança na Stark Games!*`;
-
-      gtag('event', 'compartilhar_conta', { 'event_category': 'Conta', 'event_label': ref });
-
-      const whatsappShareUrl = `https://api.whatsapp.com/send?text=` + encodeURIComponent(textoShare);
-      window.open(whatsappShareUrl, '_blank');
+    function starkShareUrl(acc) {
+      // Each account link opens its card in the OFFICIAL catalog; no separate share pages needed.
+      return STARK_SHARE_ROOT_URL + '#' + encodeURIComponent(acc.ref.replace(/\s+/g, '-'));
     }
 
+    function starkShareText(acc) {
+      const lines = ['🦁 STARK GAMES 🦁', '👑 ' + acc.ref + (acc.vendida ? ' — VENDIDA' : '')];
+      // Only use information explicitly present in this account's published listing.
+      const detailLines = (Array.isArray(acc.details) ? acc.details : [])
+        .map(line => String(line || '').replace(/\s+/g, ' ').trim())
+        .filter(Boolean)
+        .slice(0, 6);
+      if (detailLines.length) lines.push(...detailLines);
+      else if (acc.stats) lines.push('⚡ ' + String(acc.stats).replace(/\s+/g, ' ').slice(0, 200));
+      if (Array.isArray(acc.paymentOptions) && acc.paymentOptions.length) {
+        const aVista = acc.paymentOptions.find(plan => plan.entry == null);
+        lines.push('💰 ' + starkShareMoney(aVista ? aVista.total : acc.priceTotal) + (aVista ? ' à vista' : ' valor total'));
+        for (const plan of acc.paymentOptions.filter(p => p.entry != null)) {
+          lines.push('💳 ' + starkShareMoney(plan.total) + ' (entrada ' + starkShareMoney(plan.entry) + ')');
+        }
+      } else {
+        lines.push('💰 ' + starkShareMoney(acc.priceTotal) +
+          (acc.priceEntry > 0 ? ' • Entrada ' + starkShareMoney(acc.priceEntry) : ''));
+      }
+      lines.push('🔗 Confira a conta e as fotos no catálogo: ' + starkShareUrl(acc));
+      return lines.join('\n');
+    }
+
+    function starkShareCacheRemember(ref, file) {
+      starkShareFiles.delete(ref);
+      starkShareFiles.set(ref, file);
+      while (starkShareFiles.size > STARK_SHARE_CACHE_LIMIT) {
+        starkShareFiles.delete(starkShareFiles.keys().next().value);
+      }
+    }
+
+    function prepareStarkAccountPhoto(acc) {
+      if (!acc || !acc.imgUrl) return Promise.reject(new Error('Capa não cadastrada'));
+      if (starkShareFiles.has(acc.ref)) {
+        const file = starkShareFiles.get(acc.ref);
+        starkShareCacheRemember(acc.ref, file);
+        return Promise.resolve(file);
+      }
+      if (starkSharePending.has(acc.ref)) return starkSharePending.get(acc.ref);
+      const imageUrl = new URL(acc.imgUrl, document.baseURI).href;
+      const loading = fetch(imageUrl, {cache: 'force-cache'})
+        .then(response => {
+          if (!response.ok) throw new Error('Imagem não encontrada (HTTP ' + response.status + ')');
+          return response.blob();
+        }).then(blob => {
+          if (!blob.size || !blob.type.startsWith('image/')) throw new Error('Arquivo de imagem inválido');
+          const ext = blob.type.includes('png') ? 'png' : blob.type.includes('webp') ? 'webp' : 'jpeg';
+          const safeName = acc.ref.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9-]+/g, '_');
+          const file = new File([blob], 'STARK_GAMES_' + safeName + '.' + ext, {type: blob.type});
+          starkShareCacheRemember(acc.ref, file);
+          return file;
+        }).finally(() => starkSharePending.delete(acc.ref));
+      starkSharePending.set(acc.ref, loading);
+      return loading;
+    }
+
+    function starkSharePilotStatus(message, enabled) {
+      document.getElementById('stark-share-pilot-status').textContent = message;
+      document.getElementById('stark-share-pilot-send').disabled = !enabled;
+    }
+    function openStarkSharePilot(acc, message, enabled) {
+      starkShareSelectedAccount = acc;
+      document.getElementById('stark-share-pilot-title').textContent = '🦁 STARK GAMES — ' + acc.ref;
+      const preview = document.getElementById('stark-share-pilot-image');
+      preview.src = acc.imgUrl;
+      preview.alt = 'Capa original da ' + acc.ref;
+      starkSharePilotStatus(message, enabled);
+      document.getElementById('stark-share-pilot').style.display = 'flex';
+      if (enabled) document.getElementById('stark-share-pilot-send').focus();
+    }
+    function closeStarkSharePilot() {
+      document.getElementById('stark-share-pilot').style.display = 'none';
+    }
+
+    function shareStarkTextOnly(acc = starkShareSelectedAccount) {
+      if (!acc) return;
+      const whatsappUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(starkShareText(acc));
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    function shareStarkPhotoNow() {
+      // A Web Share API exige um toque/clique real neste botão.
+      const acc = starkShareSelectedAccount;
+      const file = acc && starkShareFiles.get(acc.ref);
+      if (!acc || !file || !navigator.share || !navigator.canShare || !navigator.canShare({files:[file]})) {
+        if (acc) openStarkSharePilot(acc, 'Este navegador não permite enviar a foto diretamente. Você pode usar a alternativa de compartilhar o link.', false);
+        return;
+      }
+      navigator.share({files:[file], title:'STARK GAMES — ' + acc.ref, text:starkShareText(acc)})
+        .then(() => closeStarkSharePilot())
+        .catch(error => {
+          if (error && error.name === 'AbortError') {
+            openStarkSharePilot(acc, 'Compartilhamento cancelado. Toque novamente para tentar.', true);
+          } else {
+            openStarkSharePilot(acc, 'Não foi possível enviar a foto por este navegador. Tente novamente ou compartilhe o link.', true);
+          }
+        });
+    }
+
+    function shareAccount(ref) {
+      const acc = accounts.find(a => a.ref === ref);
+      if (!acc) return;
+      if (typeof gtag === 'function') {
+        gtag('event','compartilhar_conta',{event_category:'Conta',event_label:ref});
+      }
+      // No computador, WhatsApp Web pode receber somente a foto (sem legenda).
+      // Priorizar a experiência já validada no celular; desktop envia texto + link.
+      const mobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (!mobileDevice || !navigator.share || !navigator.canShare) {
+        shareStarkTextOnly(acc);
+        return;
+      }
+      starkShareSelectedAccount = acc;
+      const ready = starkShareFiles.get(ref);
+      if (ready && navigator.canShare({files:[ready]})) {
+        // Abrir diretamente no clique preserva a ativação exigida pelo celular.
+        shareStarkPhotoNow();
+        return;
+      }
+      openStarkSharePilot(acc, 'Preparando a capa original. Assim que estiver pronta, toque em “Compartilhar foto”.', false);
+      prepareStarkAccountPhoto(acc).then(file => {
+        if (starkShareSelectedAccount !== acc) return;
+        if (navigator.canShare({files:[file]})) {
+          starkSharePilotStatus('✅ Foto pronta! Toque em “Compartilhar foto” e escolha WhatsApp.', true);
+        } else {
+          starkSharePilotStatus('A foto foi carregada, mas este navegador não permite o envio direto de imagens. Use a alternativa do link.', false);
+        }
+      }).catch(error => {
+        if (starkShareSelectedAccount === acc) {
+          starkSharePilotStatus('Não foi possível carregar a capa: ' + error.message + '. Use a alternativa do link.', false);
+        }
+      });
+    }
+
+    // Carregamento discreto: pré-prepara as capas visíveis para que o botão
+    // geralmente compartilhe com um único toque, sem baixar as 152 imagens de uma vez.
+    function initializeStarkSharePreload() {
+      if (typeof IntersectionObserver === 'undefined') return;
+      const watched = new WeakSet();
+      const observer = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          observer.unobserve(entry.target);
+          const ref = entry.target.getAttribute('data-stark-share-ref');
+          const acc = accounts.find(a => a.ref === ref);
+          if (acc) prepareStarkAccountPhoto(acc).catch(() => {});
+        }
+      }, {rootMargin:'80px',threshold:0});
+      const roots = ['catalog-container','featured-card-content','promo-card-content']
+        .map(id => document.getElementById(id)).filter(Boolean);
+      function observeButtons(root) {
+        root.querySelectorAll('[data-stark-share-ref]').forEach(button => {
+          if (watched.has(button)) return;
+          watched.add(button);
+          observer.observe(button);
+        });
+      }
+      const mutations = new MutationObserver(changes => {
+        for (const item of changes) {
+          const root = roots.find(node => node === item.target || node.contains(item.target));
+          if (root) observeButtons(root);
+        }
+      });
+      for (const root of roots) {
+        mutations.observe(root,{childList:true,subtree:true});
+        observeButtons(root);
+      }
+    }
+
+    // Links compartilhados apontam para a conta correspondente dentro do catálogo.
+    function showSharedAccountFromHash() {
+      if (!location.hash || location.hash.length < 2) return;
+      let anchor;
+      try { anchor = decodeURIComponent(location.hash.slice(1)); }
+      catch (_) { return; }
+      const acc = accounts.find(a => a.ref.replace(/\s+/g,'-') === anchor);
+      if (!acc) return;
+      // Contas vendidas antigas ficam no histórico, e não na lista principal.
+      if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) {
+        document.getElementById('sold-card').classList.add('open');
+        requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView({block:'center'}));
+        return;
+      }
+      clearFilters();
+      document.getElementById('quick-search').value = acc.ref;
+      document.getElementById('search-ref').value = acc.ref;
+      applyFilters();
+      requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView({block:'center'}));
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initializeStarkSharePreload();
+      // O carregamento e renderização originais também usam DOMContentLoaded.
+      setTimeout(showSharedAccountFromHash, 0);
+    });
+    window.addEventListener('hashchange', showSharedAccountFromHash);
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeStarkSharePilot();
+    });
 
     function switchStarkTab(tab) {
       const featured = tab === 'featured';
