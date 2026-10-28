@@ -4414,7 +4414,15 @@ function getFilteredAccounts() {
           `━━━━━━━━━━━━━━━━━━━━━━\n` +
           `🚀 _A aguardar atendimento!_`;
         
-        const url = `https://wa.me/${v.numero}?text=` + encodeURIComponent(textoMensagem);
+        // O redirecionamento wa.me pode substituir emojis por � no WhatsApp Web.
+        // PC: abrir a conversa diretamente pelo endpoint do WhatsApp.
+        // Celular: preservar o wa.me que ja funciona com emojis.
+        const isMobileWhatsApp = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const url = (isMobileWhatsApp
+          ? `https://wa.me/${v.numero}?text=`
+          : `https://api.whatsapp.com/send?phone=${v.numero}&text=`)
+          + encodeURIComponent(textoMensagem);
         const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
         
         vendorList.innerHTML += `
