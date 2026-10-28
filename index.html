@@ -4045,14 +4045,31 @@ function updatePromoRefs() {
         }).join('') + `</div>`;
     }
 
+    // Mensagem de compra: características em linhas separadas, preservando o cadastro original.
+    function purchaseDetailsText(acc) {
+      if (!acc) return '• Informações não disponíveis';
+      const details = (Array.isArray(acc.details) ? acc.details : [])
+        .map(item => String(item || '').replace(/\s+/g, ' ').trim())
+        .filter(Boolean);
+      // Se o cadastro não tiver detalhes, separar os campos resumidos por barras verticais.
+      const lines = details.length ? details : String(acc.stats || '')
+        .split(/\s*\|\s*/)
+        .map(item => item.trim())
+        .filter(Boolean);
+      return lines.length ? lines.map(line => '• ' + line).join('\n') : '• Consulte as fotos para mais detalhes';
+    }
+
     function paymentMessageText(acc) {
       if (!acc) return '';
+      const money = value => 'R$ ' + Number(value).toLocaleString('pt-BR');
       if (!Array.isArray(acc.paymentOptions) || !acc.paymentOptions.length) {
-        return `💰 *Valor Total:* R$ ${acc.priceTotal.toLocaleString('pt-BR')} *(Entrada: R$ ${acc.priceEntry.toLocaleString('pt-BR')})*`;
+        const lines = ['💰 *CONDIÇÕES DE PAGAMENTO:*', '💵 Valor total: *' + money(acc.priceTotal) + '*'];
+        if (Number(acc.priceEntry) > 0) lines.push('💳 Entrada: *' + money(acc.priceEntry) + '*');
+        return lines.join('\n');
       }
       return '💰 *CONDIÇÕES DE PAGAMENTO:*\n' + acc.paymentOptions.map(plan =>
-        `• ${plan.label}: R$ ${plan.total.toLocaleString('pt-BR')}` +
-        (plan.entry == null ? '' : ` (Entrada: R$ ${plan.entry.toLocaleString('pt-BR')})`)
+        '• ' + plan.label + ': *' + money(plan.total) + '*' +
+        (plan.entry == null ? '' : ' (entrada ' + money(plan.entry) + ')')
       ).join('\n');
     }
 
@@ -4401,19 +4418,22 @@ function getFilteredAccounts() {
       const acc = accounts.find(a => a.ref === ref);
       const directLink = `${window.location.origin}${window.location.pathname}#${ref.replace(/\s+/g, '-')}`;
       
-      let detalhesConta = acc ? `👑 *${acc.ref}* - ${acc.stats}\n${paymentMessageText(acc)}\n` : `👑 *${ref}*\n`;
+      // URL fixa do catálogo oficial, mesmo quando o código for aberto em uma página de teste.
+      const officialAccountLink = 'https://starkgamesoficial.github.io/Catalogo/#' +
+        encodeURIComponent(ref.replace(/\s+/g, '-'));
+      const dadosConta = acc ? purchaseDetailsText(acc) : '• ' + ref;
 
       VENDEDORES.forEach(v => {
-        const textoMensagem = 
-          `🦁 *STARK GAMES - COMPRA DE CONTA* 🦁\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `👋 Olá *${v.nome}*! Tenho interesse em fechar negócio nesta conta:\n\n` +
-          detalhesConta + `\n` +
-          `🔗 *Link do Anúncio:* ${directLink}\n` +
-          `📁 *Link das Fotos:* ${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `🚀 _A aguardar atendimento!_`;
-        
+        const textoMensagem =
+          `🦁 *STARK GAMES — COMPRA DE CONTA* 🦁\n\n` +
+          `👋 Olá, *${v.nome}*! Tenho interesse em fechar negócio nesta conta:\n\n` +
+          `👑 *${ref}*\n\n` +
+          `⚔️ *DETALHES DA CONTA:*\n${dadosConta}\n\n` +
+          `${paymentMessageText(acc)}\n\n` +
+          `🔗 *Link do anúncio:*\n${officialAccountLink}\n\n` +
+          `📸 *Fotos da conta:*\n${acc && acc.driveUrl ? acc.driveUrl : 'Não informado'}\n\n` +
+          `🤝 _Aguardo seu atendimento!_`;
+
         // O redirecionamento wa.me pode substituir emojis por � no WhatsApp Web.
         // PC: abrir a conversa diretamente pelo endpoint do WhatsApp.
         // Celular: preservar o wa.me que ja funciona com emojis.
