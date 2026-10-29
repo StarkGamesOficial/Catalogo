@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STARK GAMES - Catálogo de Contas Lords Mobile</title>
   
+  <!-- GOOGLE ANALYTICS (GA4) — Eventos por REF para ranking Top 10 -->
   <!-- GOOGLE ANALYTICS (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3MDCXHENS8"></script>
   <script>
@@ -4073,6 +4074,19 @@ function updatePromoRefs() {
       ).join('\n');
     }
 
+    // STARK GAMES / GA4 — identifica a conta em cada interação, sem duplicar eventos.
+    // ref_conta e vendedor: criar como dimensões personalizadas no GA4 (escopo Evento).
+    function trackStarkEvent(eventName, ref, extra = {}) {
+      if (typeof gtag !== 'function') return;
+      if (!accounts.some(acc => acc.ref === ref)) return;
+      gtag('event', eventName, {
+        event_category: 'Conta',
+        event_label: ref, // compatibilidade com os relatórios anteriores
+        ref_conta: ref,
+        ...extra
+      });
+    }
+
     function renderFeatured() {
       const container = document.getElementById('featured-card-content');
       
@@ -4091,7 +4105,7 @@ function updatePromoRefs() {
       const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
       const buyButtonHtml = acc.vendida 
         ? `<button class="btn btn-sold">🚫 Vendida</button>` 
-        : `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+        : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
       const isPromo = isActiveOffer(acc);
       const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
@@ -4116,7 +4130,7 @@ function updatePromoRefs() {
             ${renderPaymentPlanDetails(acc)}
           </div>
           <div class="actions">
-            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="trackStarkEvent('clique_fotos', '${acc.ref}')">📁 Fotos</a>
             ${buyButtonHtml}
             <button class="btn btn-share" title="Compartilhar conta STARK GAMES" data-stark-share-ref="${acc.ref}" onclick="shareAccount('${acc.ref}')">Compartilhar</button>
           </div>
@@ -4140,7 +4154,7 @@ function updatePromoRefs() {
       if (!acc) return;
 
       const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
-      const buyButtonHtml = `<button class="btn btn-whatsapp" onclick="openVendorModal('${acc.ref}')">💬 Comprar</button>`;
+      const buyButtonHtml = `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
       const isPromo = isActiveOffer(acc);
       const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
@@ -4162,7 +4176,7 @@ function updatePromoRefs() {
             ${renderPaymentPlanDetails(acc)}
           </div>
           <div class="actions">
-            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+            <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="trackStarkEvent('clique_fotos', '${acc.ref}')">📁 Fotos</a>
             ${buyButtonHtml}
             <button class="btn btn-share" title="Compartilhar conta STARK GAMES" data-stark-share-ref="${acc.ref}" onclick="shareAccount('${acc.ref}')">Compartilhar</button>
           </div>
@@ -4328,7 +4342,7 @@ function getFilteredAccounts() {
               ${renderPaymentPlanDetails(acc)}
             </div>
             <div class="actions">
-              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="gtag('event', 'clique_fotos', { 'event_category': 'Conta', 'event_label': '${acc.ref}' });">📁 Fotos</a>
+              <a href="${acc.driveUrl || '#'}" target="_blank" class="btn btn-drive" onclick="trackStarkEvent('clique_fotos', '${acc.ref}')">📁 Fotos</a>
               ${buyButtonHtml}
               <button class="btn btn-share" title="Compartilhar conta STARK GAMES" data-stark-share-ref="${acc.ref}" onclick="shareAccount('${acc.ref}')">Compartilhar</button>
             </div>
@@ -4339,7 +4353,9 @@ function getFilteredAccounts() {
     }
 
     function trackAndOpenModal(ref) {
-      gtag('event', 'interesse_compra', { 'event_category': 'Conta', 'event_label': ref });
+      const acc = accounts.find(a => a.ref === ref);
+      if (!acc || acc.vendida) return;
+      trackStarkEvent('interesse_compra', ref);
       openVendorModal(ref);
     }
 
@@ -4446,7 +4462,7 @@ function getFilteredAccounts() {
         const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(v.nome)}&background=1e293b&color=22c55e&size=128&bold=true`;
         
         vendorList.innerHTML += `
-          <a href="${url}" target="_blank" class="vendor-card" onclick="gtag('event', 'escolha_vendedor', { 'event_category': 'Vendedor', 'event_label': '${v.nome} - ${ref}' });">
+          <a href="${url}" target="_blank" class="vendor-card" onclick="trackStarkEvent('escolha_vendedor', '${ref}', {vendedor: '${v.nome}', event_category: 'Vendedor', event_label: '${v.nome} - ${ref}'})">
             <img src="${v.foto}" class="vendor-avatar" alt="${v.nome}" onerror="this.src='${fallbackAvatar}'">
             <div class="vendor-info">
               <div class="vendor-name">${v.nome}</div>
@@ -4579,9 +4595,7 @@ function getFilteredAccounts() {
     function shareAccount(ref) {
       const acc = accounts.find(a => a.ref === ref);
       if (!acc) return;
-      if (typeof gtag === 'function') {
-        gtag('event','compartilhar_conta',{event_category:'Conta',event_label:ref});
-      }
+      trackStarkEvent('compartilhar_conta', ref);
       // No computador, WhatsApp Web pode receber somente a foto (sem legenda).
       // Priorizar a experiência já validada no celular; desktop envia texto + link.
       const mobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
@@ -4988,7 +5002,7 @@ function getFilteredAccounts() {
       const descRows = models.map(m=>`<td class="cmp-description">${escape(m.acc.stats || 'Não informado')}<ul>${(m.acc.details || []).map(d=>`<li>${escape(d)}</li>`).join('')}</ul></td>`).join('');
       const bottomRows = `<tr class="cmp-section"><th colspan="${colCount}">📋 Informações completas dos anúncios</th></tr>`+
         `<tr><th scope="row">Descrição original</th>${descRows}</tr>`+
-        `<tr><th scope="row">Fotos e compra</th>${models.map(m=>`<td><a href="${escape(m.acc.driveUrl||'#')}" target="_blank" rel="noopener noreferrer">📷 Ver fotos</a><div class="cmp-actions"><button type="button" class="compare-buy" data-buy-ref="${escape(m.acc.ref)}">💬 Comprar</button><button type="button" class="compare-remove" data-remove-ref="${escape(m.acc.ref)}">Remover</button></div></td>`).join('')}</tr>`;
+        `<tr><th scope="row">Fotos e compra</th>${models.map(m=>`<td><a href="${escape(m.acc.driveUrl||'#')}" target="_blank" rel="noopener noreferrer" data-photo-ref="${escape(m.acc.ref)}">📷 Ver fotos</a><div class="cmp-actions"><button type="button" class="compare-buy" data-buy-ref="${escape(m.acc.ref)}">💬 Comprar</button><button type="button" class="compare-remove" data-remove-ref="${escape(m.acc.ref)}">Remover</button></div></td>`).join('')}</tr>`;
       const html = `
         <div class="cmp-intro"><p>Veja as diferenças reais entre 2 ou 3 contas. <strong class="cmp-green-text">Verde</strong> = melhor valor/recurso informado; <strong class="cmp-red-text">vermelho</strong> = menor valor ou ausência confirmada; cinza = empate ou não informado.</p><label class="cmp-toggle"><input type="checkbox" id="cmp-only-diffs" ${compareOnlyDifferences?'checked':''} onchange="setCompareDifferences(this.checked)"> Mostrar apenas diferenças</label></div>
         <div class="cmp-summary"><h3>🏆 Diferenciais de cada conta</h3><div class="cmp-summary-grid">${summaries}</div></div>
@@ -4997,6 +5011,7 @@ function getFilteredAccounts() {
         ${compareOnlyDifferences && !rendered?'<p class="cmp-empty">Não há diferenças numéricas ou de recursos confirmadas entre essas contas nos campos identificáveis.</p>':''}`;
       const root = document.getElementById('compare-content');
       root.innerHTML = html;
+      root.querySelectorAll('[data-photo-ref]').forEach(link => link.addEventListener('click',()=>trackStarkEvent('clique_fotos',link.dataset.photoRef)));
       root.querySelectorAll('[data-buy-ref]').forEach(btn => btn.addEventListener('click',()=>{closeCompare();trackAndOpenModal(btn.dataset.buyRef)}));
       root.querySelectorAll('[data-remove-ref]').forEach(btn => btn.addEventListener('click',()=>toggleCompare(btn.dataset.removeRef)));
     }
