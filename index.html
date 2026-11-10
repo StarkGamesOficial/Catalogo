@@ -5867,26 +5867,29 @@ function getFilteredAccounts() {
     }
 
     function starkShareText(acc) {
-      const lines = ['🦁 STARK GAMES 🦁', '👑 ' + acc.ref + (acc.vendida ? ' — VENDIDA' : '')];
-      // Only use information explicitly present in this account's published listing.
+      const header = ['🦁 STARK GAMES 🦁', '👑 ' + acc.ref + (acc.vendida ? ' — VENDIDA' : '')];
+      // Mantém as informações do anúncio em linhas separadas e cria respiro entre os blocos,
+      // reproduzindo o formato de legenda usado nas divulgações do WhatsApp.
       const detailLines = (Array.isArray(acc.details) ? acc.details : [])
-        .map(line => String(line || '').replace(/\s+/g, ' ').trim())
+        .map(line => String(line || '').replace(/\\s+/g, ' ').trim())
         .filter(Boolean)
         .slice(0, 6);
-      if (detailLines.length) lines.push(...detailLines);
-      else if (acc.stats) lines.push('⚡ ' + String(acc.stats).replace(/\s+/g, ' ').slice(0, 200));
+      const info = detailLines.length
+        ? detailLines
+        : (acc.stats ? ['⚡ ' + String(acc.stats).replace(/\\s+/g, ' ').slice(0, 200)] : []);
+      const prices = [];
       if (Array.isArray(acc.paymentOptions) && acc.paymentOptions.length) {
         const aVista = acc.paymentOptions.find(plan => plan.entry == null);
-        lines.push('💰 ' + starkShareMoney(aVista ? aVista.total : acc.priceTotal) + (aVista ? ' à vista' : ' (menor valor anunciado)'));
+        prices.push('💰 ' + starkShareMoney(aVista ? aVista.total : acc.priceTotal) + (aVista ? ' à vista' : ' (menor valor anunciado)'));
         for (const plan of acc.paymentOptions.filter(p => p.entry != null)) {
-          lines.push('💳 ' + starkShareMoney(plan.total) + ' (entrada ' + starkShareMoney(plan.entry) + ')');
+          prices.push('💳 ' + starkShareMoney(plan.total) + ' (entrada ' + starkShareMoney(plan.entry) + ')');
         }
       } else {
-        lines.push('💰 ' + starkShareMoney(acc.priceTotal) +
+        prices.push('💰 ' + starkShareMoney(acc.priceTotal) +
           (acc.priceEntry > 0 ? ' • Entrada ' + starkShareMoney(acc.priceEntry) : ''));
       }
-      lines.push('🔗 Confira a conta e as fotos no catálogo: ' + starkShareUrl(acc));
-      return lines.join('\n');
+      const link = '🔗 Confira a conta e as fotos no catálogo: ' + starkShareUrl(acc);
+      return [header.join('\\n'), info.join('\\n'), prices.join('\\n'), link].filter(Boolean).join('\\n\\n');
     }
 
     function starkShareCacheRemember(ref, file) {
