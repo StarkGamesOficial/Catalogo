@@ -5838,7 +5838,18 @@ function updatePromoRefs() {
       });
     }
 
-    function renderFeatured() {
+function accountDescriptionHtml(acc) {
+      const details = Array.isArray(acc.details) ? acc.details : [];
+      // Os preços já aparecem no bloco próprio do anúncio; não repetir na descrição.
+      const descriptionOnly = details.filter(line => {
+        const text = String(line || '').trim();
+        return !/^(?:💸|💰|🪙|💳)\s*/u.test(text)
+          && !/^(?:valor|preço|entrada)\s*:/iu.test(text.replace(/^[^\p{L}\p{N}]*/u, ''));
+      });
+      return descriptionOnly.map(line => `<li>${line}</li>`).join('');
+    }
+
+        function renderFeatured() {
       const container = document.getElementById('featured-card-content');
       
       if (featuredRefs.length === 0) {
@@ -5851,7 +5862,7 @@ function updatePromoRefs() {
 
       if (!acc) return;
 
-      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      const detailsHtml = accountDescriptionHtml(acc);
       const soldClass = acc.vendida ? 'sold' : '';
       const soldStampHtml = acc.vendida ? '<div class="sold-stamp">VENDIDA</div>' : '';
       const buyButtonHtml = acc.vendida 
@@ -5904,7 +5915,7 @@ function updatePromoRefs() {
 
       if (!acc) return;
 
-      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      const detailsHtml = accountDescriptionHtml(acc);
       const buyButtonHtml = `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
       const isPromo = isActiveOffer(acc);
@@ -6065,7 +6076,7 @@ function getFilteredAccounts() {
         ? `<button class="btn btn-sold" disabled>🚫 Vendida</button>` 
         : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
-      const detailsHtml = acc.details.map(d => `<li>${d}</li>`).join('');
+      const detailsHtml = accountDescriptionHtml(acc);
       
       const isPromo = isActiveOffer(acc);
       const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
