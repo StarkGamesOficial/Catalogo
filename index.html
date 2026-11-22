@@ -5870,7 +5870,11 @@ function accountDescriptionHtml(acc) {
         : `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
       const isPromo = isActiveOffer(acc);
-      const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const promoBadgeHtml = isPromo
+        ? (acc.ref === 'REF R 205'
+          ? '<div class="promo-badge-tag">🔥 DESCONTO 32%</div>'
+          : '<div class="promo-badge-tag">🔥 Oferta</div>')
+        : '';
       const newBadgeHtml = isNewArrival(acc) ? '<div class="new-arrival-tag">🆕 Nova conta</div>' : '';
       const priceDisplayHtml = acc.hidePrice ? '' : (isPromo 
         ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${paymentMainPriceLabel(acc)}</div>`
@@ -5919,7 +5923,11 @@ function accountDescriptionHtml(acc) {
       const buyButtonHtml = `<button class="btn btn-whatsapp" onclick="trackAndOpenModal('${acc.ref}')">💬 Comprar</button>`;
 
       const isPromo = isActiveOffer(acc);
-      const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const promoBadgeHtml = isPromo
+        ? (acc.ref === 'REF R 205'
+          ? '<div class="promo-badge-tag">🔥 DESCONTO 32%</div>'
+          : '<div class="promo-badge-tag">🔥 Oferta</div>')
+        : '';
       const priceDisplayHtml = isPromo 
         ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${paymentMainPriceLabel(acc)}</div>`
         : `<div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${paymentMainPriceLabel(acc)}</div>`;
@@ -6079,7 +6087,11 @@ function getFilteredAccounts() {
       const detailsHtml = accountDescriptionHtml(acc);
       
       const isPromo = isActiveOffer(acc);
-      const promoBadgeHtml = isPromo ? '<div class="promo-badge-tag">🔥 Oferta</div>' : '';
+      const promoBadgeHtml = isPromo
+        ? (acc.ref === 'REF R 205'
+          ? '<div class="promo-badge-tag">🔥 DESCONTO 32%</div>'
+          : '<div class="promo-badge-tag">🔥 Oferta</div>')
+        : '';
       const newBadgeHtml = isNewArrival(acc) ? '<div class="new-arrival-tag">🆕 Nova conta</div>' : '';
       const priceDisplayHtml = isPromo 
         ? `<div class="old-price">De R$ ${acc.oldPrice.toLocaleString('pt-BR')}</div><div class="main-price">R$ ${acc.priceTotal.toLocaleString('pt-BR')}${paymentMainPriceLabel(acc)}</div>`
