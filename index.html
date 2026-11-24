@@ -628,6 +628,7 @@ header {
     .stark-share-pilot-close { background:transparent; border:1px solid #526071; color:#eee; }
     .stark-share-pilot-small { color:#cbd5e1; font-size:.8rem !important; margin-top:10px !important; }
 
+.stark-services{max-width:1200px;margin:28px auto;padding:22px;background:linear-gradient(145deg,rgba(10,15,25,.98),rgba(30,25,15,.96));border:2px solid #b88625;border-radius:18px;box-shadow:0 0 28px rgba(245,158,11,.2)}.stark-services h2,.stark-services h3{color:#f5c451;text-align:center;text-transform:uppercase}.stark-services-intro{text-align:center;color:#cbd5e1;margin:8px 0 22px}.service-relink{border:1px solid #d69e28;border-radius:15px;padding:22px;background:linear-gradient(135deg,rgba(42,31,13,.9),rgba(12,18,30,.96));margin-bottom:25px}.relink-grid,.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}.relink-price,.service-card{padding:16px;text-align:center;background:rgba(0,0,0,.38);border:1px solid #8a6827;border-radius:12px;color:#f8fafc}.relink-price strong{display:block;color:#fbbf24;margin-top:6px}.service-card{display:flex;flex-direction:column;align-items:center;min-height:225px;background:linear-gradient(160deg,rgba(30,41,59,.95),rgba(8,12,20,.98))}.service-icon{font-size:2.4rem}.service-card h3{font-size:1.05rem;margin:8px 0}.service-card p{color:#cbd5e1;font-size:.9rem;line-height:1.5;flex:1;margin-bottom:15px}.service-cta{display:block;width:100%;padding:11px;border-radius:9px;background:#25d366;color:white;text-decoration:none;font-weight:900;font-size:.82rem}.service-cta:hover{background:#1da851}.stark-tab[data-tab=services][aria-selected=true]{background:linear-gradient(135deg,#f6ca55,#9a6811);color:#111827}@media(max-width:600px){.stark-services{padding:14px}.service-grid{grid-template-columns:1fr 1fr}.service-card{padding:13px 9px;min-height:245px}.service-card p{font-size:.82rem}.service-cta{font-size:.72rem;padding:9px 5px}}
 </style>
 </head>
 <body>
@@ -638,9 +639,10 @@ header {
 
   <!-- Abas: apenas uma seção visível por vez -->
   <div class="stark-tabs-wrap">
-    <div class="stark-tabs" role="tablist" aria-label="Destaques e ofertas especiais">
+    <div class="stark-tabs" role="tablist" aria-label="Destaques, ofertas especiais e serviços">
       <button type="button" class="stark-tab" id="stark-tab-featured" data-tab="featured" role="tab" aria-controls="stark-panel-featured" aria-selected="true" onclick="switchStarkTab('featured')">⭐ Destaques</button>
       <button type="button" class="stark-tab" id="stark-tab-promos" data-tab="promos" role="tab" aria-controls="stark-panel-promos" aria-selected="false" onclick="switchStarkTab('promos')">⚡ Ofertas Especiais</button>
+<button type="button" class="stark-tab" id="stark-tab-services" data-tab="services" role="tab" aria-controls="stark-panel-services" aria-selected="false" onclick="switchStarkTab('services')">👑 Serviços</button>
     </div>
     <div id="stark-panel-featured" class="stark-tab-panel" role="tabpanel" aria-labelledby="stark-tab-featured">
   <!-- SEÇÃO DESTAQUE COM DESIGN PRÓPRIO -->
@@ -672,6 +674,20 @@ header {
     </div>
   </div>
 
+
+<div id="stark-panel-services" class="stark-tab-panel" role="tabpanel" aria-labelledby="stark-tab-services" hidden>
+<section class="stark-services">
+<h2>🦁 Serviços Stark Games</h2><p class="stark-services-intro">Soluções e serviços especializados para jogadores e guildas de Lords Mobile.</p>
+<div class="service-relink"><h3>🔗 RELINK</h3><p style="text-align:center;color:#e2e8f0">Consulte as opções de relink disponíveis para sua conta.</p>
+<div class="relink-grid">
+<div class="relink-price">Sem Champ<strong>R$ 150</strong></div><div class="relink-price">1 Champ<strong>R$ 250</strong></div><div class="relink-price">3 Champs ou mais<strong>R$ 450</strong></div><div class="relink-price">Full Champ<strong>A partir de R$ 800</strong></div><div class="relink-price">Contas restritas<strong>Consultar valores</strong></div></div>
+<a class="service-cta" target="_blank" rel="noopener" href="https://wa.me/55981208377?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20da%20Stark%20Games%20e%20tenho%20interesse%20no%20servi%C3%A7o%20de%20RELINK.%20%F0%9F%94%97%0A%0AGostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20e%20solicitar%20um%20or%C3%A7amento.%0A%0AAguardo%20atendimento%21%20%F0%9F%A6%81">🔥 SOLICITAR RELINK PELO WHATSAPP</a></div>
+<h2>👑 Outros Serviços</h2><div class="service-grid">
+<article class="service-card"><div class="service-icon">📊</div><h3>Avaliação de Contas</h3><p>Descubra quanto sua conta pode valer no mercado. Nossa equipe analisa os detalhes e apresenta uma estimativa de valor, sem compromisso!</p><a class="service-cta" target="_blank" rel="noopener" href="https://wa.me/55981208377?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20da%20Stark%20Games%20e%20gostaria%20de%20solicitar%20uma%20AVALIA%C3%87%C3%83O%20da%20minha%20conta%20do%20Lords%20Mobile.%20%F0%9F%93%8A%0A%0AGostaria%20de%20saber%20quanto%20minha%20conta%20vale%20atualmente%20no%20mercado.%0A%0AComo%20funciona%20a%20avalia%C3%A7%C3%A3o%3F%0A%0AObrigado%21%20%F0%9F%A6%81">AVALIAR MINHA CONTA</a></article>
+<article class="service-card"><div class="service-icon">💎</div><h3>Venda de Gemas</h3><p>Consulte disponibilidade, condições e valores para compra de gemas.</p><a class="service-cta" target="_blank" rel="noopener" href="https://wa.me/55981208377?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20da%20Stark%20Games%20e%20tenho%20interesse%20na%20compra%20de%20GEMAS.%20%F0%9F%92%8E%0A%0AGostaria%20de%20consultar%20os%20valores%20e%20as%20condi%C3%A7%C3%B5es%20dispon%C3%ADveis.%0A%0AAguardo%20atendimento%21">CONSULTAR PELO WHATSAPP</a></article>
+<article class="service-card"><div class="service-icon">🦅</div><h3>Scan Falcon</h3><p>Conheça os planos disponíveis, as velocidades de rastreamento e os valores para sua guilda.</p><a class="service-cta" target="_blank" rel="noopener" href="https://wa.me/55981208377?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20da%20Stark%20Games%20e%20tenho%20interesse%20no%20servi%C3%A7o%20SCAN%20FALCON.%20%F0%9F%94%8D%0A%0AGostaria%20de%20conhecer%20os%20planos%20dispon%C3%ADveis%2C%20suas%20velocidades%20de%20rastreamento%20e%20valores.%0A%0AAguardo%20atendimento%21%20%F0%9F%A6%81">CONSULTAR PELO WHATSAPP</a></article>
+<article class="service-card"><div class="service-icon">🤖</div><h3>Bot Pessoal / Administrativo</h3><p>Conheça as funcionalidades e soluções disponíveis para suas necessidades.</p><a class="service-cta" target="_blank" rel="noopener" href="https://wa.me/55981208377?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20da%20Stark%20Games%20e%20tenho%20interesse%20no%20servi%C3%A7o%20de%20BOT%20PESSOAL%20%2F%20ADMINISTRATIVO.%20%F0%9F%A4%96%0A%0AGostaria%20de%20conhecer%20as%20funcionalidades%20dispon%C3%ADveis%20e%20saber%20como%20podemos%20desenvolver%20uma%20solu%C3%A7%C3%A3o%20para%20minhas%20necessidades.%0A%0AAguardo%20atendimento%21">CONSULTAR PELO WHATSAPP</a></article>
+</div></section></div>
   <div class="whatsapp-drawer-wrapper" id="whatsapp-drawer">
     <div class="whatsapp-drawer-toggle" onclick="toggleDrawer()">
       <span>💬 Nossos Grupos</span>
@@ -6521,10 +6537,13 @@ function getFilteredAccounts() {
 
     function switchStarkTab(tab) {
       const featured = tab === 'featured';
+      const promos = tab === 'promos';
       document.getElementById('stark-panel-featured').hidden = !featured;
-      document.getElementById('stark-panel-promos').hidden = featured;
+      document.getElementById('stark-panel-promos').hidden = !promos;
+      document.getElementById('stark-panel-services').hidden = tab !== 'services';
       document.getElementById('stark-tab-featured').setAttribute('aria-selected', String(featured));
-      document.getElementById('stark-tab-promos').setAttribute('aria-selected', String(!featured));
+      document.getElementById('stark-tab-promos').setAttribute('aria-selected', String(promos));
+      document.getElementById('stark-tab-services').setAttribute('aria-selected', String(tab === 'services'));
     }
 
     window.addEventListener('DOMContentLoaded', () => {
