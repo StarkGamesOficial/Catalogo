@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="340" viewBox="0 0 1400 340">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08090d"/><stop offset=".55" stop-color="#17120a"/><stop offset="1" stop-color="#05070c"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff0a3"/><stop offset=".45" stop-color="#f4b927"/><stop offset="1" stop-color="#9b6410"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1400" height="340" rx="28" fill="url(#bg)"/>
+<rect x="5" y="5" width="1390" height="330" rx="24" fill="none" stroke="#bd8b23" stroke-width="3"/>
+<path d="M0 270 L250 0 M1120 340 L1400 60" stroke="#e5a51d" stroke-opacity=".18" stroke-width="3"/>
+<circle cx="125" cy="170" r="105" fill="#261b08" stroke="#e7b53d" stroke-width="3"/>
+<text x="125" y="195" text-anchor="middle" font-size="104">🦁</text>
+<text x="270" y="112" fill="url(#gold)" font-family="Arial,sans-serif" font-size="68" font-weight="900" letter-spacing="2" filter="url(#glow)">SERVIÇOS</text>
+<text x="275" y="174" fill="#fff" font-family="Arial,sans-serif" font-size="48" font-weight="800" letter-spacing="3">STARK GAMES</text>
+<text x="278" y="218" fill="#d7dce5" font-family="Arial,sans-serif" font-size="24">SOLUÇÕES PARA JOGADORES E GUILDAS DE LORDS MOBILE</text>
+<g font-family="Arial,sans-serif" font-size="21" font-weight="800" text-anchor="middle">
+ <rect x="270" y="250" width="205" height="55" rx="14" fill="#26133b" stroke="#c65cff" stroke-width="2"/><text x="372" y="285" fill="#e7b7ff">🔗 RELINK</text>
+ <rect x="490" y="250" width="205" height="55" rx="14" fill="#102716" stroke="#75d94c" stroke-width="2"/><text x="592" y="285" fill="#b8ff91">📊 AVALIAÇÃO</text>
+ <rect x="710" y="250" width="180" height="55" rx="14" fill="#10243b" stroke="#37bfff" stroke-width="2"/><text x="800" y="285" fill="#9be5ff">💎 GEMAS</text>
+ <rect x="905" y="250" width="210" height="55" rx="14" fill="#351b08" stroke="#ff9d26" stroke-width="2"/><text x="1010" y="285" fill="#ffd18a">🦅 SCAN FALCON</text>
+ <rect x="1130" y="250" width="240" height="55" rx="14" fill="#0b2630" stroke="#27d7ef" stroke-width="2"/><text x="1250" y="285" fill="#9bf4ff">🤖 BOT ADMIN</text>
+</g>
+<text x="1050" y="85" fill="#f7cf64" font-family="Arial,sans-serif" font-size="24" font-weight="800">ATENDIMENTO VIA</text>
+<text x="1050" y="120" fill="#fff" font-family="Arial,sans-serif" font-size="31" font-weight="900">WHATSAPP</text>
+<path d="M1048 143 H1335" stroke="#d8a52f" stroke-width="3"/>
+<text x="1050" y="180" fill="#d7dce5" font-family="Arial,sans-serif" font-size="20">Consulte condições</text>
+<text x="1050" y="210" fill="#d7dce5" font-family="Arial,sans-serif" font-size="20">e disponibilidade.</text>
+</svg>
