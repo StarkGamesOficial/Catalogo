@@ -42,8 +42,8 @@
 <text x="720" y="201" fill="#d9dce3" font-family="Arial,sans-serif" font-size="19">e voltar a ter o controle da sua conta.</text>
 <path d="M720 225H1325" stroke="#765719" stroke-width="2"/>
 <text x="720" y="267" fill="#f4cf70" font-family="Arial,sans-serif" font-size="22" font-weight="900">VALORES DO SERVIÇO</text>
-<g font-family="Arial,sans-serif" font-size="19" fill="#f4f0e7">
- <text x="730" y="310">Sem Champ</text><text x="1285" y="310" text-anchor="end" fill="#ffd56d" font-weight="bold">R$ 150</text>
+<g font-family="Arial,sans-serif" font-size="23" fill="#f4f0e7">
+ <text x="730" y="310">Sem Champ</text><text x="1285" y="310" text-anchor="end" fill="#ffd56d" font-size="26" font-weight="bold">R$ 150</text>
  <text x="730" y="348">1 Champ</text><text x="1285" y="348" text-anchor="end" fill="#ffd56d" font-weight="bold">R$ 250</text>
  <text x="730" y="386">3 Champs ou mais</text><text x="1285" y="386" text-anchor="end" fill="#ffd56d" font-weight="bold">R$ 450</text>
  <text x="730" y="424">Full Champ</text><text x="1285" y="424" text-anchor="end" fill="#ffd56d" font-weight="bold">A partir de R$ 800</text>
