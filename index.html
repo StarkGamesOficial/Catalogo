@@ -337,6 +337,7 @@ header {
     .input-box input:focus, .input-box select:focus { border-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
 
     .filter-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #1e293b; padding-top: 15px; flex-wrap: wrap; }
+    .favorites-tip{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.favorites-tip span{font-size:.8rem;color:#cbd5e1;line-height:1.4}
     .btn-favorites-filter{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border:1px solid #9a742f;border-radius:8px;background:#111827;color:#e9bd62;font-weight:800;font-size:.88rem;cursor:pointer;transition:.2s}
     .btn-favorites-filter:hover,.btn-favorites-filter.active{background:linear-gradient(135deg,#3b2b0d,#17130b);border-color:#fbbf24;box-shadow:0 0 12px rgba(245,158,11,.22);color:#fcd34d}
     .card-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
@@ -764,7 +765,7 @@ header {
           </select>
         </div>
       </div>
-      <div class="filter-footer"><button type="button" id="favorites-filter-button" class="btn-favorites-filter" aria-pressed="false" onclick="toggleFavoritesFilter()">🦁 Favoritos</button><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
+      <div class="filter-footer"><div class="favorites-tip"><button type="button" id="favorites-filter-button" class="btn-favorites-filter" aria-pressed="false" onclick="toggleFavoritesFilter()">🦁 Favoritos</button><span>Toque no leão dourado de uma conta para salvá-la aqui.</span></div><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
     </div>
   </section>
 
