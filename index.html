@@ -938,7 +938,7 @@ header {
         oldPrice: 0,
         dataPromo: "",
         dataCadastro: "2026-11-04",
-        types: ["4 champ+", "skin_lider", "tropa_magica_mana"],
+        types: ["4 champ+", "full champ", "skin_lider", "tropa_magica_mana"],
         vendida: true,
         dataVendida: "2026-11-11",
         details: [
@@ -962,7 +962,7 @@ header {
         oldPrice: 0,
         dataPromo: "",
         dataCadastro: "2026-11-04",
-        types: ["1200%", "4 champ+", "skin_lider", "skin_exercito"],
+        types: ["1200%", "full champ", "4 champ+", "skin_lider", "skin_exercito"],
         vendida: false,
         dataVendida: "",
         details: [
@@ -6101,6 +6101,23 @@ function syncCatalogSearch(value) {
     function normalizeSearch(value) {
       return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
     }
+
+    // Usa o MAIOR dos valores IND declarados para definir a faixa percentual.
+    // Ex.: 1200/1300/1400% pertence à faixa 1400%.
+    function getAccountIndValues(acc) {
+      const text = [acc.stats || '', ...(Array.isArray(acc.details) ? acc.details : [])].join(' ');
+      const match = text.match(/\\bIND(?:IVIDUAL)?\\s*(?:\\([^)]*\\))?\\s*[:=-]?\\s*(\\d{3,4})\\s*%?\\s*(?:[/|]\\s*(\\d{3,4})\\s*%?\\s*(?:[/|]\\s*(\\d{3,4})\\s*%?)?)?/i);
+      return match ? match.slice(1).filter(Boolean).map(Number) : [];
+    }
+
+    function getAccountPercentageType(acc) {
+      const values = getAccountIndValues(acc);
+      if (!values.length) return null;
+      const highest = Math.max(...values);
+      if (highest < 800) return null;
+      return highest >= 1500 ? '1500%+' : (Math.floor(highest / 100) * 100) + '%';
+    }
+
 function getFilteredAccounts() {
       const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
       const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
@@ -6117,13 +6134,27 @@ function getFilteredAccounts() {
         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
         if (searchTerm && !normalizeSearch([acc.ref, acc.stats, ...(acc.details || []), ...(acc.types || [])].join(' ')).includes(searchTerm)) return false;
 
+        const accountTypes = Array.isArray(acc.types) ? acc.types.map(t => String(t).toLowerCase()) : [];
+        const percentageType = getAccountPercentageType(acc);
+
         if (!selectedTypes.includes('all')) {
-          const hasType = selectedTypes.some(t => acc.types.some(accType => accType.toLowerCase() === t.toLowerCase()));
+          const hasType = selectedTypes.some(t => {
+            const normalized = t.toLowerCase();
+            // Quando há IND informado, a faixa é calculada pelo maior dos três valores;
+            // sem IND explícito, preserva a classificação já cadastrada.
+            if (/^(?:800|900|1000|1100|1200|1300|1400)%$|^1500%\\+$/.test(normalized)) {
+              return percentageType ? percentageType === normalized : accountTypes.includes(normalized);
+            }
+            return accountTypes.includes(normalized);
+          });
           if (!hasType) return false;
         }
 
         if (checkedChamps.length > 0) {
-          const hasChamp = checkedChamps.some(c => acc.types.some(accType => accType.toLowerCase().includes(c)));
+          const hasChamp = checkedChamps.some(c => {
+            if (c === 'full champ') return accountTypes.includes('full champ');
+            return accountTypes.some(accType => accType.includes(c));
+          });
           if (!hasChamp) return false;
         }
 
