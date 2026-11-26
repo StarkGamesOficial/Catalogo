@@ -6591,6 +6591,18 @@ function getFilteredAccounts() {
     function openImagePreview(img) {
       const overlay = document.getElementById('stark-image-overlay');
       const large = document.getElementById('stark-image-large');
+      const imageAlt = (img.alt || '').trim();
+      const matchedAccount = accounts.find(acc =>
+        imageAlt === acc.ref || imageAlt === 'Imagem da ' + acc.ref
+      );
+
+      // Registra somente quando o visitante realmente abre a imagem ampliada.
+      if (matchedAccount) {
+        trackStarkEvent('visualizacao_imagem', matchedAccount.ref, {
+          origem_visualizacao: img.closest('.cmp-table-scroll') ? 'comparador' : 'capa_catalogo'
+        });
+      }
+
       large.src = img.currentSrc || img.src;
       large.alt = img.alt;
       overlay.classList.add('visible');
