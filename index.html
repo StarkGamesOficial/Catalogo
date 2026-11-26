@@ -336,7 +336,14 @@ header {
     .input-box input, .input-box select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
     .input-box input:focus, .input-box select:focus { border-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
 
-    .filter-footer { display: flex; justify-content: flex-start; align-items: center; border-top: 1px solid #1e293b; padding-top: 15px; }
+    .filter-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #1e293b; padding-top: 15px; flex-wrap: wrap; }
+    .btn-favorites-filter{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border:1px solid #9a742f;border-radius:8px;background:#111827;color:#e9bd62;font-weight:800;font-size:.88rem;cursor:pointer;transition:.2s}
+    .btn-favorites-filter:hover,.btn-favorites-filter.active{background:linear-gradient(135deg,#3b2b0d,#17130b);border-color:#fbbf24;box-shadow:0 0 12px rgba(245,158,11,.22);color:#fcd34d}
+    .card-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .card-title-row .ref-title{margin:0;min-width:0}
+    .favorite-toggle{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(201,154,62,.55);border-radius:50%;background:rgba(15,23,42,.9);color:#c99a3e;font-size:18px;cursor:pointer;transition:.2s;line-height:1}
+    .favorite-toggle:hover,.favorite-toggle.is-favorite{color:#fbbf24;border-color:#fbbf24;background:rgba(120,82,18,.22);box-shadow:0 0 12px rgba(245,158,11,.25)}
+    .favorite-toggle:focus-visible,.btn-favorites-filter:focus-visible{outline:2px solid #fbbf24;outline-offset:2px}
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
@@ -757,7 +764,7 @@ header {
           </select>
         </div>
       </div>
-      <div class="filter-footer"><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
+      <div class="filter-footer"><button type="button" id="favorites-filter-button" class="btn-favorites-filter" aria-pressed="false" onclick="toggleFavoritesFilter()">🦁 Favoritos</button><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
     </div>
   </section>
 
@@ -5832,6 +5839,44 @@ function updatePromoRefs() {
     let promoTimer = null;
 
     let selectedTypes = ["all"];
+    const STARK_FAVORITES_KEY = 'stark_games_favorites_v1';
+    let favoriteRefs = [];
+    let favoritesOnly = false;
+    try {
+      const savedFavorites = JSON.parse(localStorage.getItem(STARK_FAVORITES_KEY) || '[]');
+      if (Array.isArray(savedFavorites)) favoriteRefs = savedFavorites.filter(ref => typeof ref === 'string');
+    } catch (error) {
+      console.warn('Não foi possível carregar os Favoritos salvos neste navegador.', error);
+    }
+
+    function isFavorite(ref) {
+      return favoriteRefs.includes(ref);
+    }
+
+    function updateFavoritesFilterButton() {
+      const button = document.getElementById('favorites-filter-button');
+      if (!button) return;
+      button.classList.toggle('active', favoritesOnly);
+      button.setAttribute('aria-pressed', String(favoritesOnly));
+      button.textContent = favoritesOnly ? '🦁 Favoritos (ativos)' : '🦁 Favoritos';
+    }
+
+    function toggleFavorite(ref) {
+      if (isFavorite(ref)) favoriteRefs = favoriteRefs.filter(item => item !== ref);
+      else favoriteRefs.push(ref);
+      try {
+        localStorage.setItem(STARK_FAVORITES_KEY, JSON.stringify(favoriteRefs));
+      } catch (error) {
+        console.warn('Não foi possível salvar os Favoritos neste navegador.', error);
+      }
+      applyFilters();
+    }
+
+    function toggleFavoritesFilter() {
+      favoritesOnly = !favoritesOnly;
+      updateFavoritesFilterButton();
+      applyFilters();
+    }
     let currentRefForModal = "";
 
     function toggleDrawer() { document.getElementById('whatsapp-drawer').classList.toggle('open'); }
@@ -6070,6 +6115,8 @@ function accountDescriptionHtml(acc) {
     function toggleTypeTag(element, type) {
       if (type.toLowerCase() === 'all') {
         selectedTypes = ['all'];
+       favoritesOnly = false;
+       updateFavoritesFilterButton();
         document.querySelectorAll('.type-tag').forEach(tag => tag.classList.remove('active'));
         element.classList.add('active');
       } else {
@@ -6132,7 +6179,9 @@ function getFilteredAccounts() {
         // Se estiver vendida MAS já passou de 15 dias, esconde do catálogo principal (vai para o histórico)
         if (acc.vendida && isOlderThanTwoWeeks(acc.dataVendida)) return false;
 
-        if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
+        if (favoritesOnly && !isFavorite(acc.ref)) return false;
+
+         if (acc.priceTotal < minPrice || acc.priceTotal > maxPrice) return false;
         if (searchTerm && !normalizeSearch([acc.ref, acc.stats, ...(acc.details || []), ...(acc.types || [])].join(' ')).includes(searchTerm)) return false;
 
         const accountTypes = Array.isArray(acc.types) ? acc.types.map(t => String(t).toLowerCase()) : [];
@@ -6206,7 +6255,7 @@ function getFilteredAccounts() {
             <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" decoding="async" tabindex="0" role="button" title="Ampliar imagem" onclick="openImagePreview(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openImagePreview(this)}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
           </div>
           <div class="card-body">
-            <div class="ref-title">${acc.ref}</div>
+            <div class="card-title-row"><div class="ref-title">${acc.ref}</div><button type="button" class="favorite-toggle ${isFavorite(acc.ref) ? 'is-favorite' : ''}" data-favorite-ref="${acc.ref}" aria-label="${isFavorite(acc.ref) ? 'Remover' : 'Adicionar'} ${acc.ref} ${isFavorite(acc.ref) ? 'dos' : 'aos'} Favoritos" aria-pressed="${isFavorite(acc.ref)}" title="${isFavorite(acc.ref) ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}" onclick="toggleFavorite(this.dataset.favoriteRef)">🦁</button></div>
             <ul class="details-list">${detailsHtml}</ul>
             <div class="price-box">
               ${priceDisplayHtml}
