@@ -337,14 +337,14 @@ header {
     .input-box input:focus, .input-box select:focus { border-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
 
     .filter-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #1e293b; padding-top: 15px; flex-wrap: wrap; }
-    .favorites-tip{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.favorites-tip span{font-size:.8rem;color:#cbd5e1;line-height:1.4}
-    .btn-favorites-filter{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border:1px solid #9a742f;border-radius:8px;background:#111827;color:#e9bd62;font-weight:800;font-size:.88rem;cursor:pointer;transition:.2s}
-    .btn-favorites-filter:hover,.btn-favorites-filter.active{background:linear-gradient(135deg,#3b2b0d,#17130b);border-color:#fbbf24;box-shadow:0 0 12px rgba(245,158,11,.22);color:#fcd34d}
     .card-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
     .card-title-row .ref-title{margin:0;min-width:0}
-    .favorite-toggle{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(201,154,62,.55);border-radius:50%;background:rgba(15,23,42,.9);color:#c99a3e;font-size:18px;cursor:pointer;transition:.2s;line-height:1}
-    .favorite-toggle:hover,.favorite-toggle.is-favorite{color:#fbbf24;border-color:#fbbf24;background:rgba(120,82,18,.22);box-shadow:0 0 12px rgba(245,158,11,.25)}
-    .favorite-toggle:focus-visible,.btn-favorites-filter:focus-visible{outline:2px solid #fbbf24;outline-offset:2px}
+    .favorite-toggle{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:30px;padding:5px 9px;border:1px solid rgba(201,154,62,.5);border-radius:7px;background:rgba(15,23,42,.82);color:#c99a3e;font-size:.68rem;font-weight:900;letter-spacing:.25px;cursor:pointer;transition:.2s;line-height:1;white-space:nowrap}
+    .favorite-toggle:hover,.favorite-toggle.is-favorite{color:#fbbf24;border-color:#fbbf24;background:rgba(120,82,18,.22);box-shadow:0 0 10px rgba(245,158,11,.2)}
+    .favorite-toggle:focus-visible,.btn-favorites-filter:focus-visible,.floating-favorites:focus-visible{outline:2px solid #fbbf24;outline-offset:3px}
+    .floating-favorites{position:fixed;right:18px;bottom:82px;z-index:850;display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border:1px solid rgba(201,154,62,.55);border-radius:999px;background:rgba(12,17,27,.88);color:#d6ad59;font-size:.78rem;font-weight:800;box-shadow:0 4px 16px #0008;backdrop-filter:blur(8px);cursor:pointer;transition:.2s}
+    .floating-favorites:hover,.floating-favorites.active{border-color:#fbbf24;color:#fcd34d;background:rgba(45,33,12,.94);box-shadow:0 0 12px rgba(245,158,11,.2)}
+    @media(max-width:600px){.floating-favorites{right:12px;bottom:76px;padding:7px 10px;font-size:.74rem}}
     .btn-clear { background: transparent; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 0.9rem; text-decoration: underline; }
     .btn-clear:hover { color: #f87171; }
 
@@ -765,7 +765,7 @@ header {
           </select>
         </div>
       </div>
-      <div class="filter-footer"><div class="favorites-tip"><button type="button" id="favorites-filter-button" class="btn-favorites-filter" aria-pressed="false" onclick="toggleFavoritesFilter()">🦁 Favoritos</button><span>Toque no leão dourado de uma conta para salvá-la aqui.</span></div><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
+      <div class="filter-footer"><button class="btn-clear" onclick="clearFilters()">Limpar Filtros</button></div>
     </div>
   </section>
 
@@ -773,6 +773,7 @@ header {
 
   <div class="catalog-toolbar"><label for="quick-search">🔎 Encontrar conta</label><input id="quick-search" type="search" placeholder="Digite uma REF ou característica..." oninput="syncCatalogSearch(this.value)" autocomplete="off"><span id="catalog-results" aria-live="polite"></span></div>
   <main class="catalog" id="catalog-container"></main>
+  <button type="button" id="favorites-filter-button" class="floating-favorites" aria-pressed="false" onclick="toggleFavoritesFilter()" title="Mostrar apenas contas favoritas">🦁 Favoritos</button>
 
   <section class="sold-card" id="sold-card" style="display: none;">
     <div class="sold-toggle-header" onclick="toggleSoldPanel()">
@@ -5859,7 +5860,7 @@ function updatePromoRefs() {
       if (!button) return;
       button.classList.toggle('active', favoritesOnly);
       button.setAttribute('aria-pressed', String(favoritesOnly));
-      button.textContent = favoritesOnly ? '🦁 Favoritos (ativos)' : '🦁 Favoritos';
+      button.textContent = favoritesOnly ? '🦁 Favoritos ✓' : '🦁 Favoritos';
     }
 
     function toggleFavorite(ref) {
@@ -6254,7 +6255,7 @@ function getFilteredAccounts() {
             <img src="${acc.imgUrl}" alt="${acc.ref}" class="card-img" loading="lazy" decoding="async" tabindex="0" role="button" title="Ampliar imagem" onclick="openImagePreview(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openImagePreview(this)}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
           </div>
           <div class="card-body">
-            <div class="card-title-row"><div class="ref-title">${acc.ref}</div><button type="button" class="favorite-toggle ${isFavorite(acc.ref) ? 'is-favorite' : ''}" data-favorite-ref="${acc.ref}" aria-label="${isFavorite(acc.ref) ? 'Remover' : 'Adicionar'} ${acc.ref} ${isFavorite(acc.ref) ? 'dos' : 'aos'} Favoritos" aria-pressed="${isFavorite(acc.ref)}" title="${isFavorite(acc.ref) ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}" onclick="toggleFavorite(this.dataset.favoriteRef)">🦁</button></div>
+            <div class="card-title-row"><div class="ref-title">${acc.ref}</div><button type="button" class="favorite-toggle ${isFavorite(acc.ref) ? 'is-favorite' : ''}" data-favorite-ref="${acc.ref}" aria-label="${isFavorite(acc.ref) ? 'Remover' : 'Adicionar'} ${acc.ref} ${isFavorite(acc.ref) ? 'dos' : 'aos'} Favoritos" aria-pressed="${isFavorite(acc.ref)}" title="${isFavorite(acc.ref) ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}" onclick="toggleFavorite(this.dataset.favoriteRef)">🦁 <span>FAVORITOS</span></button></div>
             <ul class="details-list">${detailsHtml}</ul>
             <div class="price-box">
               ${priceDisplayHtml}
