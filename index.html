@@ -6115,8 +6115,6 @@ function accountDescriptionHtml(acc) {
     function toggleTypeTag(element, type) {
       if (type.toLowerCase() === 'all') {
         selectedTypes = ['all'];
-       favoritesOnly = false;
-       updateFavoritesFilterButton();
         document.querySelectorAll('.type-tag').forEach(tag => tag.classList.remove('active'));
         element.classList.add('active');
       } else {
@@ -6338,6 +6336,8 @@ function getFilteredAccounts() {
       document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
       
       selectedTypes = ['all'];
+      favoritesOnly = false;
+      updateFavoritesFilterButton();
       document.querySelectorAll('.type-tag').forEach(tag => {
         if (tag.getAttribute('data-type') === 'all') tag.classList.add('active');
         else tag.classList.remove('active');
