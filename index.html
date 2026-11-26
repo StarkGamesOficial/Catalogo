@@ -5951,7 +5951,7 @@ function accountDescriptionHtml(acc) {
           ${promoBadgeHtml}
           ${newBadgeHtml}
           ${soldStampHtml}
-          <img src="${acc.imgUrl}" alt="${acc.ref}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+          <img src="${acc.imgUrl}" alt="${acc.ref}" data-account-ref="${acc.ref}" loading="lazy" tabindex="0" role="button" title="Ampliar imagem" style="cursor:zoom-in" onclick="openImagePreview(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openImagePreview(this)}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
         </div>
         <div class="featured-info">
           <div class="featured-title">${acc.ref}</div>
@@ -6001,7 +6001,7 @@ function accountDescriptionHtml(acc) {
       container.innerHTML = `
         <div class="featured-img-box">
           ${promoBadgeHtml}
-          <img src="${acc.imgUrl}" alt="${acc.ref}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+          <img src="${acc.imgUrl}" alt="${acc.ref}" data-account-ref="${acc.ref}" loading="lazy" tabindex="0" role="button" title="Ampliar imagem" style="cursor:zoom-in" onclick="openImagePreview(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openImagePreview(this)}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
         </div>
         <div class="featured-info">
           <div class="featured-title">${acc.ref}</div>
@@ -6592,8 +6592,10 @@ function getFilteredAccounts() {
       const overlay = document.getElementById('stark-image-overlay');
       const large = document.getElementById('stark-image-large');
       const imageAlt = (img.alt || '').trim();
+      // Prioriza o REF explícito no elemento; usa o texto alternativo como fallback.
+      const explicitRef = (img.dataset.accountRef || '').trim();
       const matchedAccount = accounts.find(acc =>
-        imageAlt === acc.ref || imageAlt === 'Imagem da ' + acc.ref
+        acc.ref === explicitRef || imageAlt === acc.ref || imageAlt === 'Imagem da ' + acc.ref
       );
 
       // Registra somente quando o visitante realmente abre a imagem ampliada.
@@ -6887,7 +6889,7 @@ function getFilteredAccounts() {
         <div class="cmp-intro"><p>Veja as diferenças reais entre 2 ou 3 contas. <strong class="cmp-green-text">Verde</strong> = melhor valor/recurso informado; <strong class="cmp-red-text">vermelho</strong> = menor valor ou ausência confirmada; cinza = empate ou não informado.</p><label class="cmp-toggle"><input type="checkbox" id="cmp-only-diffs" ${compareOnlyDifferences?'checked':''} onchange="setCompareDifferences(this.checked)"> Mostrar apenas diferenças</label></div>
         <div class="cmp-summary"><h3>🏆 Diferenciais de cada conta</h3><div class="cmp-summary-grid">${summaries}</div></div>
         <p class="cmp-explain">Diferenças de bônus expressas em pontos percentuais (p.p.) e em percentual relativo; tropas em milhões (M). Um único valor IND ou de falange aparece como Bônus Bruto, pois não indica qual falange foi usada. O símbolo ≥ indica valor mínimo, sem comparação de vantagem. Para contas com diferentes planos, Valor Total considera o preço à vista, enquanto Menor entrada pode pertencer a outro plano de valor total diferente. Os números só recebem classificação quando todas as contas têm o dado correspondente. Ausência de menção a uma skin <strong>não significa</strong> que ela não exista.</p>
-        <div class="cmp-table-scroll"><table class="compare-table cmp-advanced"><thead><tr><th scope="col">Indicador</th>${models.map(m=>`<th scope="col"><img class="cmp-account-photo" src="${escape(m.acc.imgUrl)}" alt="Imagem da ${escape(m.acc.ref)}" loading="lazy" onclick="openImagePreview(this)" title="Ampliar imagem"><span>${escape(m.acc.ref)}</span></th>`).join('')}</tr></thead><tbody>${body}${bottomRows}</tbody></table></div>
+        <div class="cmp-table-scroll"><table class="compare-table cmp-advanced"><thead><tr><th scope="col">Indicador</th>${models.map(m=>`<th scope="col"><img class="cmp-account-photo" src="${escape(m.acc.imgUrl)}" alt="Imagem da ${escape(m.acc.ref)}" data-account-ref="${escape(m.acc.ref)}" loading="lazy" tabindex="0" role="button" onclick="openImagePreview(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openImagePreview(this)}" title="Ampliar imagem" style="cursor:zoom-in"><span>${escape(m.acc.ref)}</span></th>`).join('')}</tr></thead><tbody>${body}${bottomRows}</tbody></table></div>
         ${compareOnlyDifferences && !rendered?'<p class="cmp-empty">Não há diferenças numéricas ou de recursos confirmadas entre essas contas nos campos identificáveis.</p>':''}`;
       const root = document.getElementById('compare-content');
       root.innerHTML = html;
