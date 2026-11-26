@@ -6106,7 +6106,7 @@ function syncCatalogSearch(value) {
     // Ex.: 1200/1300/1400% pertence à faixa 1400%.
     function getAccountIndValues(acc) {
       const text = [acc.stats || '', ...(Array.isArray(acc.details) ? acc.details : [])].join(' ');
-      const match = text.match(/\\bIND(?:IVIDUAL)?\\s*(?:\\([^)]*\\))?\\s*[:=-]?\\s*(\\d{3,4})\\s*%?\\s*(?:[/|]\\s*(\\d{3,4})\\s*%?\\s*(?:[/|]\\s*(\\d{3,4})\\s*%?)?)?/i);
+      const match = text.match(/\bIND(?:IVIDUAL)?\s*(?:\([^)]*\))?\s*[:=-]?\s*(\d{3,4})\s*%?\s*(?:[/|]\s*(\d{3,4})\s*%?\s*(?:[/|]\s*(\d{3,4})\s*%?)?)?/i);
       return match ? match.slice(1).filter(Boolean).map(Number) : [];
     }
 
@@ -6142,7 +6142,7 @@ function getFilteredAccounts() {
             const normalized = t.toLowerCase();
             // Quando há IND informado, a faixa é calculada pelo maior dos três valores;
             // sem IND explícito, preserva a classificação já cadastrada.
-            if (/^(?:800|900|1000|1100|1200|1300|1400)%$|^1500%\\+$/.test(normalized)) {
+            if (/^(?:800|900|1000|1100|1200|1300|1400)%$|^1500%\+$/.test(normalized)) {
               return percentageType ? percentageType === normalized : accountTypes.includes(normalized);
             }
             return accountTypes.includes(normalized);
